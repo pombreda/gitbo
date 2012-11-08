@@ -32,11 +32,4 @@ ActiveRecord::Schema.define(:version => 20121108173647) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "repositories", :force => true do |t|
-    t.string   "name"
-    t.string   "owner"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
 end
