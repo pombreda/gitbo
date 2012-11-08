@@ -2,11 +2,6 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Owner name</th>
-    <th>Description</th>
-    <th>Watchers</th>
-    <th>Open issues</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,11 +9,6 @@
 
 <% @repos.each do |repo| %>
   <tr>
-    <td><%= repo.name %></td>
-    <td><%= repo.owner_name %></td>
-    <td><%= repo.description %></td>
-    <td><%= repo.watchers %></td>
-    <td><%= repo.open_issues %></td>
     <td><%= link_to 'Show', repo %></td>
     <td><%= link_to 'Edit', edit_repo_path(repo) %></td>
     <td><%= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
