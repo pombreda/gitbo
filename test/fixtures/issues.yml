@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  gitnumber: 1
+  body: MyString
+
+two:
+  title: MyString
+  gitnumber: 1
+  body: MyString

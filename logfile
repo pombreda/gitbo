@@ -1,0 +1,6 @@
+LOG:  database system was shut down at 2012-11-08 11:26:17 EST
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  database "project_development" does not exist
+ERROR:  column "spclocation" does not exist at character 32
+STATEMENT:  SELECT oid, spcname, spcowner, spclocation, spcacl, shobj_description(oid, 'pg_tablespace') AS comment FROM pg_tablespace

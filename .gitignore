@@ -13,3 +13,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+#everyone's db is customized, dont' want to push my data
+/config/database.yml
