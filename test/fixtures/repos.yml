@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  owner_name: MyString
+  description: MyString
+  watchers: 1
+  open_issues: 1
+
+two:
+  name: MyString
+  owner_name: MyString
+  description: MyString
+  watchers: 1
+  open_issues: 1
