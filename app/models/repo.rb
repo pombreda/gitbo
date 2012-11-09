@@ -16,8 +16,5 @@ class Repo < ActiveRecord::Base
     self.issues
   end
 
-  def 
-    #gather all issues of instance of a Repo
-  end
 
 end
