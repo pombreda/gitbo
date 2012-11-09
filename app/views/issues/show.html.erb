@@ -1,5 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 
+<p>
+  <b>Issue Title:</b>
+  <%= @issue.title %>
+</p>
+<p>
+  <b>Git Number:</b>
+  <%= @issue.git_number %>
+</p>
+<p>
+  <b>Description:</b>
+  <%= @issue.body %>
+</p>
+<p>
+  <b>Repo Name:</b>
+  <%= @issue.repo.name %>
+</p>
+
+
 <%= link_to 'Edit', edit_issue_path(@issue) %> |
 <%= link_to 'Back', issues_path %>
