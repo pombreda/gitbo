@@ -16,8 +16,16 @@ class GithubConnection
     self.info.name
   end
 
-  def owner
-    self.info.owner
+  def owner_name
+    self.info.owner.login
+  end
+
+  def open_issues
+    self.info.open_issues
+  end
+
+  def watchers
+    self.info.watchers
   end
 
   def issue_title
@@ -34,9 +42,3 @@ class GithubConnection
 
 end
 
-
-# class Issue
-
-#   def intialize(owner, repo)
-#     gh_connect = GithubConnection.(#)
-# end
