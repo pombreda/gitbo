@@ -25,9 +25,8 @@
   <b>All Open Issues: </b>
   <% @repo.issues.each do |issue| %>
     <tr>
-      <td><%= link_to issue.title, issue_path %></td>
+      <td><%= link_to issue.title, issue %></td>
       <td><%= issue.git_number %></td>
-      <td><%= issue.body %></td>
     </tr>
   <% end %>
 </table><br />

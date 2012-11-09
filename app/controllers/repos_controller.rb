@@ -2,7 +2,7 @@ class ReposController < ApplicationController
   # GET /repos
   # GET /repos.json
   def index
-    @repos = Repo.all
+    @repos = Repo.order('watchers DESC').all
 
     respond_to do |format|
       format.html # index.html.erb
