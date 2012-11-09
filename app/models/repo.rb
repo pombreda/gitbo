@@ -10,14 +10,15 @@ class Repo < ActiveRecord::Base
                 :open_issues => connection.open_issues,
                 :owner_name => connection.owner_name,
                 :watchers => connection.watchers)
+
+    connection.issues.each do |issue|
+      Issue.create_from_github(owner, repo, issue.number)
+    end
   end
 
   def list_all_issues
     self.issues
   end
 
-  def 
-    #gather all issues of instance of a Repo
-  end
 
 end
