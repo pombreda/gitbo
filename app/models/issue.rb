@@ -3,6 +3,8 @@ class Issue < ActiveRecord::Base
 
   belongs_to :repo
 
+  validates :git_number, :uniqueness => { :scope => :repo_id } 
+
   # def initialize
   #    @issue = self
   # end
