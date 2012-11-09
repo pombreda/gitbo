@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121109205156) do
+ActiveRecord::Schema.define(:version => 20121109213835) do
 
   create_table "issues", :force => true do |t|
     t.string   "title"
     t.integer  "git_number"
-    t.string   "body"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.text     "body",          :limit => 255
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.integer  "repo_id"
     t.string   "repo_name"
     t.integer  "comment_count"
@@ -27,11 +27,11 @@ ActiveRecord::Schema.define(:version => 20121109205156) do
   create_table "repos", :force => true do |t|
     t.string   "name"
     t.string   "owner_name"
-    t.string   "description"
+    t.text     "description", :limit => 255
     t.integer  "watchers"
     t.integer  "open_issues"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
 end
