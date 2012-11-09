@@ -3,6 +3,8 @@ class Repo < ActiveRecord::Base
  
   has_many :issues
 
+  validates :name, :uniqueness => true
+
   def self.create_from_github(owner, repo)
     connection = GithubConnection.new(owner, repo)
 
@@ -11,8 +13,10 @@ class Repo < ActiveRecord::Base
                 :owner_name => connection.owner_name,
                 :watchers => connection.watchers)
 
-    connection.issues.each do |issue|
-      Issue.create_from_github(owner, repo, issue.number)
+    if newly_created_repo.persisted?
+      connection.issues.each do |issue|
+        Issue.create_from_github(owner, repo, issue.number)
+      end
     end
     newly_created_repo
   end
