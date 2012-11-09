@@ -20,5 +20,4 @@ class Repo < ActiveRecord::Base
     self.issues
   end
 
-
 end
