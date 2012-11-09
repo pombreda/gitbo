@@ -1,8 +1,8 @@
 class Issue < ActiveRecord::Base
+
   attr_accessible :body, :git_number, 
                   :title, :repo, :repo_name,
                   :repo_id
-
 
   belongs_to :repo
 
@@ -30,4 +30,8 @@ class Issue < ActiveRecord::Base
   
 
 
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> 587edb7e96008ca47452c1a3b91dd55c748443bb
