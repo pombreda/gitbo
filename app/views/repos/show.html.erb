@@ -1,5 +1,38 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <b>Repo Name:</b>
+  <%= @repo.name %>
+</p>
+<p>
+  <b>Owner Name:</b>
+  <%= @repo.owner_name %>
+</p>
+<p>
+  <b>Description:</b>
+  <%= @repo.description %>
+</p>
+<p>
+  <b>Watchers:</b>
+  <%= @repo.watchers %>
+</p>
+<p>
+  <b>Open_issues:</b>
+  <%= @repo.open_issues %>
+</p>
+
+<!-- <table>
+  <b>All Open Issues: </b>
+  <%#= @repo.issues.each do |issue| %>
+    <tr>
+      <td><#%= issue.git_number %></td>
+      <td><#%= issue.title %></td>
+      <td><#%= issue.issue_author %></td>
+    </tr>
+  <#% end %>
+</table><br />
+ -->
+
 
 <%= link_to 'Edit', edit_repo_path(@repo) %> |
 <%= link_to 'Back', repos_path %>

@@ -11,7 +11,12 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.label :repo_owner %><br />
+  <p><%= f.text_field :repo_owner %></p>
+  <%= f.label :repo_name %><br />
+  <p><%= f.text_field :repo_name %></p>
+  <%= f.label :issue_number %><br />
+  <p><%= f.text_field :issue_number %></p>
+  <p><%= f.submit %></p>
 <% end %>
+

@@ -1,5 +1,33 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <b>Issue Title:</b>
+  <%= @issue.title %>
+</p>
+<p>
+  <b>Git Number:</b>
+  <%= @issue.git_number %>
+</p>
+<p>
+  <b>Description:</b>
+  <%= @issue.body %>
+</p>
+<p>
+  <b>Repo Name:</b>
+  <%= @issue.repo_name %>
+</p>
+<p>
+  <b>Issue Author:</b>
+  <%= @issue.issue_author %>
+</p>
+<p>
+  <b>State:</b>
+  <%= @issue.state %>
+</p>
+<p>
+  <b>Comments:</b>
+  <%= @issue.git_comments %>
+</p>
 
 <%= link_to 'Edit', edit_issue_path(@issue) %> |
 <%= link_to 'Back', issues_path %>
