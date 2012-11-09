@@ -11,7 +11,11 @@
     </div>
   <% end %>
 
-  <div class="actions">
+  <%= form_for(@repo) do |f| %>
+    <%= f.label :owner_name %> <br />
+    <p><%= f.text_field :owner_name %></p>
+    <%= f.label :name %><br />
+    <p><%= f.text_field :name %></p>
     <%= f.submit %>
-  </div>
+  <% end %>
 <% end %>
