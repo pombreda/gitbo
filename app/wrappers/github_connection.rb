@@ -1,12 +1,13 @@
 class GithubConnection
 
-  attr_accessor :repo, :info, :issue_no, :client
+  attr_accessor :repo, :info, :issue_no, :client, :issues
 
   def initialize(owner, repo, issue_no = nil)
     @client = Octokit::Client.new(:login => "flatiron-dummy", :password => "flatiron2012")
     @repo = "#{owner}/#{repo}"
     @info = @client.repo(@repo)
     @issue_no = issue_no
+    @issues = @client.list_issues(@repo)
   end
 
   def url
@@ -40,6 +41,7 @@ class GithubConnection
   def issue_number
     self.client.issue(self.repo, self.issue_no).number
   end
+
 
 end
 
