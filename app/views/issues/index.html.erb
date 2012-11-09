@@ -2,6 +2,10 @@
 
 <table>
   <tr>
+    <th>Issue Name</th>
+    <th>Repo Name</th>
+    <th>Issue Number</th>
+    <th>Comment Count</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,6 +16,7 @@
     <td><%= link_to issue.title, issue %></td>
     <td><%= link_to issue.repo_name, issue.repo %></td>
     <td><%= issue.git_number %></td>
+    <td><%= issue.comment_count %></td>
     <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
     <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

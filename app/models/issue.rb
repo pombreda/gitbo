@@ -1,5 +1,5 @@
 class Issue < ActiveRecord::Base
-  attr_accessible :body, :git_number, :title, :repo, :repo_name
+  attr_accessible :body, :git_number, :title, :repo, :repo_name, :comment_count
 
   belongs_to :repo
 
@@ -20,6 +20,8 @@ class Issue < ActiveRecord::Base
                   :body => connection.issue_body,
                   :title => connection.issue_title,
                   :repo_name => repo,
+                  :comment_count => connection.issue_comment_count
+
                   )
     issue.repo_id = Repo.find_or_create_by_name("#{repo}").id
     issue.save

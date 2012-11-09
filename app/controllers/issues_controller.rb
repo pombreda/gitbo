@@ -2,7 +2,7 @@ class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
   def index
-    @issues = Issue.all
+    @issues = Issue.order('comment_count DESC').all
 
     respond_to do |format|
       format.html # index.html.erb
