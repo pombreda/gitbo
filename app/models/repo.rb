@@ -6,6 +6,7 @@ class Repo < ActiveRecord::Base
   validates :name, :uniqueness => true
 
   def self.create_from_github(owner, repo)
+    owner, repo = owner.strip, repo.strip
     connection = GithubConnection.new(owner, repo)
 
     newly_created_repo = Repo.create(:name => connection.name,
@@ -24,5 +25,4 @@ class Repo < ActiveRecord::Base
   def list_all_issues
     self.issues
   end
-
 end
