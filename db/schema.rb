@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121108173647) do
+ActiveRecord::Schema.define(:version => 20121109003558) do
 
   create_table "issues", :force => true do |t|
     t.string   "title"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20121108173647) do
     t.string   "body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "repo_id"
+    t.string   "repo_name"
   end
 
   create_table "repos", :force => true do |t|

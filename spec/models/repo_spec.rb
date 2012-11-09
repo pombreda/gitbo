@@ -22,9 +22,9 @@ describe Repo do
         issue_1 = Issue.create_from_github("intridea", "omniauth", 645)
         issue_2 = Issue.create_from_github("intridea", "omniauth", 642)
         issue_3 = Issue.create_from_github("intridea", "omniauth", 640)
-        repo = Repo.create_from_github("intridea", "omniauth")
+        # repo = Repo.create_from_github("intridea", "omniauth")
 
-        repo.list_all_issues.count.should == 3
+        issue_1.repo.list_all_issues.count.should == 3
 
       end
 
