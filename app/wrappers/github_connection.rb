@@ -30,6 +30,10 @@ class GithubConnection
     self.info.watchers
   end
 
+  def issue_comment_count
+    self.client.issue(self.repo, self.issue_no).comments
+  end
+
   def issue_title
     self.client.issue(self.repo, self.issue_no).title
   end
