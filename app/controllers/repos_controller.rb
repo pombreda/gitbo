@@ -40,7 +40,7 @@ class ReposController < ApplicationController
   # POST /repos
   # POST /repos.json
   def create
-    @repo = Repo.new(params[:repo])
+    @repo = Repo.create_from_github(params[:repo][:owner_name], params[:repo][:name])
 
     respond_to do |format|
       if @repo.save

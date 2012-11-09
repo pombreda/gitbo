@@ -6,7 +6,7 @@ class Repo < ActiveRecord::Base
   def self.create_from_github(owner, repo)
     connection = GithubConnection.new(owner, repo)
 
-    Repo.create(:name => connection.name,
+    newly_created_repo = Repo.create(:name => connection.name,
                 :open_issues => connection.open_issues,
                 :owner_name => connection.owner_name,
                 :watchers => connection.watchers)
@@ -14,6 +14,7 @@ class Repo < ActiveRecord::Base
     connection.issues.each do |issue|
       Issue.create_from_github(owner, repo, issue.number)
     end
+    newly_created_repo
   end
 
   def list_all_issues
