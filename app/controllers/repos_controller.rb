@@ -2,7 +2,7 @@ class ReposController < ApplicationController
   # GET /repos
   # GET /repos.json
 
-  rescue_from Octokit::NotFound, :with => :record_not_found
+  rescue_from Octokit::NotFound, :with => :repo_not_found
 
   def index
     @repos = Repo.order('watchers DESC').all
@@ -86,9 +86,9 @@ class ReposController < ApplicationController
 
   private
 
-  def record_not_found
-    flash[:error] = "You don't have access to this section."
-    redirect_to :back
-  end
+    def repo_not_found
+      flash[:error] = "Repository not found. Please try again."
+      redirect_to :back
+    end
 
 end

@@ -1,3 +1,5 @@
+<div id="error_explanation"><%= flash[:error] %></div>
+
 <%= form_for(@repo) do |f| %>
   <% if @repo.errors.any? %>
     <div id="error_explanation">
