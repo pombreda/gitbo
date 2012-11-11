@@ -22,7 +22,4 @@ class Repo < ActiveRecord::Base
     newly_created_repo
   end
 
-  def list_all_issues
-    self.issues
-  end
 end
