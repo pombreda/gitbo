@@ -1,7 +1,7 @@
 Gitbo::Application.routes.draw do
 
 
-
+get "/:owner/:repo/issues" => "issues#repo_issues", :as => :repo_issues
 
   put '/issues/:id/upvote' => 'issues#upvote', :as => :upvote_issue
   put '/issues/:id/downvote' => 'issues#downvote', :as => :downvote_issue
@@ -12,7 +12,7 @@ Gitbo::Application.routes.draw do
 
   get "/issues" => "issues#index"
 
-  get "repos/:id/issues" => "issues#repo_issues", :as => :repo_issues
+  
 
   root :to => 'repos#index'
 

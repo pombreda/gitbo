@@ -18,7 +18,7 @@ class IssuesController < ApplicationController
   end
 
   def repo_issues
-    @repo = Repo.find(params[:id])
+    @repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
     @issues = @repo.issues
     
     render 'repos/issues/index'
