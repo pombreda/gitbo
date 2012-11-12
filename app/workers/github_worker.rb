@@ -5,6 +5,5 @@ class GithubWorker
 
   def perform(owner, repo, issue)
      Issue.create_from_github(owner, repo, issue) 
-  end
 
 end
