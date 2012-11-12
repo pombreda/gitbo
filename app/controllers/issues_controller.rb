@@ -15,6 +15,7 @@ class IssuesController < ApplicationController
     issue.add_downvote
     issue.save
     redirect_to :back
+  end
 
   def repo_issues
     @repo = Repo.find(params[:id])
