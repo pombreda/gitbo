@@ -1,5 +1,9 @@
 Gitbo::Application.routes.draw do
 
+
+  put '/issues/:id/upvote' => 'issues#upvote', :as => :upvote_issue
+  put '/issues/:id/downvote' => 'issues#downvote', :as => :downvote_issue
+
   resources :repos
 
   resources :issues
