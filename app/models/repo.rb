@@ -22,4 +22,15 @@ class Repo < ActiveRecord::Base
     newly_created_repo
   end
 
+
+  def popularity
+    self.open_issues + self.watchers + self.issues_comment_count
+  end
+  
+  def issues_comment_count
+    self.issues.inject(0){|sum, issue| 
+      sum + issue.comment_count
+    }
+  end
+
 end
