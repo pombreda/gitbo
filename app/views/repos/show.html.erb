@@ -1,35 +1,29 @@
-<p id="notice"><%= notice %></p>
+<p id="notice text-success"><%= notice %></p>
 
-<p>
-  <b>Repo Name:</b>
-  <%= @repo.name %>
-</p>
-<p>
-  <b>Owner Name:</b>
-  <%= @repo.owner_name %>
-</p>
-<p>
-  <b>Description:</b>
-  <%= @repo.description %>
-</p>
-<p>
-  <b>Watchers:</b>
-  <%= @repo.watchers %>
-</p>
-<p>
-  <b>Open_issues:</b>
-  <%= @repo.open_issues %>
-</p>
+<div class="row">
+      <h3><%= @repo.owner_name.capitalize %>/<%= @repo.name.capitalize %></h3>
+      <h5>Watchers: <%= @repo.watchers %></h5>
+      <h5>Open_issues: <%= @repo.open_issues %></h5>
+      <% if @repo.description %>
+        <h5>Description:</h5> <%= @repo.description %>
+      <% end %>      
+  </div>
+</br>
 
-<table>
-  <b>All Open Issues / Issue Git number: </b>
-  <% @repo.issues.each do |issue| %>
-    <tr>
-      <td><%= link_to issue.title, repo_issue_path(@repo) %></td>
-      <td><%= issue.git_number %></td>
-    </tr>
-  <% end %>
-</table><br />
+<div class="row">
+    <table class="table table-bordered">
+      <tr>
+        <th>All Open Issues</th>
+        <th>Issue Git number: </th>
+      </tr>
+      <% @repo.issues.each do |issue| %>
+        <tr>
+          <td><%= link_to issue.title, repo_issue_path(@repo) %></td>
+          <td><%= issue.git_number %></td>
+        </tr>
+      <% end %>
+    </table>
+</div>
 
 
 
