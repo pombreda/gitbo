@@ -43,17 +43,21 @@ class ReposController < ApplicationController
   # POST /repos
   # POST /repos.json
   def create
-    @repo = Repo.create_from_github(params[:repo][:owner_name], params[:repo][:name])
 
-    respond_to do |format|
-      if @repo.save
-        format.html { redirect_to @repo, notice: 'Repo was successfully created.' }
-        format.json { render json: @repo, status: :created, location: @repo }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @repo.errors, status: :unprocessable_entity }
-      end
-    end
+    @repo = GithubWorker.perform_async(params[:repo][:owner_name], params[:repo][:name])
+
+    redirect_to :root, notice: 'Your job is being processed, please check back shortly'
+    
+
+    # respond_to do |format|
+    #   if @repo.save
+    #     format.html { redirect_to @repo, notice: 'Repo was successfully created.' }
+    #     format.json { render json: @repo, status: :created, location: @repo }
+    #   else
+    #     format.html { render action: "new" }
+    #     format.json { render json: @repo.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PUT /repos/1

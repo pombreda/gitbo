@@ -1,8 +1,41 @@
 class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
+
+  def upvote
+    issue = Issue.find(params[:id])
+    # raise issue.inspect
+    issue.add_upvote
+    issue.save
+    redirect_to :back    
+  end
+
+  def downvote
+    issue = Issue.find(params[:id])
+    issue.add_downvote
+    issue.save
+    redirect_to :back
+
+  def repo_issues
+    @repo = Repo.find(params[:id])
+    @issues = @repo.issues
+    
+    render 'repos/issues/index'
+
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render json: @issues }
+    # end
+  end
+
   def index
-    @issues = Issue.order('comment_count DESC').all
+    @issues = Issue.all
+
+    # order('comment_count DESC').all
+
+      # Get all issues
+      # sorts all issues by issue.popularity
+     # Issue.all
 
     respond_to do |format|
       format.html # index.html.erb

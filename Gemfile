@@ -33,6 +33,10 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

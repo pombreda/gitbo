@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110172622) do
+ActiveRecord::Schema.define(:version => 20121112155534) do
 
   create_table "issues", :force => true do |t|
     t.string   "title"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20121110172622) do
     t.datetime "updated_at",                   :null => false
     t.integer  "repo_id"
     t.integer  "comment_count"
+    t.integer  "upvote"
+    t.integer  "downvote"
   end
 
   create_table "repos", :force => true do |t|
