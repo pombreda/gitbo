@@ -1,4 +1,6 @@
 class Repo < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
   attr_accessible :description, :name, :open_issues, :owner_name, :watchers, :issues
  
   has_many :issues, :dependent => :destroy

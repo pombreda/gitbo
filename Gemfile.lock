@@ -61,6 +61,7 @@ GEM
       multipart-post (~> 1.1)
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
+    friendly_id (4.0.9)
     guard (1.5.3)
       listen (>= 0.4.2)
       lumberjack (>= 1.0.2)
@@ -185,6 +186,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 3.2.1)
   debugger
+  friendly_id
   guard-rspec
   jquery-rails
   octokit
