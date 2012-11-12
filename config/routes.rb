@@ -1,5 +1,8 @@
 Gitbo::Application.routes.draw do
 
+
+
+
   put '/issues/:id/upvote' => 'issues#upvote', :as => :upvote_issue
   put '/issues/:id/downvote' => 'issues#downvote', :as => :downvote_issue
 
@@ -11,7 +14,9 @@ Gitbo::Application.routes.draw do
 
   get "repos/:id/issues" => "issues#repo_issues", :as => :repo_issues
 
-  root :to => 'repos#index' 
+  root :to => 'repos#index'
+
+  get "/:owner/:repo" => 'repos#show', :as => :owner_repo
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

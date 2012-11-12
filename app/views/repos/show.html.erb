@@ -22,13 +22,15 @@
 </p>
 
 <table>
+
   <b>All Open Issues / Issue Git number: </b>
   <% @repo.issues.each do |issue| %>
     <tr>
-      <td><%= link_to issue.title, repo_issue_path(@repo) %></td>
+      <td><%= link_to issue.title, "/repos/#{@repo.owner_name}/issues/#{issue.id}" %></td>
       <td><%= issue.git_number %></td>
     </tr>
   <% end %>
+
 </table><br />
 
 
