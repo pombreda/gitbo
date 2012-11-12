@@ -16,7 +16,7 @@ class Repo < ActiveRecord::Base
 
     if newly_created_repo.persisted?
       connection.issues.each do |issue|
-        GithubWorker.perform_async(owner, repo, issue.number)
+        Issue.create_from_github(owner, repo, issue.number)
       end
     end
     newly_created_repo
