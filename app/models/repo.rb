@@ -36,11 +36,3 @@ class Repo < ActiveRecord::Base
   end
 
 end
-
-  # <b>All Open Issues / Issue Git number: </b>
-  # <% #@repo.issues.each do |issue| %>
-  #   <tr>
-  #     <td><%= link_to issue.title, repo_issue_path(@repo) %></td>
-  #     <td><%= issue.git_number %></td>
-  #   </tr>
-  # <% end %>

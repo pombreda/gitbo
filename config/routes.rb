@@ -16,6 +16,8 @@ Gitbo::Application.routes.draw do
 
   root :to => 'repos#index'
 
+
+  get "/:owner/:repo/issues/:git_number" => 'issues#show', :as => :owner_repo_gitnumber
   get "/:owner/:repo" => 'repos#show', :as => :owner_repo
 
   # The priority is based upon order of creation:
