@@ -18,4 +18,8 @@ class Issue < ActiveRecord::Base
     end
   end
 
+  def popularity
+    self.comment_count + self.upvote - self.downvote
+  end
+
 end
