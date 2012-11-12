@@ -22,4 +22,12 @@ class Issue < ActiveRecord::Base
     self.comment_count + self.upvote - self.downvote
   end
 
+  def add_upvote(int = 1)
+    self.increment(:upvote, int)
+  end
+
+  def add_downvote(int = 1)
+    self.increment(:downvote, int)
+  end
+
 end

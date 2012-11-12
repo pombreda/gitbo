@@ -1,6 +1,22 @@
 class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
+
+  def upvote
+    issue = Issue.find(params[:id])
+    # raise issue.inspect
+    issue.add_upvote
+    issue.save
+    redirect_to :back    
+  end
+
+  def downvote
+    issue = Issue.find(params[:id])
+    issue.add_downvote
+    issue.save
+    redirect_to :back
+  end
+
   def index
     @issues = Issue.all
 
