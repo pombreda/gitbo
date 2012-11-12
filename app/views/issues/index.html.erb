@@ -5,6 +5,7 @@
     <th></th>
     <th></th>
     <th>Issue Name</th>
+    <th>Repo Name</th>
     <th>Issue Number</th>
     <th>Comment Count</th>
     <th>Popularity</th>
@@ -19,7 +20,8 @@
   <tr>
     <td><%= link_to "Upvote", "/issues/#{issue.id}/upvote", :method => :put %></td>
     <td><%= link_to "Downvote", "/issues/#{issue.id}/downvote", :method => :put %></td>
-    <td><%= link_to issue.title, issue %></td>
+    <td><%= link_to issue.title, repo_issue_path(issue.repo, issue) %></td>
+    <td><%= link_to issue.repo.name, issue.repo %></td>
     <td><%= issue.git_number %></td>
     <td><%= issue.comment_count %></td>
     <td><%= issue.popularity %></td>
@@ -32,5 +34,3 @@
 </table>
 
 <br />
-
-<%= link_to 'New Issue', new_issue_path %>

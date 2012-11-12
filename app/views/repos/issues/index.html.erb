@@ -1,0 +1,11 @@
+<table>
+  <b>All Open Issues / Issue Git number: </b>
+  <% @repo.issues.each do |issue| %>
+    <tr>
+      <td><%= link_to issue.title, repo_issue_path(@repo) %></td>
+      <td><%= issue.git_number %></td>
+    </tr>
+  <% end %>
+</table><br />
+
+<%= link_to "Back to repo: #{@repo.name}", repo_path(@repo) %>

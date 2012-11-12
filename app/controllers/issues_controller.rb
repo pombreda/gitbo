@@ -15,6 +15,17 @@ class IssuesController < ApplicationController
     issue.add_downvote
     issue.save
     redirect_to :back
+
+  def repo_issues
+    @repo = Repo.find(params[:id])
+    @issues = @repo.issues
+    
+    render 'repos/issues/index'
+
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render json: @issues }
+    # end
   end
 
   def index

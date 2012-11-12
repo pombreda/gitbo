@@ -11,8 +11,10 @@
     </div>
   <% end %>
 
-  <%= f.label :repo_name %><br />
-  <p><%= f.text_field :repo_name %></p>
+
+  <%#= f.label :repo_name %><br />  
+  <p><%#= f.fields_for :repo 'repo[name]' :name %> :repo_name %></p>
+
   <%= f.label :git_number %><br />
   <p><%= f.text_field :git_number %></p>
   <p><%= f.submit %></p>

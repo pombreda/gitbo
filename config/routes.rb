@@ -1,13 +1,17 @@
 Gitbo::Application.routes.draw do
 
-
   put '/issues/:id/upvote' => 'issues#upvote', :as => :upvote_issue
   put '/issues/:id/downvote' => 'issues#downvote', :as => :downvote_issue
 
-  resources :repos
+  resources :repos do
+    resources :issues, :except => [:index, :new, :create]
+  end
 
-  resources :issues
+  get "/issues" => "issues#index"
 
+  get "repos/:id/issues" => "issues#repo_issues", :as => :repo_issues
+
+  root :to => 'repos#index' 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -58,7 +62,7 @@ Gitbo::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'repos#index'
+  
 
   # See how all your routes lay out with "rake routes"
 
