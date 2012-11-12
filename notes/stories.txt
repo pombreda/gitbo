@@ -1,0 +1,107 @@
+*Check out the Github developer API
+
+*Issues
+
+*Ruby Toolbox
+
+
+ruby
+
+
+
+* As an anonymous user, you should be able to view open issues and link to Github.
+
+* As a user, I want to be upvote or downvote issues.
+
+* As a repo owner, I want to endorse/flag/weight important issues.
+
+* As a repo owner, I want to be able to endorse particular issues, letting other users know that good fixes will be merged into the open source gem/library.
+
+* As a repo owner, I want to be able to reject certain issues.
+
+* As repo owner, I should receive a notification if another user of our app upvotes/adds/puts a bounty. Certain levels, when you get notified.
+
+* As a user, I'd like to have a bounty leaderboard.
+
+* As a user, I want to rate how difficult an issue will be.
+
+* As a repo owner, I want to also rank difficulty.
+
+* As a user, I want to login with Github, and possibly submit my own projects
+
+
+
+
+
+
+
+For Friday:
+
+10 gems
+
+
+
+Issues are ranked by upvotes / downvotes with some weight considering popularity
+
+
+
+
+
+
+
+
+
+
+* As developers, we'll start
+
+* As developers, we need to learn how Ruby
+
+
+number of downloads / watchers as indicators of popularity
+
+
+
+Ruby Toolbox: take a look at it, very 
+
+
+Ruby Gems API
+http://guides.rubygems.org/rubygems-org-api/
+
+Github API
+
+
+* Research Stripe payments
+
+
+Given an issue/project, how to upvote or downvote?
+
+How do we get issues in from Github?
+
+What do we use to determine what's the important?
+
+If I have a repos name, how can I get that data locally? How to get issues in?
+
+production server / staging server
+
+trello
+
+notes on github wiki
+
+
+** We'll start with Spree
+
+** Project
+
+ghee
+
+
+
+
+
+
+
+
+
+
+
+
