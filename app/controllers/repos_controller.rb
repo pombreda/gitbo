@@ -5,7 +5,7 @@ class ReposController < ApplicationController
   rescue_from Octokit::NotFound, :with => :repo_not_found
 
   def index
-    @repos = Repo.order('watchers DESC').all
+    @repos = Repo.all
 
     respond_to do |format|
       format.html # index.html.erb
