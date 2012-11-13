@@ -22,7 +22,7 @@
 
 <% @repos.sort_by(&:popularity).reverse.each do |repo| %>
   <tr>
-    <td><%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %>
+    <td><%= link_to ("#{repo.owner_name.capitalize}/#{repo.name.capitalize}"), owner_repo_path(repo.owner_name, repo.name) %>
     <td><%= repo.popularity %></td>
     <td><%= repo.open_issues %></td>
     <td><%= repo.watchers %></td>
