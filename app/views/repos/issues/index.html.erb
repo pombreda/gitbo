@@ -1,3 +1,7 @@
+<div class="page_head">
+  <h1>Issues for <%= @repo.name.capitalize %></h1>
+</div>
+
 <table class="table">
   <b>All Open Issues / Issue Git number: </b>
   <% @repo.issues.each do |issue| %>
