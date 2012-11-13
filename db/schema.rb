@@ -11,29 +11,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121112214729) do
+ActiveRecord::Schema.define(:version => 20121113213930) do
 
   create_table "issues", :force => true do |t|
     t.string   "title"
     t.integer  "git_number"
-    t.text     "body",          :limit => 255
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.text     "body",           :limit => 255
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "repo_id"
     t.integer  "comment_count"
     t.integer  "upvote"
     t.integer  "downvote"
+    t.datetime "git_updated_at"
   end
 
   create_table "repos", :force => true do |t|
     t.string   "name"
     t.string   "owner_name"
-    t.text     "description", :limit => 255
+    t.text     "description",    :limit => 255
     t.integer  "watchers"
     t.integer  "open_issues"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "slug"
+    t.datetime "git_updated_at"
   end
 
   add_index "repos", ["slug"], :name => "index_repos_on_slug"

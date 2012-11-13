@@ -1,5 +1,5 @@
 class Issue < ActiveRecord::Base
-  attr_accessible :body, :git_number, :title, :repo, :comment_count
+  attr_accessible :body, :git_number, :title, :repo, :comment_count, :git_updated_at
 
   belongs_to :repo
 
@@ -11,7 +11,8 @@ class Issue < ActiveRecord::Base
     Issue.new(:git_number => connection.issue_number,
                   :body => connection.issue_body,
                   :title => connection.issue_title,
-                  :comment_count => connection.issue_comments
+                  :comment_count => connection.issue_comments,
+                  :git_updated_at => connection.issue_git_updated_at.to_datetime
                   ).tap do |i|
       i.repo = Repo.find_or_create_by_name("#{repo}")
       i.save

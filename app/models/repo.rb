@@ -1,7 +1,8 @@
 class Repo < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => :slugged
-  attr_accessible :description, :name, :open_issues, :owner_name, :watchers, :issues
+  attr_accessible :description, :name, :open_issues, :owner_name, 
+                  :watchers, :issues, :git_updated_at
  
   has_many :issues, :dependent => :destroy
 
@@ -14,7 +15,8 @@ class Repo < ActiveRecord::Base
     newly_created_repo = Repo.create(:name => connection.name,
                 :open_issues => connection.open_issues,
                 :owner_name => connection.owner_name,
-                :watchers => connection.watchers)
+                :watchers => connection.watchers,
+                :git_updated_at => connection.git_updated_at.to_datetime)
 
     if newly_created_repo.persisted?
       connection.issues.each do |issue|
