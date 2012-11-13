@@ -1,9 +1,10 @@
-<p id="notice"><%= notice %></p>
-
+<div class="page_head">
+  <p id="notice"><%= notice %></p>
+  <h3>Issue for <%= @issue.repo.name.capitalize %>: <%= @issue.title %> </h3>
+</div>
 
 <p>
-  <b>Issue Title:</b>
-  <%= @issue.title %>
+
 </p>
 <p>
   <b>Git Number:</b>

@@ -37,6 +37,7 @@ end
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'whenever', :require => false
 
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS

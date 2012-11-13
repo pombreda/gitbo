@@ -19,7 +19,9 @@ class Issue < ActiveRecord::Base
   end
 
   def popularity
-    self.comment_count + self.upvote - self.downvote
+    upvote = self.upvote ||= 0
+    downvote = self.downvote ||= 0
+    self.comment_count + upvote - downvote
   end
 
   def add_upvote(int = 1)
