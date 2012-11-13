@@ -13,7 +13,6 @@
     <th>Downvote</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @issues.sort_by(&:popularity).reverse.each do |issue| %>
@@ -27,8 +26,7 @@
     <td><%= issue.popularity %></td>
     <td><%= issue.upvote %></td>
     <td><%= issue.downvote %></td>
-    <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
-    <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%#= link_to 'Destroy', repo_issue_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

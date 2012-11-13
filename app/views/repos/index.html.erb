@@ -16,12 +16,12 @@
 
 <% @repos.sort_by(&:popularity).reverse.each do |repo| %>
   <tr>
-    <td><%= link_to repo.name, repo %>
+    <td><%= link_to repo.name, owner_repo_path(repo.owner_name, repo) %>
     <td><%= repo.popularity %></td>
     <td><%= repo.open_issues %></td>
     <td><%= repo.watchers %></td>
     <td><%= repo.issues_comment_count %>
-    <td><%= link_to 'Show', repo %></td>
+    <td><%= link_to 'Show', owner_repo_path(repo.owner_name, repo) %></td>
     <td><%= link_to 'Edit', edit_repo_path(repo) %></td>
     <td><%= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

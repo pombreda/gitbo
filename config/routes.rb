@@ -7,7 +7,7 @@ get "/:owner/:repo/issues" => "issues#repo_issues", :as => :repo_issues
   put '/issues/:id/downvote' => 'issues#downvote', :as => :downvote_issue
 
   resources :repos do
-    resources :issues, :except => [:index, :new, :create]
+    resources :issues, :only => [:delete, :update]
   end
 
   get "/issues" => "issues#index"
