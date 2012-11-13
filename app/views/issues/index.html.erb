@@ -1,19 +1,21 @@
-<h1>Listing issues</h1>
+<div class='page_head'>
+    <h1>Listing issues</h1>
+</div>
 
-<table class="table">
-  <tr>
-    <th></th>
-    <th></th>
-    <th>Issue Name</th>
-    <th>Repo Name</th>
-    <th>Issue Number</th>
-    <th>Comment Count</th>
-    <th>Popularity</th>
-    <th>Upvote</th>
-    <th>Downvote</th>
-    <th></th>
-    <th></th>
-  </tr>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Issue Name</th>
+        <th>Repo Name</th>
+        <th>Issue Number</th>
+        <th>Comment Count</th>
+        <th>Popularity</th>
+        <th>Upvote</th>
+        <th>Downvote</th>
+      </tr>
+    </thead>
 
 <% @issues.sort_by(&:popularity).reverse.each do |issue| %>
   <tr>
@@ -26,7 +28,6 @@
     <td><%= issue.popularity %></td>
     <td><%= issue.upvote %></td>
     <td><%= issue.downvote %></td>
-    <td><%#= link_to 'Destroy', repo_issue_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

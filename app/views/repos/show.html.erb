@@ -1,28 +1,33 @@
-<p id="notice text-success"><%= notice %></p>
+<div class='page_head'>
+  <p id="notice text-success"><%= notice %></p>
+
+  <div class="row">
+      <h3><%= @repo.owner_name.capitalize %>/<%= @repo.name.capitalize %></h3>
+  </div>
+</div>
 
 <div class="row">
-    <h3><%= @repo.owner_name.capitalize %>/<%= @repo.name.capitalize %></h3>
+  <div class='span2'>
     <h5>Watchers: <%= @repo.watchers %></h5>
     <h5>Open_issues: <%= @repo.open_issues %></h5>
     <% if @repo.description %>
       <h5>Description:</h5> <%= @repo.description %>
     <% end %>
     <%= link_to 'All Repos', repos_path %>    
-</div>
-</br>
-
-<div class="row">
-    <table class="table table-bordered">
-      <tr>
-        <th>All Open Issues</th>
-        <th>Issue Git number: </th>
-      </tr>
-      <% @repo.issues.each do |issue| %>
+  </div>
+    <div class='span7'>
+      <table class="table table-bordered">
         <tr>
-          <td><%= link_to issue.title, "/#{@repo.owner_name}/#{@repo.name}/issues/#{issue.git_number}" %></td>
-          <td><%= issue.git_number %></td>
+          <th>All Open Issues</th>
+          <th>Issue Git number: </th>
         </tr>
-      <% end %>
-    </table>
+        <% @repo.issues.each do |issue| %>
+          <tr>
+            <td><%= link_to issue.title, "/#{@repo.owner_name}/#{@repo.name}/issues/#{issue.git_number}" %></td>
+            <td><%= issue.git_number %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
 </div>
 

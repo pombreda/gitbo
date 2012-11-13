@@ -1,21 +1,24 @@
-<p id="notice text-success"><%= notice %></p>
+
 <div class='jumbotron'>
+ <p id="notice text-success"><%= notice %></p> 
    <h1>Gitbo</h1>
-   <p class='lead'>Get paid to fix the most asked for Gihub issues</p> 
+   <p class='lead'>Get paid to fix the most asked for Github issues</p> 
 </div>
 
 <h3>Listing repos</h3>
-<table class="table">
-  <tr>
-    <th>Name</th>
-    <th>Popularity</th>
-    <th>Open Issues</th>
-    <th>Watchers</th>
-    <th>Issues Comment Count</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Popularity</th>
+      <th>Open Issues</th>
+      <th>Watchers</th>
+      <th>Issues Comment Count</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
 
 <% @repos.sort_by(&:popularity).reverse.each do |repo| %>
   <tr>
