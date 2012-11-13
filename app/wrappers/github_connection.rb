@@ -19,6 +19,10 @@ class GithubConnection
   end
     repo_params :name, :open_issues, :watchers
 
+  def git_updated_at
+    self.info.updated_at
+  end
+
   def owner_name
     self.info.owner.login
   end
@@ -32,5 +36,9 @@ class GithubConnection
   end
     issue_params :comments, :title, :body, :number
 
+  def issue_git_updated_at
+    self.client.issue(self.repo, self.issue_no).updated_at
+  end
+  
 end
 
