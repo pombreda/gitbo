@@ -47,7 +47,6 @@ class IssuesController < ApplicationController
   # GET /issues/1
   # GET /issues/1.json
   def show
-
     repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
 
     @issue = Issue.find_by_repo_id_and_git_number(repo.id, params[:git_number])
