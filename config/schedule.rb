@@ -18,3 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+every 1.hour do
+  runner "Issue.check_for_updates"
+end

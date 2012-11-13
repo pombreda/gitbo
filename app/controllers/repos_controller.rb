@@ -49,9 +49,16 @@ class ReposController < ApplicationController
   # POST /repos.json
   def create
 
-    @repo = GithubWorker.perform_async(params[:repo][:owner_name], params[:repo][:name])
-
-    redirect_to :root, notice: 'Your job is being processed, please check back shortly'
+    #don't run this job if the repo already exists
+    #if there is already a repo with this name in the db, we know
+    if !Repo.find_by_name(params[:repo][:name])
+      @repo = GithubWorker.perform_async(params[:repo][:owner_name], params[:repo][:name])
+      flash[:notice] = 'Your job is being processed, please check back shortly'
+      redirect_to :root
+    else
+      flash[:error] = "Repository already exists."
+      redirect_to :root
+    end
     
 
     # respond_to do |format|
