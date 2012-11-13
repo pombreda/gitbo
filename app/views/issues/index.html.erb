@@ -19,9 +19,9 @@
 
 <% @issues.sort_by(&:popularity).reverse.each do |issue| %>
   <tr>
-    <td><%= link_to "Upvote", "/issues/#{issue.id}/upvote", :method => :put %></td>
-    <td><%= link_to "Downvote", "/issues/#{issue.id}/downvote", :method => :put %></td>
-    <td><%= link_to issue.title, repo_issue_path(issue.repo, issue) %></td>
+    <td><%= link_to "Upvote", upvote_issue_path(issue), :method => :put %></td>
+    <td><%= link_to "Downvote", downvote_issue_path(issue), :method => :put %></td>
+    <td><%= link_to issue.title, repo_issues_path(issue.repo.owner_name, issue.repo.name) %></td>
     <td><%= link_to issue.repo.name, issue.repo %></td>
     <td><%= issue.git_number %></td>
     <td><%= issue.comment_count %></td>

@@ -23,7 +23,7 @@
         </tr>
         <% @repo.issues.each do |issue| %>
           <tr>
-            <td><%= link_to issue.title, "/#{@repo.owner_name}/#{@repo.name}/issues/#{issue.git_number}" %></td>
+            <td><%= link_to issue.title, owner_repo_gitnumber_path(@repo.owner_name, @repo.name, issue.git_number) %></td>
             <td><%= issue.git_number %></td>
           </tr>
         <% end %>
