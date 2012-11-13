@@ -13,6 +13,14 @@ Gitbo::Application.routes.draw do
 
   root :to => 'repos#index' 
 
+  require 'sidekiq/web'
+
+  Gitbo::Application.routes.draw do
+    resources :repos
+    root to: "repos#create"
+    mount Sidekiq::Web, at: "/sidekiq"
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

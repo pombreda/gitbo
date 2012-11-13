@@ -90,9 +90,9 @@ class ReposController < ApplicationController
 
   private
 
-    def repo_not_found
-      flash[:error] = "Repository not found. Please try again."
-      redirect_to :back
-    end
+  def repo_not_found
+    flash[:error] = "Repository not found. Please try again."
+    redirect_to :back
+  end
 
 end

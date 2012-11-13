@@ -5,5 +5,5 @@ class GithubWorker
 
   def perform(owner, repo)
      Repo.create_from_github(owner, repo) 
-   end
+  end
 end 
