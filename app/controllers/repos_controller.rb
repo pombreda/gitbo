@@ -16,7 +16,12 @@ class ReposController < ApplicationController
   # GET /repos/1
   # GET /repos/1.json
   def show
-    @repo = Repo.find(params[:id])
+
+    if params[:owner]
+      @repo = Repo.find_by_owner_name(params[:owner])
+    else
+      @repo = Repo.find(params[:id])
+    end
 
     respond_to do |format|
       format.html # show.html.erb

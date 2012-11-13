@@ -19,5 +19,4 @@
 </p>
 
 
-<%#= link_to 'Edit', edit_repo_issue_path(@issue.repo, @issue) %>
-<%= link_to 'Back', issues_path %>
+<%= link_to 'Back', repo_issues_path(@issue.repo.owner_name, @issue.repo) %>

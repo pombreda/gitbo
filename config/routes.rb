@@ -1,17 +1,24 @@
 Gitbo::Application.routes.draw do
 
+
+get "/:owner/:repo/issues" => "issues#repo_issues", :as => :repo_issues
+
   put '/issues/:id/upvote' => 'issues#upvote', :as => :upvote_issue
   put '/issues/:id/downvote' => 'issues#downvote', :as => :downvote_issue
 
   resources :repos do
-    resources :issues, :except => [:index, :new, :create]
+    resources :issues, :only => [:delete, :update]
   end
 
   get "/issues" => "issues#index"
 
-  get "repos/:id/issues" => "issues#repo_issues", :as => :repo_issues
+  
 
-  root :to => 'repos#index' 
+  root :to => 'repos#index'
+
+
+  get "/:owner/:repo/issues/:git_number" => 'issues#show', :as => :owner_repo_gitnumber
+  get "/:owner/:repo" => 'repos#show', :as => :owner_repo
 
 ### sidekiq monitoring
 

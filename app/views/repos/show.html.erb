@@ -19,13 +19,10 @@
       </tr>
       <% @repo.issues.each do |issue| %>
         <tr>
-          <td><%= link_to issue.title, repo_issue_path(@repo) %></td>
+          <td><%= link_to issue.title, "/#{@repo.owner_name}/#{@repo.name}/issues/#{issue.git_number}" %></td>
           <td><%= issue.git_number %></td>
         </tr>
       <% end %>
     </table>
 </div>
 
-
-
-<%#= link_to 'Edit', edit_repo_path(@repo) %>
