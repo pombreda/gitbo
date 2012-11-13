@@ -13,6 +13,8 @@ Gitbo::Application.routes.draw do
 
   root :to => 'repos#index' 
 
+### sidekiq monitoring
+
   require 'sidekiq/web'
 
   Gitbo::Application.routes.draw do

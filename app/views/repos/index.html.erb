@@ -1,7 +1,10 @@
 <p id="notice text-success"><%= notice %></p>
+<div class='jumbotron'>
+   <h1>Gitbo</h1>
+   <p class='lead'>Get paid to fix the most asked for Gihub issues</p> 
+</div>
 
-<h1>Listing repos</h1>
-
+<h3>Listing repos</h3>
 <table class="table">
   <tr>
     <th>Name</th>
@@ -30,4 +33,4 @@
 
 <br />
 
-<%= link_to 'New Repo', new_repo_path %>
+<%= link_to 'New Repo', new_repo_path, :class => 'btn btn-primary' %>
