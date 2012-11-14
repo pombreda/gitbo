@@ -6,8 +6,8 @@
 </div>
 
 <div class='row'>
-  <div class='span4'>
-    <h3>Listing repos</h3>
+  <div class='span6'>
+    <h3>Trending repos</h3>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -16,7 +16,7 @@
           <th>Open Issues</th>
           <th></th>
         </tr>
-      <% @repos.sort_by(&:popularity).reverse.each do |repo| %>
+      <% @repos.sort_by(&:popularity).reverse[1..5].each do |repo| %>
         <tr>
           <td><%= link_to repo.owner_name, owner_repos_path(repo.owner_name) %> / <%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %></td>
           <td><%= repo.popularity %></td>
@@ -25,31 +25,28 @@
       <% end %>  
 
       </thead>
-
-   <%#= @repos.each do |repo| %>
-    <!-- <tr>
-      <td><%#= repo.name %></td>
-      <td><%#= repo.watchers %></td>
-    </tr>
-     --><%# end %>
-
     </table>
   </div>
 
-  <div class='span5'>
-    <h3>Listing issues</h3>
+  <div class='span6'>
+    <h3>Trending issues</h3>
     <table class="table table-hover">
         <thead>
           <tr>
             <th>Issue Name</th>
-            <th>Comment Count</th>
+            <th>Repo Name</th>
+            <th>Popularity</th>
           </tr>
+            <% @issues.sort_by(&:popularity).reverse[1..5].each do |issue| %>
+            <tr>
+              <td><%= link_to issue.title, owner_repo_gitnumber_path(issue.repo.owner_name, issue.repo.name, issue.git_number) %></td>
+              <td><%= link_to issue.repo.name, issue.repo %></td>
+              <td><%= issue.comment_count %></td>
+            </tr>
+            <% end %>
         </thead>
-
-   
     </table>
-
     <br />
   </div>
 </div>
-<%= link_to 'New Repo', new_repo_path, :class => 'btn btn-primary' %>
+
