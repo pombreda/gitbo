@@ -54,7 +54,7 @@
             </ul>
             <ul class ="nav pull-right">
               <% if current_user %>
-                <li> Signed in as <%= current_user.name %></li>
+                <li><p>Signed in as <%= current_user.name %></p></li>
                 <li><%= link_to "Sign Out", signout_path %></li>
               <% else %>
                 <li><%= link_to "Sign in with Github", "/auth/github" %></li>
