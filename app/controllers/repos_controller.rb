@@ -20,16 +20,16 @@ class ReposController < ApplicationController
   # GET /repos/1
   # GET /repos/1.json
   def show
-
     if params[:owner]
       @repo = Repo.find_by_owner_name(params[:owner])
     else
       @repo = Repo.find(params[:id])
     end
 
-    github_connection = GithubConnection.new(params[:owner], params[:repo])
+    github_connection = GithubConnection.new(@repo.owner_name, params[:repo])
 
     @repo.update_repo_attributes(github_connection) if @repo.updated?(github_connection)
+    
 
     respond_to do |format|
       format.html # show.html.erb

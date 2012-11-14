@@ -16,7 +16,7 @@
           <th>Open Issues</th>
           <th></th>
         </tr>
-        </thead>
+        </thead>     
       <% @repos.sort_by(&:popularity).reverse[1..5].each do |repo| %>
         <tr>
           <td><%= link_to repo.owner_name, owner_repos_path(repo.owner_name) %> / <%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %></td>
@@ -37,11 +37,13 @@
             <th>Popularity</th>
           </tr>
         </thead>
+
+
             <% @issues.sort_by(&:popularity).reverse[1..5].each do |issue| %>
             <tr>
               <td><%= link_to issue.title, owner_repo_gitnumber_path(issue.repo.owner_name, issue.repo.name, issue.git_number) %></td>
-              <td><%= link_to issue.repo.name, issue.repo %></td>
-              <td><%= issue.comment_count %></td>
+              <td><%= link_to issue.repo.name, owner_repo_path(issue.repo.owner_name, issue.repo.name) %></td>
+              <td><%= issue.popularity %></td>
             </tr>
             <% end %>
     </table>

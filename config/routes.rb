@@ -17,10 +17,9 @@ Gitbo::Application.routes.draw do
 
   get "/issues" => "issues#index"
 
-  root :to => 'static#index'
 
   get "/:owner/:repo/issues/:git_number" => 'issues#show', :as => :owner_repo_gitnumber
-  get "/:owner/:repo" => 'repos#show', :as => :owner_repo
+  get "/:owner/*repo" => 'repos#show', :as => :owner_repo, :format => false
 
   get "/:owner" => 'repos#show_owner', :as => :owner_repos
 
@@ -32,9 +31,10 @@ Gitbo::Application.routes.draw do
   resources :users
 
     resources :repos
-    root to: "repos#create"
     mount Sidekiq::Web, at: "/sidekiq"
   end
+
+  root :to => 'static#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
