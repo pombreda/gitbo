@@ -43,6 +43,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
           </a>
           <%= link_to "Gitbo", root_path, :class => "brand" %>
           <div class="container nav-collapse">
@@ -50,6 +51,16 @@
               <li><%= link_to "Issues", issues_path  %></li>
               <li><%= link_to "Repos", repos_path  %></li>
               <li><%= link_to "New Repo", new_repo_path  %></li>
+            </ul>
+            <ul class ="nav pull-right">
+              <% if current_user %>
+                <li> Signed in as <%= current_user.name %></li>
+                <li><%= link_to "Sign Out", signout_path %></li>
+              <% else %>
+                <li><%= link_to "Sign in with Github", "/auth/github" %></li>
+
+              <% end %>
+                
             </ul>
           </div>
         </div>

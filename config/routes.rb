@@ -1,5 +1,10 @@
 Gitbo::Application.routes.draw do
 
+  resources :users
+
+  #authentication through github
+  match '/auth/:provider/callback' => 'sessions#create'
+  match '/signout' => "sessions#destroy", :as => :signout
 
   get "/:owner/:repo/issues" => "issues#repo_issues", :as => :repo_issues
 
@@ -22,6 +27,8 @@ Gitbo::Application.routes.draw do
   require 'sidekiq/web'
 
   Gitbo::Application.routes.draw do
+  resources :users
+
     resources :repos
     root to: "repos#create"
     mount Sidekiq::Web, at: "/sidekiq"
