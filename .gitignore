@@ -19,6 +19,6 @@
 
 #/public/assets
 
-/config/initializers/omniauth.rb
+omniauth.rb
 
 database.yml
