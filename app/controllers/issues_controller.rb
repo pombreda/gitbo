@@ -51,23 +51,9 @@ class IssuesController < ApplicationController
 
     @issue = Issue.find_by_repo_id_and_git_number(repo.id, params[:git_number])
 
-    connection = GithubConnection.new(params[:owner], params[:repo], params[:git_number])
-    unless connection.issue_git_updated_at == @issue.git_updated_at
-      @issue.update_attributes( :body => connection.issue_body,
-                                :title => connection.issue_title,
-                                :comment_count => connection.issue_comments,
-                                :git_updated_at => connection.issue_git_updated_at  )
-    end
-    #with this issue
-    #establish connection
-    #check the updated_at on Github to the one in our database
-    #if there is a difference write to DB
+    github_connection = GithubConnection.new(params[:owner], params[:repo], params[:git_number])
 
-
-
-
-
-
+    @issue.update_issue_attributes(github_connection) if @issue.updated?(github_connection)
 
     respond_to do |format|
       format.html # show.html.erb

@@ -6,14 +6,14 @@ class Issue < ActiveRecord::Base
   validates :git_number, :uniqueness => { :scope => :repo_id } 
 
   def self.create_from_github(owner, repo, issue)
-    connection = GithubConnection.new(owner, repo, issue)
+    github_connection = GithubConnection.new(owner, repo, issue)
 
-    Issue.new(:git_number => connection.issue_number,
-                  :body => connection.issue_body,
-                  :title => connection.issue_title,
-                  :comment_count => connection.issue_comments,
-                  :git_updated_at => connection.issue_git_updated_at
-                  ).tap do |i|
+    Issue.new(:git_number => github_connection.issue_number,
+              :body => github_connection.issue_body,
+              :title => github_connection.issue_title,
+              :comment_count => github_connection.issue_comments,
+              :git_updated_at => github_connection.issue_git_updated_at
+              ).tap do |i|
       i.repo = Repo.find_or_create_by_name("#{repo}")
       i.save
     end
@@ -31,6 +31,17 @@ class Issue < ActiveRecord::Base
 
   def add_downvote(int = 1)
     self.increment(:downvote, int)
+  end
+
+  def updated?(github_connection)
+    return true unless github_connection.issue_git_updated_at == self.git_updated_at
+  end
+
+  def update_issue_attributes(github_connection)
+    self.update_attributes( :body => github_connection.issue_body,
+                       :title => github_connection.issue_title,
+                       :comment_count => github_connection.issue_comments,
+                       :git_updated_at => github_connection.issue_git_updated_at  )
   end
 
 end
