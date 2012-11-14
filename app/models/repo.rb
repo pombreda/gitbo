@@ -70,9 +70,7 @@ class Repo < ActiveRecord::Base
 
   def refresh_and_create_issues(github_connection) 
     git_issue_numbers = self.missing_git_issues(github_connection)
-      # raise git_issue_numbers.inspect
     missing_issues = self.db_missing_issues(git_issue_numbers)
-      # raise missing_issues.inspect
     self.create_missing_issues(missing_issues)
   end
 
