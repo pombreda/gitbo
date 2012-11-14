@@ -72,7 +72,7 @@ class ReposController < ApplicationController
     #if there is already a repo with this name in the db, we know
     if !Repo.find_by_name(params[:repo][:name])
       @repo = GithubWorker.perform_async(params[:repo][:owner_name], params[:repo][:name])
-      flash[:notice] = 'Your job is being processed, please check back shortly'
+      flash[:notice] = 'Your repository and corresponding issues are being processed, please check back shortly'
       redirect_to :root
     else
       flash[:error] = "Repository already exists."
