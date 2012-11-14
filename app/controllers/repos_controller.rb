@@ -23,24 +23,9 @@ class ReposController < ApplicationController
       @repo = Repo.find(params[:id])
     end
 
-          # open connection to Github
     github_connection = GithubConnection.new(params[:owner], params[:repo])
-          # check if repo has been updated
 
-
-    if @repo.updated?(github_connection)
-      @repo.update_attributes(  :open_issues => github_connection.open_issues,
-                                :watchers => github_connection.watchers,
-                                :git_updated_at => github_connection.git_updated_at  )
-    end
-    # if it has been updated
-        # update repo information
-        # check issue count number
-        # if issue count number has changed
-          # check what issues we have in our db by git_issue_number
-          # compare with the issue numbers of issues from the github connection
-          # any issues that don't correspond with an issue from the github connection
-          # are created.
+    @repo.repo_update_attributes(github_connection) if @repo.updated?(github_connection)
 
     respond_to do |format|
       format.html # show.html.erb

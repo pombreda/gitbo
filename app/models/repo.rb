@@ -41,20 +41,27 @@ class Repo < ActiveRecord::Base
     open_issues_updated?(github_connection) || watchers_updated?(github_connection) || git_updated_at_updated?(github_connection)
   end
 
+  def repo_update_attributes(github_connection)
+    self.update_attributes(:open_issues => github_connection.open_issues,
+                          :watchers => github_connection.watchers,
+                          :git_updated_at => github_connection.git_updated_at)
+  end
 
-    def open_issues_updated?(github_connection)
-      return true unless  github_connection.open_issues == self.open_issues
-        
-    end
+private
 
-    def watchers_updated?(github_connection)
-      return true unless  github_connection.watchers == self.watchers
-     
-    end
-
-    def git_updated_at_updated?(github_connection)
-     return true unless github_connection.git_updated_at == self.git_updated_at
+  def open_issues_updated?(github_connection)
+    return true unless  github_connection.open_issues == self.open_issues
       
-    end
+  end
+
+  def watchers_updated?(github_connection)
+    return true unless  github_connection.watchers == self.watchers
+   
+  end
+
+  def git_updated_at_updated?(github_connection)
+   return true unless github_connection.git_updated_at == self.git_updated_at
+    
+  end
 
 end
