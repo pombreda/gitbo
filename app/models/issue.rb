@@ -12,7 +12,7 @@ class Issue < ActiveRecord::Base
                   :body => connection.issue_body,
                   :title => connection.issue_title,
                   :comment_count => connection.issue_comments,
-                  :git_updated_at => connection.issue_git_updated_at.to_datetime
+                  :git_updated_at => connection.issue_git_updated_at
                   ).tap do |i|
       i.repo = Repo.find_or_create_by_name("#{repo}")
       i.save
