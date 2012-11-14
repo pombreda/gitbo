@@ -26,22 +26,6 @@ class Repo < ActiveRecord::Base
     newly_created_repo
   end
 
-# repo_list = @repos_final.map{|repo| {:name => repo.full_name, :watchers => repo.watchers}} 
-
-  # def self.create_list_repos(keyword)
-  #   keyword = "rails"
-  #   # name = self.name ||= 0
-  #   # watchers = self.watchers ||=0
-  #   connection = GithubConnection2.new(keyword)
-
-  #     each_repo = Repo.create(
-  #       list.map {:name => connection.name,
-  #         :watchers => connection.watchers
-  #       })
-  #     each_repo
-  #   end
-  # end
-
   def popularity
     self.open_issues + self.watchers + self.issues_comment_count
   end
