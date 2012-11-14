@@ -20,7 +20,7 @@ class GithubConnection
     repo_params :name, :open_issues, :watchers
 
   def git_updated_at
-    self.info.updated_at
+    self.info.updated_at.to_datetime
   end
 
   def owner_name

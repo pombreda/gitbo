@@ -53,10 +53,7 @@ class IssuesController < ApplicationController
 
     connection = GithubConnection.new(params[:owner], params[:repo], params[:git_number])
     unless connection.issue_git_updated_at == @issue.git_updated_at
-      @issue.update_attributes( :body => connection.issue_body,
-                                :title => connection.issue_title,
-                                :comment_count => connection.issue_comments,
-                                :git_updated_at => connection.issue_git_updated_at  )
+      
     end
     #with this issue
     #establish connection
