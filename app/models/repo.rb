@@ -10,16 +10,16 @@ class Repo < ActiveRecord::Base
 
   def self.create_from_github(owner, repo)
     owner, repo = owner.strip, repo.strip
-    connection = GithubConnection.new(owner, repo)
+    github_connection = GithubConnection.new(owner, repo)
 
-    newly_created_repo = Repo.create(:name => connection.name,
-                :open_issues => connection.open_issues,
-                :owner_name => connection.owner_name,
-                :watchers => connection.watchers,
-                :git_updated_at => connection.git_updated_at.to_datetime)
+    newly_created_repo = Repo.create(:name => github_connection.name,
+                :open_issues => github_connection.open_issues,
+                :owner_name => github_connection.owner_name,
+                :watchers => github_connection.watchers,
+                :git_updated_at => github_connection.git_updated_at)
 
     if newly_created_repo.persisted?
-      connection.issues.each do |issue|
+      github_connection.issues.each do |issue|
         Issue.create_from_github(owner, repo, issue.number)
       end
     end
@@ -34,6 +34,33 @@ class Repo < ActiveRecord::Base
     self.issues.inject(0){|sum, issue| 
       sum + issue.comment_count
     }
+  end
+
+  def updated?(github_connection)
+    open_issues_updated?(github_connection) || watchers_updated?(github_connection) || git_updated_at_updated?(github_connection)
+  end
+
+  def update_repo_attributes(github_connection)
+    self.update_attributes(:open_issues => github_connection.open_issues,
+                          :watchers => github_connection.watchers,
+                          :git_updated_at => github_connection.git_updated_at)
+  end
+
+private
+
+  def open_issues_updated?(github_connection)
+    return true unless github_connection.open_issues == self.open_issues
+      
+  end
+
+  def watchers_updated?(github_connection)
+    return true unless github_connection.watchers == self.watchers
+   
+  end
+
+  def git_updated_at_updated?(github_connection)
+   return true unless github_connection.git_updated_at == self.git_updated_at
+    
   end
 
 end

@@ -18,3 +18,7 @@
 /config/database.yml
 
 #/public/assets
+
+/config/initializers/omniauth.rb
+
+database.yml

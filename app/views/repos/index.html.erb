@@ -1,8 +1,19 @@
-
 <div class='jumbotron'>
- <p id="notice text-success"><%= notice %></p> 
-   <h1>Gitbo</h1>
-   <p class='lead'>Get paid to fix the most asked for Github issues</p> 
+<% if flash[:error] %>
+  <div class="alert alert-error">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+  <strong><%= flash[:error] %></strong>
+</div>
+<% end %>
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong><%= flash[:notice] %></strong>
+  </div>
+<% end %>
+
+<h1>Gitbo</h1>
+  <p class='lead'>Get paid to fix the most asked for Github issues</p>
 </div>
 
 <h3>Listing repos</h3>
@@ -15,20 +26,16 @@
       <th>Watchers</th>
       <th>Issues Comment Count</th>
       <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
 <% @repos.sort_by(&:popularity).reverse.each do |repo| %>
   <tr>
-    <td><%= link_to ("#{repo.owner_name.capitalize}/#{repo.name.capitalize}"), owner_repo_path(repo.owner_name, repo.name) %>
+    <td><%= link_to repo.owner_name, owner_repos_path(repo.owner_name) %> / <%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %>
     <td><%= repo.popularity %></td>
     <td><%= repo.open_issues %></td>
     <td><%= repo.watchers %></td>
-    <td><%= repo.issues_comment_count %>
-    <td><%= link_to 'Show', owner_repo_path(repo.owner_name, repo), :class => 'btn btn-mini btn-success' %></td>
-    <td><%= link_to 'Edit', edit_repo_path(repo), :class => 'btn btn-mini btn-primary' %></td>
+    <td><%= repo.issues_comment_count %></td>
     <td><%= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
 
   </tr>

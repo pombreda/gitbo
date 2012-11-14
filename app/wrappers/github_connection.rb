@@ -20,7 +20,7 @@ class GithubConnection
     repo_params :name, :open_issues, :watchers
 
   def git_updated_at
-    self.info.updated_at
+    self.info.updated_at.to_datetime
   end
 
   def owner_name
@@ -37,8 +37,7 @@ class GithubConnection
     issue_params :comments, :title, :body, :number
 
   def issue_git_updated_at
-    issue = self.client.issue(self.repo, self.issue_no).
-    send(:updated_at)
+    self.client.issue(self.repo, self.issue_no).updated_at.to_datetime
   end
   
 end

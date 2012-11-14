@@ -13,6 +13,10 @@ class ReposController < ApplicationController
     end
   end
 
+  def show_owner
+    @repos = Repo.find_all_by_owner_name(params[:owner])
+  end
+
   # GET /repos/1
   # GET /repos/1.json
   def show
@@ -22,6 +26,10 @@ class ReposController < ApplicationController
     else
       @repo = Repo.find(params[:id])
     end
+
+    github_connection = GithubConnection.new(params[:owner], params[:repo])
+
+    @repo.update_repo_attributes(github_connection) if @repo.updated?(github_connection)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -49,19 +57,27 @@ class ReposController < ApplicationController
   # POST /repos.json
   def create
 
-    @repo = GithubWorker.perform_async(params[:repo][:owner_name], params[:repo][:name])
-
-    redirect_to :root, notice: 'Your job is being processed, please check back shortly'
-  
-   respond_to do |format|
-      if @repo.save
-        format.html { redirect_to @repo, notice: 'Repo was successfully created.' }
-        format.json { render json: @repo, status: :created, location: @repo }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @repo.errors, status: :unprocessable_entity }
-      end
+    #don't run this job if the repo already exists
+    #if there is already a repo with this name in the db, we know
+    if !Repo.find_by_name(params[:repo][:name])
+      @repo = GithubWorker.perform_async(params[:repo][:owner_name], params[:repo][:name])
+      flash[:notice] = 'Your repository and corresponding issues are being processed, please check back shortly'
+      redirect_to :root
+    else
+      flash[:error] = "Repository already exists."
+      redirect_to :root
     end
+    
+
+    # respond_to do |format|
+    #   if @repo.save
+    #     format.html { redirect_to @repo, notice: 'Repo was successfully created.' }
+    #     format.json { render json: @repo, status: :created, location: @repo }
+    #   else
+    #     format.html { render action: "new" }
+    #     format.json { render json: @repo.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PUT /repos/1
