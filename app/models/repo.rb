@@ -47,6 +47,10 @@ class Repo < ActiveRecord::Base
                           :git_updated_at => github_connection.git_updated_at)
   end
 
+  def db_issue_numbers
+    self.issues.collect { |issue| issue.git_number }
+  end
+
 private
 
   def open_issues_updated?(github_connection)

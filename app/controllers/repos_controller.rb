@@ -17,15 +17,32 @@ class ReposController < ApplicationController
   # GET /repos/1.json
   def show
 
-    if params[:owner]
-      @repo = Repo.find_by_owner_name(params[:owner])
-    else
-      @repo = Repo.find(params[:id])
-    end
+    @repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
 
-    github_connection = GithubConnection.new(params[:owner], params[:repo])
+    github_connection = GithubConnection.new(params[:owner], @repo.name)
 
     @repo.update_repo_attributes(github_connection) if @repo.updated?(github_connection)
+
+#collect an array of all open issue numbers
+      git_issue_numbers = github_connection.issues.collect do |issue|
+          issue.number
+      end
+
+      missing_issues = git_issue_numbers.collect do |git_num|
+        git_num if @repo.db_issue_numbers.include?(git_num)
+      end
+
+      missing_issues.each do |issue_num|
+        Issue.create_from_github(@repo.owner_name, @repo.name, issue_num)
+      end
+
+      #maybe autorefresh non missing issues?
+
+      #missing numbers should be imported || refreshed
+
+        # updated_issues.each do |issue|
+        #     issue.refresh || issue.create_from_github(@repo.owner_name, @repo.name, issue.git_number)
+        # end 
 
     respond_to do |format|
       format.html # show.html.erb

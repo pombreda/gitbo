@@ -53,7 +53,7 @@ class IssuesController < ApplicationController
 
     github_connection = GithubConnection.new(params[:owner], params[:repo], params[:git_number])
 
-    @issue.update_issue_attributes(github_connection) if @issue.updated?(github_connection)
+    @issue.refresh(github_connection)
 
     respond_to do |format|
       format.html # show.html.erb
