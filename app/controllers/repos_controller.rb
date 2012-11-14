@@ -25,7 +25,7 @@ class ReposController < ApplicationController
 
     github_connection = GithubConnection.new(params[:owner], params[:repo])
 
-    @repo.repo_update_attributes(github_connection) if @repo.updated?(github_connection)
+    @repo.update_repo_attributes(github_connection) if @repo.updated?(github_connection)
 
     respond_to do |format|
       format.html # show.html.erb
