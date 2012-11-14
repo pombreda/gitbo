@@ -20,21 +20,31 @@ class ReposController < ApplicationController
   # GET /repos/1
   # GET /repos/1.json
   def show
-    if params[:owner]
-      @repo = Repo.find_by_owner_name(params[:owner])
-    else
-      @repo = Repo.find(params[:id])
-    end
 
-    github_connection = GithubConnection.new(@repo.owner_name, params[:repo])
+    @repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
+    @issues = @repo.issues
+
+    github_connection = GithubConnection.new(params[:owner], @repo.name)
 
     @repo.update_repo_attributes(github_connection) if @repo.updated?(github_connection)
-    
 
+    @repo.refresh_and_create_issues(github_connection)
+      
+      #maybe autorefresh non missing issues?
+
+      #missing numbers should be imported || refreshed
+
+        # updated_issues.each do |issue|
+        #     issue.refresh || issue.create_from_github(@repo.owner_name, @repo.name, issue.git_number)
+        # end 
+    
+    # we will want to refresh the page soon as this code executes
+    #because new issues have been updated/added to the page.
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @repo }
     end
+
   end
 
   # GET /repos/new

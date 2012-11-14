@@ -4,7 +4,7 @@ Gitbo::Application.routes.draw do
 
   #authentication through github
   match '/auth/:provider/callback' => 'sessions#create'
-  match '/signout' => "sessions#destroy", :as => :signout
+  get '/signout' => "sessions#destroy", :as => :signout
 
   get "/:owner/:repo/issues" => "issues#repo_issues", :as => :repo_issues
 
@@ -12,6 +12,7 @@ Gitbo::Application.routes.draw do
   put '/issues/:id/downvote' => 'issues#downvote', :as => :downvote_issue
 
   resources :repos do
+    #this needs to be cleaned up. Most of these have been depreciated.
     resources :issues, :only => [:index, :delete, :update]
   end
 

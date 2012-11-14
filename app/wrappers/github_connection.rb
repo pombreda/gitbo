@@ -34,7 +34,7 @@ class GithubConnection
       end
     end
   end
-    issue_params :comments, :title, :body, :number
+    issue_params :comments, :title, :body, :number, :state
 
   def issue_git_updated_at
     self.client.issue(self.repo, self.issue_no).updated_at.to_datetime

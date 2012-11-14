@@ -46,6 +46,36 @@ class Repo < ActiveRecord::Base
                           :git_updated_at => github_connection.git_updated_at)
   end
 
+  def db_issue_numbers
+    self.issues.collect { |issue| issue.git_number }
+  end
+
+  def missing_git_issues(github_connection)
+    github_connection.issues.collect do |issue|
+      issue.number
+    end
+  end
+
+  def db_missing_issues(git_issue_numbers)
+    git_issue_numbers.select do |git_num|
+      git_num unless self.db_issue_numbers.include?(git_num)
+    end
+  end
+
+  def create_missing_issues(missing_issues)
+    missing_issues.each do |issue_num|
+        Issue.create_from_github(self.owner_name, self.name, issue_num)
+    end
+  end
+
+  def refresh_and_create_issues(github_connection) 
+    git_issue_numbers = self.missing_git_issues(github_connection)
+      # raise git_issue_numbers.inspect
+    missing_issues = self.db_missing_issues(git_issue_numbers)
+      # raise missing_issues.inspect
+    self.create_missing_issues(missing_issues)
+  end
+
 private
 
   def open_issues_updated?(github_connection)

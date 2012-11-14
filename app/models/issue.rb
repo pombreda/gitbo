@@ -1,5 +1,6 @@
 class Issue < ActiveRecord::Base
-  attr_accessible :body, :git_number, :title, :repo, :comment_count, :git_updated_at
+  attr_accessible :body, :git_number, :title, :repo, :comment_count, 
+  :git_updated_at, :state
 
   belongs_to :repo
 
@@ -12,7 +13,8 @@ class Issue < ActiveRecord::Base
               :body => github_connection.issue_body,
               :title => github_connection.issue_title,
               :comment_count => github_connection.issue_comments,
-              :git_updated_at => github_connection.issue_git_updated_at
+              :git_updated_at => github_connection.issue_git_updated_at,
+              :state => github_connection.issue_state
               ).tap do |i|
       i.repo = Repo.find_or_create_by_name("#{repo}")
       i.save
@@ -33,6 +35,10 @@ class Issue < ActiveRecord::Base
     self.increment(:downvote, int)
   end
 
+  def refresh(github_connection)
+    self.update_issue_attributes(github_connection) if self.updated?(github_connection)
+  end
+
   def updated?(github_connection)
     return true unless github_connection.issue_git_updated_at == self.git_updated_at
   end
@@ -41,7 +47,8 @@ class Issue < ActiveRecord::Base
     self.update_attributes( :body => github_connection.issue_body,
                        :title => github_connection.issue_title,
                        :comment_count => github_connection.issue_comments,
-                       :git_updated_at => github_connection.issue_git_updated_at  )
+                       :git_updated_at => github_connection.issue_git_updated_at,
+                       :state => github_connection.issue_state  )
   end
 
 end
