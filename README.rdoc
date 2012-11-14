@@ -1,11 +1,16 @@
 ##Get Redis Up and Running for sidekiq
-```
 ♕ redis-server /usr/local/etc/redis.conf
-```
 
 ##To start the sidekiq server
-```
+
 ♕ bundle exec sidekiq
-```
+
 [sidekiq railscast](http://railscasts.com/episodes/366-sidekiq)
 
+
+##Scraps
+github_connection = GithubConnection.new('xfernandox', 'dummyrepo', 1)
+issue_number = github_connection.client.issue(github_connection.repo, github_connection.issue_no).number
+repo = Repo.find_by_owner_name_and_name('xfernandox', 'dummyrepo')
+github_connection.info.open_issues # outputs a number like 6
+all_issues = github_connection.issues #returns all issue objects
