@@ -1,0 +1,47 @@
+
+<div class='jumbotron'>
+ <p id="notice text-success"><%= notice %></p> 
+   <h1>Gitbo</h1>
+   <p class='lead'>Get paid to fix the most asked for Github issues</p> 
+</div>
+
+<div class='row'>
+  <div class='span4'>
+    <h3>Listing repos</h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Watchers</th>
+          <th></th>
+        </tr>
+      </thead>
+
+   <%#= @repos.each do |repo| %>
+    <!-- <tr>
+      <td><%#= repo.name %></td>
+      <td><%#= repo.watchers %></td>
+    </tr>
+     --><%# end %>
+
+    </table>
+  </div>
+
+  <div class='span5'>
+    <h3>Listing issues</h3>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Issue Name</th>
+            <th>Issue Number</th>
+            <th>Comment Count</th>
+          </tr>
+        </thead>
+
+   
+    </table>
+
+    <br />
+  </div>
+</div>
+<%= link_to 'New Repo', new_repo_path, :class => 'btn btn-primary' %>
