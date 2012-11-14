@@ -22,6 +22,6 @@ production:
   database: project_production
   pool: 5
   username: postgres
-  password: 
+  password: notarealpw
 
 testing
