@@ -13,6 +13,10 @@ class ReposController < ApplicationController
     end
   end
 
+  def show_owner
+    @repos = Repo.find_all_by_owner_name(params[:owner])
+  end
+
   # GET /repos/1
   # GET /repos/1.json
   def show
