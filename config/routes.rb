@@ -22,6 +22,8 @@ Gitbo::Application.routes.draw do
   get "/:owner/:repo/issues/:git_number" => 'issues#show', :as => :owner_repo_gitnumber
   get "/:owner/:repo" => 'repos#show', :as => :owner_repo
 
+  get "/:owner" => 'repos#show_owner', :as => :owner_repos
+
 ### sidekiq monitoring
 
   require 'sidekiq/web'

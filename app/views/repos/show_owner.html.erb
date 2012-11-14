@@ -1,0 +1,6 @@
+    <ul>
+      <h5>All repos for <%= @repos.first.owner_name %></h5>
+    <% @repos.each do |repo| %>
+    <li><%= link_to repo.name, repo_path(repo) %></li>
+    <% end %>    
+    </ul>
