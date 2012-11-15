@@ -1,21 +1,40 @@
 class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
-
-  def upvote
+  def vote
     issue = Issue.find(params[:id])
-    # raise issue.inspect
-    issue.add_upvote
+    issue.add_vote_by(current_user, params[:direction])
     issue.save
-    redirect_to :back    
-  end
 
-  def downvote
-    issue = Issue.find(params[:id])
-    issue.add_downvote
-    issue.save
+    # :upvote
+    # :downvote
+
     redirect_to :back
   end
+  
+  # def upvote
+  #   issue = Issue.find(params[:id])
+  #   user = current_user.id
+  #   # raise issue.inspect
+  #   issue.add_vote_by(current_user)
+  #   issue.save
+  #   # raise issue.inspect
+    
+  #   redirect_to :back
+  # end
+
+  # def downvote
+  #   issue = Issue.find(params[:id])
+  #   user = current_user.id
+  #   issue.add_downvote
+  #   issue.save
+  #   uv = UserVote.find_or_create_by_issue_id_and_user_id(issue, user)
+  #   uv.add_downvote
+  #   uv.save
+  #   redirect_to :back
+  # end
+
+
 
   def repo_issues
     @repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
@@ -31,6 +50,7 @@ class IssuesController < ApplicationController
 
   def index
     @issues = Issue.all_open_issues
+    # @user = current_user
 
 
       # Get all issues
