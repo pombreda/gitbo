@@ -44,6 +44,12 @@ class Issue < ActiveRecord::Base
     return true unless github_connection.issue_git_updated_at == self.git_updated_at
   end
 
+  def self.all_open_issues
+    Issue.all.select do |issue|
+      issue.open?
+    end
+  end
+
   def open?
     self.state == 'open'
   end

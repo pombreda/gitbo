@@ -30,7 +30,7 @@ class IssuesController < ApplicationController
   end
 
   def index
-    @issues = Issue.all
+    @issues = Issue.all_open_issues
 
 
       # Get all issues
