@@ -1,40 +1,23 @@
 class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
+
+  helper_method :repo_owner
+
   def vote
     issue = Issue.find(params[:id])
     issue.add_vote_by(current_user, params[:direction])
     issue.save
 
-    # :upvote
-    # :downvote
-
     redirect_to :back
   end
-  
-  # def upvote
-  #   issue = Issue.find(params[:id])
-  #   user = current_user.id
-  #   # raise issue.inspect
-  #   issue.add_vote_by(current_user)
-  #   issue.save
-  #   # raise issue.inspect
-    
-  #   redirect_to :back
-  # end
 
-  # def downvote
-  #   issue = Issue.find(params[:id])
-  #   user = current_user.id
-  #   issue.add_downvote
-  #   issue.save
-  #   uv = UserVote.find_or_create_by_issue_id_and_user_id(issue, user)
-  #   uv.add_downvote
-  #   uv.save
-  #   redirect_to :back
-  # end
-
-
+  def endorsement
+    issue = Issue.find(params[:id])
+    issue.endorsement_by(params[:direction])
+    issue.save
+    redirect_to :back
+  end
 
   def repo_issues
     @repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
@@ -145,5 +128,12 @@ class IssuesController < ApplicationController
       format.html { redirect_to issues_url }
       format.json { head :no_content }
     end
+  end
+
+
+private
+
+  def repo_owner
+    return true if current_user.nickname == @issue.repo.owner_name
   end
 end

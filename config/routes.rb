@@ -12,7 +12,10 @@ Gitbo::Application.routes.draw do
 
   get "/:owner/:repo/issues" => "issues#repo_issues", :as => :repo_issues
 
+  #voting
   put '/issues/:id/vote/:direction' => 'issues#vote', :as => :vote_issue
+  #owner endorsment
+  put '/issues/:id/endorsement/:direction' => 'issues#endorsement', :as => :owner_endorsement
 
   resources :repos do
     #this needs to be cleaned up. Most of these have been depreciated.
@@ -20,7 +23,6 @@ Gitbo::Application.routes.draw do
   end
 
   get "/issues" => "issues#index"
-
 
   get "/:owner/:repo/issues/:git_number" => 'issues#show', :as => :owner_repo_gitnumber
   get "/:owner/*repo" => 'repos#show', :as => :owner_repo, :format => false

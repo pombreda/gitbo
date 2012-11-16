@@ -1,14 +1,31 @@
 <p id="notice"><%= notice %></p>
+  <% if current_user %>
+    <% if repo_owner %>
+    <div class="row">
+      <div class="span7">
+        <h4>This issue belongs to your repo. Please, consider endorsing it!</h4>
+      </div>
+      <div class="span5">
+        <div class="pull-right">
+          <div class="btn-group">
+            <button class="btn btn-success btn-large"><%= link_to 'Endorse this issue', owner_endorsement_path(@issue, :endorsement), :method => :put %></button>
+            <button class="btn btn-danger btn-large"><%= link_to 'Don\'t endorce', owner_endorsement_path(@issue, :disapproval), :method => :put %></button>
+          </a></div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
 
+  <div class="row">
+    <div class ='span8'>
+      <h3><%= link_to @issue.repo.owner_name, owner_repos_path(@issue.repo.owner_name) %> / <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
+    </div>
+    <div class="span4">
+      <h3 class="pull-right"><a class="btn btn-info btn-large" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">View Issue on Github</a></h3>
+    </div>
+  </div>
 
-<div class="row">
-  <div class ='span8'>
-    <h3>Issue <%= @issue.git_number %> For Repo: <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
-  </div>
-  <div class="span4">
-    <h3 class="pull-right"><a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">View Issue on Github</a></h3>
-  </div>
-</div>
 <div class="row">
   <div class='span10 pull-right'>
     <div class='row'>
@@ -70,5 +87,7 @@
     </div>
   </div>
 </div>
+
+
 
 
