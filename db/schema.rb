@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20121116165916) do
 
-  create_table "bounties", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "issue_id"
-    t.integer  "price"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "comments", :force => true do |t|
     t.text     "body"
     t.datetime "git_update_at"
@@ -66,10 +58,10 @@ ActiveRecord::Schema.define(:version => 20121116165916) do
   create_table "user_votes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "issue_id"
-    t.integer  "upvote",     :default => 0
-    t.integer  "downvote",   :default => 0
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.integer  "upvote"
+    t.integer  "downvote"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
