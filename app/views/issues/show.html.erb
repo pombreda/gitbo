@@ -106,7 +106,8 @@
       </div>
     </div>
 
-      <% @issue.comments.each do |comment| %>
+  <% @issue.comments.each do |comment| %>
+  <% if comment.git_update_at %>
     <div class='row'>
       <div class='comment-container'>
         <img src="<%= comment.owner_image %>" class='comment-avatar'>
@@ -117,7 +118,7 @@
                 <p><%= comment.owner_name %></p>
               </div>
               <div class='pull-right header-date'>
-                <time><%= time_ago_in_words(comment.issue.git_updated_at) %> ago</time>
+                <time><%= time_ago_in_words(comment.git_update_at) %> ago</time>
               </div>
             </div>
             <div class='comment-content'>
@@ -127,6 +128,7 @@
         </div>
       </div>
     </div>
+    <% end %>
     <% end %>
     <div class='row'>
       <div class='comment-container'>
