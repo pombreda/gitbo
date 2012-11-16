@@ -12,8 +12,7 @@ Gitbo::Application.routes.draw do
 
   get "/:owner/:repo/issues" => "issues#repo_issues", :as => :repo_issues
 
-  put '/issues/:id/upvote' => 'issues#upvote', :as => :upvote_issue
-  put '/issues/:id/downvote' => 'issues#downvote', :as => :downvote_issue
+  put '/issues/:id/vote/:direction' => 'issues#vote', :as => :vote_issue
 
   resources :repos do
     #this needs to be cleaned up. Most of these have been depreciated.

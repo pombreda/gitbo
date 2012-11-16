@@ -3,9 +3,15 @@ class Issue < ActiveRecord::Base
   :git_updated_at, :state
 
   belongs_to :repo
+
   has_many :comments
 
   validates :git_number, :uniqueness => { :scope => :repo_id } 
+
+  has_many :user_votes
+  
+  # validates :git_number, :uniqueness => { :scope => :repo_id } 
+
 
   def self.create_from_github(owner, repo, issue)
     github_connection = GithubConnection.new(owner, repo, issue)
@@ -39,12 +45,9 @@ class Issue < ActiveRecord::Base
     self.comment_count + upvote - downvote
   end
 
-  def add_upvote(int = 1)
-    self.increment(:upvote, int)
-  end
-
-  def add_downvote(int = 1)
-    self.increment(:downvote, int)
+  def add_vote_by(user, direction = :upvote, int = 1)
+    self.increment(direction, int)
+    self.user_votes.create(:user => user, direction => 1)
   end
 
   def refresh(github_connection)
