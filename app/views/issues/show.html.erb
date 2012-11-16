@@ -1,57 +1,85 @@
 <p id="notice"><%= notice %></p>
-
-<% if repo_owner %>
-<!-- <input id="endorsement" name="endorsement" type="checkbox" value="1" /> -->
-<%= link_to 'endorse?', owner_endorsement_path(@issue, :endorsement), :method => :put %>
-<%= link_to 'Disapprove?', owner_endorsement_path(@issue, :disapproval), :method => :put %>
-<!-- <label for="endorsement">Endorse?</label> -->
-<!-- <input id="disapproval" name="disapproval" type="checkbox" value="1" /> -->
-<!-- <label for="disapproval">Disapprove?</label>
-<input type="submit" value="Submit"> -->
+<header>
+  <!-- Need to lower header -->
+<% if current_user %>
+  <% if repo_owner %>
+  <div class="row">
+    <div class="span7">
+      <h4>This issue belongs to your repo. Please, consider endorsing it!</h4>
+    </div>
+    <div class="span5">
+      <div class="pull-right">
+        <div class="btn-group">
+          <button class="btn btn-success btn-large"><%= link_to 'Endorse this issue', owner_endorsement_path(@issue, :endorsement), :method => :put %></button>
+          <button class="btn btn-danger btn-large"><%= link_to 'Don\'t endorce', owner_endorsement_path(@issue, :disapproval), :method => :put %></button>
+        </a></div>
+      </div>
+    </div>
+  </div>
+  <% end %>
 <% end %>
+</header>
+<!-- Need to lower the body -->
+<br> 
+<br>
+<!--  -->
+<body>
+  <div class="row">
+    <div class ='span8'>
+      <h3><%= link_to @issue.repo.owner_name, owner_repos_path(@issue.repo.owner_name) %> / <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
+    </div>
+    <div class="span4">
+      <h3 class="pull-right"><a class="btn btn-info btn-large" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">View Issue on Github</a></h3>
+    </div>
+  </div>
 
-<div class="row">
-  <div class ='span8'>
-    <h3>Issue: <%= @issue.title %></h3>
-    <h3>For Repo: <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
+  <div class="row">
+    <div class="span8">
+      <h4>  </h4>
+    </div>
+    <div class='span4'>
+      <div class="pull-right">
+        <h4>Git Number: <%= @issue.git_number %></h4>
+      </div>
+    </div>
   </div>
-  <div class="span4">
-    <h3 class="pull-right"><a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">View Issue on Github</a></h3>
+
+  <div class="row">
+    <div class ='span12'>
+      <h3>Issue: <%= @issue.title %></h3>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class='span2'>
-    <h4>Git Number: <%= @issue.git_number %></h4>
-  </div>
-  <div class='span10'>
-    <div class='row'>
+  <div class="row">
+    <div class='span12'>
       <h3>Description</h3>
       <p><%= @issue.body.html_safe %></p>
     </div>
+  </div>
 
-      <% @issue.comments.each do |comment| %>
-    <div class='row'>
-        <div class='comment-container'>
-          <img src="<%= comment.owner_image %>" class='comment-avatar'>
-          <div class='comment-content bubble'>
-            <div class='content-container-inner'>
-              <div class='comment-header'>
-                <div class='comment-author'>
-                  <p><%= comment.owner_name %></p>
+        <% @issue.comments.each do |comment| %>
+      <div class='row'>
+          <div class='comment-container'>
+            <img src="<%= comment.owner_image %>" class='comment-avatar'>
+            <div class='comment-content bubble'>
+              <div class='content-container-inner'>
+                <div class='comment-header'>
+                  <div class='comment-author'>
+                    <p><%= comment.owner_name %></p>
+                  </div>
+                  <div class='pull-right header-date'>
+                    <time><%= comment.git_update_at %></time>
+                  </div>
                 </div>
-                <div class='pull-right header-date'>
-                  <time><%= comment.git_update_at %></time>
+                <div class='comment-content'>
+                  <p><%= comment.body %></p>
                 </div>
-              </div>
-              <div class='comment-content'>
-                <p><%= comment.body %></p>
               </div>
             </div>
           </div>
-        </div>
+      </div>
+        <% end %>
     </div>
-      <% end %>
   </div>
-</div>
+</body>
 
 
