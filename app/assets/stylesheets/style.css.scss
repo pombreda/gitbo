@@ -1,0 +1,94 @@
+.container-narrow {
+  margin: 0 auto;
+  margin-top: 60px;
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+.jumbotron {
+    text-align: center;
+  }
+
+.page_head {
+  margin: 60px 0 20px 0;
+}
+
+.nav p {
+  padding: 10px 15px 10px;
+}
+
+.comment-container {
+  margin: 20px 0;
+}
+
+.comment-avatar {
+  position: relative;
+  float: left;
+  border-radius: 3px;
+  margin-top: 12px;
+  img {
+    height: 48px;
+    width: 48px;
+  }
+}
+
+.content-container {
+  position: relative;
+  margin-left: 60px;
+}
+
+.content-container-inner {
+  min-height: 60px;
+  border: 1px solid #CACACA;
+  background-color: white;
+}
+
+.bubble {
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.comment-header {
+  height: 33px;
+  padding: 0 10px 0 6px;
+  border-bottom: 1px solid #CCC;
+  background: #F8F8F8;
+  background: -moz-linear-gradient(#F8F8F8, #E1E1E1);
+  background: -webkit-linear-gradient(#F8F8F8, #E1E1E1);
+  background: linear-gradient(#F8F8F8, #E1E1E1);
+  font-size: 12px;
+  .comment-author {
+    display: inline-block;
+    max-width: 600px;
+    height: 33px;
+    line-height: 33px;
+    font-weight: bold;
+    color: #222;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    p {
+      color: #666;
+    }
+  }
+  .header-date {
+    font-size: 11px;
+  line-height: 33px;
+  font-style: normal;
+  color: #777;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
+  line-height: 33px;
+  }
+}
+
+.comment-content {
+  padding: 10px;
+  font-size: 13px;
+  overflow: auto;
+  width: 90%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
