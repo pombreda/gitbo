@@ -13,4 +13,9 @@ class Comment < ActiveRecord::Base
     issue.save 
   end
 
+  def time_ago
+    from_time = Time.now
+    distance_of_time_in_words
+  end
+
 end
