@@ -26,7 +26,28 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="span6">
+      <p><%= link_to 'View All Issues', owner_repo_path %></p>
+    </div>
+    <div class="span6">
+      <a class="pull-right"> 
+        <span class="text">Issue # <%= @issue.git_number %></span>
+      </a>
+    </div>
+  </div>
+
 <div class="row">
+  <div class="discussion-sidebar">
+      <div class="discussion-stats">
+        <% if @issue.owner_endorsement == 1%>
+          <h3> Owner endorsed </h3>
+        <% else %>
+          <h3> Not endorsed </h3>
+        <% end %>
+        <p><%= @issue.comment_count %> Comments<p>
+    </div>
+  </div>
   <div class='span10 pull-right'>
     <div class='row'>
       <div class="issue-bubble">
@@ -73,19 +94,22 @@
     <% end %>
     <div class='row'>
       <div class='comment-container'>
-        <img src="<%= current_user.image %>" class='new-comment-avatar'>
-        <div class='comment-content bubble'>
-          <div class='comment-content'>
-            <div class='comment form'>
-              <div class='new-comment-bucket'>
-                <%= render 'comment_form' %>
+        <% if current_user %>
+          <img src="<%= current_user.image %>" class='new-comment-avatar'>
+          <div class='comment-content bubble'>
+            <div class='comment-content'>
+              <div class='comment form'>
+                <div class='new-comment-bucket'>
+                  <%= render 'comment_form' %>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
+  
 </div>
 
 
