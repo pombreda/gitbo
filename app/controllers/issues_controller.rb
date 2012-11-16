@@ -72,7 +72,8 @@ class IssuesController < ApplicationController
     github_connection = GithubConnection.new(params[:owner], params[:repo], params[:git_number])
 
 
-    @comment = Comment.new(params[:comment])
+    @comment = @issue.comments.build(params[:comment])
+    @comment.save
 
     #need to assign new comment to an issue
 
