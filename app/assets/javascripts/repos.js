@@ -1,1 +1,1 @@
-$('div#seal.seal.pull-right').show();
+$('div#seal').hide();
