@@ -60,7 +60,7 @@
                 <p><%= comment.owner_name %></p>
               </div>
               <div class='pull-right header-date'>
-                <time><%= time_ago_in_words(comment.git_update_at) %> ago</time>
+                <time><%= time_ago_in_words(comment.issue.git_updated_at) %> ago</time>
               </div>
             </div>
             <div class='comment-content'>
