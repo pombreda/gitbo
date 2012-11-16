@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 20121116165916) do
     t.datetime "updated_at",    :null => false
   end
 
+ActiveRecord::Schema.define(:version => 20121115194018) do
+
   create_table "issues", :force => true do |t|
     t.string   "title"
     t.integer  "git_number"
@@ -53,6 +55,15 @@ ActiveRecord::Schema.define(:version => 20121116165916) do
   end
 
   add_index "repos", ["slug"], :name => "index_repos_on_slug"
+
+  create_table "user_votes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "issue_id"
+    t.integer  "upvote"
+    t.integer  "downvote"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "provider"

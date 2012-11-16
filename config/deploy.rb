@@ -1,4 +1,5 @@
 require 'bundler/capistrano' # for bundler support
+require 'sidekiq/capistrano'
 
 set :application, "gitbo"
 set :repository,  "git@github.com:flatiron-school/gitbo.git"
