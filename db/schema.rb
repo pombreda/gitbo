@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115164907) do
+ActiveRecord::Schema.define(:version => 20121116152429) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20121115164907) do
     t.integer  "downvote"
     t.datetime "git_updated_at"
     t.string   "state"
+    t.string   "owner_name"
+    t.string   "owner_image"
   end
 
   create_table "repos", :force => true do |t|

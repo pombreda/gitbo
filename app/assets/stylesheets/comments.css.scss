@@ -1,3 +1,123 @@
-// Place all the styles related to the Comments controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.issue-bubble {
+  margin: 20px 0;
+    img {
+      height: 48px;
+      width: 48px;
+  }
+  .issue-content {
+    position: relative;
+    margin-left: 60px;
+    .issue-inner {
+      min-height: 60px;
+      border: 1px solid #CACACA;
+      background-color: white;
+      .issue-header {
+        position: relative;
+        padding: 10px;
+        .issue-author {
+          color: #666;
+          font-size: 12px;
+          p{
+            font-weight: bold;
+            color: #666;
+            margin: 0;
+          }
+        }
+        h4 {
+          margin: 0;
+        }
+      }
+      .issue-description-content {
+        padding: 0;
+        color: #333;
+        font-size: 12px;
+        background: #FBFBFB;
+        .description-body {
+          padding: 10px;
+          font-size: 13px;
+          overflow: auto;
+          width: 100%;
+          border: 1px solid #E5E5E5;
+          border-width: 1px 0;
+          background: whiteSmoke;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+}
+
+.comment-container {
+  margin: 20px 0;
+  img {
+    height: 48px;
+    width: 48px;
+  }
+  .comment-content {
+    padding: 10px;
+    font-size: 13px;
+    overflow: auto;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    .content-container-inner {
+      min-height: 60px;
+      border: 1px solid #CACACA;
+      background-color: white;
+      .comment-header {
+        height: 33px;
+        padding: 0 10px 0 6px;
+        border-bottom: 1px solid #CCC;
+        background: #F8F8F8;
+        background: -moz-linear-gradient(#F8F8F8, #E1E1E1);
+        background: -webkit-linear-gradient(#F8F8F8, #E1E1E1);
+        background: linear-gradient(#F8F8F8, #E1E1E1);
+        font-size: 12px;
+        .comment-author {
+          display: inline-block;
+          max-width: 600px;
+          height: 33px;
+          line-height: 33px;
+          font-weight: bold;
+          color: #222;
+          text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          vertical-align: middle;
+          p {
+            color: #666;
+          }
+        }
+        .header-date {
+          font-size: 11px;
+        line-height: 33px;
+        font-style: normal;
+        color: #777;
+        text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
+        line-height: 33px;
+        }
+      }
+    }
+  }
+}
+
+.comment-avatar {
+  position: relative;
+  float: left;
+  border-radius: 3px;
+  margin-top: 12px;
+}
+
+.content-container {
+  position: relative;
+  margin-left: 60px;
+}
+
+.bubble {
+  padding: 3px;
+  border-radius: 3px;
+}
+
+
+

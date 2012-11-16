@@ -22,6 +22,7 @@
         <tr>
           <th>All Open Issues</th>
           <th>Issue Number</th>
+          <th>Comments</th>
           <th>View on Github</th>
         </tr>
         <% @repo.issues.each do |issue| %>
@@ -29,6 +30,7 @@
             <tr>
               <td><%= link_to issue.title, owner_repo_gitnumber_path(@repo.owner_name, @repo.name, issue.git_number) %></td>
               <td><%= issue.git_number %></td>
+              <td><%= issue.comment_count %></td>
               <td><a href='http://www.github.com/<%= @repo.owner_name %>/<%= @repo.name %>/issues/<%= issue.git_number %>' target='_blank'>View on Github</a></td>
             </tr>
           <% end %>

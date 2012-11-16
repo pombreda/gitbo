@@ -1,6 +1,6 @@
 class Issue < ActiveRecord::Base
   attr_accessible :body, :git_number, :title, :repo, :comment_count, 
-  :git_updated_at, :state
+  :git_updated_at, :state, :owner_name, :owner_image
 
   belongs_to :repo
   has_many :comments
@@ -15,7 +15,9 @@ class Issue < ActiveRecord::Base
               :title => github_connection.issue_title,
               :comment_count => github_connection.issue_comments,
               :git_updated_at => github_connection.issue_git_updated_at,
-              :state => github_connection.issue_state
+              :state => github_connection.issue_state,
+              :owner_name => github_connection.issue_owner_name,
+              :owner_image => github_connection.issue_owner_image
               ).tap do |i|
       i.repo = Repo.find_or_create_by_name("#{repo}")
       i.save

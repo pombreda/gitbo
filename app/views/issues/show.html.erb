@@ -3,21 +3,33 @@
 
 <div class="row">
   <div class ='span8'>
-    <h3>Issue: <%= @issue.title %></h3>
-    <h3>For Repo: <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
+    <h3>Issue <%= @issue.git_number %> For Repo: <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
   </div>
   <div class="span4">
     <h3 class="pull-right"><a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">View Issue on Github</a></h3>
   </div>
 </div>
 <div class="row">
-  <div class='span2'>
-    <h4>Git Number: <%= @issue.git_number %></h4>
-  </div>
-  <div class='span10'>
+  <div class='span10 pull-right'>
     <div class='row'>
-      <h3>Description</h3>
-      <p><%= @issue.body.html_safe %></p>
+      <div class="issue-bubble">
+        <img src="<%= @issue.owner_image %>" class='comment-avatar'>
+        <div class='issue-content bubble'>
+          <div class='issue-inner'>
+            <div class='issue-header'>
+              <span class='issue-author'>
+                <p><%= @issue.owner_name %> opened this pull request</p>
+              </span>
+              <h4><%= @issue.title %></h4>
+            </div>
+            <div class='issue-description-content'>
+              <div class='description-body'>
+                <p><%= @issue.body.html_safe %></p>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
     </div>
 
       <% @issue.comments.each do |comment| %>
@@ -31,7 +43,7 @@
                   <p><%= comment.owner_name %></p>
                 </div>
                 <div class='pull-right header-date'>
-                  <time><%= comment.git_update_at %></time>
+                  <time><%= time_ago_in_words(comment.git_update_at) %> ago</time>
                 </div>
               </div>
               <div class='comment-content'>

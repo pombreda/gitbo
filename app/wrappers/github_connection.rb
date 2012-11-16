@@ -46,6 +46,14 @@ class GithubConnection
   def issue_git_updated_at
     self.client.issue(self.repo, self.issue_no).updated_at.to_datetime
   end
+
+  def issue_owner_name
+    self.client.issue(self.repo, self.issue_no).user.login
+  end
+
+  def issue_owner_image
+    self.client.issue(self.repo, self.issue_no).user.avatar_url
+  end
   
 end
 
