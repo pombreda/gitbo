@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :provider, :uid, :name, :image
 
   has_many :user_votes
+  has_many :bounties
 
   def self.create_with_omniauth(auth)
   create! do |user|

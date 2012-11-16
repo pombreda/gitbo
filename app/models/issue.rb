@@ -7,6 +7,7 @@ class Issue < ActiveRecord::Base
   belongs_to :repo
 
   has_many :comments
+  has_many :bounties
 
   validates :git_number, :uniqueness => { :scope => :repo_id } 
 
