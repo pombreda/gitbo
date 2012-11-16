@@ -52,6 +52,10 @@ class IssuesController < ApplicationController
     github_connection = GithubConnection.new(params[:owner], params[:repo], params[:git_number])
 
 
+    @comment = Comment.new(params[:comment])
+
+    #need to assign new comment to an issue
+
     if @issue.updated?(github_connection)
       RefreshIssuesWorker.perform_async(@issue.id)
       flash[:notice] = "Updating issue from Github, please refresh"

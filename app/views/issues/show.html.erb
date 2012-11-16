@@ -34,26 +34,40 @@
 
       <% @issue.comments.each do |comment| %>
     <div class='row'>
-        <div class='comment-container'>
-          <img src="<%= comment.owner_image %>" class='comment-avatar'>
-          <div class='comment-content bubble'>
-            <div class='content-container-inner'>
-              <div class='comment-header'>
-                <div class='comment-author'>
-                  <p><%= comment.owner_name %></p>
-                </div>
-                <div class='pull-right header-date'>
-                  <time><%= time_ago_in_words(comment.git_update_at) %> ago</time>
-                </div>
+      <div class='comment-container'>
+        <img src="<%= comment.owner_image %>" class='comment-avatar'>
+        <div class='comment-content bubble'>
+          <div class='content-container-inner'>
+            <div class='comment-header'>
+              <div class='comment-author'>
+                <p><%= comment.owner_name %></p>
               </div>
-              <div class='comment-content'>
-                <p><%= comment.body %></p>
+              <div class='pull-right header-date'>
+                <time><%= time_ago_in_words(comment.git_update_at) %> ago</time>
+              </div>
+            </div>
+            <div class='comment-content'>
+              <p><%= comment.body %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <div class='row'>
+      <div class='comment-container'>
+        <img src="<%= current_user.image %>" class='new-comment-avatar'>
+        <div class='comment-content bubble'>
+          <div class='comment-content'>
+            <div class='comment form'>
+              <div class='new-comment-bucket'>
+                <%= render 'comment_form' %>
               </div>
             </div>
           </div>
         </div>
+      </div>
     </div>
-      <% end %>
   </div>
 </div>
 

@@ -12,10 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= f.label "comment" %><br />
-    <%= f.text_area :body %>
+    <%= f.text_area :body, :placeholder => 'leave a comment'%>
   </div>
   <div class="actions">
-    <%= f.submit, :value => "comment", :class => 'btn btn-success' %>
+    <%= f.submit 'Comment', :class => 'btn btn-success pull-right' %>
   </div>
 <% end %>
