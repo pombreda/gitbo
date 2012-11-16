@@ -1,0 +1,79 @@
+HTML: <div id="c1">Updated</div>​
+
+
+CSS:
+div:first-child
+{
+    display:inline-block;
+    width:85px;
+    height:85px;
+    padding:30px;
+    background-image: -webkit-linear-gradient(bottom left, white 0%, green 100%);
+    background-image: -o-linear-gradient(bottom left, white 0%, green 100%);
+    background-image: -moz-linear-gradient(bottom left, white 0%, green 100%);
+    background-image: -webkit-linear-gradient(bottom left, white 0%, green 100%);
+    background-image: -ms-linear-gradient(bottom left, white 0%, green 100%);
+    border-radius:100%;
+    border:3px solid white;
+    box-shadow:-1px 1px 2px rgba(0,0,0,0.5);
+    
+    color:white;
+    text-shadow:-1px -1px 1px rgba(0,0,0,0.5);
+    font-size:30px;
+    line-height:80px;
+    
+    -webkit-transform: rotate(-5deg); 
+    -moz-transform: rotate(-5deg); 
+  
+    position:relative;
+    /* this almost works :P */
+    /*-webkit-mask-image: url(#c1);*/
+}
+
+div:before
+{
+    content:"";
+    display:inline-block;
+    width:85px;
+    height:85px;
+    padding:30px;
+    background-image: -webkit-linear-gradient(bottom left, white 0%, green 100%);
+    background-image: -o-linear-gradient(bottom left, white 0%, green 100%);
+    background-image: -moz-linear-gradient(bottom left, white 0%, green 100%);
+    background-image: -webkit-linear-gradient(bottom left, white 0%, green 100%);
+    background-image: -ms-linear-gradient(bottom left, white 0%, green 100%);
+    border-radius:100%;
+    border:3px solid white;
+    box-shadow:0px 0px 3px rgba(0,0,0,0.5);
+    
+    color:white;
+    text-shadow:-1px -1px 1px rgba(0,0,0,0.5);
+    font-size:50px;
+    line-height:80px;
+    
+    -webkit-transform: rotate(-15deg); 
+    -moz-transform: rotate(-15deg);   
+   
+   
+    position:absolute;  
+    bottom:70px;
+    left:70px;
+}
+
+div:after
+{
+    content:"";
+    display:inline-block;
+    width:125px;
+    height:125px;
+    padding:30px;
+    background:white;
+    
+    -webkit-transform: rotate(-44deg); 
+    -moz-transform: rotate(-44deg);
+   
+    position:absolute;  
+    bottom:81px;
+    left: 81px;
+}​
+

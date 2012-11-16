@@ -1,6 +1,6 @@
 class Issue < ActiveRecord::Base
   attr_accessible :body, :git_number, :title, :repo, :comment_count, 
-  :git_updated_at, :state
+  :git_updated_at, :state, :owner_endorsement
 
   belongs_to :repo
 
@@ -25,9 +25,6 @@ class Issue < ActiveRecord::Base
               ).tap do |i|
       i.repo = Repo.find_or_create_by_name("#{repo}")
       i.save
-
-
-
 
     if i.persisted?
       github_connection.comments.each do |comment|
@@ -75,5 +72,19 @@ class Issue < ActiveRecord::Base
                             :git_updated_at => github_connection.issue_git_updated_at,
                             :state => github_connection.issue_state  )
   end
+
+  def endorsement_by(approval)#(repo_owner, direction, int = 1)
+    # self.increment(direction, int)
+    self.send(approval.to_sym)
+  end
+
+  def endorsement
+    self.owner_endorsement = 1
+  end
+
+  def disapproval
+    self.owner_endorsement = -1
+  end
+
 
 end

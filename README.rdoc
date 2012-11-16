@@ -7,6 +7,8 @@
 
 [sidekiq railscast](http://railscasts.com/episodes/366-sidekiq)
 
+###seed file
+rake seed_repos_and_issues
 
 ##Scraps
 github_connection = GithubConnection.new('xfernandox', 'dummyrepo', 1)
@@ -14,3 +16,15 @@ issue_number = github_connection.client.issue(github_connection.repo, github_con
 repo = Repo.find_by_owner_name_and_name('xfernandox', 'dummyrepo')
 github_connection.info.open_issues # outputs a number like 6
 all_issues = github_connection.issues #returns all issue objects
+
+
+define repo_owner in issue controller
+  
+add endoresement column in issues:
+  - type integer
+
+add checkbox on issue show page only shown to repo owner
+  - 
+
+badge on show page based on endorsment, lack of, disapproal
+  - 

@@ -1,5 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<% if repo_owner %>
+<!-- <input id="endorsement" name="endorsement" type="checkbox" value="1" /> -->
+<%= link_to 'endorse?', owner_endorsement_path(@issue, :endorsement), :method => :put %>
+<%= link_to 'Disapprove?', owner_endorsement_path(@issue, :disapproval), :method => :put %>
+<!-- <label for="endorsement">Endorse?</label> -->
+<!-- <input id="disapproval" name="disapproval" type="checkbox" value="1" /> -->
+<!-- <label for="disapproval">Disapprove?</label>
+<input type="submit" value="Submit"> -->
+<% end %>
 
 <div class="row">
   <div class ='span8'>

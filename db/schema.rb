@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20121115164907) do
+ActiveRecord::Schema.define(:version => 20121116150130) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -25,20 +24,19 @@ ActiveRecord::Schema.define(:version => 20121115164907) do
     t.datetime "updated_at",    :null => false
   end
 
-ActiveRecord::Schema.define(:version => 20121115194018) do
-
   create_table "issues", :force => true do |t|
     t.string   "title"
     t.integer  "git_number"
-    t.text     "body",           :limit => 255
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.text     "body",              :limit => 255
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.integer  "repo_id"
     t.integer  "comment_count"
     t.integer  "upvote"
     t.integer  "downvote"
     t.datetime "git_updated_at"
     t.string   "state"
+    t.integer  "owner_endorsement",                :default => 0
   end
 
   create_table "repos", :force => true do |t|
@@ -58,10 +56,10 @@ ActiveRecord::Schema.define(:version => 20121115194018) do
   create_table "user_votes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "issue_id"
-    t.integer  "upvote"
-    t.integer  "downvote"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "upvote",     :default => 0
+    t.integer  "downvote",   :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "users", :force => true do |t|
