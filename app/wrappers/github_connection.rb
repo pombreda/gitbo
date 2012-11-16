@@ -5,7 +5,8 @@ class GithubConnection
   def initialize(owner, repo, issue = nil)
 
    
-    @client = Octokit::Client.new(:login => "creekace", :password => "lytham420")
+
+    @client = Octokit::Client.new(:login => "flatiron-dummy", :password => "flatiron2012")
     @repo = "#{owner}/#{repo}"
     @info = @client.repo(@repo)
     @issues = @client.list_issues(@repo)
