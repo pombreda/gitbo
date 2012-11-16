@@ -19,17 +19,16 @@
 
 
 <div class="row">
-  <div class ='span8'>
-    <h3>Issue: <%= @issue.title %></h3>
-    <h3>For Repo: <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
-  </div>
-  <div class="span4">
+    <div class ='span8'>
+      <h3><%= link_to @issue.repo.owner_name, owner_repos_path(@issue.repo.owner_name) %> / <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
+    </div>
+    <div class="span4">
     <h3 class="pull-right">
       <%= link_to "Issue Bounty", new_issue_bounty_path(@issue.repo.owner_name, @issue.repo.name, @issue.git_number), :class => "btn btn-success btn-small" %>
       <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">View Issue on Github</a>
     </h3>
   </div>
-</div>
+  </div>
 
 <div class="row">
   <div class="span12">
