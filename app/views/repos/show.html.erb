@@ -13,6 +13,10 @@
   <div class='span4'>
     <h5>Watchers: <%= @repo.watchers %></h5>
     <h5>Open_issues: <%= @repo.open_issues %></h5>
+    <div id="seal-wrapper">
+      <div id="seal" class='seal pull-down'>Refresh</div>​
+    </div>
+    
     <% if @repo.description %>
       <h5>Description:</h5> <%= @repo.description %>
     <% end %>
