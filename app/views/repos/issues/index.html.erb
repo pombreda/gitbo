@@ -1,5 +1,4 @@
-  <h1>Issues for <%= link_to @repo.name.capitalize, @repo %></h1>
-
+<h1>Issues for <%= link_to @repo.name.capitalize, @repo %></h1>
 <table class="table">
   <b>All Open Issues / Issue Git number: </b>
   <% @repo.issues.each do |issue| %>

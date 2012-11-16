@@ -70,11 +70,10 @@ class Issue < ActiveRecord::Base
                             :title => github_connection.issue_title,
                             :comment_count => github_connection.issue_comments,
                             :git_updated_at => github_connection.issue_git_updated_at,
-                            :state => github_connection.issue_state  )
+                            :state => github_connection.issue_state )
   end
 
-  def endorsement_by(approval)#(repo_owner, direction, int = 1)
-    # self.increment(direction, int)
+  def endorsement_by(approval)
     self.send(approval.to_sym)
   end
 

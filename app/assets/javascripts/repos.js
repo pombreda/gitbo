@@ -1,0 +1,1 @@
+$('div#seal.seal.pull-right').show();
