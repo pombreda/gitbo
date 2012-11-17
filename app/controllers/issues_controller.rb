@@ -79,6 +79,7 @@ class IssuesController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @issue }
+      format.js
     end
   end
 
@@ -96,6 +97,7 @@ class IssuesController < ApplicationController
       if @issue.save
         format.html { redirect_to @issue, notice: 'Issue was successfully created.' }
         format.json { render json: @issue, status: :created, location: @issue }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @issue.errors, status: :unprocessable_entity }

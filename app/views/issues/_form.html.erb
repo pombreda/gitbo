@@ -1,4 +1,9 @@
-<%= form_for(@issue) do |f| %>
+<%#= form_for @issue, remote: true do |f| %>
+  <%#= f.text_fied :title %>
+  <%#= f.submit %>
+<%# end %>
+
+<%= form_for @issue, remote: true do |f| %>
   <% if @issue.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
@@ -11,12 +16,12 @@
     </div>
   <% end %>
 
-
-  <%#= f.label :repo_name %><br />  
-  <p><%#= f.fields_for :repo 'repo[name]' :name %> :repo_name %></p>
-
-  <%= f.label :git_number %><br />
-  <p><%= f.text_field :git_number %></p>
-  <p><%= f.submit %></p>
+  <%= form_for(@issue) do |f| %>
+    <%= f.label :repo_id %>
+    <p><%= f.text_field :repo_id %>
+    <%= f.label :git_number %><br />
+    <p><%= f.text_field :git_number %></p>
+    <%= f.submit %>
+    <% end %>
 <% end %>
 

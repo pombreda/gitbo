@@ -30,8 +30,12 @@
             <ul class="nav">
               <li><%= link_to "Issues", issues_path  %></li>
               <li><%= link_to "Repos", repos_path  %></li>
-              <li><%= link_to "New Repo", new_repo_path  %></li>
+              <li><%= link_to "New Repo", new_repo_path %></li>
               <li><%= link_to "Post Bounty", new_bounty_path %></li>
+              <li><form class="form-search">
+                <input type="text" class="input-medium search-query" placeholder="Type your search">
+              <!--   <button type="submit" class="btn">Search</button> -->
+              </form></li>
             </ul>
             <ul class ="nav pull-right">
               <% if current_user %>
@@ -41,7 +45,6 @@
                 <li><%= link_to "Sign in with Github", "/auth/github" %></li>
 
               <% end %>
-                
             </ul>
           </div>
         </div>
@@ -51,6 +54,10 @@
     <div class=" container container-narrow">
         <div class="row">
           <div class="span12">
+            <div class="row">
+            </div>
+          </div>
+
              <%= yield %>
           </div>
           <!-- <div class="span3">
@@ -70,7 +77,8 @@
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application" %>
+    <%#= javascript_include_tag "application" %>
+    <%= javascript_include_tag 'jquery', 'application', 'json' %>
 
   </body>
 </html>

@@ -12,6 +12,8 @@ Gitbo::Application.routes.draw do
 
   resources :users
 
+  resources :issues
+
   #authentication through github
   match '/auth/:provider/callback' => 'sessions#create'
   get '/signout' => "sessions#destroy", :as => :signout
@@ -20,6 +22,7 @@ Gitbo::Application.routes.draw do
 
   #voting
   put '/issues/:id/vote/:direction' => 'issues#vote', :as => :vote_issue
+  
   #owner endorsment
   put '/issues/:id/endorsement/:direction' => 'issues#endorsement', :as => :owner_endorsement
 
@@ -28,7 +31,9 @@ Gitbo::Application.routes.draw do
     resources :issues, :only => [:index, :delete, :update]
   end
 
+  #issues
   get "/issues" => "issues#index"
+
 
   get "/:owner/:repo/issues/:git_number" => 'issues#show', :as => :owner_repo_gitnumber
   get "/:owner/*repo" => 'repos#show', :as => :owner_repo, :format => false
