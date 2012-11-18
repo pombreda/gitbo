@@ -4,8 +4,8 @@
     </div>
     <div class="span6">
         <div class="pull-right">
-            <p> Don't see your issue? Add it here</p>
-            <p><%= link_to 'New Issue', new_issue_path, id: "new_link", remote: true %></p>
+            <p> Don't see your issue?</p>
+            <p><%= link_to 'New Issue', new_issue_path, id: "new_link",  :class => "btn btn-success btn-large" %></p>
         </div>
     </div>
 </div>
@@ -49,5 +49,4 @@
   </tr>
 <% end %>
 </table>
-<p><%= link_to 'New Issue', new_issue_path, id: "new_link", remote: true %></p>
 <br />

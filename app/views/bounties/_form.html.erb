@@ -1,8 +1,9 @@
 <% if @issue %>
 <%    submit_path = "/#{@issue.repo.owner_name}/#{@issue.repo.name}/issues/#{@issue.git_number}/bounty" %>
-<% else %>
-<%    submit_path = "/bounties" %>
+  <% else %>
+    <%    submit_path = "/bounties" %>
 <% end %>
+
 <%= form_tag(submit_path, :method => "post") do %>
 
     <% unless @issue %>
@@ -23,8 +24,6 @@
 
 
       <h3>For issue #<%= @issue.git_number %> in <%= "#{@issue.repo.owner_name}/#{@issue.repo.name}" %></h3>
-
-
 
     <% end %>
 

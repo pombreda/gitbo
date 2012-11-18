@@ -51,6 +51,7 @@ class ReposController < ApplicationController
   # GET /repos/new.json
   def new
     @repo = Repo.new
+    1.times { @repo.issues.build}
 
     respond_to do |format|
       format.html # new.html.erb
