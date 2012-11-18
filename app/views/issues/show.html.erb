@@ -51,19 +51,18 @@
           <th>Bounty Price</th>
           <th>Bounty Issued</th>
           <th>Bounty Updated</th>
-
         </tr>
       </thead>
 
-  <% @issue.bounties.sort_by(&:price).reverse.each do |bounty| %>
-    <tr>
-      <td><%= bounty.user.nickname %></td>
-      <td><%= bounty.display_price %></td>
-      <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
-      <td><%= time_ago_in_words( bounty.updated_at ) %> ago</td>
-    </tr>
-  <% end %>
-  </table>
+ <% @issue.bounties.sort_by(&:price).reverse.each do |bounty| %>
+  <tr>
+    <td><%= bounty.user.nickname %></td>
+    <td><%= number_to_currency(bounty.price, :precision => 0) %></td>
+    <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
+    <td><%= time_ago_in_words( bounty.updated_at ) %> ago</td>
+  </tr>
+<% end %>
+</table>
   <% else %>
   <div class='span6'>
     <%= link_to "Issue Bounty", new_issue_bounty_path(@issue.repo.owner_name, @issue.repo.name, @issue.git_number), :class => "btn btn-success btn-small pull-right" %>
