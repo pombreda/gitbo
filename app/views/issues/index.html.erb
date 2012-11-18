@@ -37,9 +37,13 @@
     <td><%= issue.popularity %></td>
     <td><%= issue.upvote %></td>
     <td><%= issue.downvote %></td>
+    <% if current_user %>
     <td><%= link_to new_issue_bounty_path(issue.repo.owner_name, issue.repo, issue.git_number) do %>
         <span class="label label-success">Post a bounty</span>
          <% end %></td>
+    <% else %>
+        <td><span id="bounty-prompt" class="label label-success">Post a bounty</span></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
