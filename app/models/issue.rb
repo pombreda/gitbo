@@ -1,7 +1,7 @@
 class Issue < ActiveRecord::Base
-  attr_accessible :body, :git_number, :title, :repo, :comment_count, 
+  attr_accessible :body, :git_number, :title, :repo, :comment_count,
  
-  :git_updated_at, :state, :owner_name, :owner_image, :owner_endorsement
+  :git_updated_at, :state, :owner_name, :owner_image, :owner_endorsement, :bounties
 
 
   belongs_to :repo
@@ -40,6 +40,9 @@ class Issue < ActiveRecord::Base
     end
   end
 
+  def bounty_total
+    self.bounties.inject(0) {|total, bounty| total += bounty.price }
+  end
 
   def popularity
     upvote = self.upvote ||= 0

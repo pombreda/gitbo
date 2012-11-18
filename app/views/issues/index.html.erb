@@ -57,9 +57,15 @@
     <td><%= issue.upvote %></td>
     <td><%= issue.downvote %></td>
     <% if current_user %>
-    <td><%= link_to new_issue_bounty_path(issue.repo.owner_name, issue.repo, issue.git_number) do %>
-        <span class="label label-success">Post a bounty</span>
-         <% end %></td>
+        <% if issue.bounty_total ==  0 %>
+           <td><%= link_to new_issue_bounty_path(issue.repo.owner_name, issue.repo, issue.git_number) do %>
+            <span class="label label-success">Post a bounty</span>
+             <% end %></td>
+        <% else %>
+            <td><%= link_to owner_repo_gitnumber_path(issue.repo.owner_name, issue.repo.name, issue.git_number) do %>
+                <span class="label label-warning"><%= number_to_currency(issue.bounty_total, :raise => true, :precision => 0)%></span>
+            <% end %></td>
+        <% end %>
     <% else %>
         <td><span id="bounty-prompt" class="label label-success">Post a bounty</span></td>
     <% end %>
