@@ -8,4 +8,6 @@ $("td#vote-prompt").click(function(){
 });
 
 
-$('div#seal.seal.pull-right').hide();
+$('div#seal.seal.pull-right').click(function(){
+  location.reload();
+});

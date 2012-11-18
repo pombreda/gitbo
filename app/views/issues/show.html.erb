@@ -1,24 +1,22 @@
 <p id="notice"><%= notice %></p>
-  <% if current_user %>
-    <% if repo_owner %>
-    <div class="row">
-      <div class="span7">
-        <h4>This issue belongs to your repo. Please, consider endorsing it!</h4>
-      </div>
-      <div class="span5">
-        <div class="pull-right">
-          <div class="btn-group">
-            <button class="btn btn-success btn-small"><%= link_to 'Endorse this issue', owner_endorsement_path(@issue, :endorsement), :method => :put %></button>
-            <button class="btn btn-danger btn-small"><%= link_to 'Don\'t endorce', owner_endorsement_path(@issue, :disapproval), :method => :put %></button>
-          </a></div>
-        </div>
+  <% if repo_owner %>
+  <div class="row">
+    <div class="span7">
+      <h4>This issue belongs to your repo. Please, consider endorsing it!</h4>
+    </div>
+    <div id="seal-wrapper">
+      <div id="seal" class='seal pull-right'>Refresh</div>​
+    </div>
+    <div class="span5">
+      <div class="pull-right">
+        <div class="btn-group">
+          <button class="btn btn-success btn-small"><%= link_to 'Endorse this issue', owner_endorsement_path(@issue, :endorsement), :method => :put %></button>
+          <button class="btn btn-danger btn-small"><%= link_to 'Over my dead body', owner_endorsement_path(@issue, :disapproval), :method => :put %></button>
+        </a></div>
       </div>
     </div>
-    <% end %>
+  </div>
   <% end %>
-<div id="seal-wrapper">
-  <div id="seal" class='seal pull-right'>Refresh</div>​
-</div>
 
 <div class="row">
     <div class ='span8'>
