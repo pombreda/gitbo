@@ -16,10 +16,14 @@
   <% end %>
 
   <%= form_for(@repo) do |f| %>
+    <p>
     <%= f.label :owner_name %> <br />
-    <p><%= f.text_field :owner_name %></p>
+    <%= f.text_field :owner_name %>
+  </p>
+    <p>
     <%= f.label :name %><br />
-    <p><%= f.text_field :name %></p>
+    <%= f.text_field :name %>
+  </p>
     <%= f.submit 'Create Repo', :class => 'btn btn-success' %>
   <% end %>
 <% end %>

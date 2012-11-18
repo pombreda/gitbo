@@ -90,7 +90,11 @@ class IssuesController < ApplicationController
   # POST /issues
   # POST /issues.json
   def create
-    @issue = Issue.new(params[:issue])
+    @issue = Issue.create_from_github(params[:owner_name, :name, :git_number])
+
+    # need it?
+    # @issues = @repo.issues
+    # github_connection = GithubConnection.new(params[:owner], @repo.name)
 
     respond_to do |format|
       if @issue.save

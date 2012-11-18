@@ -1,24 +1,32 @@
+
 <% #this can be thrown out. no one will ever edit or create a single issue - nov 18 %>
 
 <%= form_for(@issue) do |f| %>
+
   <% if @issue.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
 
       <ul>
-      <% @issue.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @issue.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-
-  <%#= f.label :repo_name %><br />  
-  <p><%#= f.fields_for :repo 'repo[name]' :name %> :repo_name %></p>
-
-  <%= f.label :git_number %><br />
-  <p><%= f.text_field :git_number %></p>
-  <p><%= f.submit %></p>
+    <p>
+      <%= f.fields_for :repos, @issue.repo do |f| %>
+        <%= f.label :owner_name %><br />
+        <%= f.text_field :owner_name %><br />
+        <%= f.label :name %><br />
+        <!-- text_area leaves a block. specify rows for -->
+        <%= f.text_area :name, :rows => 3, :class => "field span4" %><br />
+    </p>
+    <p><%= f.label :git_number %><br />
+    <%= f.text_field :git_number %><br />
+    </p>
+    <%= f.submit 'Create', :class => 'btn btn-success'  %>
+    <% end %>
 <% end %>
 

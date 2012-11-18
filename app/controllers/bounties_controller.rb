@@ -25,7 +25,7 @@ class BountiesController < ApplicationController
   # GET /bounties/new
   # GET /bounties/new.json
   def new
-    @issue = Issue.find_by_git_number(params[:git_no])
+    # @issue = Issue.find_by_git_number(params[:git_no])
     @bounty = Bounty.new
     respond_to do |format|
       format.html # new.html.erb

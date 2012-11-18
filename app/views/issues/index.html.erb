@@ -1,8 +1,19 @@
-    <h1>Listing issues</h1>
+<div class="row">
+    <div class="span6">
+        <h1>Listing issues</h1>
+    </div>
+    <div class="span6">
+        <div class="pull-right">
+            <p> Need to add your issue?</p>
+            <p><%= link_to 'Add your issues', new_repo_path, id: "new_link",  :class => "btn btn-success btn-large" %></p>
+        </div>
+    </div>
+</div>
 
 <table class="table table-hover">
     <thead>
       <tr>
+        <th></th>
         <th></th>
         <th></th>
         <th>Issue Name</th>
@@ -18,6 +29,14 @@
 
 <% @issues.sort_by(&:popularity).reverse.each do |issue| %>
   <tr>
+    <!-- 11.18.12 - Move endorsement buttons to the right of the screen -->
+    <% if issue.owner_endorsement == 1 %>
+            <td><i class="icon-thumbs-up" ></i></td>
+        <% elsif issue.owner_endorsement == 0 %>
+            <td><i class="icon-time" ></i></td>
+        <% else %>
+            <td><i class="icon-thumbs-down" ></i></td>
+    <% end %>
     <% if current_user %>
         <td><%= link_to vote_issue_path(issue.id, :upvote), :method => :put do %>
                 <i class="icon-arrow-up"></i>
@@ -48,4 +67,3 @@
 <% end %>
 </table>
 
-<br />

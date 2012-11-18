@@ -39,9 +39,7 @@
                 <li><%= link_to "Sign Out", signout_path, :class => 'btn btn-mini' %></li>
               <% else %>
                 <li><%= link_to "Sign in with Github", "/auth/github" %></li>
-
               <% end %>
-                
             </ul>
           </div>
         </div>
@@ -51,6 +49,10 @@
     <div class=" container container-narrow">
         <div class="row">
           <div class="span12">
+            <div class="row">
+            </div>
+          </div>
+
              <%= yield %>
           </div>
           <!-- <div class="span3">
