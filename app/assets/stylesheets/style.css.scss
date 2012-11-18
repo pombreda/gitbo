@@ -2,6 +2,7 @@
   margin: 0 auto;
   margin-top: 60px;
 }
+
 .container-narrow > hr {
   margin: 30px 0;
 }
@@ -23,3 +24,13 @@
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   word-spacing: 2px;
 }
+
+.badge {
+    border: 3px solid red;
+    border-radius: 50%;
+    width: 100px; height: 100px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 84px;
+  }

@@ -6,10 +6,8 @@ Gitbo::Application.routes.draw do
 
   get '/:owner/:repo/issues/:git_no/bounty/new' => "bounties#new", :as => :new_issue_bounty
 
-  resources :bounties
-
+  resources :bounties, :except => [:new, :show, :create]
   resources :comments
-
   resources :users
 
   #authentication through github
@@ -29,11 +27,9 @@ Gitbo::Application.routes.draw do
   end
 
   get "/issues" => "issues#index"
-
   get "/:owner/:repo/issues/:git_number" => 'issues#show', :as => :owner_repo_gitnumber
   get "/:owner/*repo" => 'repos#show', :as => :owner_repo, :format => false
   get "/:owner" => 'repos#show_owner', :as => :owner_repos
-
 
   ### sidekiq monitoring
   mount Sidekiq::Web, at: "/sidekiq"
