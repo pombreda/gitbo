@@ -27,6 +27,7 @@
 <div class="row">
     <div class ='span8'>
       <h3><%= link_to @issue.repo.owner_name, owner_repos_path(@issue.repo.owner_name) %> / <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
+      <h4>Issue # <%= @issue.git_number %></h4>
     </div>
     <div class="span4">
     <h3 class="pull-right">
@@ -42,50 +43,45 @@
   </div>
 </div>
 
+<% if @issue.bounties.count != 0 %>
+  <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Bounty Issued by</th>
+          <th>Bounty Price</th>
+          <th>Bounty Issued</th>
+          <th>Bounty Updated</th>
 
-<table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Bounty Issued by</th>
-        <th>Bounty Price</th>
-        <th>Bounty Issued</th>
-        <th>Bounty Updated</th>
+        </tr>
+      </thead>
 
-      </tr>
-    </thead>
-
-<% @issue.bounties.sort_by(&:price).reverse.each do |bounty| %>
-  <tr>
-    <td><%= bounty.user.nickname %></td>
-    <td><%= bounty.display_price %></td>
-    <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
-    <td><%= time_ago_in_words( bounty.updated_at ) %> ago</td>
-  </tr>
-<% end %>
-</table>
-
-
-  <div class="row">
-    <div class="span6">
-      <p><%= link_to 'View All Issues', owner_repo_path %></p>
-    </div>
-    <div class="span6">
-      <a class="pull-right"> 
-        <span class="text">Issue # <%= @issue.git_number %></span>
-      </a>
-    </div>
+  <% @issue.bounties.sort_by(&:price).reverse.each do |bounty| %>
+    <tr>
+      <td><%= bounty.user.nickname %></td>
+      <td><%= bounty.display_price %></td>
+      <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
+      <td><%= time_ago_in_words( bounty.updated_at ) %> ago</td>
+    </tr>
+  <% end %>
+  </table>
+  <% else %>
+  <div class='span6'>
+    <%= link_to "Issue Bounty", new_issue_bounty_path(@issue.repo.owner_name, @issue.repo.name, @issue.git_number), :class => "btn btn-success btn-small pull-right" %>
+    <p>There are currently no bounties for this issue</p>
   </div>
+<% end %>
+<div class='clearfix'></div>
 
 <div class="row">
-  <div class="discussion-sidebar">
+  <div class="discussion-sidebar pull-left">
       <div class="discussion-stats">
         <% if @issue.owner_endorsement == 1%>
           <span class="badge badge-success">Endorsed</span>
         <% else %>
           <span class="badge badge-important">Not Endorsed</span>
         <% end %>
-        <p><%= @issue.comment_count %> Comments<p>
     </div>
+
   </div>
   <div class='span10 pull-right'>
     <div class='row'>
