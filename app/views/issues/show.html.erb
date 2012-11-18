@@ -76,9 +76,9 @@
   <div class="discussion-sidebar">
       <div class="discussion-stats">
         <% if @issue.owner_endorsement == 1%>
-          <h3> Owner endorsed </h3>
+          <span class="badge badge-success">Endorsed</span>
         <% else %>
-          <h3> Not endorsed </h3>
+          <span class="badge badge-important">Not Endorsed</span>
         <% end %>
         <p><%= @issue.comment_count %> Comments<p>
     </div>
