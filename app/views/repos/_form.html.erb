@@ -24,12 +24,6 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
-      <p>
-      <%= f.fields_for :issues, @repo.issues do |builder| %>
-        <%= builder.label :git_number %>
-        <%= builder.text_field :git_number %>
-      <% end %>
-    </p>
     <%= f.submit 'Create Repo', :class => 'btn btn-success' %>
   <% end %>
 <% end %>
