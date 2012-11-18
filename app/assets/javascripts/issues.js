@@ -1,7 +1,11 @@
+
 $('i#vote-prompt').click(function(){
   alert("Sign in with Github to upvote");
 })
 
-// $('#new_issue').remove();
-// $('#new_link').show();
-// $('#issue').append('<% j render(@issue) %>');
+$("td#vote-prompt").click(function(){
+  alert("please sign in with Github to vote");
+});
+
+
+$('div#seal.seal.pull-right').hide();

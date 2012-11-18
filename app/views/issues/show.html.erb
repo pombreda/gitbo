@@ -8,15 +8,17 @@
       <div class="span5">
         <div class="pull-right">
           <div class="btn-group">
-            <button class="btn btn-success btn-large"><%= link_to 'Endorse this issue', owner_endorsement_path(@issue, :endorsement), :method => :put %></button>
-            <button class="btn btn-danger btn-large"><%= link_to 'Don\'t endorce', owner_endorsement_path(@issue, :disapproval), :method => :put %></button>
+            <button class="btn btn-success btn-small"><%= link_to 'Endorse this issue', owner_endorsement_path(@issue, :endorsement), :method => :put %></button>
+            <button class="btn btn-danger btn-small"><%= link_to 'Don\'t endorce', owner_endorsement_path(@issue, :disapproval), :method => :put %></button>
           </a></div>
         </div>
       </div>
     </div>
     <% end %>
   <% end %>
-
+<div id="seal-wrapper">
+  <div id="seal" class='seal pull-right'>Refresh</div>​
+</div>
 
 <div class="row">
     <div class ='span8'>
@@ -74,9 +76,9 @@
   <div class="discussion-sidebar">
       <div class="discussion-stats">
         <% if @issue.owner_endorsement == 1%>
-          <h3> Owner endorsed </h3>
+          <span class="badge badge-success">Endorsed</span>
         <% else %>
-          <h3> Not endorsed </h3>
+          <span class="badge badge-important">Not Endorsed</span>
         <% end %>
         <p><%= @issue.comment_count %> Comments<p>
     </div>
@@ -103,7 +105,8 @@
       </div>
     </div>
 
-      <% @issue.comments.each do |comment| %>
+  <% @issue.comments.each do |comment| %>
+  <% if comment.git_update_at %>
     <div class='row'>
       <div class='comment-container'>
         <img src="<%= comment.owner_image %>" class='comment-avatar'>
@@ -114,7 +117,7 @@
                 <p><%= comment.owner_name %></p>
               </div>
               <div class='pull-right header-date'>
-                <time><%= time_ago_in_words(comment.issue.git_updated_at) %> ago</time>
+                <time><%= time_ago_in_words(comment.git_update_at) %> ago</time>
               </div>
             </div>
             <div class='comment-content'>
@@ -124,6 +127,7 @@
         </div>
       </div>
     </div>
+    <% end %>
     <% end %>
     <div class='row'>
       <div class='comment-container'>
@@ -145,6 +149,25 @@
   
 </div>
 
+<script type="text/javascript">
 
+  var oldTime = new Date('<%= @issue.updated_at %>');
 
+  setInterval(function() {
+    var url = '<%= "/#{@issue.repo.owner_name}/#{@issue.repo.name}/issues/#{@issue.git_number}.json" %>'
+    $.getJSON(url, {}, function(json){
+      var newTime = new Date(Date.parse(json.updated_at));
+      console.log(newTime)
+      
+      if (oldTime.valueOf() != newTime.valueOf()){
+        console.log('diff')
+        $('div#seal.seal.pull-right').fadeTo(3000, 1);
+        $('div#seal.seal.pull-right').click(function(){
+          location.reload();
+        });
+      }
+    });
+  }, 4000);
+
+</script>
 
