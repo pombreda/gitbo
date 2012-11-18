@@ -1,20 +1,12 @@
-<%= form_for(@comment) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+ <% submit_path = "/comments" %>
 
-      <ul>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+  <%= form_tag(submit_path, :method => "post") do  |t|%>
+
+      <div class="field">
+        <textarea cols='40' id='comment_body' name='comment[body]' placeholder='leave a comment' rows='20'></textarea>
+      </div>
+      <div class="actions">
+        <input name = "commit" type="submit" value="Comment" method="post" />
+      </div>
+
   <% end %>
-
-  <div class="field">
-    <%= f.text_area :body, :placeholder => 'leave a comment'%>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Comment', :class => 'btn btn-success pull-right' %>
-  </div>
-<% end %>
