@@ -23,19 +23,21 @@
     <div id="refresh" class='btn btn-info'>Refresh</div>​
   </div>
 <div class="row">
-    <div class ='span8'>
-      <h3><%= link_to @issue.repo.owner_name, owner_repos_path(@issue.repo.owner_name) %> / <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
-      <h4>Issue # <%= @issue.git_number %></h4>
-    </div>
-    <div class="span4">
-    <h3 class="pull-right">
+  <div class ='span8'>
+    <h3><%= link_to @issue.repo.owner_name, owner_repos_path(@issue.repo.owner_name) %> / <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
+    <h4>Issue # <%= @issue.git_number %></h4>
+  </div>
+  <div class="span4">
+    <div class="pull-right">
     <% if current_user %> 
       <%= link_to "Issue Bounty", new_issue_bounty_path(@issue.repo.owner_name, @issue.repo.name, @issue.git_number), :class => "btn btn-success btn-small", id: "new_link", remote: true %>
+    <% else %>
+      <button id="bounty" class="btn btn-success btn-small" type="button">Issue Bounty</button>
+    <% end %>
       <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">View Issue on Github</a>
-    </h3>
+    </div>
   </div>
-  </div>
-  <% end %>
+</div>
 
 <div class="row">
   <div class="span12">
