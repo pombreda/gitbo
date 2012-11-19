@@ -6,7 +6,7 @@ class GithubConnection
 
    
 
-    @client = Octokit::Client.new(:login => "ajonas04", :password => "1baseball")
+    @client = Octokit::Client.new("flatiron-dummy", :password => "flatiron2012")
     @repo = "#{owner}/#{repo}"
     @info = @client.repo(@repo)
     @issues = @client.list_issues(@repo)
