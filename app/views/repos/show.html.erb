@@ -10,9 +10,8 @@
 </div>
 
 <div class="row">
-  <div class='span4'>
+  <div class='span2'>
     <h5>Watchers: <%= @repo.watchers %></h5>
-    <h5>Open_issues: <%= @repo.open_issues %></h5>
     <div id="seal-wrapper">
       <div id="seal" class='seal'>Refresh</div>​
     </div>
@@ -21,10 +20,10 @@
       <h5>Description:</h5> <%= @repo.description %>
     <% end %>
   </div>
-    <div class='span8'>
+    <div class='span10'>
       <table class="table table-hover">
         <tr>
-          <th>All Open Issues</th>
+          <th>All Open Issues: <span class='counter'><%= @repo.open_issues %></span></th>
           <th>Issue Number</th>
           <th>Comments</th>
           <th>View on Github</th>

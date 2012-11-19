@@ -47,10 +47,6 @@
 }
 
 .issue-head {
-  margin-bottom: 45px;
-}
-
-.issue-head {
   margin-top: 10px;
   padding: 10px;
   border: 1px solid #D5D5D5;
@@ -58,4 +54,16 @@
   border-radius: 5px 5px 5px 5px;
   font-weight: bold;
   color: #999;
+}
+
+.counter {
+  position: relative;
+  top: -1px;
+  margin: 0 0 0 5px;
+  padding: 1px 5px 2px 5px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #666;
+  background: #E5E5E5;
+  border-radius: 10px;
 }

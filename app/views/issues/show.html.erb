@@ -1,4 +1,9 @@
-<p id="notice"><%= notice %></p>
+ <% if notice %> 
+  <div  class='alert alert-success'>
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= notice %>
+  </div>
+<% end %>
 <% if current_user %>
   <% if repo_owner %>
   <div class="row">
@@ -67,8 +72,8 @@
 </table>
   <% else %>
   <div class='span12'>
-    <%= link_to "Issue Bounty", new_issue_bounty_path(@issue.repo.owner_name, @issue.repo.name, @issue.git_number), :class => "btn btn-success btn-small pull-right" %>
-    <p>There are currently no bounties for this issue</p>
+    <p>There are currently no bounties for this issue. <%= link_to "Be the first to issue a bounty", new_issue_bounty_path(@issue.repo.owner_name, @issue.repo.name, @issue.git_number)%></p>
+
   </div>
 <% end %>
 <div class='clearfix'></div>
