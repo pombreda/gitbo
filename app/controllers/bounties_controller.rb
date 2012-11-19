@@ -37,6 +37,7 @@ class BountiesController < ApplicationController
   # GET /bounties/1/edit
   def edit
     @bounty = Bounty.find(params[:id])
+    @issue = @bounty.issue
   end
 
   # POST /bounties

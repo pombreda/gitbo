@@ -6,6 +6,8 @@ Gitbo::Application.routes.draw do
 
   get '/:owner/:repo/issues/:git_no/bounty/new' => "bounties#new", :as => :new_issue_bounty
 
+  get '/:owner/:repo/issues/:git_no/bounty/:id/edit' => "bounties#edit", :as => :edit_issue_bounty
+
   resources :bounties, :except => [:new, :show, :create]
   resources :comments
   resources :users
@@ -27,7 +29,7 @@ Gitbo::Application.routes.draw do
 
   resources :repos do
     #this needs to be cleaned up. Most of these have been depreciated.
-    resources :issues, :only => [:index, :delete, :update]
+    resources :issues, :only => [:index, :delete] # will eventually remove delete
   end
 
   #issues
