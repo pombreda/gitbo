@@ -71,17 +71,24 @@
 <% end %>
 <div class='clearfix'></div>
 
-<div class="row">
-  <div class="discussion-sidebar pull-left">
-      <div class="discussion-stats">
+
+  <div class="discussion-sidebar" class="span2">
+    <div class="discussion-stats">
+      <span class="endorsement">
         <% if @issue.owner_endorsement == 1%>
           <span class="badge badge-success">Endorsed</span>
+        <% elsif %>
+          <span class="badge">Not Yet</span>
         <% else %>
           <span class="badge badge-important">Not Endorsed</span>
         <% end %>
+      </span>
+      <span><strong><%= @issue.comment_count %></strong> Comments<span>
     </div>
-
+    <hr>
   </div>
+
+<div class="row">
   <div class='span10 pull-right'>
     <div class='row'>
       <div class="issue-bubble">
