@@ -16,6 +16,7 @@
         <th></th>
         <th></th>
         <th>Issue Name</th>
+        <th></th>
         <th>Repo Name</th>
         <th>Issue Number</th>
         <th>Comment Count</th>
@@ -43,6 +44,14 @@
     <% end %>
 
     <td><%= link_to issue.title, owner_repo_gitnumber_path(issue.repo.owner_name, issue.repo.name, issue.git_number) %></td>
+    <td><% if issue.owner_endorsement == 1 %>
+                <i class="icon-thumbs-up" ></i>
+            <% elsif issue.owner_endorsement == 0 %>
+                <i class="icon-time" ></i>
+            <% else %>
+                <i class="icon-thumbs-down" ></i>
+        <% end %>
+    </td>
     <td><%= link_to issue.repo.name, owner_repo_path(issue.repo.owner_name, issue.repo.name) %></td>
     <td><%= issue.git_number %></td>
     <td><%= issue.comment_count %></td>
