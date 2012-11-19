@@ -2,11 +2,9 @@ class GithubConnection
 
   attr_accessor :repo, :info, :issue_no, :client, :issues, :name, :comments
 
-  def initialize(owner, repo, issue = nil)
+  def initialize(owner, repo, token, issue = nil)
 
-   
-
-    @client = Octokit::Client.new(:login => "ajonas04", :password => "1baseball")
+    @client = Octokit::Client.new(:oauth_token => token)
     @repo = "#{owner}/#{repo}"
     @info = @client.repo(@repo)
     @issues = @client.list_issues(@repo)
