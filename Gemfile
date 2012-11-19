@@ -62,3 +62,4 @@ gem 'redcarpet'
 # gem 'debugger'
 
 gem 'octokit'
+gem 'jquery-tablesorter'
