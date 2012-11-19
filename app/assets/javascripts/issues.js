@@ -21,3 +21,9 @@ $('div#refresh').click(function(){
  if ('<%= repo_owner %>'){
     $('div#endorse').removeAttr('style');
     }
+
+$(document).ready(function() 
+    { 
+        $("#issues_table").tablesorter(); 
+    } 
+); 
