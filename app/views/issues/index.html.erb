@@ -15,7 +15,6 @@
       <tr>
         <th></th>
         <th></th>
-        <th></th>
         <th>Issue Name</th>
         <th>Repo Name</th>
         <th>Issue Number</th>
@@ -23,20 +22,14 @@
         <th>Popularity</th>
         <th>Upvote</th>
         <th>Downvote</th>
+        <th>Owner Endorsement</th>
         <th>Post a Bounty</th>
       </tr>
     </thead>
 
 <% @issues.sort_by(&:popularity).reverse.each do |issue| %>
   <tr>
-    <!-- 11.18.12 - Move endorsement buttons to the right of the screen -->
-    <% if issue.owner_endorsement == 1 %>
-            <td><i class="icon-thumbs-up" ></i></td>
-        <% elsif issue.owner_endorsement == 0 %>
-            <td><i class="icon-time" ></i></td>
-        <% else %>
-            <td><i class="icon-thumbs-down" ></i></td>
-    <% end %>
+    
     <% if current_user %>
         <td><%= link_to vote_issue_path(issue.id, :upvote), :method => :put do %>
                 <i class="icon-arrow-up"></i>
@@ -56,6 +49,15 @@
     <td><%= issue.popularity %></td>
     <td><%= issue.upvote %></td>
     <td><%= issue.downvote %></td>
+    <!-- 11.18.12 - Move endorsement buttons to the right of the screen -->
+    <% if issue.owner_endorsement == 1 %>
+            <td><i class="icon-thumbs-up" ></i></td>
+    <% elsif issue.owner_endorsement == 0 %>
+            <td><i class="icon-time" ></i></td>
+    <% else %>
+            <td><i class="icon-thumbs-down" ></i></td>
+    <% end %>
+
     <% if current_user %>
         <% if issue.bounty_total ==  0 %>
            <td><%= link_to new_issue_bounty_path(issue.repo.owner_name, issue.repo, issue.git_number) do %>
@@ -67,7 +69,11 @@
             <% end %></td>
         <% end %>
     <% else %>
-        <td><span id="bounty-prompt" class="label label-success">Post a bounty</span></td>
+        <% if issue.bounty_total ==  0 %>
+           <td><span id="bounty-prompt" class="label label-success">Post a bounty</span></td>
+        <% else %>
+            <td><span id="bounty-prompt" class="label label-warning"><%= number_to_currency(issue.bounty_total, :raise => true, :precision => 0)%></span></td>
+        <% end %>
     <% end %>
   </tr>
 <% end %>
