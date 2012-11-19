@@ -1,8 +1,11 @@
 <p id="notice text-success"><%= notice %></p>
 
-<div class="row">
-    <div class ='span8'>
+<div class="row repo-head">
+    <div class ='span4'>
       <h3><%= link_to @repo.owner_name, owner_repos_path %> / <%= @repo.name %></h3>
+    </div>
+    <div class ='span4'>
+      <h5>Bounty Total for this Repo: <span class='money'><%= number_to_currency( @repo.bounty_total, :precision => 0 ) %></span></h5>
     </div>
     <div class="span4">
     <h3 class="pull-right"><a class="btn btn-info btn-small" href="http://www.github.com/<%= @repo.owner_name %>/<%= @repo.name %>" target="blank">View Repo on Github</a></h3>
@@ -12,9 +15,6 @@
 <div class="row">
   <div class='span2'>
     <h5>Watchers: <%= @repo.watchers %></h5>
-    <div id="seal-wrapper">
-      <div id="seal" class='seal'>Refresh</div>​
-    </div>
     
     <% if @repo.description %>
       <h5>Description:</h5> <%= @repo.description %>

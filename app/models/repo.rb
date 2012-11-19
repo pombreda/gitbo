@@ -37,6 +37,10 @@ class Repo < ActiveRecord::Base
     }
   end
 
+  def bounty_total
+    self.issues.inject(0) { |total, issue| total += issue.bounty_total }
+  end
+
   def updated?(github_connection)
     open_issues_updated?(github_connection) || watchers_updated?(github_connection) || git_updated_at_updated?(github_connection)
   end
