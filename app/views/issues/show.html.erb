@@ -29,11 +29,8 @@
     </div>
     <div class="span4">
     <h3 class="pull-right">
-      <% if current_user %>
-        <%= link_to "Issue Bounty", new_issue_bounty_path(@issue.repo.owner_name, @issue.repo.name, @issue.git_number), :class => "btn btn-success btn-small" %>
-      <% else %>
-        <button id="bounty" class="btn btn-success btn-small" type="button">Issue Bounty</button>
-      <% end %>
+    <% if current_user %> 
+      <%= link_to "Issue Bounty", new_issue_bounty_path(@issue.repo.owner_name, @issue.repo.name, @issue.git_number), :class => "btn btn-success btn-small", id: "new_link", remote: true %>
       <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">View Issue on Github</a>
     </h3>
   </div>
@@ -46,7 +43,7 @@
 </div>
 
 <% if @issue.bounties.count != 0 %>
-  <table class="table table-hover">
+  <table class="table table-hover", id: "bounties">
       <thead>
         <tr>
           <th>Bounty Issued by</th>
@@ -166,24 +163,23 @@
 
 <script type="text/javascript">
 
-  var oldTime = new Date('<%= @issue.updated_at %>');
+//   var oldTime = new Date('<%= @issue.updated_at %>');
 
-  setInterval(function() {
-    var url = '<%= "/#{@issue.repo.owner_name}/#{@issue.repo.name}/issues/#{@issue.git_number}.json" %>'
-    $.getJSON(url, {}, function(json){
-      var newTime = new Date(Date.parse(json.updated_at));
-      console.log(newTime)
+//   setInterval(function() {
+//     var url = '<%= "/#{@issue.repo.owner_name}/#{@issue.repo.name}/issues/#{@issue.git_number}.json" %>'
+//     $.getJSON(url, {}, function(json){
+//       var newTime = new Date(Date.parse(json.updated_at));
+//       console.log(newTime)
       
-      if (oldTime.valueOf() != newTime.valueOf()){
-        console.log('diff')
-        $('div#refresh-wrapper').removeAttr('style');
-        $('div#refresh').fadeTo(5000);
-        $('div#refresh').click(function(){
-          location.reload();
-        });
-      }
-    });
-  }, 4000);
-
+//       if (oldTime.valueOf() != newTime.valueOf()){
+//         console.log('diff')
+//         $('div#refresh-wrapper').removeAttr('style');
+//         $('div#refresh').fadeTo(5000);
+//         $('div#refresh').click(function(){
+//           location.reload();
+//         });
+//       }
+//     });
+//   }, 4000);
 </script>
 
