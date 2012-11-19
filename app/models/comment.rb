@@ -18,4 +18,18 @@ class Comment < ActiveRecord::Base
     distance_of_time_in_words
   end
 
+  def repo
+    "#{repo_owner_name}/#{repo_name}"
+  end
+
+  private
+
+  def repo_owner_name
+    self.issue.repo.owner_name
+  end
+
+  def repo_name
+    self.issue.repo.name
+  end
+
 end

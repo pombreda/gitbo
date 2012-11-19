@@ -40,8 +40,10 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-
     @comment = Comment.new(params[:comment])
+
+    GithubComments.post_comment(session[:token], @comment)
+
 
     respond_to do |format|
       if @comment.save

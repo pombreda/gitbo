@@ -1,9 +1,21 @@
- <% submit_path = "/comments" %>
+<% submit_path = "/comments" %>
 
-  <%= form_tag(submit_path, :method => "post") do  |t|%>
+  <%= form_tag(submit_path, :method => "post") do %>
 
       <div class="field">
         <textarea cols='40' id='comment_body' name='comment[body]' placeholder='leave a comment' rows='20'></textarea>
+      </div>
+      <div class="field">
+        <input name='comment[issue_id]' value='<%= @issue.id %>' type='hidden' />
+      </div>
+      <div class="field">
+        <input name='comment[git_update_at]' value='<%= Time.now %>' type='hidden' />
+      </div>
+      <div class="field">
+        <input name='comment[owner_name]' value='<%= current_user.nickname %>' type='hidden' />
+      </div>
+      <div class="field">
+        <input name='comment[owner_image' value='<%= current_user.image %>' type='hidden' />
       </div>
       <div class="actions">
         <input name = "commit" type="submit" value="Comment" method="post" />
