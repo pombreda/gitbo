@@ -146,22 +146,22 @@
       </div>
       <% end %>
       <% end %>
-     <!--  <div class='row'>
+      <div class='row'>
         <div class='comment-container'>
-          <%# if current_user %>
-            <img src="<%#= current_user.image %>" class='new-comment-avatar'>
+          <% if current_user %>
+            <img src="<%= current_user.image %>" class='new-comment-avatar'>
             <div class='comment-content bubble'>
               <div class='comment-content'>
                 <div class='comment form'>
                   <div class='new-comment-bucket'>
-                    <%#= render 'comment_form' %>
+                    <%= render 'comment_form' %>
                   </div>
                 </div>
               </div>
-            <%# end %>
+            <% end %>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>    
 </div>
