@@ -28,21 +28,21 @@
     <div id="refresh" class='btn btn-info'>Refresh</div>​
   </div>
 <div class="row">
-    <div class ='span8'>
-      <h3><%= link_to @issue.repo.owner_name, owner_repos_path(@issue.repo.owner_name) %> / <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
-      <h4>Issue # <%= @issue.git_number %></h4>
-    </div>
-    <div class="span4">
-    <h3 class="pull-right">
-      <% if current_user %>
-        <%= link_to "Issue Bounty", new_issue_bounty_path(@issue.repo.owner_name, @issue.repo.name, @issue.git_number), :class => "btn btn-success btn-small" %>
-      <% else %>
-        <button id="bounty" class="btn btn-success btn-small" type="button">Issue Bounty</button>
-      <% end %>
+  <div class ='span8'>
+    <h3><%= link_to @issue.repo.owner_name, owner_repos_path(@issue.repo.owner_name) %> / <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
+    <h4>Issue # <%= @issue.git_number %></h4>
+  </div>
+  <div class="span4">
+    <div class="pull-right">
+    <% if current_user %> 
+      <%= link_to "Issue Bounty", new_issue_bounty_path(@issue.repo.owner_name, @issue.repo.name, @issue.git_number), :class => "btn btn-success btn-small", id: "new_link", remote: true %>
+    <% else %>
+      <button id="bounty" class="btn btn-success btn-small" type="button">Issue Bounty</button>
+    <% end %>
       <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">View Issue on Github</a>
-    </h3>
+    </div>
   </div>
-  </div>
+</div>
 
 <div class="row">
   <div class="span12">
@@ -51,31 +51,15 @@
 </div>
 
 <% if @issue.bounties.count != 0 %>
-  <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Bounty Issued by</th>
-          <th>Bounty Price</th>
-          <th>Bounty Issued</th>
-          <th>Bounty Updated</th>
-        </tr>
-      </thead>
-
- <% @issue.bounties.sort_by(&:price).reverse.each do |bounty| %>
-  <tr>
-    <td><%= bounty.user.nickname %></td>
-    <td><%= number_to_currency(bounty.price, :precision => 0) %></td>
-    <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
-    <td><%= time_ago_in_words( bounty.updated_at ) %> ago</td>
-  </tr>
-<% end %>
-</table>
+  <div class="bounties" id="bounties_table">
+    <%= render 'bounties/bounties_table', :issue => @issue, remote: true %>
   <% else %>
   <div class='span12'>
     <p>There are currently no bounties for this issue. <%= link_to "Be the first to issue a bounty", new_issue_bounty_path(@issue.repo.owner_name, @issue.repo.name, @issue.git_number)%></p>
-
   </div>
 <% end %>
+
+  
 <div class='clearfix'></div>
 
 <div id="show_issue">
@@ -171,24 +155,24 @@
 
 <script type="text/javascript">
 
-  var oldTime = new Date('<%= @issue.updated_at %>');
+//   var oldTime = new Date('<%= @issue.updated_at %>');
 
-  setInterval(function() {
-    var url = '<%= "/#{@issue.repo.owner_name}/#{@issue.repo.name}/issues/#{@issue.git_number}.json" %>'
-    $.getJSON(url, {}, function(json){
-      var newTime = new Date(Date.parse(json.updated_at));
-      console.log(newTime)
+//   setInterval(function() {
+//     var url = '<%= "/#{@issue.repo.owner_name}/#{@issue.repo.name}/issues/#{@issue.git_number}.json" %>'
+//     $.getJSON(url, {}, function(json){
+//       var newTime = new Date(Date.parse(json.updated_at));
+//       console.log(newTime)
       
-      if (oldTime.valueOf() != newTime.valueOf()){
-        console.log('diff')
-        $('div#refresh-wrapper').removeAttr('style');
-        $('div#refresh').fadeTo(5000);
-        $('div#refresh').click(function(){
-          location.reload();
-        });
-      }
-    });
-  }, 4000);
+//       if (oldTime.valueOf() != newTime.valueOf()){
+//         console.log('diff')
+//         $('div#refresh-wrapper').removeAttr('style');
+//         $('div#refresh').fadeTo(5000);
+//         $('div#refresh').click(function(){
+//           location.reload();
+//         });
+//       }
+//     });
+//   }, 4000);
 
 </script>
 

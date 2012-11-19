@@ -4,16 +4,17 @@
     </div>
     <div class="span6">
         <div class="pull-right">
-            <p><%= link_to 'Add your issue', new_repo_path, id: "new_link",  :class => "btn btn-success btn-large" %></p>
+            <p> Need to add your issue?</p>
+            <p><%= link_to 'Add your issues', new_repo_path, id: "new_link",  :class => "btn btn-success btn-large" %></p>
         </div>
     </div>
 </div>
 
-<table class="table table-hover">
+<table id="issues_table" class="table table-hover">
     <thead>
       <tr>
-        <th></th>
-        <th></th>
+        <th data-sorter="false"></th>
+        <th data-sorter="false"></th>
         <th>Issue Name</th>
         <th>Repo Name</th>
         <th>Issue Number</th>
@@ -21,8 +22,8 @@
         <th>Popularity</th>
         <th>Upvote</th>
         <th>Downvote</th>
-        <th>Owner Endorsement</th>
-        <th>Post a Bounty</th>
+        <th data-sorter="false">Owner Endorsement</th>
+        <th data-string="bottom">Post a Bounty</th>
       </tr>
     </thead>
 
@@ -57,7 +58,7 @@
     <% end %>
 
     <% if current_user %>
-        <% if issue.bounty_total ==  0 %>
+        <% if issue.bounty_total == 0 %>
            <td><%= link_to new_issue_bounty_path(issue.repo.owner_name, issue.repo, issue.git_number) do %>
             <span class="label label-success">Post a bounty</span>
              <% end %></td>
@@ -77,3 +78,7 @@
 <% end %>
 </table>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> testing

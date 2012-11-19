@@ -28,3 +28,26 @@ add checkbox on issue show page only shown to repo owner
 
 badge on show page based on endorsment, lack of, disapproal
   - 
+
+
+
+
+
+
+DOWN THE ROAD: Implementing cached information from Github's database: User dashboard's following repos + bounties
+
+# a github's users followers and followings won't change much on a day to day basis
+# at most, once a day, ping github for their followers and followings
+# put that data somewhere perishale, if it could auto expire every day, that'd be great
+# use that data for the calculation
+
+
+
+# on a users dashboard
+# check our local cache for that users cached github following and followers
+# if the cache is empty or stale
+  # ping github and cache
+# use that data to do calculations
+
+
+Rails.cache
