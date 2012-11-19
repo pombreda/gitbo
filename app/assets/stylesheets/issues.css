@@ -1,20 +1,8 @@
-.seal{
+/*.seal{
   z-index: -1;
 }
 
-div#seal.seal:after{
-  content:"";
-  display:inline-block;
-  width:125px;
-  height:125px;
-  padding:30px;
-  background:white;
-  position:absolute;
-  bottom:81px;
-  left:81px;
-  -webkit-transform: rotate(-44deg);
-  -moz-transform: rotate(-44deg);
-}​
+
 
 div#seal.seal:first-child{
   display:inline-block;
@@ -62,3 +50,18 @@ div#seal.seal:before{
   bottom:70px;
   left:70px;
 }
+
+div#seal.seal:after{
+  content:"";
+  display:inline-block;
+  width:125px;
+  height:125px;
+  padding:30px;
+  background:white;
+  position:absolute;
+  bottom:81px;
+  left:81px;
+  -webkit-transform: rotate(-44deg);
+  -moz-transform: rotate(-44deg);
+}​
+*/

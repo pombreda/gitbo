@@ -4,9 +4,7 @@
     <div class="span7">
       <h4>This issue belongs to your repo. Please, consider endorsing it!</h4>
     </div>
-    <div id="seal-wrapper">
-      <div id="seal" class='seal pull-right'>Refresh</div>​
-    </div>
+   
     <div class="span5">
       <div class="pull-right">
         <div class="btn-group">
@@ -17,7 +15,9 @@
     </div>
   </div>
   <% end %>
-
+  <div id="refresh-wrapper" style="display:none">
+    <div id="refresh" class='btn btn-info'>Refresh</div>​
+  </div>
 <div class="row">
     <div class ='span8'>
       <h3><%= link_to @issue.repo.owner_name, owner_repos_path(@issue.repo.owner_name) %> / <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
@@ -159,8 +159,9 @@
       
       if (oldTime.valueOf() != newTime.valueOf()){
         console.log('diff')
-        $('div#seal.seal.pull-right').fadeTo(3000, 1);
-        $('div#seal.seal.pull-right').click(function(){
+        $('div#refresh-wrapper').removeAttr('style');
+        $('div#refresh').fadeTo(5000);
+        $('div#refresh').click(function(){
           location.reload();
         });
       }
