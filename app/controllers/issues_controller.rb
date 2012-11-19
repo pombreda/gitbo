@@ -134,6 +134,6 @@ class IssuesController < ApplicationController
 private
 
   def repo_owner
-    return true if current_user.nickname == @issue.repo.owner_name
+    return true if current_user.nickname == @issue.repo.owner_name && current_user
   end
 end
