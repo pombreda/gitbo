@@ -58,7 +58,7 @@
     <% end %>
 
     <% if current_user %>
-        <% if issue.bounty_total ==  0 %>
+        <% if issue.bounty_total == 0 %>
            <td><%= link_to new_issue_bounty_path(issue.repo.owner_name, issue.repo, issue.git_number) do %>
             <span class="label label-success">Post a bounty</span>
              <% end %></td>
