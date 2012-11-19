@@ -14,4 +14,10 @@ $('div#refresh').click(function(){
   location.reload();
 });
 
+// $('div#endorse').click(function(){
+//   $(this).removeAttr('style');
+// });
 
+ if ('<%= repo_owner %>'){
+    $('div#endorse').removeAttr('style');
+    }
