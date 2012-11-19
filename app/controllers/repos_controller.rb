@@ -24,7 +24,7 @@ class ReposController < ApplicationController
     @repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
     
     @issues = @repo.issues
-    github_connection = GithubConnection.new(params[:owner], @repo.name)
+    github_connection = GithubConnection.new(params[:owner], @repo.name, session[:token])
     if @repo.updated?(github_connection)
       RefreshReposWorker.perform_async(@repo.id)
       flash[:notice] = "Updating repo from Github, please refresh"

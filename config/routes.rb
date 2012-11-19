@@ -14,6 +14,7 @@ Gitbo::Application.routes.draw do
 
   #authentication through github
   match '/auth/:provider/callback' => 'sessions#create'
+  
   get '/signout' => "sessions#destroy", :as => :signout
 
   get "/:owner/:repo/issues" => "issues#repo_issues", :as => :repo_issues

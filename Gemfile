@@ -48,6 +48,7 @@ gem "twitter-bootstrap-rails"
 
 
 gem 'redcarpet'
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
