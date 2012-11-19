@@ -71,6 +71,18 @@
 <% end %>
 <div class='clearfix'></div>
 
+<div id="show_issue">
+  <div class="issue-head clearfix">
+    <span class="back">
+      <span class="icon-arrow-left"></span>
+      <%= link_to 'View All Issues', owner_repo_path %>
+    </span>
+    <a class="pull-right"> 
+      <span class="number">Issue # <strong><%= @issue.git_number %></strong></span>
+    </a>
+  </div>
+
+<!-- -->
 
   <div class="discussion-sidebar" class="span2">
     <div class="discussion-stats">
@@ -88,71 +100,71 @@
     <hr>
   </div>
 
-<div class="row">
-  <div class='span10 pull-right'>
-    <div class='row'>
-      <div class="issue-bubble">
-        <img src="<%= @issue.owner_image %>" class='comment-avatar'>
-        <div class='issue-content bubble'>
-          <div class='issue-inner'>
-            <div class='issue-header'>
-              <span class='issue-author'>
-                <p><%= @issue.owner_name %> opened this pull request</p>
-              </span>
-              <h4><%= @issue.title %></h4>
-            </div>
-            <div class='issue-description-content'>
-              <div class='description-body'>
-                <p><%= markdown @issue.body %></p>
+  <div class="row">
+    <div class='span10 pull-right'>
+      <div class='row'>
+        <div class="issue-bubble">
+          <img src="<%= @issue.owner_image %>" class='comment-avatar'>
+          <div class='issue-content bubble'>
+            <div class='issue-inner'>
+              <div class='issue-header'>
+                <span class='issue-author'>
+                  <p><%= @issue.owner_name %> opened this pull request</p>
+                </span>
+                <h4><%= @issue.title %></h4>
               </div>
-            </div>
-          </div>
-        </div>  
-      </div>
-    </div>
-
-  <% @issue.comments.each do |comment| %>
-  <% if comment.git_update_at %>
-    <div class='row'>
-      <div class='comment-container'>
-        <img src="<%= comment.owner_image %>" class='comment-avatar'>
-        <div class='comment-content bubble'>
-          <div class='content-container-inner'>
-            <div class='comment-header'>
-              <div class='comment-author'>
-                <p><%= comment.owner_name %></p>
-              </div>
-              <div class='pull-right header-date'>
-                <time><%= time_ago_in_words(comment.git_update_at) %> ago</time>
-              </div>
-            </div>
-            <div class='comment-content'>
-              <p><%= markdown comment.body %></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% end %>
-    <% end %>
-   <!--  <div class='row'>
-      <div class='comment-container'>
-        <%# if current_user %>
-          <img src="<%#= current_user.image %>" class='new-comment-avatar'>
-          <div class='comment-content bubble'>
-            <div class='comment-content'>
-              <div class='comment form'>
-                <div class='new-comment-bucket'>
-                  <%#= render 'comment_form' %>
+              <div class='issue-description-content'>
+                <div class='description-body'>
+                  <p><%= markdown @issue.body %></p>
                 </div>
               </div>
             </div>
-          <%# end %>
+          </div>  
         </div>
       </div>
-    </div> -->
-  </div>
-  
+
+    <% @issue.comments.each do |comment| %>
+    <% if comment.git_update_at %>
+      <div class='row'>
+        <div class='comment-container'>
+          <img src="<%= comment.owner_image %>" class='comment-avatar'>
+          <div class='comment-content bubble'>
+            <div class='content-container-inner'>
+              <div class='comment-header'>
+                <div class='comment-author'>
+                  <p><%= comment.owner_name %></p>
+                </div>
+                <div class='pull-right header-date'>
+                  <time><%= time_ago_in_words(comment.git_update_at) %> ago</time>
+                </div>
+              </div>
+              <div class='comment-content'>
+                <p><%= markdown comment.body %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+     <!--  <div class='row'>
+        <div class='comment-container'>
+          <%# if current_user %>
+            <img src="<%#= current_user.image %>" class='new-comment-avatar'>
+            <div class='comment-content bubble'>
+              <div class='comment-content'>
+                <div class='comment form'>
+                  <div class='new-comment-bucket'>
+                    <%#= render 'comment_form' %>
+                  </div>
+                </div>
+              </div>
+            <%# end %>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>    
 </div>
 
 <script type="text/javascript">
