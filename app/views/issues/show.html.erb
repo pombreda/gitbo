@@ -64,7 +64,7 @@
 <% end %>
 </table>
   <% else %>
-  <div class='span6'>
+  <div class='span12'>
     <%= link_to "Issue Bounty", new_issue_bounty_path(@issue.repo.owner_name, @issue.repo.name, @issue.git_number), :class => "btn btn-success btn-small pull-right" %>
     <p>There are currently no bounties for this issue</p>
   </div>
@@ -77,12 +77,10 @@
       <span class="icon-arrow-left"></span>
       <%= link_to 'View All Issues', owner_repo_path %>
     </span>
-    <a class="pull-right"> 
-      <span class="number">Issue # <strong><%= @issue.git_number %></strong></span>
-    </a>
+    <span class="number pull-right">Issue # <strong><%= @issue.git_number %></strong></span>
   </div>
 
-<!-- -->
+<!-- sidebar with badge and stats-->
 
   <div class="discussion-sidebar" class="span2">
     <div class="discussion-stats">
@@ -99,9 +97,8 @@
     </div>
     <hr>
   </div>
-
-  <div class="row">
-    <div class='span10 pull-right'>
+  <!-- main block with description and comments -->
+    <div class='span10'>
       <div class='row'>
         <div class="issue-bubble">
           <img src="<%= @issue.owner_image %>" class='comment-avatar'>
