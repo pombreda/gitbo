@@ -84,9 +84,23 @@
           <span class="badge badge-important">Not Endorsed</span>
         <% end %>
       </span>
-      <span><strong><%= @issue.comment_count %></strong> Comments<span>
+      <span><strong><%= @issue.comment_count %></strong> Comments<span><br />
+        <span> <strong><%= @issue.votes %></strong> Votes</span>
     </div>
     <hr>
+    <div class="vote">
+      <% if current_user %>
+        <td><%= link_to vote_issue_path(@issue.id, :upvote), :method => :put do %>
+          <i class="icon-arrow-up"></i>
+      <% end %></td><br />
+      <td><%= link_to vote_issue_path(@issue.id, :downvote), :method => :put do %>
+          <i class="icon-arrow-down"></i>
+      <% end %></td>
+      <% else %>
+          <td id="vote-prompt"><i class="icon-arrow-up"></i></td><br />
+          <td id="vote-prompt"><i class="icon-arrow-down"></i></td>
+      <% end %>
+    </div>
   </div>
   <!-- main block with description and comments -->
     <div class='span10'>
