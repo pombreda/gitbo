@@ -3,4 +3,5 @@
   <td><%= number_to_currency(bounty.price, :precision => 0) %></td>
   <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
   <td><%= time_ago_in_words( bounty.updated_at ) %> ago</td>
+  <td><%= link_to "Edit", edit_issue_bounty_path( bounty.issue.repo.owner_name, bounty.issue.repo.name, bounty.issue.git_number, bounty.id ) %>
 </tr>
