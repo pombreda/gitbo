@@ -9,8 +9,10 @@ class Repo < ActiveRecord::Base
 
   validates :name, :uniqueness => true
 
+
+  # should only be called inside a sidekiq worker
   def self.create_from_github(owner, repo)
-    owner, repo = owner.strip, repo.strip
+    # owner, repo = owner.strip, repo.strip
     # github_connection = GithubConnection.new(owner, repo)
 
     # newly_created_repo = Repo.create(:name => github_connection.name,
