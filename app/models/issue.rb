@@ -46,9 +46,17 @@ class Issue < ActiveRecord::Base
   end
 
   def popularity
+    (self.comment_count*self.repo.popularity)/10
+  end
+
+  def votes
     upvote = self.upvote ||= 0
     downvote = self.downvote ||= 0
-    self.comment_count + upvote - downvote
+    upvote - downvote
+  end 
+
+  def popularity_gitbo
+    (votes - 1)/(time_since_submission + 2)^1.5*self.popularity
   end
 
   def add_vote_by(user, direction = :upvote, int = 1)
