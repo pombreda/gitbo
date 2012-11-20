@@ -94,8 +94,8 @@ Then manually start the database with:
     development:
       adapter: postgresql
       database: gitbo_test
-      username: password
-      password: flatiron000gitbo
+      username: gitbo
+      password: password
       host: localhost
     
     # Warning: The database defined as "test" will be erased and
