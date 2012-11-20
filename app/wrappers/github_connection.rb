@@ -4,16 +4,16 @@ class GithubConnection
 
   def initialize(owner, repo, issue = nil, token = nil)
 
-    @client = Octokit::Client.new(:oauth_token => token)
-    @repo = "#{owner}/#{repo}"
-    @info = @client.repo(@repo)
-    @issues = @client.list_issues(@repo)
-    repo = "#{owner}/#{repo}"
-    issue_no = issue
-    if issue
-      @issue_no = issue
-      @comments = @client.issue_comments( repo, issue_no)
-    end
+    # @client = Octokit::Client.new(:oauth_token => token)
+    # @repo = "#{owner}/#{repo}"
+    # @info = @client.repo(@repo)
+    # @issues = @client.list_issues(@repo)
+    # repo = "#{owner}/#{repo}"
+    # issue_no = issue
+    # if issue
+    #   @issue_no = issue
+    #   @comments = @client.issue_comments( repo, issue_no)
+    # end
   end
 
   def self.repo_params(*args)

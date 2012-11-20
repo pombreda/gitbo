@@ -11,20 +11,20 @@ class Repo < ActiveRecord::Base
 
   def self.create_from_github(owner, repo)
     owner, repo = owner.strip, repo.strip
-    github_connection = GithubConnection.new(owner, repo)
+    # github_connection = GithubConnection.new(owner, repo)
 
-    newly_created_repo = Repo.create(:name => github_connection.name,
-                :open_issues => github_connection.open_issues,
-                :owner_name => github_connection.owner_name,
-                :watchers => github_connection.watchers,
-                :git_updated_at => github_connection.git_updated_at)
+    # newly_created_repo = Repo.create(:name => github_connection.name,
+    #             :open_issues => github_connection.open_issues,
+    #             :owner_name => github_connection.owner_name,
+    #             :watchers => github_connection.watchers,
+    #             :git_updated_at => github_connection.git_updated_at)
 
-    if newly_created_repo.persisted?
-      github_connection.issues.each do |issue|
-        Issue.create_from_github(owner, repo, issue.number)
-      end
-    end
-    newly_created_repo
+    # if newly_created_repo.persisted?
+    #   github_connection.issues.each do |issue|
+    #     Issue.create_from_github(owner, repo, issue.number)
+    #   end
+    # end
+    # newly_created_repo
   end
 
   def popularity

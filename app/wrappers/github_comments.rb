@@ -8,8 +8,8 @@ class GithubComments
     end 
 
     def self.post_comment(token, comment)
-      client = Octokit::Client.new(:oauth_token => token)
-      client.add_comment(comment.repo, comment.issue.git_number, comment.body)
+      # client = Octokit::Client.new(:oauth_token => token)
+      # client.add_comment(comment.repo, comment.issue.git_number, comment.body)
     end
 
 end
