@@ -1,6 +1,18 @@
 <h1>Editing bounty</h1>
 
-<%= render 'form' %>
+<%= form_tag(@bounty, :method => "put", :id => "edit_bounty_form" ) do %>
 
-<%= link_to 'Show', @bounty %> |
-<%= link_to 'Back', bounties_path %>
+<!-- <h3>For issue #<%#= @issue.git_number %> in <%#= "#{@issue.repo.owner_name}/#{@issue.repo.name}" %></h3> -->
+
+<div class="field">
+  <label for="bounty_price">Enter your bounty</label>
+  <input id="bounty_price" name="bounty[price]" type="number" />
+  <input id="bounty_id" name="id" type="hidden" />
+</div>
+<div class="actions">
+  <input name="commit" type="submit" value="Create Bounty" method="post" />
+</div>
+
+<% end %>
+
+<%= link_to 'Back', "/#{@issue.repo.owner_name}/#{@issue.repo.name}/issues/#{@issue.git_number}" %>
