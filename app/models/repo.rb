@@ -28,7 +28,50 @@ class Repo < ActiveRecord::Base
   end
 
   def popularity
-    self.open_issues + self.watchers + self.issues_comment_count
+    (self.open_issues * 50) + self.watchers + (self.issues_comment_count * 20)
+
+    # what factors into a popularity score
+
+    # watchers
+    # number of open issues
+    # number of comments for the issues
+    # ADD : number of stars
+
+    # EXAMPLES
+
+    # "twitter/bootstrap" =>
+    #   watcher =>  40475
+    #   open_issues => 269
+
+    # watcher/issues => 150
+
+    # "joyent/node" =>
+    #   watcher => 18743
+    #   open_issues => 497
+
+    # watcher/issues => 38
+
+    # # "rails/rails" =>
+    #     watcher => 16549
+    #     open_issues => 362
+    #     comments =>
+    #     stars => 
+
+    # watcher/issues => 46
+
+
+    #   "spree/spree" =>
+    #     watchers => 3467
+    #     open_issues => 53
+    #     comments =>  166
+    #     stars =>
+
+    # watcher/issues => 66
+
+
+
+
+
   end
   
   def issues_comment_count
