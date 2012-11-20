@@ -19,9 +19,9 @@
       <th>Repo Name</th>
       <th>Issue Number</th>
       <th>Comment Count</th>
-      <th>Popularity</th>
-      <!-- <th>Upvote</th>
-      <th>Downvote</th> -->
+      <!-- <th>Popularity</th> -->
+      <th>Votes</th>
+      <!-- <th>Downvote</th> -->
       <th>Owner Endorsement</th>
       <th>Post a Bounty</th>
     </tr>
@@ -44,9 +44,9 @@
       <td><%= link_to issue.repo.name, owner_repo_path(issue.repo.owner_name, issue.repo.name) %></td>
       <td><%= issue.git_number %></td>
       <td><%= issue.comment_count %></td>
-      <td><%= issue.popularity %></td>
-     <!--  <td><%#= issue.upvote %></td>
-      <td><%#= issue.downvote %></td> -->
+      <!-- <td><%#= issue.popularity.to_f %></td> -->
+      <td><%= issue.votes %></td>
+      <!-- <td><%#= issue.downvote %></td> -->
       <% if issue.owner_endorsement == 1 %>
           <td><i class="icon-thumbs-up" ></i></td>
       <% elsif issue.owner_endorsement == 0 %>
