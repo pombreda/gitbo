@@ -1,15 +1,38 @@
+<h1><%= @user.nickname %>'s Bounties</h1>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Provider:</b>
-  <%= @user.provider %>
-</p>
-
-<p>
-  <b>Url:</b>
-  <%= @user.url %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% if @user.bounties.count == 0 %>
+  <div class='span12'>
+    <p>You currently have no bounties.</p>
+  </div>
+<% else %>
+  <div class="bounties" id="bounties_table">
+    <table class="table table-hover" id="bounties_table">
+      <thead>
+        <tr>
+          <th>Bounty Issued by</th>
+          <th>Bounty Price</th>
+          <th>Bounty Issued</th>
+          <th>Bounty Updated</th>
+          <th>Issue number</th>
+          <th>Repo</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.bounties.sort_by(&:price).reverse.each do |bounty| %>
+          <tr>
+            <td><%= bounty.user.nickname %></td>
+            <td><%= number_to_currency(bounty.price, :precision => 0) %></td>
+            <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
+            <td><%= time_ago_in_words( bounty.updated_at ) %> ago</td>
+            <td><%= bounty.issue.git_number %></td>
+            <td><%= bounty.issue.repo.name %></td>
+            <td><%= link_to "Edit", edit_issue_bounty_path( bounty.issue.repo.owner_name, bounty.issue.repo.name, bounty.issue.git_number, bounty.id ) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
