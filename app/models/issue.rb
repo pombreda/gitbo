@@ -28,14 +28,14 @@ class Issue < ActiveRecord::Base
     #           :owner_name => github_connection.issue_owner_name,
     #           :owner_image => github_connection.issue_owner_image
     #           ).tap do |i|
-    #   i.repo = Repo.find_or_create_by_name("#{repo}")
-    #   i.save
+    #       i.repo = Repo.find_or_create_by_name("#{repo}")
+    #       i.save
 
-    # if i.persisted?
-    #   github_connection.comments.each do |comment|
-    #     Comment.create_from_github( i, comment)
+    #   if i.persisted?
+    #     github_connection.comments.each do |comment|
+    #       Comment.create_from_github( i, comment)
+    #     end
     #   end
-    # end
     # end
     
   end
