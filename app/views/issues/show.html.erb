@@ -136,7 +136,9 @@
                   <p><%= comment.owner_name %></p>
                 </div>
                 <div class='pull-right header-date'>
-                  <time><%= time_ago_in_words(comment.git_update_at) if comment.git_update_at) %> ago</time>
+                  <% if comment.git_update_at %>
+                  <time><%= time_ago_in_words(comment.git_update_at) %> ago</time>
+                  <% end %>
                 </div>
               </div>
               <div class='comment-content'>
