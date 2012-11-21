@@ -37,7 +37,7 @@ Gitbo::Application.routes.draw do
 
   get "/:owner/:repo/issues/:git_number" => 'issues#show', :as => :owner_repo_gitnumber
   get "/:owner/*repo" => 'repos#show', :as => :owner_repo, :format => false
-  get "/:owner" => 'repos#show_owner', :as => :owner_repos
+  get "/:owner" => 'users#show', :as => :owner_repos
 
   ### sidekiq monitoring
   mount Sidekiq::Web, at: "/sidekiq"
