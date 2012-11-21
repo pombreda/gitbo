@@ -10,14 +10,7 @@ class SessionsController < ApplicationController
     session[:token] = auth.credentials.token
 
     client = Octokit::Client.new(:oauth_token => auth.credentials.token)
-
-    Rails.cache.fetch(user.nickname.to_sym, expires_in: 24.hours) do
-      { :repos => client.repositories(user.nickname).collect {|repo| repo.name },
-        :following => client.following(user.nickname).collect {|user| user.login },
-        :starred => client.starred(user.nickname).collect {|repo| "#{repo.owner.login}/#{repo.name}" }  }
-    end
-
-
+    user.load_cache_info(client, user)
 
     redirect_to root_url, :notice => "Signed in!"
 
