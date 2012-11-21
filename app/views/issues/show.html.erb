@@ -142,7 +142,9 @@
                 </div>
               </div>
               <div class='comment-content'>
+                <% if comment.body %>
                 <p><%= markdown comment.body %></p>
+                <% end %>
               </div>
             </div>
           </div>
