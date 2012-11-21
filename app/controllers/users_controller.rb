@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+
+  helper_method :repo_owner
+
   def index
     @users = User.all
 
@@ -86,3 +89,16 @@ class UsersController < ApplicationController
     end
   end
 end
+
+
+private
+
+def owner_logged_in?
+  current_user == User.find_by_nickname(params[:owner])
+end
+
+#an attempt to see if the repo has already been loaded
+
+# def repo_uploaded?(repo_name)
+#   Repo.find_all_by_owner_name_and_name(params[:owner], repo_name)
+# end

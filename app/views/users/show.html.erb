@@ -1,3 +1,4 @@
+<% if @repos.first %>
 <div class="row">
   <div class="span8">
     <h3>All repos for <%= @repos.first.owner_name %></h3>
@@ -29,14 +30,66 @@
     <% end %> 
   </table>
 
-<% if @user %>
+<% end %>
+
+<% if owner_logged_in? %>
+<div class="user_info">
+  <table style="float:left;">
+  <thead>
+    <tr>
+      <th>Repos</th>
+    </tr>
+  </thead> 
+      <% @user.cached_repos.each do |repo| %>
+      <% #this is repeated logic in the table above... %>
+        <%# if repo_uploaded?(repo) %>
+          <!-- <tr><td><%#= link_to repo, owner_repos_path(user) %></td></tr> -->
+        <%# else %>
+          <tr><td><%= repo %></td></tr>
+        <%# end %>
+      <% end %>
+  </table>
+
+
+  <table style="float:left;">
+  <thead>
+    <tr>
+      <th>Following</th>
+    </tr>
+  </thead> 
+      <% @user.cached_following.each do |user| %>
+        <% if User.is_the_owner_registered?(user) %>
+          <tr><td><%= link_to user, owner_repos_path(user) %></td></tr>
+        <% else %>
+          <tr><td><%= user %></td></tr>
+        <% end %>
+      <% end %>
+  </table>
+
+
+  <table style="float:left;">
+  <thead>
+    <tr>
+      <th>Starred</th>
+    </tr>
+  </thead> 
+    <% @user.cached_starred.each do |repo| %>
+       <tr><td><%= repo %></td></tr>
+    <% end %>
+  </table>
+</div>
+<div style="clear:both;"></div>
+      
+<% end %>
+
+
 <h1><%= @user.nickname %>'s Bounties</h1>
 
 <p id="notice"><%= notice %></p>
 
 <% if @user.bounties.count == 0 %>
   <div class='span12'>
-    <p>You currently have no bounties.</p>
+    <p><%= @user.nickname %> has no bounties.</p>
   </div>
 <% else %>
   <div class="bounties" id="bounties_table">
@@ -63,5 +116,4 @@
       </tbody>
     </table>
   </div>
-<% end %>
 <% end %>

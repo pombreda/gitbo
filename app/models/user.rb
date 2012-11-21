@@ -31,4 +31,20 @@ class User < ActiveRecord::Base
     User.find_by_nickname(owner)
   end
 
+  def user_cache
+    Rails.cache.read(self.nickname.to_sym)
+  end
+
+  def cached_starred
+    user_cache[:starred]
+  end
+
+  def cached_following
+    user_cache[:following]
+  end
+
+  def cached_repos
+    user_cache[:repos]
+  end
+
 end
