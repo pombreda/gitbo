@@ -13,7 +13,12 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    if User.is_the_owner_registered?(params[:owner])
+      @user = User.find_by_nickname(params[:owner])
+      @repos = Repo.find_all_by_owner_name(@user.nickname)
+    else 
+      @repos = Repo.find_all_by_owner_name(params[:owner])
+    end
 
     respond_to do |format|
       format.html # show.html.erb

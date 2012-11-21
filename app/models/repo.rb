@@ -5,6 +5,7 @@ class Repo < ActiveRecord::Base
                   :watchers, :issues, :git_updated_at
  
   has_many :issues, :dependent => :destroy
+
   accepts_nested_attributes_for :issues
 
   validates :name, :uniqueness => true

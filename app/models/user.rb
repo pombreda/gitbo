@@ -27,4 +27,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.is_the_owner_registered?(owner)
+    User.find_by_nickname(owner)
+  end
+
 end
