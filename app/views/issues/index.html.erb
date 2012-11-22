@@ -5,7 +5,8 @@
   <div class="span6">
     <div class="pull-right">
       <p> Need to add your issue?</p>
-      <p><%= link_to 'Add your issues', new_repo_path, id: "new_link",  :class => "btn btn-success btn-large" %></p>
+      <!-- <p><%#= link_to 'Add your issues', "#new-repo", data-toggle: "modal", id: "new_link",  :class => "btn btn-success btn-large" %></p> -->
+      <p><button class="btn btn-success btn-large" data-toggle="modal" href="#new-repo">Upload your repo</button></p>
     </div>
   </div>
 </div>
@@ -49,7 +50,7 @@
       <% if issue.owner_endorsement == 1 %>
           <td><i class="icon-thumbs-up" ></i></td>
       <% elsif issue.owner_endorsement == 0 %>
-          <td><i class="icon-time" ></i></td>
+          <td><i class="icon-arrow-right" ></i></td>
       <% else %>
           <td><i class="icon-thumbs-down" ></i></td>
       <% end %>
@@ -84,3 +85,28 @@
     <%= link_to "Sign in with Github", "/auth/github", :class => "btn btn-primary" %>
   </div>
 </div>
+
+
+<div id="new-repo" class="modal hide fade" tabindex="-1" data-focus-on="input:first">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Upload Your Repo</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_for @repo do |f| %>
+    <p>
+      <%= f.label :owner_name %> <br />
+      <%= f.text_field :owner_name %>
+    </p>
+    <p>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <%= f.submit 'Create Repo', :class => 'btn btn-success' %>
+    <button type="button" data-dismiss="modal" class="btn">Close</button>
+  </div>
+  <% end %>
+</div>
+

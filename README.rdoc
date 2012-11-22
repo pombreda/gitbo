@@ -27,11 +27,6 @@ add checkbox on issue show page only shown to repo owner
   - 
 
 badge on show page based on endorsment, lack of, disapproal
-  - 
-
-
-
-
 
 
 DOWN THE ROAD: Implementing cached information from Github's database: User dashboard's following repos + bounties
