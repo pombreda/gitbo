@@ -1,16 +1,16 @@
 <div class='jumbotron'>
-<% if flash[:error] %>
-  <div class="alert alert-error">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-  <strong><%= flash[:error] %></strong>
-</div>
-<% end %>
-<% if flash[:notice] %>
-  <div class="alert alert-success">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong><%= flash[:notice] %></strong>
+  <% if flash[:error] %>
+    <div class="alert alert-error">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong><%= flash[:error] %></strong>
   </div>
-<% end %>
+  <% end %>
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <strong><%= flash[:notice] %></strong>
+    </div>
+  <% end %>
 
 <h1>Gitbo</h1>
   <p class='lead'>Get paid to fix the most asked for Github issues</p>
@@ -36,8 +36,7 @@
     <td><%= repo.open_issues %></td>
     <td><%= repo.watchers %></td>
     <td><%= repo.issues_comment_count %></td>
-    <td><%= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
-
+    <!-- <td><%#= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td> -->
   </tr>
 <% end %>
 </table>

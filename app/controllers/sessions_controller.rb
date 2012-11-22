@@ -12,14 +12,14 @@ class SessionsController < ApplicationController
     client = Octokit::Client.new(:oauth_token => auth.credentials.token)
     user.load_cache_info(client, user)
 
-    redirect_to root_url, :notice => "Signed in!"
+    redirect_to :back
 
   end
 
   def destroy
     session[:user_id] = nil
     session[:token] = nil
-    redirect_to root_url, :notice => "Signed out!"
+    redirect_to :back
   end
 
 end

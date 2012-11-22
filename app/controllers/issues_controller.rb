@@ -33,6 +33,8 @@ class IssuesController < ApplicationController
 
   def index
     @issues = Issue.all_open_issues
+    @repo = Repo.new
+    1.times { @repo.issues.build}
     # @user = current_user
 
 
