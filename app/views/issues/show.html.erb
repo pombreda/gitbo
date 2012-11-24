@@ -10,7 +10,6 @@
     <div class="span7">
       <h4>This issue belongs to your repo. Please, consider endorsing it!</h4>
     </div>
-   
     <div class="span5" id="endorse" style="display:none">
       <div class="pull-right">
         <div>
@@ -90,18 +89,23 @@
     <hr>
     <div class="vote">
       <% if current_user %>
-        <td><%= link_to vote_issue_path(@issue.id, :upvote), :method => :put do %>
-          <i class="icon-arrow-up"></i>
+        <td><%= link_to vote_issue_path(@issue.id, :upvote), :method => :put, :class => "btn btn-info" do %>
+         Upvote Issue
       <% end %></td><br />
-      <td><%= link_to vote_issue_path(@issue.id, :downvote), :method => :put do %>
-          <i class="icon-arrow-down"></i>
+      <br />
+       <td><%= link_to vote_issue_path(@issue.id, :upvote), :method => :put, :class => "btn btn-info" do %>
+          Downvote Issue
       <% end %></td>
       <% else %>
           <td id="vote-prompt"><i class="icon-arrow-up"></i></td><br />
           <td id="vote-prompt"><i class="icon-arrow-down"></i></td>
       <% end %>
     </div>
+     <hr>
+     <%= render :partial => 'modals/difficulty' %>
   </div>
+
+  
   <!-- main block with description and comments -->
     <div class='span10'>
       <div class='row'>
