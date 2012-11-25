@@ -12,6 +12,15 @@ class IssuesController < ApplicationController
     redirect_to :back
   end
 
+  def difficulty
+    issue = Issue.find(params[:id])
+    issue.add_difficulty_rating(current_user, params[:difficulty])
+    issue.save
+
+    # redirect_to :back
+  end
+
+
   def endorsement
     issue = Issue.find(params[:id])
     issue.endorsement_by(params[:direction])

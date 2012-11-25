@@ -1,3 +1,13 @@
+var value = $('input:radio[name=rating]:checked').val();
+// var url = '<% difficulty_path(@issue.id, value) %>'
+
+console.log(value)
+// console.log(url)
+// $.post(url, { id: <% @issue.id %>, difficulty: value } );
+// });
+
+
+
 // $("span#bounty-prompt").click(function(){
 //   alert("please sign in with Github to post a bounty");
 // });
