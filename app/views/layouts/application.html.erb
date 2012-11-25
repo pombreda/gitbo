@@ -39,7 +39,9 @@
                 <li class='user-avatar'>Signed in as <img src='<%= current_user.image %>'></img></li>
                 <li><%= link_to "Sign Out", signout_path, :class => 'btn btn-mini' %></li>
               <% else %>
-                <li><%= link_to "Sign in with Github", "/auth/github", :class => "btn" %></li>
+                <li><%= link_to "/auth/github", :class => 'btn' do %>
+                  Sign in with <i class='icon-github'></i>
+                <% end %></li>
               <% end %>
             </ul>
           </div>

@@ -38,7 +38,9 @@
     <% else %>
       <button id="bounty" class="btn btn-success btn-small" type="button">Issue Bounty</button>
     <% end %>
-      <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">View Issue on Github</a>
+      <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">
+          View on <i class='icon-github'></i>
+      </a>
     </div>
   </div>
 </div>
@@ -97,12 +99,10 @@
           Downvote Issue
       <% end %></td>
       <% else %>
-          <td id="vote-prompt"><i class="icon-arrow-up"></i></td><br />
-          <td id="vote-prompt"><i class="icon-arrow-down"></i></td>
+          <td><button class="btn btn-info" type="button" id="vote-prompt" data-toggle="modal" href="#vote-prompter" >Upvote Issue</button></td><br /><br />
+          <td><button class="btn btn-info" type="button" id="vote-prompt" data-toggle="modal" href="#vote-prompter" >Downvote Issue</button></td>
       <% end %>
     </div>
-     <hr>
-     <%= render :partial => 'modals/difficulty' %>
   </div>
 
   
@@ -195,12 +195,6 @@
 //       }
 //     });
 //   }, 4000);
+ </script>
 
-// $.post('ajax/test.html', function(data) {
-//   $('.result').html(data);
-// });
-
-
-
-</script>
-
+<%= render :partial => 'modals/login' %>
