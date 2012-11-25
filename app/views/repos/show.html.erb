@@ -14,7 +14,7 @@
 
 <div class="row">
   <div class='span2'>
-    <h5>Watchers: <%= @repo.watchers %></h5>
+    <h5><i class='icon-eye-open'></i> Watchers: <%= @repo.watchers %></h5>
     
     <% if @repo.description %>
       <h5>Description:</h5> <%= @repo.description %>
@@ -34,7 +34,7 @@
               <td><%= link_to issue.title, owner_repo_gitnumber_path(@repo.owner_name, @repo.name, issue.git_number) %></td>
               <td><%= issue.git_number %></td>
               <td><%= issue.comment_count %></td>
-              <td><a href='http://www.github.com/<%= @repo.owner_name %>/<%= @repo.name %>/issues/<%= issue.git_number %>' target='_blank'>View on Github</a></td>
+              <td><a href='http://www.github.com/<%= @repo.owner_name %>/<%= @repo.name %>/issues/<%= issue.git_number %>' target='_blank'><i class='icon-github'></a></td>
             </tr>
           <% end %>
         <% end %>
