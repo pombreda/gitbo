@@ -104,7 +104,9 @@
       <% end %>
     </div>
      <hr>
-     <%= render :partial => 'issues/difficulty', :locals => { :issue => @issue } %>
+    <% if @difficulty %>
+      <%= render :partial => 'issues/difficulty', :locals => { :issue => @issue } %>
+    <% end %>
   </div>
 
   
