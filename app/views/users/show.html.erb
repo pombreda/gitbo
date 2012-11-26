@@ -9,13 +9,33 @@
 
   <div class="span3">
     <div class="vcard">
-      <img src="<%= @user.image %>" class='comment-avatar'>
-      <h1>
-        <span><%= @user.name %></span>
-        <em><%= @user.nickname %></em>
-      </h1>
-    </div>
-
+      <div class="avatared">
+        <img src="<%= @user.image %>" class='comment-avatar'>
+        <h1>
+          <span><%= @user.name %></span>
+          <em><%= @user.nickname %></em>
+        </h1>
+      </div> <!-- end avatared-->
+      <div class="details">
+        <dl>
+          <dt><span class="icon-envelope"></span></dt>
+          <dd><a> <%= @user.email %> </a></dd>
+          <!-- Please add any additional UserProfile details here as available -->
+        </dl>
+      </div> <!-- end details-->
+    </div> <!-- end vcard-->
+    <ul class="stats">
+      <li>
+        <a>
+        <strong><%= @user.cached_following.length %></strong>
+        <span>following</span>
+      <!-- </a>
+      </li>
+      <li><a> -->
+        <strong><%= @user.cached_starred.length %></strong>
+        <span>starred</span>
+      </a></li>
+    </ul> <!-- end stats--> 
   </div>
   
   <div class="span9">

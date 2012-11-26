@@ -8,6 +8,7 @@
   }
 }
 
+
 .vcard img {
   padding: 5px;
   background: white;
@@ -18,6 +19,7 @@
 }
 
 .vcard h1 {
+  display: block;
   font-size: 26px;
   letter-spacing: -1px;
   color: #495961;
@@ -41,4 +43,55 @@
   vertical-align: top;
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
+}
+
+.vcard .details {
+  border-top: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+  margin: 0 0 8px 0;
+  padding: 18px 0 15px 0;
+  -webkit-font-smoothing: antialiased;
+}
+.vcard dl {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.vcard dl dt {
+  margin: 0;
+  float: left;
+  width: 22px;
+  color: #D0D0D0;
+}
+
+ul.stats {
+  border-bottom: 1px solid #DDD;
+  margin: 0 0 17px 0;
+  padding: 6px 0 15px 0;
+  text-decoration: none;
+}
+
+ul.stats li {
+  list-style-type: none;
+  text-decoration: none;
+}
+
+ul.stats li strong {
+  display: block;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: bold;
+  color: #222;
+}
+
+ul.stats li span {
+  display: block;
+  margin-top: -2px;
+  font-size: 11px;
+}
+
+ul.stats li a:hover span {
+  color: #4183C4;
+  text-decoration: none;
 }
