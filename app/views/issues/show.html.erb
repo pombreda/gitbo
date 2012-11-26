@@ -103,6 +103,8 @@
           <td><button class="btn btn-info" type="button" id="vote-prompt" data-toggle="modal" href="#vote-prompter" >Downvote Issue</button></td>
       <% end %>
     </div>
+     <hr>
+     <%= render :partial => 'issues/difficulty', :locals => { :issue => @issue } %>
   </div>
 
   

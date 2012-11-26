@@ -1,0 +1,17 @@
+$("input:radio[name=rating]").live('click',function(e){
+    // Submit a put request
+    // to the form's URL
+    // with the :rating / :diffuclty route variable
+    // filled into the value of the radio box that
+    // was just clicked
+    // $.post($(this).closest('form').attr("href"), {rating: $(this).val(), "_method": "PUT" }, function(json){
+    //   console.log(json)
+    // })
+    $(this).closest("form").submit();
+});
+
+
+
+
+//check the score or what was clicked
+//add the appropriate attr
