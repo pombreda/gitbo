@@ -72,14 +72,13 @@ class Issue < ActiveRecord::Base
     self.user_votes.create(:user => user, direction => 1)
   end
 
-
   def add_difficulty_by(user, rank)
     uv = UserVote.find_or_create_by_issue_id_and_user_id(self.id, user.id)
     uv.update_attribute(:difficulty_rating, rank)
   end
 
   def retrieve_difficulty(user)
-    UserVote.find_by_issue_id_and_user_id(self.id, user.id)
+    UserVote.find_by_issue_id_and_user_id(self.id, user.id).difficulty_rating
   end
 
   def refresh(github_connection)
