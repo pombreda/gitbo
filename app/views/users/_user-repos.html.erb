@@ -1,0 +1,22 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Popularity</th>
+      <th>Open Issues</th>
+      <th>Watchers</th>
+      <th>Issues Comment Count</th>
+    </tr>
+  </thead> 
+  <tbody>
+    <% @repos.each do |repo| %>
+      <tr>
+        <td><%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %></td>
+        <td><%= repo.popularity %></td>
+        <td><%= repo.open_issues %></td>
+        <td><%= repo.watchers %></td>
+        <td><%= repo.issues_comment_count %></td>
+      </tr>
+    <% end %> 
+  </tbody>
+</table>

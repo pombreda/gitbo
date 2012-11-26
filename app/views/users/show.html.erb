@@ -1,99 +1,57 @@
 <% if @repos.first %>
-<div class="row">
-  <div class="span8">
-    <h3>All repos for <%= @repos.first.owner_name %></h3>
-  </div>
   <div class="span4">
     <h3 class="pull-right"><a class="btn btn-info btn-small" href="http://www.github.com/<%= @repos.first.owner_name %>" target="blank">View owner on <i class='icon-github'></i></a></h3>
     </div>
 </div>
-    
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Popularity</th>
-        <th>Open Issues</th>
-        <th>Watchers</th>
-        <th>Issues Comment Count</th>
-      </tr>
-    </thead> 
-    <% @repos.each do |repo| %>
-    <tr>
-      <td><%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %></td>
-      <td><%= repo.popularity %></td>
-      <td><%= repo.open_issues %></td>
-      <td><%= repo.watchers %></td>
-      <td><%= repo.issues_comment_count %></td>
-    </tr>
 
-    <% end %> 
-  </table>
+<div class="user-show-page">
+  <ul id="myTab" class="nav nav-tabs">
+    <li><a href="#user-repos" data-toggle="tab">Your repos</a>
+    </li>
+    <li class="active"><a href="#user-bounties" data-toggle="tab">Your bounties</a></li>
+  </ul>
+</div>
 
+<div class="tab-content">
+  <div class="tab-pane" id="user-repos"><%= render 'user-repos' %></div>
+  <div class="tab-pane active" id="user-bounties"><%= render 'user-bounties' %></div>
+</div>
+
+
+
+ <!-- tab 1 -->
+     
 <% end %>
+<!-- tab 2 -->
+<br />
 
-<% if @user && owner_logged_in?  %>
-<h3><%= @user.nickname %>'s Bounties</h3>
 
-<p id="notice"><%= notice %></p>
 
-<% if @user.bounties.count == 0 %>
-  <div class='span12'>
-    <p><%= @user.nickname %> has no bounties.</p>
-  </div>
-<% else %>
-  <div class="bounties" id="bounties_table">
-    <table class="table table-hover" id="bounties_table">
-      <thead>
-        <tr>
-          <th>Repo</th>
-          <th>Issue number</th>
-          <th>Bounty Price</th>
-          <th>Bounty Issued</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @user.bounties.sort_by(&:price).reverse.each do |bounty| %>
-          <tr>
-            <td><%= link_to bounty.issue.repo.owner_name, owner_repos_path(bounty.issue.repo.owner_name) %>/<%= link_to bounty.issue.repo.name, owner_repo_path(bounty.issue.repo.owner_name, bounty.issue.repo.name) %></td>
-            <td><%= link_to bounty.issue.git_number, owner_repo_gitnumber_path(bounty.issue.repo.owner_name, bounty.issue.repo.name, bounty.issue.git_number) %></td>
-            <td><%= number_to_currency(bounty.price, :precision => 0) %></td>
-            <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
-            <td><%= link_to "Edit", edit_issue_bounty_path( bounty.issue.repo.owner_name, bounty.issue.repo.name, bounty.issue.git_number, bounty.id ) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-<% end %>
-
+<!-- cached data -->
 <% if owner_logged_in? && @user %>
 <div class="user_info">
   <table style="float:left;">
-  <thead>
-    <tr>
-      <th>Repos</th>
-    </tr>
-  </thead> 
+    <thead>
+      <tr>
+        <th>Repos</th>
+      </tr>
+    </thead> 
+    <tbody>
       <% @user.cached_repos.each do |repo| %>
           <tr><td><a data-toggle="modal" href="#new-repo<%= "_#{repo}" %>">
         <i class="icon-upload-alt"></i></a> <%= repo %></td></tr>
         <%= render :partial => 'modals/repo_uploader_prepopulated', :locals => { :repo_name => repo } %>
       <% end %>
+    </tbody>
   </table>
 
-
-
-  
-
-
   <table style="float:left;">
-  <thead>
-    <tr>
-      <th>Following</th>
-    </tr>
-  </thead> 
+    <thead>
+      <tr>
+        <th>Following</th>
+      </tr>
+    </thead>
+    <tbody>
       <% @user.cached_following.each do |user| %>
         <% if User.is_the_owner_registered?(user) %>
           <tr><td><%= link_to user, owner_repos_path(user) %></td></tr>
@@ -101,27 +59,28 @@
           <tr><td><%= user %></td></tr>
         <% end %>
       <% end %>
+    </tbody>
   </table>
 
 
   <table style="float:left;">
-  <thead>
-    <tr>
-      <th>Starred</th>
-    </tr>
-  </thead> 
-    <% @user.cached_starred.each do |repo| %>
-      <% if Repo.is_registered?(repo) %>
-         <tr><td><%= link_to repo[:owner_name], owner_repos_path(repo[:owner_name]) %>/<%= link_to repo[:name], owner_repo_path(repo[:owner_name], repo[:name]) %></td></tr>
-      <% else %>
-        <tr><td><%= repo[:owner_name] %>/<%= repo[:name] %></td></tr>
+    <thead>
+      <tr>
+        <th>Starred</th>
+      </tr>
+    </thead> 
+    <tbody>
+      <% @user.cached_starred.each do |repo| %>
+        <% if Repo.is_registered?(repo) %>
+           <tr><td><%= link_to repo[:owner_name], owner_repos_path(repo[:owner_name]) %>/<%= link_to repo[:name], owner_repo_path(repo[:owner_name], repo[:name]) %></td></tr>
+        <% else %>
+          <tr><td><%= repo[:owner_name] %>/<%= repo[:name] %></td></tr>
+        <% end %>
       <% end %>
-    <% end %>
+    </tbody>
   </table>
 </div>
 <div style="clear:both;"></div>
       
 <% end %>
 
-
-<% end %>

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,6 +17,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @new_repo = Repo.new
+    # @issues = Issue.all_open_issues
+    # 1.times { @new_repo.issues.build}
+
+
     if User.is_the_owner_registered?(params[:owner])
       @user = User.find_by_nickname(params[:owner])
       @repos = Repo.find_all_by_owner_name(@user.nickname)
