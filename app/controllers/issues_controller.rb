@@ -65,7 +65,7 @@ class IssuesController < ApplicationController
 
     @issue = Issue.find_by_repo_id_and_git_number(repo.id, params[:git_number])
 
-    @difficulty = @issue.retrieve_difficulty(current_user)
+    @difficulty = @issue.retrieve_difficulty(current_user) if current_user
     
     # if @issue.updated?(github_connection)
     #   RefreshIssuesWorker.perform_async(@issue.id)
