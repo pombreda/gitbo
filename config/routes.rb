@@ -24,7 +24,7 @@ Gitbo::Application.routes.draw do
   #voting
   put '/issues/:id/vote/:direction' => 'issues#vote', :as => :vote_issue
   #difficulty
-  put '/issues/:id/rating/:difficulty' => 'issues#difficulty', :as => :difficulty_rating
+  put '/issues/:id/rating' => 'issues#difficulty', :as => :difficulty_rating
   
   #owner endorsment
   put '/issues/:id/endorsement/:direction' => 'issues#endorsement', :as => :owner_endorsement

@@ -13,11 +13,15 @@ class IssuesController < ApplicationController
   end
 
   def difficulty
+    # raise params.inspect
     issue = Issue.find(params[:id])
-    issue.add_difficulty_rating(current_user, params[:difficulty])
-    issue.save
+    issue.add_difficulty_by(current_user, params[:rating])
+    respond_to do |f|
+      f.html {redirect_to :back}
+      f.js {}
+    end
+    #find the difficulty rating in the user_votes table based on the user id and issue id
 
-    # redirect_to :back
   end
 
 
@@ -65,6 +69,8 @@ class IssuesController < ApplicationController
     @issue = Issue.find_by_repo_id_and_git_number(repo.id, params[:git_number])
     # github_connection = GithubConnection.new(params[:owner], params[:repo], params[:git_number])
 
+    @difficulty = (UserVote.find_by_issue_id_and_user_id(@issue.id, current_user.id)).difficulty_rating
+    # raise @difficulty.inspect
 
     # if @issue.updated?(github_connection)
     #   RefreshIssuesWorker.perform_async(@issue.id)

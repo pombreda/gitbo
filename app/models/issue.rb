@@ -1,7 +1,7 @@
 class Issue < ActiveRecord::Base
   attr_accessible :body, :git_number, :title, :repo, :comment_count,
  
-  :git_updated_at, :state, :owner_name, :owner_image, :owner_endorsement, :bounties
+  :git_updated_at, :state, :owner_name, :owner_image, :owner_endorsement, :bounties, :difficulty
 
 
   belongs_to :repo
@@ -70,6 +70,16 @@ class Issue < ActiveRecord::Base
   def add_vote_by(user, direction = :upvote, int = 1)
     self.increment(direction, int)
     self.user_votes.create(:user => user, direction => 1)
+  end
+
+
+  def add_difficulty_by(user, rank)
+    uv = UserVote.find_or_create_by_issue_id_and_user_id(self.id, user.id)
+    uv.update_attribute(:difficulty_rating, rank)
+  end
+
+  def retrieve_difficulty(user)
+    UserVote.find_by_issue_id_and_user_id(self.id, user.id)
   end
 
   def refresh(github_connection)

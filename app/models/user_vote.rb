@@ -1,5 +1,5 @@
 class UserVote < ActiveRecord::Base
-  attr_accessible :downvote, :issue_id, :upvote, :user_id, :user
+  attr_accessible :downvote, :issue_id, :upvote, :user_id, :user, :difficulty_rating
   
   belongs_to :user
   belongs_to :issue
