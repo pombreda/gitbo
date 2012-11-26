@@ -71,11 +71,6 @@ class Repo < ActiveRecord::Base
     #     stars =>
 
     # watcher/issues => 66
-
-
-
-
-
   end
   
   def issues_comment_count

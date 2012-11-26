@@ -1,3 +1,7 @@
+<% if UserVote.average_difficulty(@issue) != 0.0  %>
+  The average of this issue is: <%= UserVote.average_difficulty(@issue) %>
+<% end %>
+
 <%= form_tag(difficulty_rating_path(@issue.id), :method => "put") do %>
      
         <fieldset class="rating">
