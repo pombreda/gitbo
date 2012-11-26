@@ -7,3 +7,38 @@
     margin-left: 10px;
   }
 }
+
+.vcard img {
+  padding: 5px;
+  background: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  width: 210px;
+  height: 210px;
+  border: 1px solid #DDD;
+}
+
+.vcard h1 {
+  font-size: 26px;
+  letter-spacing: -1px;
+  color: #495961;
+  margin-top: 6px;
+}
+
+.vcard h1 em {
+  display: inline-block;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  font-family: "Helvetica Neue", Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px;
+  color: #666;
+  position: relative;
+  top: -2px;
+  margin-bottom: 12px;
+  vertical-align: top;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+}
