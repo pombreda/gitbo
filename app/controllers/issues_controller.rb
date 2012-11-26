@@ -66,7 +66,7 @@ class IssuesController < ApplicationController
     @issue = Issue.find_by_repo_id_and_git_number(repo.id, params[:git_number])
     # github_connection = GithubConnection.new(params[:owner], params[:repo], params[:git_number])
 
-    @difficulty = (UserVote.find_by_issue_id_and_user_id(@issue.id, current_user.id)).difficulty_rating
+    @difficulty = (UserVote.find_or_create_by_issue_id_and_user_id(@issue.id, current_user.id)).difficulty_rating
     # raise @difficulty.inspect
 
     # if @issue.updated?(github_connection)
