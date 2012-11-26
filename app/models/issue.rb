@@ -76,7 +76,7 @@ class Issue < ActiveRecord::Base
   end
 
   def retrieve_difficulty(user)
-    UserVote.find_by_issue_id_and_user_id(self.id, user.id).difficulty_rating
+    UserVote.find_or_create_by_issue_id_and_user_id(self.id, user.id).difficulty_rating
   end
 
   def refresh(github_connection)
