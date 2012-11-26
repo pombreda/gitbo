@@ -69,5 +69,5 @@ gem 'whenever', :require => false
 # To use debugger
 # gem 'debugger'
 
-gem 'octokit', :git => 'git@github.com:ajonas04/octokit.git'
+gem 'octokit', :github => 'ajonas04/octokit'
 gem 'will_paginate'
