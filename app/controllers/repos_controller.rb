@@ -22,7 +22,7 @@ class ReposController < ApplicationController
   def show
 
     @repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
-    
+
     @issues = @repo.issues
     # github_connection = GithubConnection.new(params[:owner], @repo.name, session[:token])
     # if @repo.updated?(github_connection)

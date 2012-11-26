@@ -4,7 +4,7 @@
     <h3>Upload Your Repo</h3>
   </div>
   <div class="modal-body">
-    <%= form_for @repo do |f| %>
+    <%= form_for repo do |f| %>
     <p>
       <%= f.label :owner_name %> <br />
       <%= f.text_field :owner_name, :value => current_user.nickname %>
