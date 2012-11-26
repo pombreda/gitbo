@@ -1,0 +1,16 @@
+<table>
+  <thead>
+    <tr>
+      <th>Starred</th>
+    </tr>
+  </thead> 
+  <tbody>
+    <% @user.cached_starred.each do |repo| %>
+      <% if Repo.is_registered?(repo) %>
+         <tr><td><%= link_to repo[:owner_name], owner_repos_path(repo[:owner_name]) %>/<%= link_to repo[:name], owner_repo_path(repo[:owner_name], repo[:name]) %></td></tr>
+      <% else %>
+        <tr><td><%= repo[:owner_name] %>/<%= repo[:name] %></td></tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

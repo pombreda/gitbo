@@ -1,0 +1,14 @@
+<table style="float:left;">
+  <thead>
+    <tr>
+      <th>Repos</th>
+    </tr>
+  </thead> 
+  <tbody>
+    <% @user.cached_repos.each do |repo| %>
+        <tr><td><a data-toggle="modal" href="#new-repo<%= "_#{repo}" %>">
+      <i class="icon-upload-alt"></i></a> <%= repo %></td></tr>
+      <%= render :partial => 'modals/repo_uploader_prepopulated', :locals => { :repo_name => repo } %>
+    <% end %>
+  </tbody>
+</table>
