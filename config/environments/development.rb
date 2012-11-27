@@ -38,7 +38,7 @@ Gitbo::Application.configure do
 
   # Exception Notifier
   config.middleware.use ExceptionNotifier,
-    sender_address: 'noreply@railscasts.com',
+    sender_address: 'services@flatironschool.com',
     exception_recipients: 'josh.rowley@flatironschool.com'
 
   config.action_mailer.delivery_method = :letter_opener

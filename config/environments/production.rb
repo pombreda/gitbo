@@ -66,7 +66,7 @@ Gitbo::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.middleware.use ExceptionNotifier,
-    sender_address: 'noreply@railscasts.com',
+    sender_address: 'services@flatironschool.com',
     exception_recipients: 'josh.rowley@flatironschool.com'
 
   config.action_mailer.delivery_method = :letter_opener
