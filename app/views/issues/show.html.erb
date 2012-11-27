@@ -36,7 +36,7 @@
     <% if current_user %> 
       <%= link_to_new_bounty_for @issue %>
     <% else %>
-      <button id="bounty" class="btn btn-success btn-small" type="button">Issue Bounty</button>
+      <button id="bounty" class="btn btn-success btn-small" href="#login-prompt" data-toggle="modal" type="button">Issue Bounty</button>
     <% end %>
       <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">
           View on <i class='icon-github'></i>
@@ -99,8 +99,8 @@
           Downvote Issue
       <% end %></td>
       <% else %>
-          <td><button class="btn btn-info" type="button" id="vote-prompt" data-toggle="modal" href="#vote-prompter" >Upvote Issue</button></td><br /><br />
-          <td><button class="btn btn-info" type="button" id="vote-prompt" data-toggle="modal" href="#vote-prompter" >Downvote Issue</button></td>
+          <td><button class="btn btn-info" href="#login-prompt" type="button" id="vote-prompt" data-toggle="modal" >Upvote Issue</button></td><br /><br />
+          <td><button class="btn btn-info"  href="#login-prompt"type="button" id="vote-prompt" data-toggle="modal" >Downvote Issue</button></td>
       <% end %>
     </div>
      <hr>
