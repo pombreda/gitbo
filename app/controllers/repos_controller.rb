@@ -72,10 +72,9 @@ class ReposController < ApplicationController
     #don't run this job if the repo already exists
     #if there is already a repo with this name in the db, we know
    
-      # if !Repo.find_by_name(params[:repo][:name])
+      if !Repo.find_by_name(params[:repo][:name])
         owner = params[:repo][:owner_name]
         repo_name = params[:repo][:name]
-
         repo = Repo.new(:owner_name => owner, :name => repo_name,
                        :watchers => 0, :open_issues => 0 )
         repo.save
@@ -84,10 +83,10 @@ class ReposController < ApplicationController
         flash[:notice] = 'Your repository and corresponding issues are being processed, please check back shortly'
         redirect_to :root
 
-      # else
-      #   flash[:error] = "Repository already exists."
-      #   redirect_to :root
-      # end
+      else
+        flash[:error] = "Repository already exists."
+        redirect_to :root
+      end
     
 
     # respond_to do |format|
