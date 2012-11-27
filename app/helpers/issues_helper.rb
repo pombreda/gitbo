@@ -8,12 +8,27 @@ module IssuesHelper
     return true if UserVote.owner_difficulty_rating?(issue)
   end
 
-  def has_the_owner_voted?(issue)
+  def has_the_owner_rated?(issue)
     repo_owner_vote?(issue) && UserVote.owner_rating(issue) != 0
   end
 
-  def have_users_voted?(issue)
-    UserVote.user_average_difficulty(issue) != 0.0
+  def have_users_rated?(issue)
+    return true unless (UserVote.user_average_difficulty(issue.id).nan?)
   end
 
+  def owner_voted(issue)
+    have_users_rated?(issue) && has_the_owner_rated?(issue)
+  end
+
+  def users_voted_but_no_owner(issue)
+    have_users_rated?(issue) && !has_the_owner_rated?(issue)
+  end
+
+  def owner_voted_but_no_users(issue)
+    !have_users_rated?(issue) && has_the_owner_rated?(issue)
+  end
+
+  def neither(issue)
+    !have_users_rated?(issue) || !has_the_owner_rated?(issue)
+  end
 end
