@@ -25,16 +25,16 @@ class UsersController < ApplicationController
     if User.is_the_owner_registered?(params[:owner])
       @user = User.find_by_nickname(params[:owner])
       @repos = Repo.find_all_by_owner_name(@user.nickname)
+      @repo = Repo.new
+      render :show_authenticated
     else
       @repos = Repo.find_all_by_owner_name(params[:owner])
     end
 
-    @repo = Repo.new
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
-    end
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json { render json: @user }
+    # end
   end
 
   # GET /users/new
