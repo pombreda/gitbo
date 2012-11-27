@@ -70,8 +70,8 @@ class Issue < ActiveRecord::Base
   end
 
   #check if updated_at time on issue in database is same as issue on github
-  def updated?(github_connection)
-    return true unless github_connection.issue_git_updated_at == self.git_updated_at
+  def updated?(repo, issue_number, client)
+    return true unless client.issue(repo, issue_number).updated_at.to_datetime == self.git_updated_at
   end
 
   def self.all_open_issues
@@ -84,13 +84,13 @@ class Issue < ActiveRecord::Base
     self.state == 'open'
   end
 
-  def update_issue_attributes(github_connection)
-    self.update_attributes( :body => github_connection.issue_body,
-                            :title => github_connection.issue_title,
-                            :comment_count => github_connection.issue_comments,
-                            :git_updated_at => github_connection.issue_git_updated_at,
-                            :state => github_connection.issue_state )
-  end
+  # def update_issue_attributes(github_connection)
+  #   self.update_attributes( :body => github_connection.issue_body,
+  #                           :title => github_connection.issue_title,
+  #                           :comment_count => github_connection.issue_comments,
+  #                           :git_updated_at => github_connection.issue_git_updated_at,
+  #                           :state => github_connection.issue_state )
+  # end
 
   def endorsement_by(approval)
     self.send(approval.to_sym)

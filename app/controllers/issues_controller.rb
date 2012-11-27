@@ -66,11 +66,12 @@ class IssuesController < ApplicationController
     @issue = Issue.find_by_repo_id_and_git_number(repo.id, params[:git_number])
 
     @difficulty = @issue.retrieve_difficulty(current_user) if current_user
-
-    debugger
     
-    # if @issue.updated?(github_connection)
-    #   RefreshIssuesWorker.perform_async(@issue.id)
+    ### Kevin started working on this RefreshIssueWorker script to run refresh jobs in
+    ### the background
+    
+    # if @issue.updated?(@issue.repo.octokit_id, @issue.git_number, octokit_client.client)
+    #   RefreshIssuesWorker.perform_async(@issue.id, current_user.token)
     #   flash[:notice] = "Updating issue from Github, please refresh"
     # end 
 

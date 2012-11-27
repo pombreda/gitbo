@@ -48,4 +48,12 @@ class OctokitWrapper
     issue
   end
 
+  def update_issue_attributes(issue)
+    issue.update_attributes( :body => issue.body,
+                            :title => issue.title,
+                            :comment_count => issue.comments,
+                            :git_updated_at => issue.git_updated_at,
+                            :state => issue.state )
+  end
+
 end

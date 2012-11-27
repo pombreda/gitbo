@@ -20,7 +20,6 @@ class ReposController < ApplicationController
   # GET /repos/1
   # GET /repos/1.json
   def show
-    debugger
     @repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
 
     @issues = @repo.issues
