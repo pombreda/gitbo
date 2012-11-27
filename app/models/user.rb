@@ -19,11 +19,12 @@ class User < ActiveRecord::Base
     session[:token]
   end
   
-  def load_cache_info(client, user)
-    Rails.cache.fetch(user.nickname.to_sym, expires_in: 24.hours) do
-      { :repos => client.repositories(user.nickname).collect {|repo| repo.name },
-        :following => client.following(user.nickname).collect {|user| user.login },
-        :starred => client.starred(user.nickname).collect {|repo| "#{repo.owner.login}/#{repo.name}" }  }
+  def load_cache_info
+    client = Octokit::Client.new(:oauth_token => self.token)
+    Rails.cache.fetch(self.nickname.to_sym, expires_in: 24.hours) do
+      { :repos => client.repositories(self.nickname).collect {|repo| repo.name },
+        :following => client.following(self.nickname).collect {|user| user.login },
+        :starred => client.starred(self.nickname).collect {|repo| "#{repo.owner.login}/#{repo.name}" }  }
     end
   end
 
@@ -31,23 +32,23 @@ class User < ActiveRecord::Base
     User.find_by_nickname(owner)
   end
 
-  def user_cache
-    Rails.cache.read(self.nickname.to_sym)
+  def cache
+    Rails.cache.read(self.nickname.to_sym) || load_cache_info
   end
 
   def cached_starred
-    user_cache[:starred].collect do |repo_string|
+    cache[:starred].collect do |repo_string|
       owner_name, name = repo_string.split('/')
       {:owner_name => owner_name, :name => name}
     end
   end
 
   def cached_following
-    user_cache[:following]
+    cache[:following]
   end
 
   def cached_repos
-    user_cache[:repos]
+    cache[:repos]
   end
 
 end
