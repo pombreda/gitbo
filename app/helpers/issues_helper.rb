@@ -2,7 +2,11 @@ module IssuesHelper
 
   def link_to_new_bounty_for(issue, opts = {})
     link_to "Issue Bounty", new_issue_bounty_path(issue.repo.owner_name, issue.repo.name, issue.git_number), :class => "btn btn-success btn-small", id: "new_link", remote: true
-   end
+  end
+
+  def link_to_create_bounty_for(issue, opts = {})
+    link_to "Create it", create_issue_bounty_path(issue.repo.owner_name, issue.repo.name, issue.git_number), :class => "btn btn-success btn-small", id: "create_link", remote: true
+  end
 
   def repo_owner_vote?(issue)
     return true if UserVote.owner_difficulty_rating?(issue)

@@ -1,0 +1,20 @@
+<div id="bounty-confirmation" class="modal hide fade" tabindex="-1" data-backdrop="vote-prompter" data-keyboard="false">
+  <div class="modal-body">
+
+  <%#= form_tag(submit_path, :method => "post", remote: true, :id => "new_bounty_form" ) do %>
+    <div class="field">
+      <label for="bounty_price">Please re-enter the amount you wish to pledge...</label>
+      <input id="bounty_price" name="price" type="number" />
+    </div>
+    <div class="modal-footer">
+      <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+      <input name="commit" type="submit" value="Create Bounty" method="post" />
+      <!-- <button class="btn btn-success btn-small" href="#login-prompt" data-toggle="modal" type="button">Issue Bounty</button> -->
+      <%= link_to_create_bounty_for @issue %>
+    </div>
+  <%# end %>
+  </div>
+</div>
+
+
+
