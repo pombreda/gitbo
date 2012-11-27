@@ -1,0 +1,68 @@
+<% # TODO: remove anything that shouldn't be accessible when not logged in %>
+
+<% unless @repos.empty? %>
+  <div class="span12">
+      <h3 class="pull-right"><a class="btn btn-info btn-small" href="http://www.github.com/<%= @repos.first.owner_name %>" target="blank">View owner on <i class='icon-github'></i></a></h3>
+      </div>
+  </div>
+<% end %>
+
+
+<div class="row">
+
+  <div class="span3" class="columns profilecols js-username">
+    <div class="vcard">
+      <div class="avatared">
+        <img src="<%= @user.image %>" class='comment-avatar'>
+        <h1>
+          <span><%= @user.name %></span>
+          <em><%= @user.nickname %></em>
+        </h1>
+      </div> <!-- end avatared-->
+      <div class="details">
+        <dl>
+          <dt><span class="icon-envelope"></span></dt>
+          <dd><a> <%= @user.email %> </a></dd>
+          <!-- Please add any additional UserProfile details here as available -->
+        </dl>
+      </div> <!-- end details-->
+    </div> <!-- end vcard-->
+    <ul class="stats">
+      <li>
+        <strong><%= @user.cached_following.length %></strong>
+        <span>following</span>
+      </li>
+      <li>
+        <strong><%= @user.cached_starred.length %></strong>
+        <span>starred</span>
+      </li>
+      <li>
+        <strong>$<%= @user.bounty_total %></strong>
+        <span>bounty posted</span>
+      </li>
+    </ul> <!-- end stats--> 
+  </div>
+  
+  <div class="span9">
+    <ul id="myTab" class="nav nav-tabs">
+      <li><a href="#user-repos" data-toggle="tab">Your repos</a>
+      </li>
+      <li class="active"><a href="#user-bounties" data-toggle="tab">Your bounties</a></li>
+      <li><a href="#following" data-toggle="tab">Following</a></li>
+      <li><a href="#starred" data-toggle="tab">Starred</a></li>
+      <li><a href="#add-your-repos" data-toggle="tab">Upload your repos</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane" id="user-repos"><%= render 'user-repos' %></div>
+      <div class="tab-pane active" id="user-bounties"><%= render 'user-bounties' %></div>
+      
+      <div class="tab-pane" id="following"><%= render 'following' %></div>
+      <div class="tab-pane" id="starred"><%= render 'starred' %></div>
+      <div class="tab-pane" id="add-your-repos"><%= render 'add-your-repos' %></div>
+    </div>
+  </div>
+</div>
+<%# end %>
+
+

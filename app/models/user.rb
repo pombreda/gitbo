@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :provider, :uid, :name, :image
+  attr_accessible :provider, :uid, :name, :image, :nickname
 
   has_many :user_votes
   has_many :bounties

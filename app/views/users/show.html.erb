@@ -1,65 +1,66 @@
-<%# if @repos.first %>
-  
-  <div class="span12">
-    <h3 class="pull-right"><a class="btn btn-info btn-small" href="http://www.github.com/<%= @repos.first.owner_name %>" target="blank">View owner on <i class='icon-github'></i></a></h3>
-    </div>
-</div>
+<h3><%= @user.nickname %>'s Bounties</h3>
+
+<p id="notice"><%= notice %></p>
+
+<% if @user.bounties.empty? %>
+  <div class='span12'>
+    <p><%= @user.nickname %> hasn't issued any bounties.</p>
+  </div>
+<% else %>
+  <div class="bounties" id="bounties_table">
+    <table class="table table-hover" id="bounties_table">
+      <thead>
+        <tr>
+          <th>Repo</th>
+          <th>Issue number</th>
+          <th>Bounty Price</th>
+          <th>Bounty Issued</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.bounties.sort_by(&:price).reverse.each do |bounty| %>
+          <tr>
+            <td><%= link_to bounty.issue.repo.owner_name, owner_repos_path(bounty.issue.repo.owner_name) %>/<%= link_to bounty.issue.repo.name, owner_repo_path(bounty.issue.repo.owner_name, bounty.issue.repo.name) %></td>
+            <td><%= link_to bounty.issue.git_number, owner_repo_gitnumber_path(bounty.issue.repo.owner_name, bounty.issue.repo.name, bounty.issue.git_number) %></td>
+            <td><%= number_to_currency(bounty.price, :precision => 0) %></td>
+            <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
+            <td><%= link_to "Edit", edit_issue_bounty_path( bounty.issue.repo.owner_name, bounty.issue.repo.name, bounty.issue.git_number, bounty.id ) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
 
 <div class="row">
-
-  <div class="span3" class="columns profilecols js-username">
-    <div class="vcard">
-      <div class="avatared">
-        <img src="<%= @user.image %>" class='comment-avatar'>
-        <h1>
-          <span><%= @user.name %></span>
-          <em><%= @user.nickname %></em>
-        </h1>
-      </div> <!-- end avatared-->
-      <div class="details">
-        <dl>
-          <dt><span class="icon-envelope"></span></dt>
-          <dd><a> <%= @user.email %> </a></dd>
-          <!-- Please add any additional UserProfile details here as available -->
-        </dl>
-      </div> <!-- end details-->
-    </div> <!-- end vcard-->
-    <ul class="stats">
-      <li>
-        <strong><%= @user.cached_following.length %></strong>
-        <span>following</span>
-      </li>
-      <li>
-        <strong><%= @user.cached_starred.length %></strong>
-        <span>starred</span>
-      </li>
-      <li>
-        <strong>$<%= @user.bounty_total %></strong>
-        <span>bounty posted</span>
-      </li>
-    </ul> <!-- end stats--> 
+  <div class="span8">
+    <h3>All repos on Gitbo for <%= @repos.first.owner_name %></h3>
   </div>
-  
-  <div class="span9">
-    <ul id="myTab" class="nav nav-tabs">
-      <li><a href="#user-repos" data-toggle="tab">Your repos</a>
-      </li>
-      <li class="active"><a href="#user-bounties" data-toggle="tab">Your bounties</a></li>
-      <li><a href="#following" data-toggle="tab">Following</a></li>
-      <li><a href="#starred" data-toggle="tab">Starred</a></li>
-      <li><a href="#add-your-repos" data-toggle="tab">Upload your repos</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div class="tab-pane" id="user-repos"><%= render 'user-repos' %></div>
-      <div class="tab-pane active" id="user-bounties"><%= render 'user-bounties' %></div>
-      
-      <div class="tab-pane" id="following"><%= render 'following' %></div>
-      <div class="tab-pane" id="starred"><%= render 'starred' %></div>
-      <div class="tab-pane" id="add-your-repos"><%= render 'add-your-repos' %></div>
+  <div class="span4">
+    <h3 class="pull-right"><a class="btn btn-info btn-small" href="http://www.github.com/<%= @repos.first.owner_name %>" target="blank">View Profile on Github</a></h3>
     </div>
-  </div>
 </div>
-<%# end %>
+    
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Popularity</th>
+        <th>Open Issues</th>
+        <th>Watchers</th>
+        <th>Issues Comment Count</th>
+      </tr>
+    </thead> 
+    <% @repos.each do |repo| %>
+    <tr>
+      <td><%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %></td>
+      <td><%= repo.popularity %></td>
+      <td><%= repo.open_issues %></td>
+      <td><%= repo.watchers %></td>
+      <td><%= repo.issues_comment_count %></td>
+    </tr>
 
-
+  <% end %> 
+</table>
