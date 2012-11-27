@@ -18,8 +18,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @new_repo = Repo.new
-    # @issues = Issue.all_open_issues
-    # 1.times { @new_repo.issues.build}
 
 
     if User.is_the_owner_registered?(params[:owner])

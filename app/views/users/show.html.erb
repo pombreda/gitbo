@@ -41,7 +41,7 @@
   </div>
   
   <div class="span9">
-    <ul id="myTab" class="nav nav-tabs">
+    <ul class="nav nav-tabs" id="myTab">
       <li><a href="#user-repos" data-toggle="tab">Your repos</a>
       </li>
       <li class="active"><a href="#user-bounties" data-toggle="tab">Your bounties</a></li>
@@ -51,7 +51,7 @@
     </ul>
 
     <div class="tab-content">
-      <div class="tab-pane" id="user-repos"><%= render 'user-repos' %></div>
+      <div class="tab-pane" id="user-repos"><%= render 'repos/repos-table' %></div>
       <div class="tab-pane active" id="user-bounties"><%= render 'user-bounties' %></div>
       
       <div class="tab-pane" id="following"><%= render 'following' %></div>

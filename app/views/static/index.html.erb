@@ -53,7 +53,7 @@
 
             <% @issues.sort_by(&:popularity).reverse[0..10].each do |issue| %>
             <tr>
-              <td><%= issue.votes %></td>
+              <td><%= issue.net_votes %></td>
               <td><%= link_to issue.title, owner_repo_gitnumber_path(issue.repo.owner_name, issue.repo.name, issue.git_number) %></td>
               <td><%= link_to issue.repo.name, owner_repo_path(issue.repo.owner_name, issue.repo.name) %></td>
               <td><%= issue.popularity %>

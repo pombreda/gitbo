@@ -11,7 +11,7 @@
   <tbody>
     <% @repos.each do |repo| %>
       <tr>
-        <td><%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %></td>
+        <td><%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %> / <%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %> </td>
         <td><%= repo.popularity %></td>
         <td><%= repo.open_issues %></td>
         <td><%= repo.watchers %></td>
