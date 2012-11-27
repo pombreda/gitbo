@@ -69,6 +69,7 @@ class Issue < ActiveRecord::Base
     self.update_issue_attributes(github_connection) if self.updated?(github_connection)
   end
 
+  #check if updated_at time on issue in database is same as issue on github
   def updated?(github_connection)
     return true unless github_connection.issue_git_updated_at == self.git_updated_at
   end
