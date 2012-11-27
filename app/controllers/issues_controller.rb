@@ -8,6 +8,7 @@ class IssuesController < ApplicationController
     issue = Issue.find(params[:id])
     issue.add_vote_by(current_user, params[:direction])
     issue.save
+    
     redirect_to :back
   end
 

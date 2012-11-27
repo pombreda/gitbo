@@ -71,11 +71,12 @@ class Issue < ActiveRecord::Base
   def add_vote_by(user, vote)
     uv = UserVote.find_or_create_by_issue_id_and_user_id(self.id, user.id)
     case vote
-      when 'upvote'
+      when "upvote"
         uv.vote = 1
-      when 'downvote'
+      when "downvote"
         uv.vote = -1
     end
+    uv.save
   end
 
   def add_difficulty_by(user, rank)
