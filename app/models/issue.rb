@@ -43,11 +43,9 @@ class Issue < ActiveRecord::Base
     self.bounties.inject(0) {|total = 0, bounty| total += bounty.price } 
   end
 
-  def votes
-    upvote = self.upvote ||= 0
-    downvote = self.downvote ||= 0
-    upvote - downvote
-  end 
+  def net_votes
+    UserVote.where('issue_id = ?', self.id).sum('vote')
+  end
 
   def popularity
     self.popularity_github * self.popularity_gitbo
@@ -58,16 +56,26 @@ class Issue < ActiveRecord::Base
   end
 
   def popularity_gitbo
-    (self.votes+1.0)/(self.time_since_submission + 2)**1.5
+    (self.net_votes+1.0)/(self.time_since_submission + 2)**1.5
   end
 
   def time_since_submission
     (Time.now.to_i - self.git_updated_at.to_i)/86400.0
   end 
 
-  def add_vote_by(user, direction = :upvote, int = 1)
-    self.increment(direction, int)
-    self.user_votes.create(:user => user, direction => 1)
+  # def add_vote_by(user, direction = :upvote, int = 1)
+  #   self.increment(direction, int)
+  #   self.user_votes.create(:user => user, direction => 1)
+  # end
+
+  def add_vote_by(user, vote)
+    uv = UserVote.find_or_create_by_issue_id_and_user_id(self.id, user.id)
+    case vote
+      when 'upvote'
+        uv.vote = 1
+      when 'downvote'
+        uv.vote = -1
+    end
   end
 
   def add_difficulty_by(user, rank)
