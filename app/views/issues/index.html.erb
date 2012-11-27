@@ -6,8 +6,13 @@
     <div class="pull-right">
       <p> Need to add your issue?</p>
       <!-- <p><%#= link_to 'Add your issues', "#new-repo", data-toggle: "modal", id: "new_link",  :class => "btn btn-success btn-large" %></p> -->
+      <% if current_user %>
       <p><button class="btn btn-success btn-large" data-toggle="modal" href="#new-repo">
         <i class="icon-upload-alt"></i> Upload your repo</button></p>
+      <% else %>
+      <p><button class="btn btn-success btn-large" data-toggle="modal" href="#login-prompt">
+        <i class="icon-upload-alt"></i> Upload your repo</button></p>
+      <% end %>
     </div>
   </div>
 </div>
