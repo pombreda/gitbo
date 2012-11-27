@@ -50,4 +50,8 @@ class User < ActiveRecord::Base
     user_cache[:repos]
   end
 
+  def bounty_total
+    self.bounties.inject(0) {|total = 0, bounty| total += bounty.price } 
+  end
+  
 end

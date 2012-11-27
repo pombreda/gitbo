@@ -1,14 +1,24 @@
-<table style="float:left;">
-  <thead>
-    <tr>
-      <th>Repos</th>
-    </tr>
-  </thead> 
-  <tbody>
-    <% @user.cached_repos.each do |repo| %>
-        <tr><td><a data-toggle="modal" href="#new-repo<%= "_#{repo}" %>">
-      <i class="icon-upload-alt"></i></a> <%= repo %></td></tr>
-      <%= render :partial => 'modals/repo_uploader_prepopulated', :locals => { :repo_name => repo } %>
-    <% end %>
-  </tbody>
-</table>
+<div class="repos">
+  <table>
+    <thead>
+      <tr>
+        <h3>Your repos</h3>
+        <span>Need your issues resolved? Consider adding them here</span>
+      </tr>
+    </thead> 
+    <tbody>
+      <ul class="repo_list">
+        <% @user.cached_repos.each do |repo| %>
+          <li> <%= repo %>
+            <a data-toggle="modal" href="#new-repo<%= "_#{repo}" %>">
+            <button type="button" class="btn" id="add-repo"> Add Your Repo</button></a>
+          </li>
+          <%= render :partial => 'modals/repo_uploader_prepopulated', :locals => { :repo_name => repo } %>
+
+
+
+        <% end %>
+      </ul>
+    </tbody>
+  </table>
+</div>

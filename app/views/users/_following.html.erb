@@ -1,16 +1,26 @@
-<table style="float:left;">
-  <thead>
-    <tr>
-      <th>Following</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @user.cached_following.each do |user| %>
-      <% if User.is_the_owner_registered?(user) %>
-        <tr><td><%= link_to user, owner_repos_path(user) %></td></tr>
-      <% else %>
-        <tr><td><%= user %></td></tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+<div class="users">
+  <table style="float:left;">
+    <thead>
+      <tr>
+        <h3>You're Following</hr>
+      </tr>
+    </thead>
+    <tbody>
+      <ul class="members" id="following">
+        <% @user.cached_following.each do |user| %>
+          <% if User.is_the_owner_registered?(user) %>
+          <li>
+            <a><!-- <img class="gravatar"><%#= @user.image %> -->
+              <%= link_to user, owner_repos_path(user) %>
+              <!-- <span>(<%#= @user.nickname %>)</span> --></a>
+          </li>
+          <% else %>
+          <li>
+            <%= user %>
+          </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </tbody>
+  </table>
+</div>

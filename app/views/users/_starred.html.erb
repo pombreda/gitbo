@@ -1,16 +1,20 @@
-<table>
-  <thead>
-    <tr>
-      <th>Starred</th>
-    </tr>
-  </thead> 
-  <tbody>
-    <% @user.cached_starred.each do |repo| %>
-      <% if Repo.is_registered?(repo) %>
-         <tr><td><%= link_to repo[:owner_name], owner_repos_path(repo[:owner_name]) %>/<%= link_to repo[:name], owner_repo_path(repo[:owner_name], repo[:name]) %></td></tr>
-      <% else %>
-        <tr><td><%= repo[:owner_name] %>/<%= repo[:name] %></td></tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+<div class="repos">
+  <table>
+    <thead>
+      <tr>
+        <h3>Your Starred repos</h3>
+      </tr>
+    </thead> 
+    <tbody>
+      <ul class="repo_list">
+        <% @user.cached_starred.each do |repo| %>
+          <% if Repo.is_registered?(repo) %>
+             <li><a><%= link_to repo[:owner_name], owner_repos_path(repo[:owner_name]) %>/<%= link_to repo[:name], owner_repo_path(repo[:owner_name], repo[:name]) %></a></li>
+          <% else %>
+            <li><%= repo[:owner_name] %>/<%= repo[:name] %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </tbody>
+  </table>
+</div>

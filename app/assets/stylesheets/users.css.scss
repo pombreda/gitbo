@@ -8,7 +8,6 @@
   }
 }
 
-
 .vcard img {
   padding: 5px;
   background: white;
@@ -73,8 +72,9 @@ ul.stats {
 }
 
 ul.stats li {
+  display: inline-block;
   list-style-type: none;
-  text-decoration: none;
+  min-width: 70px;
 }
 
 ul.stats li strong {
@@ -94,4 +94,80 @@ ul.stats li span {
 ul.stats li a:hover span {
   color: #4183C4;
   text-decoration: none;
+}
+
+.users {
+  float: left;
+  width: 560px;
+}
+
+.repos {
+  float: left;
+  width: 560px;
+}
+
+ul.members {
+  list-style: none;
+}
+
+#following {
+  margin: 5px 0;
+}
+
+#following li {
+  border-top: 1px solid #DDD;
+  
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+.members li {
+  position: relative;
+  font-size: 14px;
+  margin-left: 45px;
+  padding: 5px 0;
+  overflow: hidden;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+.members li .gravatar {
+  border: 1px solid #DDD;
+  padding: 1px;
+  background-color: white;
+  float: left;
+  margin-right: 10px;
+}
+
+img[Attributes Style] {
+  height: 20px;
+  width: 20px;
+}
+
+ul.repo_list {
+  margin: 15px 0;
+}
+
+ul.repo_list li {
+  list-style-type: none;
+  border-top: 1px solid #DDD;
+  position: relative;
+  margin-left: 45px;
+  font-size: 14px;
+  padding: 5px 0;
+  overflow: hidden;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+li:last-child {
+  border-bottom: 1px solid #DDD;
+  padding-bottom: 5px;
+}
+
+#add-repo {
+  float: right;
 }
