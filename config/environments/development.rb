@@ -41,5 +41,5 @@ Gitbo::Application.configure do
     sender_address: 'noreply@railscasts.com',
     exception_recipients: 'josh.rowley@flatironschool.com'
 
-    config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :letter_opener
 end
