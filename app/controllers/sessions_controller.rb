@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
     session[:token] = auth.credentials.token
     
     user.token = auth.credentials.token
+    user.save
     user.load_cache_info
 
     redirect_to :back
