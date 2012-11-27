@@ -21,7 +21,7 @@ class Issue < ActiveRecord::Base
   end
 
   def net_votes
-    UserVote.where('issue_id = ?', self.id).sum('vote')
+    UserVote.where('issue_id = ?', self.id).sum('vote').to_i
   end
 
   def popularity
