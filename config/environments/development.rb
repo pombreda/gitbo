@@ -35,4 +35,11 @@ Gitbo::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Exception Notifier
+  config.middleware.use ExceptionNotifier,
+    sender_address: 'noreply@railscasts.com',
+    exception_recipients: 'josh.rowley@flatironschool.com'
+
+    config.action_mailer.delivery_method = :letter_opener
 end

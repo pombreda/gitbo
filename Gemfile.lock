@@ -111,11 +111,15 @@ GEM
     json (1.7.5)
     jwt (0.1.5)
       multi_json (>= 1.0)
+    launchy (2.1.2)
+      addressable (~> 2.3)
     less (2.2.2)
       commonjs (~> 0.2.6)
     less-rails (2.2.6)
       actionpack (>= 3.1)
       less (~> 2.2.0)
+    letter_opener (1.0.0)
+      launchy (>= 2.0.4)
     libv8 (3.3.10.4)
     listen (0.5.3)
     lumberjack (1.0.2)
@@ -279,6 +283,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   less-rails
+  letter_opener
   octokit!
   omniauth-github
   omniauth-openid
