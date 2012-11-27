@@ -6,7 +6,6 @@
   <div class='span12'>
     <p><%= @user.nickname %> hasn't issued any bounties.</p>
   </div>
-<<<<<<< HEAD
 <% else %>
   <div class="bounties" id="bounties_table">
     <table class="table table-hover" id="bounties_table">
@@ -33,13 +32,9 @@
     </table>
   </div>
 <% end %>
-
-
 <div class="row">
   <div class="span8">
     <h3>All repos on Gitbo for <%= @repos.first.owner_name %></h3>
-=======
-  
   <div class="span9">
     <ul class="nav nav-tabs" id="myTab">
       <li><a href="#user-repos" data-toggle="tab">Your repos</a>
@@ -58,31 +53,30 @@
       <div class="tab-pane" id="starred"><%= render 'starred' %></div>
       <div class="tab-pane" id="add-your-repos"><%= render 'add-your-repos' %></div>
     </div>
->>>>>>> tables-edit
   </div>
   <div class="span4">
     <h3 class="pull-right"><a class="btn btn-info btn-small" href="http://www.github.com/<%= @repos.first.owner_name %>" target="blank">View Profile on Github</a></h3>
     </div>
 </div>
     
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Popularity</th>
-        <th>Open Issues</th>
-        <th>Watchers</th>
-        <th>Issues Comment Count</th>
-      </tr>
-    </thead> 
-    <% @repos.each do |repo| %>
+<table class="table table-hover">
+  <thead>
     <tr>
-      <td><%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %></td>
-      <td><%= repo.popularity %></td>
-      <td><%= repo.open_issues %></td>
-      <td><%= repo.watchers %></td>
-      <td><%= repo.issues_comment_count %></td>
+      <th>Name</th>
+      <th>Popularity</th>
+      <th>Open Issues</th>
+      <th>Watchers</th>
+      <th>Issues Comment Count</th>
     </tr>
+  </thead> 
+  <% @repos.each do |repo| %>
+  <tr>
+    <td><%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %></td>
+    <td><%= repo.popularity %></td>
+    <td><%= repo.open_issues %></td>
+    <td><%= repo.watchers %></td>
+    <td><%= repo.issues_comment_count %></td>
+  </tr>
 
-  <% end %> 
+  <% end %>
 </table>

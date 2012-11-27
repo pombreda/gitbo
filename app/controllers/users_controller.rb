@@ -18,6 +18,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @new_repo = Repo.new
+    # @issues = Issue.all_open_issues
+    # 1.times { @new_repo.issues.build}
 
     # TODO: Add a check below for whether the user is authenticated and
     # render :show_authenticated
@@ -25,11 +27,7 @@ class UsersController < ApplicationController
       @user = User.find_by_nickname(params[:owner])
       @repos = Repo.find_all_by_owner_name(@user.nickname)
       @repo = Repo.new
-<<<<<<< HEAD
       render :show_registered
-=======
-      render :show_authenticated
->>>>>>> split out authenticated user show view
     else
       # check on Github if the username in params is actually a Github user
       @user = User.new(:nickname => params[:owner])
