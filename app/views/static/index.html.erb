@@ -49,7 +49,6 @@
             <th>Popularity</th>
           </tr>
         </thead>
-          <% debugger %>
 
             <% @issues.sort_by(&:popularity).reverse[0..10].each do |issue| %>
             <tr>
