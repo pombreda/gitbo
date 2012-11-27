@@ -6,6 +6,7 @@
   <div class='span12'>
     <p><%= @user.nickname %> hasn't issued any bounties.</p>
   </div>
+<<<<<<< HEAD
 <% else %>
   <div class="bounties" id="bounties_table">
     <table class="table table-hover" id="bounties_table">
@@ -37,6 +38,27 @@
 <div class="row">
   <div class="span8">
     <h3>All repos on Gitbo for <%= @repos.first.owner_name %></h3>
+=======
+  
+  <div class="span9">
+    <ul class="nav nav-tabs" id="myTab">
+      <li><a href="#user-repos" data-toggle="tab">Your repos</a>
+      </li>
+      <li class="active"><a href="#user-bounties" data-toggle="tab">Your bounties</a></li>
+      <li><a href="#following" data-toggle="tab">Following</a></li>
+      <li><a href="#starred" data-toggle="tab">Starred</a></li>
+      <li><a href="#add-your-repos" data-toggle="tab">Upload your repos</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane" id="user-repos"><%= render 'repos/repos-table' %></div>
+      <div class="tab-pane active" id="user-bounties"><%= render 'user-bounties' %></div>
+      
+      <div class="tab-pane" id="following"><%= render 'following' %></div>
+      <div class="tab-pane" id="starred"><%= render 'starred' %></div>
+      <div class="tab-pane" id="add-your-repos"><%= render 'add-your-repos' %></div>
+    </div>
+>>>>>>> tables-edit
   </div>
   <div class="span4">
     <h3 class="pull-right"><a class="btn btn-info btn-small" href="http://www.github.com/<%= @repos.first.owner_name %>" target="blank">View Profile on Github</a></h3>

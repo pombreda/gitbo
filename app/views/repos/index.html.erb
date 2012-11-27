@@ -11,36 +11,24 @@
       <strong><%= flash[:notice] %></strong>
     </div>
   <% end %>
-
-<h1>Gitbo</h1>
-  <p class='lead'>Get paid to fix the most asked for Github issues</p>
 </div>
+<div class="page-body">
+  <div class="pagehead">
+    <div class="row">
+      <div class="span6">
+        <h1>Listing repos</h1>
+      </div>
+      <div class="span6">
+        <div class="pull-right">
+          <p><button class="btn btn-success btn-large" data-toggle="modal" href="#new-repo">
+            <i class="icon-upload-alt"></i> Upload your repo</button></p>
+        </div>
+      </div>
+    </div>
+  </div> <!-- end pagehead -->
+  <div class="table-body">
+    <%= render 'repos-table' %>
+  </div> <!-- end table-body -->
+</div> <!-- end page-body -->
 
-<h3>Listing repos</h3>
-<table id="repos_table" class="table table-hover">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Popularity</th>
-      <th>Open Issues</th>
-      <th>Watchers</th>
-      <th>Issues Comment Count</th>
-      <th data-sorter="false"></th>
-    </tr>
-  </thead>
-
-<% @repos.sort_by(&:popularity).reverse.each do |repo| %>
-  <tr>
-    <td><%= link_to repo.owner_name, owner_repos_path(repo.owner_name) %> / <%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %>
-    <td><%= repo.popularity %></td>
-    <td><%= repo.open_issues %></td>
-    <td><%= repo.watchers %></td>
-    <td><%= repo.issues_comment_count %></td>
-    <!-- <td><%#= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td> -->
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%#= link_to 'New Repo', new_repo_path, :class => 'btn btn-primary' %>
+  <%= render :partial => 'modals/repo_uploader', :locals => { :repo => @repo_new } %>

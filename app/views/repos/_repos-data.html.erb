@@ -1,0 +1,10 @@
+<% @repos.sort_by(&:popularity).reverse.each do |repo| %>
+  <tr>
+    <td><%= link_to repo.owner_name, owner_repos_path(repo.owner_name) %> / <%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %></td>
+    <td><%= repo.popularity %></td>
+    <td><%= repo.open_issues %></td>
+    <td><%= repo.watchers %></td>
+    <td><%= repo.issues_comment_count %></td>
+    <!-- <td><%#= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td> -->
+  </tr>
+<% end %>

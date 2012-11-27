@@ -22,14 +22,3 @@ $('div#refresh').click(function(){
     $('div#endorse').removeAttr('style');
     }
 
-// $(document).ready(function() {
-//   $('#issues_table').dataTable( {
-//     "aoColumns": [
-//       null,
-//       { "asSorting": [ "asc" ] },
-//       { "asSorting": [ "desc", "asc", "asc" ] },
-//       { "asSorting": [ "desc" ] },
-//       null
-//     ]
-//   } );
-// } );
