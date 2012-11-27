@@ -85,7 +85,7 @@ class ReposController < ApplicationController
 
       else
         flash[:error] = "Repository already exists."
-        redirect_to :root
+        redirect_to :back
       end
     
 
