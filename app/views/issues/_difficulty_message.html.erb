@@ -1,0 +1,15 @@
+<% if have_users_voted?(@issue) && has_the_owner_voted?(@issue) %>
+  The owner says this is a <strong><%= UserVote.owner_rating(@issue) %></strong>
+  <hr>
+  Users rate this as a <strong><%= UserVote.user_average_difficulty(@issue) %></strong>
+
+<% elsif has_the_owner_voted?(@issue) == false && have_users_voted?(@issue) %>  
+  Users rate this as a <strong><%= UserVote.user_average_difficulty(@issue) %></strong>
+
+<% elsif has_the_owner_voted?(@issue) && have_users_voted?(@issue) == false %>  
+  The owner says this is a <strong><%= UserVote.owner_rating(@issue) %><strong>  
+
+<% elsif have_users_voted?(@issue) == false && has_the_owner_voted?(@issue) == false %>
+  Be the first to vote on the difficulty of this issue.
+<% end %>
+<%= render :partial => 'issues/difficulty_stars', :locals => { :issue => @issue } %>
