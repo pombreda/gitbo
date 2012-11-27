@@ -18,6 +18,7 @@
 }
 
 .vcard h1 {
+  display: block;
   font-size: 26px;
   letter-spacing: -1px;
   color: #495961;
@@ -41,4 +42,132 @@
   vertical-align: top;
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
+}
+
+.vcard .details {
+  border-top: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+  margin: 0 0 8px 0;
+  padding: 18px 0 15px 0;
+  -webkit-font-smoothing: antialiased;
+}
+.vcard dl {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.vcard dl dt {
+  margin: 0;
+  float: left;
+  width: 22px;
+  color: #D0D0D0;
+}
+
+ul.stats {
+  border-bottom: 1px solid #DDD;
+  margin: 0 0 17px 0;
+  padding: 6px 0 15px 0;
+  text-decoration: none;
+}
+
+ul.stats li {
+  display: inline-block;
+  list-style-type: none;
+  min-width: 70px;
+}
+
+ul.stats li strong {
+  display: block;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: bold;
+  color: #222;
+}
+
+ul.stats li span {
+  display: block;
+  margin-top: -2px;
+  font-size: 11px;
+}
+
+ul.stats li a:hover span {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+.users {
+  float: left;
+  width: 560px;
+}
+
+.repos {
+  float: left;
+  width: 560px;
+}
+
+ul.members {
+  list-style: none;
+}
+
+#following {
+  margin: 5px 0;
+}
+
+#following li {
+  border-top: 1px solid #DDD;
+  
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+.members li {
+  position: relative;
+  font-size: 14px;
+  margin-left: 45px;
+  padding: 5px 0;
+  overflow: hidden;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+.members li .gravatar {
+  border: 1px solid #DDD;
+  padding: 1px;
+  background-color: white;
+  float: left;
+  margin-right: 10px;
+}
+
+img[Attributes Style] {
+  height: 20px;
+  width: 20px;
+}
+
+ul.repo_list {
+  margin: 15px 0;
+}
+
+ul.repo_list li {
+  list-style-type: none;
+  border-top: 1px solid #DDD;
+  position: relative;
+  margin-left: 45px;
+  font-size: 14px;
+  padding: 5px 0;
+  overflow: hidden;
+  line-height: 24px;
+  font-weight: bold;
+}
+
+li:last-child {
+  border-bottom: 1px solid #DDD;
+  padding-bottom: 5px;
+}
+
+#add-repo {
+  float: right;
 }

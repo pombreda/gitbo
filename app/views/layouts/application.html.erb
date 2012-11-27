@@ -36,7 +36,11 @@
             </ul>
             <ul class ="nav pull-right">
               <% if current_user %>
-                <li class='user-avatar'>Signed in as <img src='<%= current_user.image %>'></img></li>
+                <li class='user-avatar'> 
+                  <img src='<%= current_user.image %>'></img></li>
+                  <li>
+                  <%= link_to current_user.nickname, owner_repos_path(current_user.nickname) %>
+                  </li>
                 <li><%= link_to "Sign Out", signout_path, :class => 'btn btn-mini' %></li>
               <% else %>
                 <li><%= link_to "/auth/github", :class => 'btn' do %>
