@@ -7,7 +7,7 @@ class UserVote < ActiveRecord::Base
   validates_uniqueness_of :issue_id, :scope => :user_id
 
   def self.user_average_difficulty(issue_id)
-    all_issues = UserVote.find_all_by_issue_id(256)
+    all_issues = UserVote.find_all_by_issue_id(issue_id)
     all_issues = all_issues.select { |issue| issue.difficulty_rating != 0 }
     total = all_issues.inject(0) { |sum, iss| sum + iss.difficulty_rating }
     average = total / all_issues.count.to_f
@@ -24,7 +24,7 @@ class UserVote < ActiveRecord::Base
   end
 
   def self.owner_rating(issue)
-    self.owner_record(issue).difficulty_rating
+    self.owner_record(issue).difficulty_rating if self.owner_record(issue)
   end
 
   def self.owner_difficulty_rating?(issue)
