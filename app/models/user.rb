@@ -51,6 +51,12 @@ class User < ActiveRecord::Base
     cache[:repos]
   end
 
+  def repos_not_on_gitbo
+    cache[:repos].select do |repo_name|
+      true unless Repo.find_by_owner_name_and_name(self.nickname, repo_name)
+    end
+  end
+
   def bounty_total
     self.bounties.inject(0) {|total = 0, bounty| total += bounty.price } 
   end
