@@ -30,7 +30,6 @@ class Repo < ActiveRecord::Base
   end
 
   def update_repo_attributes(octokit_repo)
-    debugger
     self.update_attributes(:open_issues => octokit_repo.open_issues,
                           :watchers => octokit_repo.watchers,
                           :git_updated_at => octokit_repo.updated_at.to_datetime)
