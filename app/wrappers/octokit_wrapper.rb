@@ -10,11 +10,10 @@ class OctokitWrapper
   #returns fully populated repo
   def fetch_repo(repo)
     info = client.repo(repo.octokit_id)
-    repo.open_issues = info.open_issues
-    repo.owner_name = info.owner.login
-    repo.watchers = info.watchers
-    repo.git_updated_at = info.updated_at.to_datetime
-    repo
+    repo.update_attributes( :open_issues => info.open_issues,
+                            :owner_name => info.owner.login,
+                            :watchers => info.watchers,
+                            :git_updated_at => info.updated_at.to_datetime )
   end  
 
   def fetch_issues(repo)
