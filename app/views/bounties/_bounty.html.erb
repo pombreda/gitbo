@@ -1,5 +1,5 @@
 <tr>
-  <td><%= bounty.user.nickname %></td>
+  <td><%= link_to bounty.user.nickname, owner_repos_path(bounty.user.nickname) %></td>
   <td><%= number_to_currency(bounty.price, :precision => 0) %></td>
   <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
   <td><%= time_ago_in_words( bounty.updated_at ) %> ago</td>
