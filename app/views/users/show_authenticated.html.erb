@@ -27,16 +27,20 @@
     </div> <!-- end vcard-->
     <ul class="stats">
       <li>
+        <strong><%= number_to_currency(@user.bounty_total, :precision => 0) %></strong>
+        <span>bounty posted</span>
+      </li>
+      <li>
+        <strong><%= number_to_currency(@user.total_bounties_collected, :precision => 0) %></strong>
+        <span>bounties collected</span>
+      </li>
+      <li>
         <strong><%= @user.cached_following.length %></strong>
         <span>following</span>
       </li>
       <li>
         <strong><%= @user.cached_starred.length %></strong>
         <span>starred</span>
-      </li>
-      <li>
-        <strong>$<%= @user.bounty_total %></strong>
-        <span>bounty posted</span>
       </li>
     </ul> <!-- end stats--> 
   </div>

@@ -54,5 +54,14 @@ class User < ActiveRecord::Base
   def bounty_total
     self.bounties.inject(0) {|total = 0, bounty| total += bounty.price } 
   end
+
+  def bounty_collected
+    Bounty.where('collected_by_user_id = ?', self.id)
+  end
+
+  def total_bounties_collected
+    Bounty.where('collected_by_user_id = ?', self.id).sum('price').to_i
+  end
   
+
 end
