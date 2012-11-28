@@ -6,35 +6,26 @@
   <div class='span12'>
     <p><%= @user.nickname %> hasn't issued any bounties.</p>
   </div>
-<% else %>
-  <div class="bounties" id="bounties_table">
-    <table class="table table-hover" id="bounties_table">
-      <thead>
-        <tr>
-          <th>Repo</th>
-          <th>Issue number</th>
-          <th>Bounty Price</th>
-          <th>Bounty Issued</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @user.bounties.sort_by(&:price).reverse.each do |bounty| %>
-          <tr>
-            <td><%= link_to bounty.issue.repo.owner_name, owner_repos_path(bounty.issue.repo.owner_name) %>/<%= link_to bounty.issue.repo.name, owner_repo_path(bounty.issue.repo.owner_name, bounty.issue.repo.name) %></td>
-            <td><%= link_to bounty.issue.git_number, owner_repo_gitnumber_path(bounty.issue.repo.owner_name, bounty.issue.repo.name, bounty.issue.git_number) %></td>
-            <td><%= number_to_currency(bounty.price, :precision => 0) %></td>
-            <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
-            <td><%= link_to "Edit", edit_issue_bounty_path( bounty.issue.repo.owner_name, bounty.issue.repo.name, bounty.issue.git_number, bounty.id ) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-<% end %> 
-<div class="row">
-  <div class="span8">
-    <h3>All repos on Gitbo for <%= @repos.first.owner_name %></h3>
+
+  <div class="span9">
+    <ul class="nav nav-tabs" id="myTab">
+      <li><a href="#user-repos" data-toggle="tab">Your repos</a>
+      </li>
+      <li class="active"><a href="#user-bounties" data-toggle="tab">Your bounties</a></li>
+      <li><a href="#following" data-toggle="tab">Following</a></li>
+      <li><a href="#starred" data-toggle="tab">Starred</a></li>
+      <li><a href="#add-your-repos" data-toggle="tab">Upload your repos</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane" id="user-repos"><%= render 'repos/repos-table' %></div>
+      <div class="tab-pane active" id="user-bounties"><%= render 'user-bounties' %></div>
+      
+      <div class="tab-pane" id="following"><%= render 'following' %></div>
+      <div class="tab-pane" id="starred"><%= render 'starred' %></div>
+      <div class="tab-pane" id="add-your-repos"><%= render 'add-your-repos' %></div>
+    </div>
+
   </div>
 <table class="table table-hover">
   <thead>
