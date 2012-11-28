@@ -14,7 +14,7 @@ class OctokitWrapper
                             :owner_name => info.owner.login,
                             :watchers => info.watchers,
                             :git_updated_at => info.updated_at.to_datetime )
-    repo
+    repo.save
   end  
 
   def fetch_issues(repo)

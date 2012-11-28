@@ -30,6 +30,7 @@ class Repo < ActiveRecord::Base
   end
 
   def update_repo_attributes(octokit_repo)
+    debugger
     self.update_attributes(:open_issues => octokit_repo.open_issues,
                           :watchers => octokit_repo.watchers,
                           :git_updated_at => octokit_repo.updated_at.to_datetime)
@@ -119,58 +120,6 @@ class Repo < ActiveRecord::Base
     #     stars =>
 
     # watcher/issues => 66
-  end
-  
-  def issues_comment_count
-    self.issues.inject(0){|sum, issue| 
-      sum + issue.comment_count
-    }
-  end
-
-  def bounty_total
-    self.issues.inject(0) { |total, issue| total += issue.bounty_total }
-  end
-
-  def updated?(github_connection)
-    open_issues_updated?(github_connection) || watchers_updated?(github_connection) || git_updated_at_updated?(github_connection)
-  end
-
-  def update_repo_attributes(github_connection)
-    self.update_attributes(:open_issues => github_connection.open_issues,
-                          :watchers => github_connection.watchers,
-                          :git_updated_at => github_connection.git_updated_at)
-  end
-
-  def db_issue_numbers
-    self.issues.collect { |issue| issue.git_number }
-  end
-
-  def missing_git_issues(github_connection)
-    github_connection.issues.collect do |issue|
-      issue.number
-    end
-  end
-
-  def db_missing_issues(git_issue_numbers)
-    git_issue_numbers.select do |git_num|
-      git_num unless self.db_issue_numbers.include?(git_num)
-    end
-  end
-
-  def create_missing_issues(missing_issues)
-    missing_issues.each do |issue_num|
-        Issue.create_from_github(self.owner_name, self.name, issue_num)
-    end
-  end
-
-  def refresh_and_create_issues(github_connection) 
-    git_issue_numbers = self.missing_git_issues(github_connection)
-    missing_issues = self.db_missing_issues(git_issue_numbers)
-    self.create_missing_issues(missing_issues)
-  end
-
-  def self.is_registered?(repo)
-    Repo.find_by_owner_name_and_name(repo[:owner_name], repo[:name])
   end
 
   def exists_on_github?(token)
