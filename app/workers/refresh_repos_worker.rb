@@ -3,28 +3,50 @@ class RefreshReposWorker
 
   sidekiq_options retry: false
 
-  def perform(repo_id)
-    repo = Repo.find(repo_id)
-    # github_connection = GithubConnection.new(repo.owner_name, repo.name)
-    # repo.update_repo_attributes(github_connection) 
-    # repo.refresh_and_create_issues(github_connection)
+  def perform(repo_id, token)
+    repo = Repo.find_by_id(repo_id)
+
+    octokit_client = OctokitWrapper.new(token)
+    octokit_repo = octokit_client.client.repo("#{repo.owner_name}/#{repo.name}")
+
+    if octokit_client.client.repo("#{repo.owner_name}/#{repo.name}", :since => octokit_client.client.last_modified)
+      if repo.updated?(octokit_repo)
+        repo.update_repo_attributes(octokit_repo)
+        repo.refresh_and_create_issues(octokit_repo)
+      end
+      repo
+    end
   end
 
 end
 
-# repos = Repo.all
 
-# repos.each do |repo|
-#   gh = GithubConnection.new(repo.owner_name, repo.name)
-  
-#   client.repo(nil, :since => repos_last_modified)  
-# #go through each repo. 
-# #half request, has this been updated?
 
-# client = Octokit::Client.new(:oauth_token => token)
 
-#   repo.update_repo_attributes(github_connection) 
-#   repo.refresh_and_create_issues(github_connection)
-# end
 
-# client.repos(nil, :since => repos_last_modified)
+  # def perform(repo_id, token)  
+  #   octokit_client = OctokitWrapper.new(token)
+  #   repo = Repo.find_by_id(repo_id)
+  #   repo = octokit_client.fetch_repo(repo)
+  #   repo = octokit_client.fetch_issues(repo)
+  #   repo.save
+
+  #   repo.issues.each do |issue|
+  #     issue = octokit_client.fetch_comments(issue)
+  #     issue.save
+  #   end
+  # end
+
+
+  # def perform(issue_id, token)
+    
+  #   issue = Issue.find(issue_id)
+  #   repo = issue.repo
+
+  #   octokit_client = OctokitWrapper.new(token)
+  #   octokit_issue = octokit_client.client.issue("#{issue.repo.owner_name}/#{issue.repo.name}", issue.git_number)
+  #   if  octokit_client.client.issue("#{issue.repo.owner_name}/#{issue.repo.name}", issue.git_number, :since => octokit_client.client.last_modified)
+  #     issue.update_issue_attributes(octokit_issue)
+  #   end
+  #   issue.save
+  # end

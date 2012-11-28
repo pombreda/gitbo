@@ -70,14 +70,14 @@ class Repo < ActiveRecord::Base
     self.issues.inject(0) { |total, issue| total += issue.bounty_total }
   end
 
-  def updated?(github_connection)
-    open_issues_updated?(github_connection) || watchers_updated?(github_connection) || git_updated_at_updated?(github_connection)
+  def updated?(octokit_repo)
+    open_issues_updated?(octokit_repo) || watchers_updated?(octokit_repo) || git_updated_at_updated?(octokit_repo)
   end
 
-  def update_repo_attributes(github_connection)
-    self.update_attributes(:open_issues => github_connection.open_issues,
-                          :watchers => github_connection.watchers,
-                          :git_updated_at => github_connection.git_updated_at)
+  def update_repo_attributes(octokit_repo)
+    self.update_attributes(:open_issues => octokit_repo.open_issues,
+                          :watchers => octokit_repo.watchers,
+                          :git_updated_at => octokit_repo.git_updated_at)
   end
 
   def db_issue_numbers
@@ -102,8 +102,8 @@ class Repo < ActiveRecord::Base
     end
   end
 
-  def refresh_and_create_issues(github_connection) 
-    git_issue_numbers = self.missing_git_issues(github_connection)
+  def refresh_and_create_issues(octokit_repo) 
+    git_issue_numbers = self.missing_git_issues(octokit_repo)
     missing_issues = self.db_missing_issues(git_issue_numbers)
     self.create_missing_issues(missing_issues)
   end
@@ -114,18 +114,18 @@ class Repo < ActiveRecord::Base
 
 private
 
-  def open_issues_updated?(github_connection)
-    return true unless github_connection.open_issues == self.open_issues
+  def open_issues_updated?(octokit_repo)
+    return true unless octokit_repo.open_issues == self.open_issues
       
   end
 
-  def watchers_updated?(github_connection)
-    return true unless github_connection.watchers == self.watchers
+  def watchers_updated?(octokit_repo)
+    return true unless octokit_repo.watchers == self.watchers
    
   end
 
-  def git_updated_at_updated?(github_connection)
-   return true unless github_connection.git_updated_at == self.git_updated_at
+  def git_updated_at_updated?(octokit_repo)
+   return true unless octokit_repo.git_updated_at == self.git_updated_at
     
   end
 

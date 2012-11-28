@@ -4,9 +4,7 @@ class RefreshIssuesWorker
   sidekiq_options retry: false
 
   def perform(issue_id, token)
-
-   
-
+    
     issue = Issue.find(issue_id)
     repo = issue.repo
 
