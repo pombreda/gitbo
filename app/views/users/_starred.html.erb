@@ -2,12 +2,12 @@
   <table>
     <thead>
       <tr>
-        <h3>Your Starred repos</h3>
+        <h3>Starred repos</h3>
       </tr>
     </thead> 
     <tbody>
       <ul class="repo_list">
-        <% @user.cached_starred.each do |repo| %>
+        <% @user.cached_starred.sort {|a,b| a[:owner_name].downcase <=> b[:owner_name].downcase}.each do |repo| %>
           <% if Repo.is_registered?(repo) %>
              <li><a><%= link_to repo[:owner_name], owner_repos_path(repo[:owner_name]) %>/<%= link_to repo[:name], owner_repo_path(repo[:owner_name], repo[:name]) %></a></li>
           <% else %>

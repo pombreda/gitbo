@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user, :octokit_client
+  helper_method :current_user, :octokit_client, :sort_alphabetically
 
 
   def current_user

@@ -2,12 +2,12 @@
   <table style="float:left;">
     <thead>
       <tr>
-        <h3>You're Following</hr>
+      <h3>Following</h3>
       </tr>
     </thead>
     <tbody>
       <ul class="members" id="following">
-        <% @user.cached_following.each do |user| %>
+        <% @user.cached_following.sort {|a,b| a.downcase <=> b.downcase}.each do |user| %>
           <% if User.is_the_owner_registered?(user) %>
           <li>
             <a><!-- <img class="gravatar"><%#= @user.image %> -->

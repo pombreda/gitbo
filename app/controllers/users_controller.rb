@@ -23,7 +23,12 @@ class UsersController < ApplicationController
 
     # TODO: Add a check below for whether the user is authenticated and
     # render :show_authenticated
-    if User.is_the_owner_registered?(params[:owner])
+    if current_user && current_user.nickname == params[:owner]
+      @user = User.find_by_nickname(params[:owner])
+      @repos = Repo.find_all_by_owner_name(@user.nickname)
+      @repo = Repo.new
+      render :show_authenticated
+    elsif User.is_the_owner_registered?(params[:owner])
       @user = User.find_by_nickname(params[:owner])
       @repos = Repo.find_all_by_owner_name(@user.nickname)
       @repo = Repo.new
