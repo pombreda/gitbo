@@ -27,7 +27,7 @@ class ReposController < ApplicationController
     #check to see if there are any updates to the repo
     #if there are updates, make a call to update the repo, its issues, and any
     #comments associated.
-
+    
     RefreshReposWorker.perform_async(@repo.id, current_user.token)
       
       #maybe autorefresh non missing issues?
