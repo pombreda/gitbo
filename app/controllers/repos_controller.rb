@@ -76,8 +76,8 @@ class ReposController < ApplicationController
         repo_name = params[:repo][:name]
         repo = Repo.new(:owner_name => owner, :name => repo_name,
                        :watchers => 0, :open_issues => 0 )
-        repo.save
         if repo.exists_on_github?(current_user.token)
+          repo.save
           RepoWorker.perform_async(repo.id, current_user.token)
           flash[:notice] = 'Your repository and corresponding issues are being processed, please check back shortly'
           redirect_to :root
