@@ -4,16 +4,17 @@ class RefreshIssuesWorker
   sidekiq_options retry: false
 
   def perform(issue_id, token)
-    
-    issue = Issue.find(issue_id)
+
+    issue = Issue.find_by_id(issue_id)
     repo = issue.repo
 
-    octokit_client = OctokitWrapper.new(token)
-    octokit_issue = octokit_client.client.issue("#{issue.repo.owner_name}/#{issue.repo.name}", issue.git_number)
-    if  octokit_client.client.issue("#{issue.repo.owner_name}/#{issue.repo.name}", issue.git_number, :since => octokit_client.client.last_modified)
-      issue.update_issue_attributes(octokit_issue)
+    octokit_client = OctokitWrapper.new(token).client
+    octokit_issue = octokit_client.issue("#{issue.repo.owner_name}/#{issue.repo.name}", issue.git_number)
+
+    if issue.updated?(octokit_issue)
+      issue.update_issue_attributes(octokit_repo)
     end
-    issue.save
+    issue
   end
 
 end

@@ -29,13 +29,6 @@ class ReposController < ApplicationController
     #comments associated.
 
     RefreshReposWorker.perform_async(@repo.id, current_user.token)
-
-
-    # github_connection = GithubConnection.new(params[:owner], @repo.name)
-    # if @repo.updated?(github_connection)
-    #   RefreshReposWorker.perform_async(@repo.id)
-    #   flash[:notice] = "Updating repo from Github, please refresh"
-    # end
       
       #maybe autorefresh non missing issues?
 
