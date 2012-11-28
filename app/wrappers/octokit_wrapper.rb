@@ -14,6 +14,7 @@ class OctokitWrapper
                             :owner_name => info.owner.login,
                             :watchers => info.watchers,
                             :git_updated_at => info.updated_at.to_datetime )
+    repo
   end  
 
   def fetch_issues(repo)
@@ -37,13 +38,14 @@ class OctokitWrapper
     comments = client.issue_comments(issue.repo.octokit_id, issue.git_number)
     comments.each do |comment|
       unless Comment.find_by_git_number(comment.git_number)
-      issue.comments.build(
-        :body => comment.body,
-        :git_update_at => comment.updated_at.to_datetime,
-        :git_number => comment.id,
-        :owner_name => comment.user.login,
-        :owner_image => comment.user.avatar_url
-      )
+        issue.comments.build(
+          :body => comment.body,
+          :git_update_at => comment.updated_at.to_datetime,
+          :git_number => comment.id,
+          :owner_name => comment.user.login,
+          :owner_image => comment.user.avatar_url
+        )
+      end
     end
     issue
   end

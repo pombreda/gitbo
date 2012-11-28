@@ -6,7 +6,9 @@ class RepoWorker
   def perform(repo_id, token)  
     octokit_client = OctokitWrapper.new(token)
     repo = Repo.find_by_id(repo_id)
+    debugger
     repo = octokit_client.fetch_repo(repo)
+    debugger
     repo = octokit_client.fetch_issues(repo)
     repo.save
 
