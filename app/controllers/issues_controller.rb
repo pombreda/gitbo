@@ -71,7 +71,9 @@ class IssuesController < ApplicationController
 
     @difficulty = @issue.retrieve_difficulty(current_user) if current_user
     
-    RefreshIssuesWorker.perform_async(@issue.id, current_user.token)
+    if current_user
+      RefreshIssuesWorker.perform_async(@issue.id, current_user.token)
+    end
     
     # if @issue.updated?(@issue.repo.octokit_id, @issue.git_number, octokit_client.client)
     #   RefreshIssuesWorker.perform_async(@issue.id, current_user.token)
