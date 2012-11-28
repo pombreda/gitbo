@@ -48,7 +48,9 @@ class User < ActiveRecord::Base
   end
 
   def cached_repos
-    cache[:repos]
+    cache[:repos].select do |repo_name|
+      true unless Repo.find_by_owner_name_and_name(self.nickname, repo_name)
+    end
   end
 
   def bounty_total
