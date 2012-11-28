@@ -29,6 +29,7 @@ class ReposController < ApplicationController
     #comments associated.
     
     RefreshReposWorker.perform_async(@repo.id, current_user.token)
+
       
       #maybe autorefresh non missing issues?
 

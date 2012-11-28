@@ -6,6 +6,7 @@ class RefreshIssuesWorker
   def perform(issue_id, token)
 
     issue = Issue.find_by_id(issue_id)
+    
     repo = issue.repo
 
     octokit_client = OctokitWrapper.new(token).client
