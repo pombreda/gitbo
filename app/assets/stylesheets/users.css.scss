@@ -163,7 +163,12 @@ ul.repo_list li {
   font-weight: bold;
 }
 
-li:last-child {
+ul.members li:last-child {
+  border-bottom: 1px solid #DDD;
+  padding-bottom: 5px;
+}
+
+ul.repo_list li:last-child {
   border-bottom: 1px solid #DDD;
   padding-bottom: 5px;
 }
