@@ -6,40 +6,7 @@
   <div class='span12'>
     <p><%= @user.nickname %> hasn't issued any bounties.</p>
   </div>
-<<<<<<< HEAD
-<% else %>
-  <div class="bounties" id="bounties_table">
-    <table class="table table-hover" id="bounties_table">
-      <thead>
-        <tr>
-          <th>Repo</th>
-          <th>Issue number</th>
-          <th>Bounty Price</th>
-          <th>Bounty Issued</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @user.bounties.sort_by(&:price).reverse.each do |bounty| %>
-          <tr>
-            <td><%= link_to bounty.issue.repo.owner_name, owner_repos_path(bounty.issue.repo.owner_name) %>/<%= link_to bounty.issue.repo.name, owner_repo_path(bounty.issue.repo.owner_name, bounty.issue.repo.name) %></td>
-            <td><%= link_to bounty.issue.git_number, owner_repo_gitnumber_path(bounty.issue.repo.owner_name, bounty.issue.repo.name, bounty.issue.git_number) %></td>
-            <td><%= number_to_currency(bounty.price, :precision => 0) %></td>
-            <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
-            <td><%= link_to "Edit", edit_issue_bounty_path( bounty.issue.repo.owner_name, bounty.issue.repo.name, bounty.issue.git_number, bounty.id ) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-<% end %>
 
-
-<div class="row">
-  <div class="span8">
-    <h3>All repos on Gitbo for <%= @repos.first.owner_name %></h3>
-=======
-  
   <div class="span9">
     <ul class="nav nav-tabs" id="myTab">
       <li><a href="#user-repos" data-toggle="tab">Your repos</a>
@@ -58,7 +25,7 @@
       <div class="tab-pane" id="starred"><%= render 'starred' %></div>
       <div class="tab-pane" id="add-your-repos"><%= render 'add-your-repos' %></div>
     </div>
->>>>>>> tables-edit
+
   </div>
   <div class="span4">
     <h3 class="pull-right"><a class="btn btn-info btn-small" href="http://www.github.com/<%= @repos.first.owner_name %>" target="blank">View Profile on Github</a></h3>

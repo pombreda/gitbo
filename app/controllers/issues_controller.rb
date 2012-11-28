@@ -5,11 +5,14 @@ class IssuesController < ApplicationController
   helper_method :repo_owner
 
   def vote
-    issue = Issue.find(params[:id])
-    issue.add_vote_by(current_user, params[:direction])
-    issue.save
+    @issue = Issue.find(params[:id])
+    @issue.add_vote_by(current_user, params[:direction])
+    @issue.save
     
-    redirect_to :back
+    respond_to do |f|
+      f.html {redirect_to :back}
+      f.js {}
+    end
   end
 
   def difficulty
@@ -55,6 +58,7 @@ class IssuesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @issues }
+      format.js
     end
   end
 
