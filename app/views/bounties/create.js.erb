@@ -1,4 +1,15 @@
   $('#new_bounty_form').remove();
   $('#new_link').show();
-  $('#bounties_table tbody').prepend("<%= j render(@bounty) %>");
+  // $('#create_link').remove();
+  
+  $('#bounty-confirmation').modal('hide');
+  
+  //update the bounty table and/or replace message if first bounty
+  if ($("#bounties_table")[0]){
+    $('#bounties_table tbody').prepend("<%= j render(@bounty) %>");
+  } else {
+    $("#no_bounty").replaceWith("<%= j render 'bounties/bounties_table', :issue => @bounty.issue %>")
+  }
+  
+
 

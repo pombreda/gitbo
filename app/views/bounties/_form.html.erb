@@ -7,11 +7,12 @@
 <!-- <h3>For issue #<%#= @issue.git_number %> in <%#= "#{@issue.repo.owner_name}/#{@issue.repo.name}" %></h3> -->
 
 <div class="field">
-  <label for="bounty_price">Enter your bounty</label>
-  <input id="bounty_price" name="price" type="number" />
+  <label for="bounty_price_page">Enter your bounty</label>
+  <input id="bounty_price_page" name="price" type="number" />
 </div>
-<div class="actions">
-  <input name="commit" type="submit" value="Create Bounty" method="post" />
+<div class="actions" id="pledge">
+  <!-- <input name="commit" type="submit" value="Create Bounty" method="post" /> -->
+  <button id="pledge" class="btn btn-success btn-small" href="#bounty-confirmation" data-toggle="modal" type="button">Pledge</button>
 </div>
 
 <% end %>

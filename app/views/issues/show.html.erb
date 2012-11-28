@@ -36,7 +36,7 @@
     <% if current_user %> 
       <%= link_to_new_bounty_for @issue %>
     <% else %>
-      <button id="bounty" class="btn btn-success btn-small" href="#login-prompt" data-toggle="modal" type="button">Issue Bounty</button>
+      <button id="bounty-unauth" class="btn btn-success btn-small" href="#login-prompt" data-toggle="modal" type="button">Issue Bounty</button>
     <% end %>
       <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">
           View on <i class='icon-github'></i>
@@ -51,14 +51,15 @@
   </div>
 </div>
 
-<% if @issue.bounties.count != 0 %>
-  <div class="bounties" id="bounties_table">
-    <%= render 'bounties/bounties_table', :issue => @issue, remote: true %>
-  <% else %>
-  <div class='span12'>
+<div id="bounty_div">
+<% if @issue.bounties.count == 0 %>
+    <div class='span12' id="no_bounty">
     <p>There are currently no bounties for this issue. <%= link_to "Be the first to issue a bounty", new_issue_bounty_path(@issue.repo.owner_name, @issue.repo.name, @issue.git_number)%></p>
   </div>
+  <% else %>
+    <%= render 'bounties/bounties_table', :issue => @issue, remote: true %>
 <% end %>
+</div>
 
   
 <div class='clearfix'></div>
@@ -202,3 +203,4 @@
  </script>
 
 <%= render :partial => 'modals/login' %>
+<%= render :partial => 'modals/bounty_confirmation', :locals => { :issue => @issue } %>

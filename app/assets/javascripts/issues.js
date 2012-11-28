@@ -22,3 +22,32 @@ $('div#refresh').click(function(){
     $('div#endorse').removeAttr('style');
     }
 
+//grab the numeric values of two fields
+//compare and make sure they are the same
+//submit form or return error
+
+  // var first=$('#bounty_price').val(); 
+  // var second=$('#bounty').val();
+
+  $('button#pledge').live(
+    "click", (function() {
+    pageValue = $('#bounty_price_page').val();
+    modalValue(pageValue);
+  }));
+  
+  function modalValue(pageValue) {
+    $('#create-bounty').live(
+    "click", (function(event) {
+    modal = $('#bounty_price').val();
+    
+    if(parseInt(modal)!=parseInt(pageValue)){
+      event.preventDefault();
+      $('span#error').replaceWith('<span class="label label-important">Please Enter The Same Value</span>');
+    }
+    
+  }));
+}
+
+//need to prevent default for button if wrong
+//need to post a notice if wrong
+//goes through if match
