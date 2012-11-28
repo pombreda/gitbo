@@ -6,16 +6,16 @@ class RefreshReposWorker
   def perform(repo_id, token)
     repo = Repo.find_by_id(repo_id)
 
-    octokit_client = OctokitWrapper.new(token)
-    octokit_repo = octokit_client.client.repo("#{repo.owner_name}/#{repo.name}")
+    octokit_client = OctokitWrapper.new(token).client
+    octokit_repo = octokit_client.repo("#{repo.owner_name}/#{repo.name}" )
+    octokit_issues = octokit_client.list_issues("#{repo.owner_name}/#{repo.name}" )
+ 
+    if repo.updated?(octokit_repo)
 
-    if octokit_client.client.repo("#{repo.owner_name}/#{repo.name}", :since => octokit_client.client.last_modified)
-      if repo.updated?(octokit_repo)
-        repo.update_repo_attributes(octokit_repo)
-        repo.refresh_and_create_issues(octokit_repo)
-      end
-      repo
+      repo.update_repo_attributes(octokit_repo)
+      repo.refresh_and_create_issues(octokit_issues, octokit_client)
     end
+    repo.save
   end
 
 end
@@ -23,6 +23,7 @@ end
 
 
 
+  # from RepoWorker
 
   # def perform(repo_id, token)  
   #   octokit_client = OctokitWrapper.new(token)
@@ -37,6 +38,8 @@ end
   #   end
   # end
 
+
+  # From RefreshIssuesWorker
 
   # def perform(issue_id, token)
     
