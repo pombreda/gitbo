@@ -1,11 +1,11 @@
 GIT
-  remote: git://github.com/ajonas04/octokit.git
-  revision: e978e441bdd810ae29754aa44250baec25bfcab0
+  remote: git://github.com/pengwynn/octokit.git
+  revision: 7dd393fc717bfe765e0c609e548478a2cbc28516
   specs:
-    octokit (1.18.0)
+    octokit (1.19.0)
       addressable (~> 2.2)
       faraday (~> 0.8)
-      faraday_middleware (~> 0.8)
+      faraday_middleware (~> 0.9)
       hashie (~> 1.2)
       multi_json (~> 1.3)
 

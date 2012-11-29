@@ -1,0 +1,99 @@
+require 'multi_json'
+
+module Octokit
+  module Request
+
+    def delete(path, options={})
+      request(:delete, path, options).body
+    end
+
+    def get(path, options={})
+      response = request(:get, path, options)
+      body = response.body
+
+      if auto_traversal && body.is_a?(Array)
+        while next_url = links(response)["next"]
+          response = request(:get, next_url, options)
+          body += response.body
+        end
+      end
+
+      body
+    end
+
+    def patch(path, options={})
+      request(:patch, path, options).body
+    end
+
+    def post(path, options={})
+      request(:post, path, options).body
+    end
+
+    def put(path, options={})
+      request(:put, path, options).body
+    end
+
+    private
+
+    def request(method, path, options={})
+      path.sub(%r{^/}, '') #leading slash in path fails in github:enterprise
+
+      token = options.delete(:access_token) ||
+              options.delete(:oauth_token)  ||
+              oauth_token
+
+      conn_options = {
+        :authenticate => token.nil?
+      }
+
+      response = connection(conn_options).send(method) do |request|
+
+        request.headers['Accept'] =  options.delete(:accept) || 'application/vnd.github.beta+json'
+
+        if token
+          request.headers[:authorization] = "token #{token}"
+        end
+
+        case method
+        when :get
+          if auto_traversal && per_page.nil?
+            self.per_page = 100
+          end
+          options.merge!(:per_page => per_page) if per_page
+          request.url(path, options)
+        when :delete, :head
+          request.url(path, options)
+        when :patch, :post, :put
+          request.path = path
+          request.body = MultiJson.dump(options) unless options.empty?
+        end
+
+        if Octokit.request_host
+          request.headers['Host'] = Octokit.request_host
+        end
+
+      self.last_modified = response.headers['Last-Modified']
+      self.etag = response.headers['ETag'].gsub('"', '') unless response.headers['ETag'].nil?
+
+      if raw
+        response
+      elsif auto_traversal && ( next_url = links(response)["next"] )
+        response.body + request(method, next_url, options, version, authenticate, raw, force_urlencoded)
+      else
+        response.body
+      end
+
+      response
+    end
+
+    def links(response)
+      links = ( response.headers["Link"] || "" ).split(', ').map do |link|
+        url, type = link.match(/<(.*?)>; rel="(\w+)"/).captures
+        [ type, url ]
+      end
+
+      Hash[ *links.flatten ]
+    end
+  end 
+end
+end
