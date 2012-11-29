@@ -6,7 +6,7 @@ class OctokitWrapper
     if token
       @client = Octokit::Client.new(:oauth_token => token)
     else
-      @client = Octokit::Client.new(:client_id => ENV['GITHUB_CLIENT_ID'], :client_secret => ENV['GITHUB_CLIENT_SECRET'])
+      @client = Octokit::Client.new(:client_id => GITHUB_CLIENT_ID, :client_secret => GITHUB_CLIENT_SECRET)
     end
   end
 
