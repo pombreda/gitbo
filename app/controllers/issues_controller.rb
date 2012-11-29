@@ -61,7 +61,7 @@ class IssuesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @issues }
-      format.js
+      format.js {}
     end
   end
 
