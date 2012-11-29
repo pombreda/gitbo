@@ -17,18 +17,18 @@ module IssuesHelper
   end
 
   def have_users_rated?(issue)
-    return true unless (UserVote.user_average_difficulty(issue.id).nan?)
+    return true unless (issue.avg_difficulty == 0)
   end
 
-  def owner_voted(issue)
+  def both_owner_and_user_rated(issue)
     have_users_rated?(issue) && has_the_owner_rated?(issue)
   end
 
-  def users_voted_but_no_owner(issue)
+  def users_rated_but_no_owner(issue)
     have_users_rated?(issue) && !has_the_owner_rated?(issue)
   end
 
-  def owner_voted_but_no_users(issue)
+  def owner_rated_but_no_users(issue)
     !have_users_rated?(issue) && has_the_owner_rated?(issue)
   end
 

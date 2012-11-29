@@ -11,7 +11,7 @@ class UserVote < ActiveRecord::Base
     all_issues = all_issues.select { |issue| issue.difficulty_rating != 0 }
     total = all_issues.inject(0) { |sum, iss| sum + iss.difficulty_rating }
     average = total / all_issues.count.to_f
-    average.round(1)
+    Issue.find(issue_id).avg_difficulty = average.round(1)
   end
 
   def self.repo_owner_id(issue)

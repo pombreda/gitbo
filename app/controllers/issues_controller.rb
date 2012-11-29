@@ -18,7 +18,8 @@ class IssuesController < ApplicationController
   def difficulty
     issue = Issue.find(params[:id])
     issue.add_difficulty_by(current_user, params[:rating])
-    
+    issue.save
+
     respond_to do |f|
       f.html {redirect_to :back}
       f.js {}

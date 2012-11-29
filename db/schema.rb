@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128210943) do
+ActiveRecord::Schema.define(:version => 20121129152735) do
 
   create_table "bounties", :force => true do |t|
     t.integer  "user_id"
@@ -37,17 +37,17 @@ ActiveRecord::Schema.define(:version => 20121128210943) do
     t.string   "title"
     t.integer  "git_number"
     t.text     "body",              :limit => 255
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
     t.integer  "repo_id"
     t.integer  "comment_count"
-    t.integer  "upvote"
-    t.integer  "downvote"
     t.datetime "git_updated_at"
     t.string   "state"
     t.integer  "owner_endorsement",                :default => 0
     t.string   "owner_name"
     t.string   "owner_image"
+    t.integer  "vote_count",                       :default => 0
+    t.float    "avg_difficulty",                   :default => 0.0
   end
 
   create_table "repos", :force => true do |t|
