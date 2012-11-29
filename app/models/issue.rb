@@ -60,7 +60,7 @@ class Issue < ActiveRecord::Base
         uv.vote = -1
     end
     uv.save
-    self.vote_tally
+    self.vote_count = self.vote_tally
   end
 
   def add_difficulty_by(user, rank)

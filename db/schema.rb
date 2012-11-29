@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(:version => 20121129152735) do
     t.string   "title"
     t.integer  "git_number"
     t.text     "body",              :limit => 255
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
     t.integer  "repo_id"
     t.integer  "comment_count"
     t.datetime "git_updated_at"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20121129152735) do
     t.string   "owner_name"
     t.string   "owner_image"
     t.integer  "vote_count",                       :default => 0
-    t.integer  "avg_difficulty",                   :default => 0
+    t.float    "avg_difficulty",                   :default => 0.0
   end
 
   create_table "repos", :force => true do |t|

@@ -7,7 +7,7 @@
         <th>Repo Name/ #Issue</th>
         <th>Comment Count</th>
         <!-- <th>Popularity</th> -->
-        <th>Votes</th>
+        <th>Score</th>
         <!-- <th>Downvote</th> -->
         <th>OwnerEnd</th>
         <th>Bounty</th>
@@ -22,7 +22,7 @@
         <td><%= link_to issue.repo.name, owner_repo_path(issue.repo.owner_name, issue.repo.name) %> / <%= issue.git_number %></td>
         <td><%= issue.comment_count %></td>
         <!-- <td><%#= issue.popularity %></td> -->
-        <td class="votes"><%= issue.net_votes %></td>
+        <td class="votes"><%= issue.vote_count %></td>
         <!-- <td><%#= issue.downvote %></td> -->
         <% if issue.owner_endorsement == 1 %>
             <td><i class="icon-thumbs-up" ></i></td>

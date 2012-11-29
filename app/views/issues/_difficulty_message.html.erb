@@ -6,13 +6,13 @@
 
 
   <% when users_rated_but_no_owner(@issue) %>
-   2 Users rate this as a <strong><%= @issue.avg_difficulty %></strong>
+   Users rate this as a <strong><%= @issue.avg_difficulty %></strong>
   
   <% when owner_rated_but_no_users(@issue) %>
-   3 The owner says this is a <strong><%= UserVote.owner_rating(@issue) %><strong>
+   The owner says this is a <strong><%= UserVote.owner_rating(@issue) %><strong>
 
   <% when neither(@issue) %>
-   4 Be the first to vote on the difficulty of this issue.
+   Be the first to vote on the difficulty of this issue.
   <% end %>
 
 <%= render :partial => 'issues/difficulty_stars', :locals => { :issue => @issue } %>

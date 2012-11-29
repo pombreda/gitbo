@@ -17,7 +17,7 @@ module IssuesHelper
   end
 
   def have_users_rated?(issue)
-    return true unless (issue.avg_difficulty != 0)
+    return true unless (issue.avg_difficulty == 0)
   end
 
   def both_owner_and_user_rated(issue)
