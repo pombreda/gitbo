@@ -14,7 +14,8 @@ class RefreshIssuesWorker
     octokit_issue = octokit_client.issue("#{issue.repo.owner_name}/#{issue.repo.name}", issue.git_number)
 
     if issue.updated?(octokit_issue)
-      issue.update_issue_attributes(octokit_repo)
+
+      issue.update_issue_attributes(octokit_issue)
       issue = octokit_wrapper.fetch_comments(issue)
     end
     issue.save

@@ -2,8 +2,12 @@ class OctokitWrapper
 
   attr_accessor :client
 
-  def initialize(token)
-    @client = Octokit::Client.new(:oauth_token => token)
+  def initialize(token = nil)
+    if token
+      @client = Octokit::Client.new(:oauth_token => token)
+    else
+      @client = Octokit::Client.new(:client_id => GITHUB_CLIENT_ID, :client_secret => GITHUB_CLIENT_SECRET)
+    end
   end
 
   #expects repo with owner_name and name
@@ -56,6 +60,18 @@ class OctokitWrapper
                             :comment_count => issue.comments,
                             :git_updated_at => issue.git_updated_at,
                             :state => issue.state )
+  end
+
+  def check_existence_of(user)
+    begin
+      client.user(user.nickname)
+    rescue Octokit::NotFound, URI::InvalidURIError
+      return false
+    end
+      return true
+    # TODO: write this method and refactor into repo.rb
+    # change into conditional request
+    # Can this be polymorphic, accepting repo/user/issue objects?
   end
 
 end

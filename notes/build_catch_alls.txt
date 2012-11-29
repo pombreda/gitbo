@@ -1,0 +1,19 @@
+* Need to add a catch all for :owner routes so that owners in our db don't render a 500 error 
+
+      in user controller:
+        add a conditional request to github when a user show param is not found in our database to ensure that the user exists
+        if they don't exist, render a show_missing_user view saying they don't exist
+        otherwise render the normal show page with cached information from github.
+
+
+* Need to also add a catch for repo show pages for a specific owner
+      in repo controller:
+
+        when request come in with owner and repo params
+            search if they're in our db
+
+            if not:
+                poll github to see if that exists
+            if it does:
+                show some cached information about the repo
+
