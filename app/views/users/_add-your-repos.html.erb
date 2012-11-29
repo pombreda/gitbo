@@ -2,13 +2,13 @@
   <table>
     <thead>
       <tr>
-        <h3>Your repos</h3>
+        <h3>Your repos not on Gitbo</h3>
         <span>Need your issues resolved? Consider adding them here</span>
       </tr>
     </thead> 
     <tbody>
       <ul class="repo_list">
-        <% @user.cached_repos.each do |repo| %>
+        <% @user.repos_not_on_gitbo.each do |repo| %>
           <li> <%= repo %>
             <a data-toggle="modal" href="#new-repo<%= "_#{repo}" %>">
             <button type="button" class="btn" id="add-repo"> Add Your Repo</button></a>
