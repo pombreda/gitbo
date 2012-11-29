@@ -9,7 +9,11 @@ class ApplicationController < ActionController::Base
   end
 
   def octokit_client
-    @octokit_client ||= OctokitWrapper.new(current_user.token)
+    # if current_user.has_github_token?
+      @octokit_client ||= OctokitWrapper.new(current_user.token)
+    # else
+      # TODO: use our app ID and secret to make calls
+    # end
   end
 
 

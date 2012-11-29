@@ -33,10 +33,14 @@ class UsersController < ApplicationController
       @repos = Repo.find_all_by_owner_name(@user.nickname)
       @repo = Repo.new
       render :show_registered
-    else
-      # check on Github if the username in params is actually a Github user
-      @user = User.new(:nickname => params[:owner])
+    elsif
       @repos = Repo.find_all_by_owner_name(params[:owner])
+      @user = User.new(:nickname => params[:owner])
+      if @repos.empty? && !octokit_client.check_existence_of(@user) # assumes that all repos in our db correspond to existing user, need to triple check that you cannot under any circumstance create a repo in our db that doesn't exist
+        render :show_missing_user
+      else
+        render :show
+      end
     end
 
     # respond_to do |format|

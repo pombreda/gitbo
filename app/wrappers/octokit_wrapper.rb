@@ -58,4 +58,15 @@ class OctokitWrapper
                             :state => issue.state )
   end
 
+  def check_existence_of(user)
+    begin
+      client.user(user.nickname)
+    rescue Octokit::NotFound
+      return false
+    end
+      return true
+    # TODO: write this method and refactor into repo.rb
+    # Can this be polymorphic, accepting repo/user/issue objects?
+  end
+
 end
