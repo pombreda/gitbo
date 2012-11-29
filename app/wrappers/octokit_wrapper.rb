@@ -61,11 +61,12 @@ class OctokitWrapper
   def check_existence_of(user)
     begin
       client.user(user.nickname)
-    rescue Octokit::NotFound
+    rescue Octokit::NotFound, URI::InvalidURIError
       return false
     end
       return true
     # TODO: write this method and refactor into repo.rb
+    # change into conditional request
     # Can this be polymorphic, accepting repo/user/issue objects?
   end
 
