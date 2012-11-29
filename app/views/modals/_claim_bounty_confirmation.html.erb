@@ -1,7 +1,7 @@
 <div id="claim-bounty-confirmation" class="modal hide fade" tabindex="-1">
 
 <% if @issue %>
-  <%  #submit_path = "/#{@issue.repo.owner_name}/#{@issue.repo.name}/issues/#{@issue.git_number}/bounty" %>
+  <%  submit_path = "/#{@issue.repo.owner_name}/#{@issue.repo.name}/issues/#{@issue.git_number}/bounty" %>
 <% end %>
 
 <%= form_tag(submit_path, :method => "post", remote: true, :id => "modal_bounty_form" ) do %>

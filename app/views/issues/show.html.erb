@@ -210,3 +210,12 @@
 <%= render :partial => 'modals/login' %>
 <%= render :partial => 'modals/bounty_confirmation', :locals => { :issue => @issue } %>
 <%= render :partial => 'modals/claim_bounty_confirmation', :locals => { :issue => @issue } %>
+
+<%= content_for :js do %>
+<script type="text/javascript"> 
+  $(function(){ 
+    var user_name = <%= current_user.nickname %>; 
+    console.log(user_name);
+  })
+</script>
+<% end %>

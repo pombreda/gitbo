@@ -21,9 +21,7 @@
         <td><%= link_to(truncate(issue.title, length:60), owner_repo_gitnumber_path(issue.repo.owner_name, issue.repo.name, issue.git_number)) %></td>
         <td><%= link_to issue.repo.name, owner_repo_path(issue.repo.owner_name, issue.repo.name) %> / <%= issue.git_number %></td>
         <td><%= issue.comment_count %></td>
-        <!-- <td><%#= issue.popularity %></td> -->
         <td class="votes"><%= issue.vote_count %></td>
-        <!-- <td><%#= issue.downvote %></td> -->
         <% if issue.owner_endorsement == 1 %>
             <td><i class="icon-thumbs-up" ></i></td>
         <% elsif issue.owner_endorsement == 0 %>

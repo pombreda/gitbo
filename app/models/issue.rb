@@ -23,6 +23,7 @@ class Issue < ActiveRecord::Base
   end
 
   def net_votes
+    #this has been depreciated
     @net_votes ||= Issue.find(self.id).vote_count
   end
 
@@ -48,7 +49,7 @@ class Issue < ActiveRecord::Base
   # end
 
   def vote_tally
-    UserVote.where('issue_id = ?', self.id).sum('vote').to_i
+    @tally || UserVote.where('issue_id = ?', self.id).sum('vote').to_i
   end
 
   def add_vote_by(user, vote)

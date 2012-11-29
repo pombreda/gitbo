@@ -44,7 +44,11 @@ $('div#refresh').click(function(){
       event.preventDefault();
       $('span#error').replaceWith('<span class="label label-important">Please Enter The Same Value</span>');
     }
-    
   }));
 }
 
+//goal: grab current user.nickname
+//compare name to nickname pulled from poll to github
+  //  $(function(){ var user_name = <%= @current_user.nickname %>; 
+  //   console.log(user_name);
+  // })
