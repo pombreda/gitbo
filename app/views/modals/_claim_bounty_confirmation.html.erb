@@ -1,0 +1,21 @@
+<div id="claim-bounty-confirmation" class="modal hide fade" tabindex="-1">
+
+<% if @issue %>
+  <%  #submit_path = "/#{@issue.repo.owner_name}/#{@issue.repo.name}/issues/#{@issue.git_number}/bounty" %>
+<% end %>
+
+<%= form_tag(submit_path, :method => "post", remote: true, :id => "modal_bounty_form" ) do %>
+<div class="modal-body">
+  <div class="field">
+    <label for="claim-label">Just to be sure, can you confirm by re-entering your github username?</label>
+    <input id="claim-label" name="nickname" type="text" />
+  </div>
+  <div class="modal-footer">
+    <span id="error"></span>
+    <div class="actions">
+      <button class="btn btn-success btn-small" id="claim-bounty" name="commit" type="submit" value="Create Bounty" method="post" />I really did solve it</button>
+      <button class="btn btn-danger btn-small" data-dismiss="modal" aria-hidden="true">Oopsy</button>
+    </div>
+  </div>
+</div>
+<% end %>

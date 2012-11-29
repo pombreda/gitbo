@@ -19,7 +19,7 @@ class Issue < ActiveRecord::Base
 
 
   def bounty_total
-    self.bounties.inject(0) {|total = 0, bounty| total += bounty.price } 
+    self.bounties.inject(0) {|total = 0, bounty| total += bounty.price if bounty.price} 
   end
 
   def net_votes
