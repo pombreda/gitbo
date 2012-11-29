@@ -62,30 +62,42 @@ class OctokitWrapper
                             :state => issue.state )
   end
 
-  def check_existence_of(user)
-    debugger
-      if Rails.cache.read(user.nickname.to_sym)[:exists?]
-        response_from_cache = Rails.cache.read(user.nickname.to_sym)[:exists?] 
-        if response_from_cache
-          return true
-        else
-          return false
-        end
-      else
-        begin
-          client.user(user.nickname)
-        rescue Octokit::NotFound, URI::InvalidURIError
-          Rails.cache.fetch(user.nickname.to_sym, expires_in: 24.hours) do
-            { :exists? => false  }
-          end
-          return false
-        end
-        return true
-      end
-    
+  def check_existence_of(user) # user.nickname.should not_be nil
+    if cache_knows_whether_user_exists_on_github?(user)
+      user_exists_on_github?(user)
+    else
+      check_existence_on_github_and_write_to_cache(user)
+    end
     # TODO: write this method and refactor into repo.rb
     # change into conditional request
     # Can this be polymorphic, accepting repo/user/issue objects?
   end
+
+  private
+
+    def cache_knows_whether_user_exists_on_github?(user)
+      !Rails.cache.read(user.nickname.to_sym)[:exists?].nil? if Rails.cache.read(user.nickname.to_sym)
+    end
+
+    def user_exists_on_github?(user)
+      response_from_cache = Rails.cache.read(user.nickname.to_sym)[:exists?] 
+      if response_from_cache
+        return true
+      else
+        return false
+      end
+    end
+
+    def check_existence_on_github_and_write_to_cache(user)
+      begin
+          client.user(user.nickname)
+      rescue Octokit::NotFound, URI::InvalidURIError
+        Rails.cache.fetch(user.nickname.to_sym, expires_in: 24.hours) do
+          { :exists? => false  }
+        end
+        return false
+      end
+      return true
+    end
 
 end
