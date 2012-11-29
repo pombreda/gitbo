@@ -25,9 +25,9 @@ $('div#refresh').click(function(){
 //grab the numeric values of two fields
 //compare and make sure they are the same
 //submit form or return error
-
-  // var first=$('#bounty_price').val(); 
-  // var second=$('#bounty').val();
+//need to prevent default for button if wrong
+//need to post a notice if wrong
+//goes through if match
 
   $('button#pledge').live(
     "click", (function() {
@@ -48,6 +48,3 @@ $('div#refresh').click(function(){
   }));
 }
 
-//need to prevent default for button if wrong
-//need to post a notice if wrong
-//goes through if match
