@@ -21,7 +21,7 @@ class Issue < ActiveRecord::Base
   end
 
   def net_votes
-    UserVote.where('issue_id = ?', self.id).sum('vote').to_i
+    @net_votes ||= UserVote.where('issue_id = ?', self.id).sum('vote').to_i
   end
 
   def popularity
@@ -102,6 +102,10 @@ class Issue < ActiveRecord::Base
 
   def disapproval
     self.owner_endorsement = -1
+  end
+
+  def bounty_claim?
+
   end
 
 
