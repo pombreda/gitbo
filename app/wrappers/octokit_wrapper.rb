@@ -63,12 +63,26 @@ class OctokitWrapper
   end
 
   def check_existence_of(user)
-    begin
-      client.user(user.nickname)
-    rescue Octokit::NotFound, URI::InvalidURIError
-      return false
-    end
-      return true
+    debugger
+      if Rails.cache.read(user.nickname.to_sym)[:exists?]
+        response_from_cache = Rails.cache.read(user.nickname.to_sym)[:exists?] 
+        if response_from_cache
+          return true
+        else
+          return false
+        end
+      else
+        begin
+          client.user(user.nickname)
+        rescue Octokit::NotFound, URI::InvalidURIError
+          Rails.cache.fetch(user.nickname.to_sym, expires_in: 24.hours) do
+            { :exists? => false  }
+          end
+          return false
+        end
+        return true
+      end
+    
     # TODO: write this method and refactor into repo.rb
     # change into conditional request
     # Can this be polymorphic, accepting repo/user/issue objects?

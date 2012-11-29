@@ -9,10 +9,10 @@ class ApplicationController < ActionController::Base
   end
 
   def octokit_client
-    if current_user && current_user.has_token?
+    if current_user && current_user.token
       @octokit_client ||= OctokitWrapper.new(current_user.token)
     else
-      @octokit_client ||= OctokitWrapper.new
+      @octokit_client ||= OctokitWrapper.new #uses our client id and secret
     end
   end
 
