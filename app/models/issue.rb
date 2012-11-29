@@ -1,7 +1,9 @@
 class Issue < ActiveRecord::Base
   attr_accessible :body, :git_number, :title, :repo, :comment_count,
  
-  :git_updated_at, :state, :owner_name, :owner_image, :owner_endorsement, :bounties, :difficulty
+  :git_updated_at, :state, :owner_name, :owner_image, :owner_endorsement, :bounties, :difficulty,
+
+  :avg_difficulty, :vote_count
 
 
   belongs_to :repo
@@ -12,7 +14,7 @@ class Issue < ActiveRecord::Base
   validates :git_number, :uniqueness => { :scope => :repo_id } 
 
   has_many :user_votes
-  
+
   validates :git_number, :uniqueness => { :scope => :repo_id } 
 
 
@@ -21,7 +23,7 @@ class Issue < ActiveRecord::Base
   end
 
   def net_votes
-    @net_votes ||= UserVote.where('issue_id = ?', self.id).sum('vote').to_i
+    @net_votes ||= Issue.find(self.id).vote_count
   end
 
   def popularity
@@ -45,6 +47,10 @@ class Issue < ActiveRecord::Base
   #   self.user_votes.create(:user => user, direction => 1)
   # end
 
+  def vote_tally
+    UserVote.where('issue_id = ?', self.id).sum('vote').to_i
+  end
+
   def add_vote_by(user, vote)
     uv = UserVote.find_or_create_by_issue_id_and_user_id(self.id, user.id)
     case vote
@@ -54,11 +60,13 @@ class Issue < ActiveRecord::Base
         uv.vote = -1
     end
     uv.save
+    self.vote_tally
   end
 
   def add_difficulty_by(user, rank)
     uv = UserVote.find_or_create_by_issue_id_and_user_id(self.id, user.id)
     uv.update_attribute(:difficulty_rating, rank)
+    self.avg_difficulty = UserVote.user_average_difficulty(self.id)
   end
 
   def retrieve_difficulty(user)
