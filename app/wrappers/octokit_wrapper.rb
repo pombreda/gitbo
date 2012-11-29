@@ -41,7 +41,7 @@ class OctokitWrapper
   def fetch_comments(issue)
     comments = client.issue_comments(issue.repo.octokit_id, issue.git_number)
     comments.each do |comment|
-      unless Comment.find_by_git_number(comment.git_number)
+      unless issue.comments.find_by_git_number(comment.id)
         issue.comments.build(
           :body => comment.body,
           :git_update_at => comment.updated_at.to_datetime,

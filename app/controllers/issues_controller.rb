@@ -33,6 +33,8 @@ class IssuesController < ApplicationController
     redirect_to :back
   end
 
+  def
+
   def repo_issues
     @repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
     @issues = @repo.issues

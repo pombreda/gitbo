@@ -29,8 +29,7 @@ class ReposController < ApplicationController
     if current_user
       RefreshReposWorker.perform_async(@repo.id, current_user.token)
     end
-
-      
+  
       #maybe autorefresh non missing issues?
 
       #missing numbers should be imported || refreshed
