@@ -9,30 +9,11 @@
 
 <% if @user.bounties.empty? %>
   <div class='span12'>
-    <p><%= @user.nickname %> hasn't issued any bounties.</p>
+    <p><%= @user.nickname %> hasn't issued any bounties because they haven't signed up for Gitbo. Invite them!</p>
   </div>
+<% end %>
 
-  <div class="span9">
-    <ul class="nav nav-tabs" id="myTab">
-      <li><a href="#user-repos" data-toggle="tab">Your repos</a>
-      </li>
-      <li class="active"><a href="#user-bounties" data-toggle="tab">Your bounties</a></li>
-      <li><a href="#following" data-toggle="tab">Following</a></li>
-      <li><a href="#starred" data-toggle="tab">Starred</a></li>
-      <li><a href="#add-your-repos" data-toggle="tab">Upload your repos</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div class="tab-pane" id="user-repos"><%= render 'repos/repos-table' %></div>
-      <div class="tab-pane active" id="user-bounties"><%= render 'user-bounties' %></div>
-      
-      <div class="tab-pane" id="following"><%= render 'following' %></div>
-      <div class="tab-pane" id="starred"><%= render 'starred' %></div>
-      <div class="tab-pane" id="add-your-repos"><%= render 'add-your-repos' %></div>
-    </div>
-
-  </div>
-<table class="table table-hover">
+  <table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th>
@@ -50,6 +31,25 @@
     <td><%= repo.watchers %></td>
     <td><%= repo.issues_comment_count %></td>
   </tr>
-
   <% end %>
 </table>
+
+  <div class="span9">
+    <ul class="nav nav-tabs" id="myTab">
+      <li><a href="#user-repos" data-toggle="tab">Repos</a>
+      </li>
+      <li class="active"><a href="#user-bounties" data-toggle="tab">Bounties on their repos</a></li>
+      <li><a href="#following" data-toggle="tab">Following</a></li>
+      <li><a href="#starred" data-toggle="tab">Starred</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane" id="user-repos"><%= render 'repos/repos-table' %></div>
+      <div class="tab-pane active" id="user-bounties">TODO: add bounties other people have issued for this user</div>
+      
+      <div class="tab-pane" id="following"><%= render 'following' %></div>
+      <div class="tab-pane" id="starred"><%= render 'starred' %></div>
+    </div>
+
+  </div>
+
