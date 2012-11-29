@@ -65,8 +65,8 @@ class Issue < ActiveRecord::Base
     UserVote.find_or_create_by_issue_id_and_user_id(self.id, user.id).difficulty_rating
   end
 
-  def refresh(github_connection)
-    self.update_issue_attributes(github_connection) if self.updated?(github_connection)
+  def refresh(octokie_issue)
+    self.update_issue_attributes(octokie_issue) if self.updated?(octokie_issue)
   end
 
   #check if updated_at time on issue in database is same as issue on github
