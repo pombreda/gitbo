@@ -68,6 +68,24 @@ class User < ActiveRecord::Base
   def total_bounties_collected
     Bounty.where('collected_by_user_id = ?', self.id).sum('price').to_i
   end
+
+  def check_bounty_winner(repo, issue, token)
+    client = OctokitWrapper.new(token).client
+    events = []
+    octokit_events = client.issue_events(repo, issue)
+    octokit_events.each do |e|
+      if e.event == "closed"
+        events << e
+      end
+    end
+    if events.count == 1
+      event = events.first
+    end
+    commit_id = event.commit_id
+    commit = client.commit(repo, commit_id)
+    bounty_winner = commit.author.login
+    true if 'self.nickname' == bounty_winner
+  end
   
 
 end

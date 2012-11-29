@@ -4,7 +4,7 @@ client = octokit_client.client
 #get information on a closed issue and check to see if it was the result of a merge
 
 #list all events for a closed issue
-events = client.issue_events("creekace/student-cms", 10 )
+events = client.issue_events("creekace/student-cms", 10 )clien
 
 event = # find the event that is labeled "closed"
 
