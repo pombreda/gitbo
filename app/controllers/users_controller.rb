@@ -38,6 +38,7 @@ class UsersController < ApplicationController
       @user = User.new(:nickname => params[:owner])
       if @repos.empty? && !octokit_client.check_existence_of(@user) # assumes that all repos in our db correspond to existing user, need to triple check that you cannot under any circumstance create a repo in our db that doesn't exist
         render :show_missing_user
+        # TODO: eventually flash notice user doesn't exist instead of rendering page
       else
         render :show
       end
