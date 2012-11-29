@@ -45,11 +45,17 @@ ActiveRecord::Schema.define(:version => 20121129152735) do
     t.integer  "downvote"
     t.datetime "git_updated_at"
     t.string   "state"
+<<<<<<< HEAD
     t.integer  "owner_endorsement", :default => 0
     t.string   "owner_name"
     t.string   "owner_image"
     t.integer  "vote_count",        :default => 0
     t.float    "avg_difficulty",    :default => 0.0
+=======
+    t.string   "owner_name"
+    t.string   "owner_image"
+    t.integer  "owner_endorsement",                :default => 0
+>>>>>>> 7c2a4eaab94a30881af39772cafbbf7e1b0d0f0c
   end
 
   create_table "repos", :force => true do |t|
