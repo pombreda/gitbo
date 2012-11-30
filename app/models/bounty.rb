@@ -3,6 +3,8 @@ class Bounty < ActiveRecord::Base
   belongs_to :issue
   belongs_to :user
 
+  validates :price, :presence => true, :numericality => { :only_integer => true }
+
   # def display_price
   #   self.price.to_s.prepend("$").insert(-3, ".")
   # end
