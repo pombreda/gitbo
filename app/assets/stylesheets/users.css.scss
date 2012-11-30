@@ -72,9 +72,18 @@ ul.stats {
 }
 
 ul.stats li {
+  margin-left: 30px;
   display: inline-block;
   list-style-type: none;
-  min-width: 70px;
+  min-width: 65px;
+  text-align: left;
+}
+ul.stats li strong:hover {
+  color: #4183C4;
+}
+
+ul.stats li:hover {
+  color: #4183C4;
 }
 
 ul.stats li strong {
@@ -88,7 +97,7 @@ ul.stats li strong {
 ul.stats li span {
   display: block;
   margin-top: -2px;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 ul.stats li a:hover span {
