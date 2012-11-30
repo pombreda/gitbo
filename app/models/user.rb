@@ -98,10 +98,12 @@ class User < ActiveRecord::Base
     if events.count == 1
       event = events.last
     end
-    if event.commit_id
-      commit_id = event.commit_id
-      commit = client.commit(repo, commit_id)
-      bounty_winner = commit.author.login
+    if event
+      if event.commit_id
+        commit_id = event.commit_id
+        commit = client.commit(repo, commit_id)
+        bounty_winner = commit.author.login
+      end
     end
     true if 'self.nickname' == bounty_winner
   end
