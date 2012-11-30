@@ -48,7 +48,7 @@ class IssuesController < ApplicationController
   end
 
   def index
-    @issues = Issue.all_open_issues
+    @issues = Issue.all_open_issues.includes(:repo, :bounties, :user_votes)
     @repo = Repo.new
     1.times { @repo.issues.build}
     # @user = current_user
@@ -61,7 +61,7 @@ class IssuesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @issues }
-      format.js
+      format.js {}
     end
   end
 
