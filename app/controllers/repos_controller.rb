@@ -20,7 +20,7 @@ class ReposController < ApplicationController
   def show
     @repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
     if @repo.nil?
-      flash[:error] = "That repo doesn't exist on Gitbo, consider uploading it below."
+      flash[:error] = "#{params[:owner]}'s repo \"#{params[:repo]}\" doesn't exist on Gitbo, consider uploading it below."
       redirect_to :action => "index"
     else
 
