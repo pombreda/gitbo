@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129152735) do
+ActiveRecord::Schema.define(:version => 20121130173700) do
 
   create_table "bounties", :force => true do |t|
     t.integer  "user_id"
     t.integer  "issue_id"
-    t.integer  "price"
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.integer  "collected_by_user_id", :default => 0
+    t.integer  "price",                :default => 0
   end
 
   create_table "comments", :force => true do |t|
@@ -41,8 +41,6 @@ ActiveRecord::Schema.define(:version => 20121129152735) do
     t.datetime "updated_at",                                        :null => false
     t.integer  "repo_id"
     t.integer  "comment_count"
-    t.integer  "upvote"
-    t.integer  "downvote"
     t.datetime "git_updated_at"
     t.string   "state"
     t.integer  "owner_endorsement",                :default => 0

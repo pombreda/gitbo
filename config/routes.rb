@@ -37,6 +37,9 @@ Gitbo::Application.routes.draw do
     resources :issues, :only => [:index, :delete] # will eventually remove delete
   end
 
+  #bounty claming
+  post '/users/:id/claim' => 'users#claim', :as => :user_winner
+
   #issues
   get "/issues" => "issues#index"
 

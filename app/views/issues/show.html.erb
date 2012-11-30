@@ -1,7 +1,13 @@
- <% if notice %> 
+ <% if flash[:notice] %> 
   <div  class='alert alert-success'>
     <button type="button" class="close" data-dismiss="alert">×</button> 
-    <%= notice %>
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+ <% if flash[:error] %> 
+  <div  class='alert alert-error'>
+    <button type="button" class="close" data-dismiss="alert">×</button> 
+    <%= flash[:error] %>
   </div>
 <% end %>
 <% if current_user %>
@@ -94,20 +100,11 @@
     </div>
       <hr>
       
+
       <div class="vote">
-        <% if current_user %>
-          <td><%= link_to vote_issue_path(@issue.id, :upvote), :method => :put, :class => "btn", :id => "upvote_issue", remote: true do %>
-           Upvote Issue
-        <% end %></td><br />
-        <br />
-         <td><%= link_to vote_issue_path(@issue.id, :downvote), :method => :put, :class => "btn", remote: true do %>
-            Downvote Issue
-        <% end %></td>
-        <% else %>
-            <td><button class="btn btn-info" href="#login-prompt" type="button" id="vote-prompt" data-toggle="modal" >Upvote Issue</button></td><br /><br />
-            <td><button class="btn btn-info"  href="#login-prompt"type="button" id="vote-prompt" data-toggle="modal" >Downvote Issue</button></td>
-        <% end %>
+        <%= render :partial => 'vote_button_logic', :locals => { :issue => @issue } %>
       </div>
+
 
      <hr>
     <% if @difficulty %>

@@ -83,10 +83,13 @@ class Issue < ActiveRecord::Base
   end
 
   def self.all_open_issues
-    Issue.all.select do |issue|
-      issue.open?
-    end
+    Issue.open
   end
+
+  def self.open
+    where(:state => 'open')
+  end
+
 
   def open?
     self.state == 'open'
@@ -114,6 +117,18 @@ class Issue < ActiveRecord::Base
 
   def bounty_claim?
 
+  end
+
+  def how_user_voted(user)
+    uv = UserVote.find_or_create_by_issue_id_and_user_id(self.id, user.id)
+    case uv.vote
+    when 1
+      :upvote
+    when -1
+      :downvote
+    when 0
+      :no_vote
+    end
   end
 
 

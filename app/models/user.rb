@@ -15,6 +15,21 @@ class User < ActiveRecord::Base
     end
   end
 
+  def voted_on?(issue)
+    @votes ||= self.user_votes
+    this_vote = @votes.detect{|uv| uv.issue_id == issue.id}
+    if this_vote
+      case this_vote.vote
+        when 1
+          :upvote
+        when -1
+          :downvote
+      end
+    else  
+      :no_vote
+    end
+  end
+
   def session_token
     session[:token]
   end
@@ -70,7 +85,9 @@ class User < ActiveRecord::Base
   end
 
   def check_bounty_winner(repo, issue, token)
+
     client = OctokitWrapper.new(token).client
+
     events = []
     octokit_events = client.issue_events(repo, issue)
     octokit_events.each do |e|
