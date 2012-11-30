@@ -1,10 +1,10 @@
 <div id="claim-bounty-confirmation" class="modal hide fade" tabindex="-1">
 
 <% if @issue %>
-  <%  submit_path = "/#{@issue.repo.owner_name}/#{@issue.repo.name}/issues/#{@issue.git_number}/bounty" %>
+  <%  submit_path = "/#{current_user.nickname}" %>
 <% end %>
 
-<%= form_tag(submit_path, :method => "post", remote: true, :id => "modal_bounty_form" ) do %>
+
 <div class="modal-body">
   <div class="field">
     <label for="claim-label">Just to be sure, can you confirm by re-entering your github username?</label>
@@ -13,9 +13,8 @@
   <div class="modal-footer">
     <span id="error"></span>
     <div class="actions">
-      <button class="btn btn-success btn-small" id="claim-bounty" name="commit" type="submit" value="Create Bounty" method="post" />I really did solve it</button>
+      <button class="btn btn-success btn-small"><%= link_to 'I really did solve it', user_winner_path(@issue), :id => 'claim-bounty', :name => 'commit', :method => :post %></button>
       <button class="btn btn-danger btn-small" data-dismiss="modal" aria-hidden="true">Oopsy</button>
     </div>
   </div>
 </div>
-<% end %>

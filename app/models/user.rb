@@ -70,6 +70,7 @@ class User < ActiveRecord::Base
   end
 
   def check_bounty_winner(repo, issue, token)
+
     client = OctokitWrapper.new(token).client
     events = []
     octokit_events = client.issue_events(repo, issue)

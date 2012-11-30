@@ -43,9 +43,9 @@ ActiveRecord::Schema.define(:version => 20121130173700) do
     t.integer  "comment_count"
     t.datetime "git_updated_at"
     t.string   "state"
-    t.integer  "owner_endorsement",                :default => 0
     t.string   "owner_name"
     t.string   "owner_image"
+    t.integer  "owner_endorsement",                :default => 0
     t.integer  "vote_count",                       :default => 0
     t.float    "avg_difficulty",                   :default => 0.0
   end

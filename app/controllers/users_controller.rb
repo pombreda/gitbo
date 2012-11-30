@@ -4,9 +4,19 @@ class UsersController < ApplicationController
 
   helper_method :repo_owner
 
+  def claim
+
+    # repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
+    issue = Issue.find_by_id(params[:id])
+    repo = Repo.find_by_name(issue.repo.name)
+    repo = "#{repo.name}/#{repo.owner_name}"
+
+    user = current_user
+    user.check_bounty_winner(repo, issue.git_number, user.token)
+  end
+
   def index
     @users = User.all
-    
 
     respond_to do |format|
       format.html # index.html.erb

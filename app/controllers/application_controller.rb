@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   # def login_require
   #   unless current_user
   #     redirect_to login_path, :notice => "please login"
-  # end
+
 
   # def current_user
   #   @current_user ||= User.find_by_id{session[:user_id])
