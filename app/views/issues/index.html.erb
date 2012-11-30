@@ -19,8 +19,13 @@
       </div>
       <div class="span6">
         <div class="pull-right">
+          <% if current_user %>
           <p><button class="btn btn-success btn-large" data-toggle="modal" href="#new-repo">
             <i class="icon-upload-alt"></i> Upload your repo</button></p>
+          <% else %>
+            <p><button class="btn btn-success btn-large" data-toggle="modal" href="#login-prompt">
+            <i class="icon-upload-alt"></i> Upload your repo</button></p>
+          <% end %>
         </div>
       </div>
     </div>
