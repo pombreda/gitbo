@@ -48,7 +48,7 @@ class IssuesController < ApplicationController
   end
 
   def index
-    @issues = Issue.all_open_issues
+    @issues = Issue.all_open_issues.includes(:repo, :bounties, :user_votes)
     @repo = Repo.new
     1.times { @repo.issues.build}
     # @user = current_user

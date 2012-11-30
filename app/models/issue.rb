@@ -83,10 +83,13 @@ class Issue < ActiveRecord::Base
   end
 
   def self.all_open_issues
-    Issue.all.select do |issue|
-      issue.open?
-    end
+    Issue.open
   end
+
+  def self.open
+    where(:state => 'open')
+  end
+
 
   def open?
     self.state == 'open'

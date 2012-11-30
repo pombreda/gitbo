@@ -74,12 +74,6 @@ $('#downvote_issue').click(function(){
 }
 
 
-$("i.icon-arrow-up").click(function(){
-  //.select('i')
-  $(this).parents('td:last').removeClass('icon-circle-arrow-down');
-  //parents('td:last').closest('i').removeClass('icon-circle-arrow-down');
-  $(this).addClass("icon-circle-arrow-up");
-});
 
 // $("i.icon-arrow-down").click(function(){
 //   $(this).toggleClass("icon-circle-arrow-down icon-arrow-up").removeClass('i.icon-arrow-down')
