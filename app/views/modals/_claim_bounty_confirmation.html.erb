@@ -1,6 +1,6 @@
 <div id="claim-bounty-confirmation" class="modal hide fade" tabindex="-1">
 
-<% if @issue %>
+<% if @issue && current_user %>
   <%  submit_path = "/#{current_user.nickname}" %>
 <% end %>
 
