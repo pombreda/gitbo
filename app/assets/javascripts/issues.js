@@ -72,3 +72,15 @@ $('#downvote_issue').click(function(){
     
   }));
 }
+
+// })
+
+// $("i.icon-arrow-up").click(function(){
+//   $(this).toggleClass("icon-circle-arrow-up icon-arrow-up").remove('i.icon-arrow-down')
+// });
+
+// $("i.icon-arrow-down").click(function(){
+//   $(this).toggleClass("icon-circle-arrow-down icon-arrow-up").removeClass('i.icon-arrow-down')
+// });
+
+

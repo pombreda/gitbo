@@ -1,4 +1,5 @@
 
+
 $("tr#issue_<%= @issue.id %> td.votes").html("<%= @issue.net_votes %>");  
 
 $(".discussion-stats span.net_votes").html("<strong><%= @issue.vote_count %></strong> Score");   
@@ -6,4 +7,3 @@ $(".discussion-stats span.net_votes").html("<strong><%= @issue.vote_count %></st
 // click(function (e) {
 //   $(this).toggleClass('icon-arrow-up icon-circle-arrow-up');
 // })
-
