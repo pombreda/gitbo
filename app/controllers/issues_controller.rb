@@ -48,7 +48,7 @@ class IssuesController < ApplicationController
   end
 
   def index
-    @issues = Issue.all_open_issues
+    @issues = Issue.all_open_issues.includes(:repo, :bounties, :user_votes)
     @repo = Repo.new
     1.times { @repo.issues.build}
     # @user = current_user
@@ -61,7 +61,7 @@ class IssuesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @issues }
-      format.js
+      format.js {}
     end
   end
 
@@ -72,20 +72,25 @@ class IssuesController < ApplicationController
 
     @issue = Issue.find_by_repo_id_and_git_number(repo.id, params[:git_number])
 
-    @difficulty = @issue.retrieve_difficulty(current_user) if current_user
-    
-    if current_user
-      RefreshIssuesWorker.perform_async(@issue.id, current_user.token)
-    end
-    
-    # if @issue.updated?(@issue.repo.octokit_id, @issue.git_number, octokit_client.client)
-    #   RefreshIssuesWorker.perform_async(@issue.id, current_user.token)
-    #   flash[:notice] = "Updating issue from Github, please refresh"
-    # end 
+    if !@issue
+      flash[:error] = "There is no issue number #{params[:git_number]} for #{params[:owner]}/#{params[:repo]}"
+      redirect_to :action => "index"
+    else
+      @difficulty = @issue.retrieve_difficulty(current_user) if current_user
+      
+      if current_user
+        RefreshIssuesWorker.perform_async(@issue.id, current_user.token)
+      end
+      
+      # if @issue.updated?(@issue.repo.octokit_id, @issue.git_number, octokit_client.client)
+      #   RefreshIssuesWorker.perform_async(@issue.id, current_user.token)
+      #   flash[:notice] = "Updating issue from Github, please refresh"
+      # end 
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @issue }
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @issue }
+      end
     end
   end
 

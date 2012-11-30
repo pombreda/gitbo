@@ -1,10 +1,10 @@
 .container-narrow {
   margin: 0 auto;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .container-narrow > hr {
-  margin: 30px 0;
+  margin: 20px 0;
 }
 
 .jumbotron {
@@ -25,6 +25,13 @@
   word-spacing: 2px;
 }
 
+.navbar .nav {
+  padding: 10px;
+}
+
+.navbar .nav > li > a {
+  padding: 5px 20px 5px;
+}
 
 .input-medium search-query {
   padding: 10 px;
@@ -66,6 +73,13 @@
   color: #666;
   background: #E5E5E5;
   border-radius: 10px;
+}
+
+a:focus, .navbar .nav > li > a.btn:hover {
+  
+ 
+  background-color: #E6E6E6;
+  background-position: 0 -15px;
 }
 
 

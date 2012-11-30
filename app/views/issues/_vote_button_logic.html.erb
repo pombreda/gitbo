@@ -1,0 +1,28 @@
+<% if current_user %>
+  <% case @issue.how_user_voted(current_user) %>
+  <% when :upvote %>
+    <td><%= link_to vote_issue_path(@issue.id, :upvote), :method => :put, :class => "btn btn-warning", :id => "upvote_issue", remote: true do %>
+      Upvote Issue
+      <% end %>
+  <% else %>
+    <td><%= link_to vote_issue_path(@issue.id, :upvote), :method => :put, :class => "btn", :id => "upvote_issue", remote: true do %>
+      Upvote Issue
+      <% end %>
+  <% end %>
+ </td><br /> <br />
+  <% case @issue.how_user_voted(current_user) %>
+  <% when :downvote %>
+    <td><%= link_to vote_issue_path(@issue.id, :downvote), :method => :put, :class => "btn btn-warning", :id => "downvote_issue", remote: true do %>
+    Downvote Issue
+    <% end %>
+  <% else %>
+    <td><%= link_to vote_issue_path(@issue.id, :downvote), :method => :put, :class => "btn", :id => "downvote_issue", remote: true do %>
+       Downvote Issue
+      <% end %>
+  <% end %>
+ 
+</td>
+<% else %>
+  <td><button class="btn btn-info" href="#login-prompt" type="button" id="vote-prompt" data-toggle="modal" >Upvote Issue</button></td><br /><br />
+  <td><button class="btn btn-info"  href="#login-prompt"type="button" id="vote-prompt" data-toggle="modal" >Downvote Issue</button></td>
+<% end %>

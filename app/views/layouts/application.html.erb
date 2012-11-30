@@ -20,15 +20,15 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+          <!-- <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </a>
-          <%= link_to "Gitbo", root_path, :class => "brand" %>
+          </a> -->
           <div class="container nav-collapse">
             <ul class="nav">
+              <li><%= link_to "Gitbo", root_path, :class => "brand" %></li>
               <li><%= link_to "Issues", issues_path  %></li>
               <li><%= link_to "Repos", repos_path  %></li>
               <!-- <li><%#= link_to "New Repo", new_repo_path  %></li> -->
@@ -37,43 +37,45 @@
             <ul class ="nav pull-right">
               <% if current_user %>
                 <li class='user-avatar'> 
-                  <img src='<%= current_user.image %>'></img></li>
-                  <li>
+                  <%= link_to image_tag(current_user.image), owner_repos_path(current_user.nickname) %>
+                </li>
+                <li class='user-nickname'>
                   <%= link_to current_user.nickname, owner_repos_path(current_user.nickname) %>
                   </li>
                 <li><%= link_to "Sign Out", signout_path, :class => 'btn btn-mini' %></li>
               <% else %>
-                <li><%= link_to "/auth/github", :class => 'btn' do %>
+                <li class="github-signin">
+                  <%= link_to "/auth/github", :class => 'btn' do %>
                   Sign in with <i class='icon-github' style="font-size: 20px;"></i>
-                <% end %></li>
+                  <% end %>
+                </li>
               <% end %>
             </ul>
           </div>
-        </div>
-      </div>
-    </div>
+        </div> <!-- end container nav-collapse -->
+      </div> <!-- end navbar-inner -->
+    </div> <!-- end navbar navbar fixed top -->
 
     <div class=" container container-narrow">
-        <div class="row">
-          <div class="span12">
-            <div class="row">
-            </div>
+      <div class="row">
+        <div class="span12">
+          <div class="row">
           </div>
+        </div>
 
-             <%= yield %>
-          </div>
-          <!-- <div class="span3">
-            <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
-              <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
-                <li><%#= link_to "Link1", "/path1"  %></li>
-                <li><%#= link_to "Link2", "/path2"  %></li>
-                <li><%#= link_to "Link3", "/path3"  %></li>
-              </ul>
-            </div>
-          </div> -->
-        </div><!--/row-->
+         <%= yield %>
+    <!-- <div class="span3">
+      <div class="well sidebar-nav">
+        <h3>Sidebar</h3>
+        <ul class="nav nav-list">
+          <li class="nav-header">Sidebar</li>
+          <li><%#= link_to "Link1", "/path1"  %></li>
+          <li><%#= link_to "Link2", "/path2"  %></li>
+          <li><%#= link_to "Link3", "/path3"  %></li>
+        </ul>
+      </div>
+    </div> -->
+      </div><!--/row-->
     </div> <!-- /container -->
 
     <!-- Javascripts

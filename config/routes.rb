@@ -22,7 +22,7 @@ Gitbo::Application.routes.draw do
   
   get '/signout' => "sessions#destroy", :as => :signout
 
-  get "/:owner/:repo/issues" => "issues#repo_issues", :as => :repo_issues
+  get "/:owner/:repo/issues" => "repos#show"
 
   #voting
   put '/issues/:id/vote/:direction' => 'issues#vote', :as => :vote_issue

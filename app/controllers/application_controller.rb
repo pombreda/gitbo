@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  rescue_from Octokit::BadGateway, :with => :github_error
   helper_method :current_user, :octokit_client, :sort_alphabetically
 
 
@@ -14,6 +15,11 @@ class ApplicationController < ActionController::Base
     else
       @octokit_client ||= OctokitWrapper.new #uses our client id and secret
     end
+  end
+
+  def github_error
+    flash[:error] = "There was a problem communicating with Github"
+    redirect_to :back
   end
 
 
