@@ -3,7 +3,7 @@ class Issue < ActiveRecord::Base
  
   :git_updated_at, :state, :owner_name, :owner_image, :owner_endorsement, :bounties, :difficulty,
 
-  :avg_difficulty, :vote_count
+  :avg_difficulty, :vote_count, :repo_name, :repo_owner
 
 
   belongs_to :repo
@@ -17,9 +17,22 @@ class Issue < ActiveRecord::Base
 
   validates :git_number, :uniqueness => { :scope => :repo_id } 
 
+  before_save :write_other_attr
 
-  def bounty_total
-    self.bounties.inject(0) {|total = 0, bounty| total += bounty.price if bounty.price} 
+  def recalculate_bounty_total
+    @recalculate_bounty_total ||= self.bounties.inject(0) {|total = 0, bounty| total += bounty.price if bounty.price} 
+  end
+
+  def add_bounty(user, price)
+    self.bounties.create(:user => user, :price => price)
+    self.bounty_total += price.to_i
+  end
+
+  def write_other_attr
+    if self.repo
+      self.repo_name = self.repo.name
+      self.repo_owner = self.repo.owner_name
+    end
   end
 
   def net_votes
@@ -42,11 +55,6 @@ class Issue < ActiveRecord::Base
     (Time.now.to_i - self.git_updated_at.to_i)/86400.0
   end 
 
-  # def add_vote_by(user, direction = :upvote, int = 1)
-  #   self.increment(direction, int)
-  #   self.user_votes.create(:user => user, direction => 1)
-  # end
-
   def vote_tally
     UserVote.where('issue_id = ?', self.id).sum('vote').to_i
   end
@@ -64,7 +72,7 @@ class Issue < ActiveRecord::Base
   end
 
   def add_difficulty_by(user, rank)
-    uv = UserVote.find_or_create_by_issue_id_and_user_id(self.id, user.id)
+    uv = UserVote.find_by_issue_id_and_user_id(self.id, user.id)
     uv.update_attribute(:difficulty_rating, rank)
     self.avg_difficulty = UserVote.user_average_difficulty(self.id)
   end

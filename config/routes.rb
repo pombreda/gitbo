@@ -14,9 +14,7 @@ Gitbo::Application.routes.draw do
   resources :bounties, :except => [:new, :show, :create]
   resources :comments
   resources :users
-
-  resources :issues
-
+  
   #authentication through github
   match '/auth/:provider/callback' => 'sessions#create'
   

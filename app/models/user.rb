@@ -73,15 +73,15 @@ class User < ActiveRecord::Base
   end
 
   def bounty_total
-    self.bounties.inject(0) {|total = 0, bounty| total += bounty.price } 
+    @bounty ||= self.bounties.inject(0) {|total = 0, bounty| total += bounty.price } 
   end
 
   def bounty_collected
-    Bounty.where('collected_by_user_id = ?', self.id)
+    @bounties ||= Bounty.where('collected_by_user_id = ?', self.id)
   end
 
   def total_bounties_collected
-    Bounty.where('collected_by_user_id = ?', self.id).sum('price').to_i
+    @bounties ||= Bounty.where('collected_by_user_id = ?', self.id).sum('price').to_i
   end
 
   def check_bounty_winner(repo, issue, token)

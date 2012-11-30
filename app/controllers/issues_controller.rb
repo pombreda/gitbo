@@ -3,6 +3,7 @@ class IssuesController < ApplicationController
   # GET /issues.json
 
   helper_method :repo_owner
+ 
 
   def vote
     @issue = Issue.find(params[:id])
@@ -114,10 +115,6 @@ class IssuesController < ApplicationController
   # POST /issues.json
   def create
     @issue = Issue.create_from_github(params[:owner_name, :name, :git_number])
-
-    # need it?
-    # @issues = @repo.issues
-    # github_connection = GithubConnection.new(params[:owner], @repo.name)
 
     respond_to do |format|
       if @issue.save

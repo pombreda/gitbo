@@ -48,6 +48,7 @@ class BountiesController < ApplicationController
     issue = Issue.find_by_git_number_and_repo_id(git_number, repo.id)
     price = params[:price]
 
+    issue.add_bounty(current_user, price)
     @bounty = Bounty.new(
           :user_id => current_user.id,
           :issue_id => issue.id,

@@ -33,20 +33,6 @@ $('#downvote_issue').click(function(){
   $('#upvote_issue').removeClass().addClass('btn');
 });
 
-// $('i#index_upvote.icon-arrow-up').click(function(){
-//   $(this).toggleClass('icon-arrow-up icon-circle-arrow-up');
-//   // $('i#index_downvote.icon-arrow-down').removeClass().addClass('icon-arrow-down');
-// })
-
-// $('i#index_downvote.icon-arrow-down').click(function(){
-//   $(this).toggleClass('icon-circle-arrow-down icon-arrow-down ');
-//   // $('i#index_upvote.icon-arrow-up').removeClass().addClass('icon-arrow-up');
-// })
-
-// $('i#index_upvote.icon-arrow-up, i#index_downvote.icon-arrow-down').click(function(e){
-//   var $parent = $(this).parent(),
-//   up = $parent.hasClass('icon-arrow-up');
-
 //grab the numeric values of two fields
 //compare and make sure they are the same
 //submit form or return error
@@ -72,11 +58,5 @@ $('#downvote_issue').click(function(){
     
   }));
 }
-
-
-
-// $("i.icon-arrow-down").click(function(){
-//   $(this).toggleClass("icon-circle-arrow-down icon-arrow-up").removeClass('i.icon-arrow-down')
-// });
 
 
