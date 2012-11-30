@@ -7,8 +7,8 @@ class RepoWorker
     octokit_client = OctokitWrapper.new(token)
     repo = Repo.find_by_id(repo_id)
     repo = octokit_client.fetch_repo(repo)
+    debugger
     repo = octokit_client.fetch_issues(repo)
-    repo.save
 
     repo.issues.each do |issue|
       issue = octokit_client.fetch_comments(issue)

@@ -19,6 +19,7 @@ class OctokitWrapper
                             :watchers => info.watchers,
                             :git_updated_at => info.updated_at.to_datetime )
     repo.save
+    repo
   end  
 
   def fetch_issues(repo)
