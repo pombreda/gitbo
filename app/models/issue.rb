@@ -24,8 +24,8 @@ class Issue < ActiveRecord::Base
   end
 
   def add_bounty(user, price)
-    self.bounties.create(:user => current_user, :price => price)
-    self.bounty_total += price
+    self.bounties.create(:user => user, :price => price)
+    self.bounty_total += price.to_i
   end
 
   def write_other_attr
