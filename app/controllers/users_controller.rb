@@ -4,9 +4,24 @@ class UsersController < ApplicationController
 
   helper_method :repo_owner
 
+  def claim
+
+    # repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
+    issue = Issue.find_by_id(params[:id])
+    repo = Repo.find_by_name(issue.repo.name)
+    repo = "#{repo.owner_name}/#{repo.name}"
+
+    user = current_user
+    if user.check_bounty_winner(repo, issue.git_number, user.token)
+      flash[:notice] = 'Congratulations! We will reach you shortly with instructions to claim your bounty'
+    else
+      flash[:error] = 'Our records indicate you did not commit this merge. If you feel this is incorrect, please contact us'
+    end
+    redirect_to :back
+  end
+
   def index
     @users = User.all
-    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -33,10 +48,17 @@ class UsersController < ApplicationController
       @repos = Repo.find_all_by_owner_name(@user.nickname)
       @repo = Repo.new
       render :show_registered
-    else
-      # check on Github if the username in params is actually a Github user
+    elsif
       @user = User.new(:nickname => params[:owner])
-      @repos = Repo.find_all_by_owner_name(params[:owner])
+      if !octokit_client.check_existence_of(@user) # assumes that all repos in our db correspond to existing user, need to triple check that you cannot under any circumstance create a repo in our db that doesn't exist
+        render :show_missing_user
+        # TODO: eventually flash notice user doesn't exist instead of rendering page
+      else
+        @repos = Repo.find_all_by_owner_name(params[:owner])
+        render :show
+      end
+      
+      
     end
 
     # respond_to do |format|

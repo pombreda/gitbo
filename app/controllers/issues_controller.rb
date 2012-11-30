@@ -18,7 +18,8 @@ class IssuesController < ApplicationController
   def difficulty
     issue = Issue.find(params[:id])
     issue.add_difficulty_by(current_user, params[:rating])
-    
+    issue.save
+
     respond_to do |f|
       f.html {redirect_to :back}
       f.js {}
@@ -31,6 +32,8 @@ class IssuesController < ApplicationController
     issue.save
     redirect_to :back
   end
+
+  def
 
   def repo_issues
     @repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
@@ -45,7 +48,7 @@ class IssuesController < ApplicationController
   end
 
   def index
-    @issues = Issue.all_open_issues
+    @issues = Issue.all_open_issues.includes(:repo, :bounties, :user_votes)
     @repo = Repo.new
     1.times { @repo.issues.build}
     # @user = current_user
@@ -58,7 +61,7 @@ class IssuesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @issues }
-      format.js
+      format.js {}
     end
   end
 

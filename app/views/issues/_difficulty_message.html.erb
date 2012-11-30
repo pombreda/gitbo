@@ -1,17 +1,18 @@
 <% case %>
-  <% when owner_voted(@issue) %>
+  <% when both_owner_and_user_rated(@issue) %>
     The owner says this is a <strong><%= UserVote.owner_rating(@issue) %></strong>
     <hr>
-    Users rate this as a <strong><%= UserVote.user_average_difficulty(@issue) %></strong>
+    Users rate this as a <strong><%= @issue.avg_difficulty %></strong>
 
-  <% when users_voted_but_no_owner(@issue) %>
-    Users rate this as a <strong><%= UserVote.user_average_difficulty(@issue) %></strong>
+
+  <% when users_rated_but_no_owner(@issue) %>
+   Users rate this as a <strong><%= @issue.avg_difficulty %></strong>
   
-  <% when owner_voted_but_no_users(@issue) %>
-    The owner says this is a <strong><%= UserVote.owner_rating(@issue) %><strong>
+  <% when owner_rated_but_no_users(@issue) %>
+   The owner says this is a <strong><%= UserVote.owner_rating(@issue) %><strong>
 
   <% when neither(@issue) %>
-    Be the first to vote on the difficulty of this issue.
+   Be the first to vote on the difficulty of this issue.
   <% end %>
 
 <%= render :partial => 'issues/difficulty_stars', :locals => { :issue => @issue } %>

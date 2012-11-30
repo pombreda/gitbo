@@ -1,4 +1,4 @@
-<div id="bounty-confirmation" class="modal hide fade" tabindex="-1" data-backdrop="vote-prompter" data-keyboard="false">
+<div id="bounty-confirmation" class="modal hide fade" tabindex="-1">
 
 <% if @issue %>
   <%  submit_path = "/#{@issue.repo.owner_name}/#{@issue.repo.name}/issues/#{@issue.git_number}/bounty" %>
@@ -13,8 +13,8 @@
   <div class="modal-footer">
     <span id="error"></span>
     <div class="actions">
-      <input id="create-bounty" name="commit" type="submit" value="Create Bounty" method="post" />
-      <button id="bounty" class="btn btn-success btn-small" href="#bounty-confirmation" data-toggle="modal" name="commit" value="Create Bounty" type="submit">Cancel</button>
+      <button class="btn btn-success btn-small" id="create-bounty" name="commit" type="submit" value="Create Bounty" method="post" />Pledge</button>
+      <button class="btn btn-danger btn-small" data-dismiss="modal" aria-hidden="true">Nevermind</button>
     </div>
   </div>
 </div>

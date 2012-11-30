@@ -15,6 +15,21 @@ class User < ActiveRecord::Base
     end
   end
 
+  def voted_on?(issue)
+    @votes ||= self.user_votes
+    this_vote = @votes.detect{|uv| uv.issue_id == issue.id}
+    if this_vote
+      case this_vote.vote
+        when 1
+          :upvote
+        when -1
+          :downvote
+      end
+    else  
+      :no_vote
+    end
+  end
+
   def session_token
     session[:token]
   end
@@ -51,8 +66,43 @@ class User < ActiveRecord::Base
     cache[:repos]
   end
 
+  def repos_not_on_gitbo
+    cache[:repos].select do |repo_name|
+      true unless Repo.find_by_owner_name_and_name(self.nickname, repo_name)
+    end
+  end
+
   def bounty_total
     self.bounties.inject(0) {|total = 0, bounty| total += bounty.price } 
   end
+
+  def bounty_collected
+    Bounty.where('collected_by_user_id = ?', self.id)
+  end
+
+  def total_bounties_collected
+    Bounty.where('collected_by_user_id = ?', self.id).sum('price').to_i
+  end
+
+  def check_bounty_winner(repo, issue, token)
+
+    client = OctokitWrapper.new(token).client
+
+    events = []
+    octokit_events = client.issue_events(repo, issue)
+    octokit_events.each do |e|
+      if e.event == "closed"
+        events << e
+      end
+    end
+    if events.count == 1
+      event = events.first
+    end
+    commit_id = event.commit_id
+    commit = client.commit(repo, commit_id)
+    bounty_winner = commit.author.login
+    true if 'self.nickname' == bounty_winner
+  end
   
+
 end

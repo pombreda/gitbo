@@ -1,0 +1,25 @@
+octokit_client = OctokitWrapper.new(token)
+client = octokit_client.client
+
+#get information on a closed issue and check to see if it was the result of a merge
+
+#list all events for a closed issue
+events = client.issue_events("creekace/student-cms", 10 )clien
+
+event = # find the event that is labeled "closed"
+
+# in the event is closed closed, grab the commit_id
+commit_id = event.commit_id
+
+#find commit that closed the issue by commit_id
+commit = client.commit("creekace/student-cms", commit_id)
+
+#check to see if issue was merged
+client.pull_merged?("creekace/student-cms", 19)
+
+# get Github name of author of commit which was merged
+commit.author.login
+
+
+######## The user story #######
+

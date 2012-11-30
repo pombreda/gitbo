@@ -122,6 +122,7 @@ class Repo < ActiveRecord::Base
   end
 
   def exists_on_github?(token)
+    # TODO: replcae fetch_repo with a different method
     begin
       octokit_client = OctokitWrapper.new(token)
       octokit_client.fetch_repo(self)

@@ -1,7 +1,13 @@
- <% if notice %> 
+ <% if flash[:notice] %> 
   <div  class='alert alert-success'>
     <button type="button" class="close" data-dismiss="alert">×</button> 
-    <%= notice %>
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+ <% if flash[:error] %> 
+  <div  class='alert alert-error'>
+    <button type="button" class="close" data-dismiss="alert">×</button> 
+    <%= flash[:error] %>
   </div>
 <% end %>
 <% if current_user %>
@@ -35,8 +41,10 @@
     <div class="pull-right">
     <% if current_user %> 
       <%= link_to_new_bounty_for @issue %>
+      <button id="bounty-claim" class="btn btn-warning btn-small" href="#claim-bounty-confirmation" data-toggle="modal" type="button">I Solved This</button>
     <% else %>
       <button id="bounty-unauth" class="btn btn-success btn-small" href="#login-prompt" data-toggle="modal" type="button">Issue Bounty</button>
+      <button id="claim-unauth" class="btn btn-warning btn-small" href="#login-prompt" data-toggle="modal" type="button">I Solved This</button>
     <% end %>
       <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">
           View on <i class='icon-github'></i>
@@ -88,24 +96,15 @@
       </span>
         
       <span><strong><%= @issue.comment_count %></strong> Comments<span><br />
-      <span class="net_votes"><strong><%= @issue.net_votes %></strong> Score </span>
+      <span class="net_votes"><strong><%= @issue.vote_count %></strong> Score </span>
     </div>
       <hr>
       
+
       <div class="vote">
-        <% if current_user %>
-          <td><%= link_to vote_issue_path(@issue.id, :upvote), :method => :put, :class => "btn", :id => "upvote_issue", remote: true do %>
-           Upvote Issue
-        <% end %></td><br />
-        <br />
-         <td><%= link_to vote_issue_path(@issue.id, :downvote), :method => :put, :class => "btn", remote: true do %>
-            Downvote Issue
-        <% end %></td>
-        <% else %>
-            <td><button class="btn btn-info" href="#login-prompt" type="button" id="vote-prompt" data-toggle="modal" >Upvote Issue</button></td><br /><br />
-            <td><button class="btn btn-info"  href="#login-prompt"type="button" id="vote-prompt" data-toggle="modal" >Downvote Issue</button></td>
-        <% end %>
+        <%= render :partial => 'vote_button_logic', :locals => { :issue => @issue } %>
       </div>
+
 
      <hr>
     <% if @difficulty %>
@@ -207,3 +206,4 @@
 
 <%= render :partial => 'modals/login' %>
 <%= render :partial => 'modals/bounty_confirmation', :locals => { :issue => @issue } %>
+<%= render :partial => 'modals/claim_bounty_confirmation', :locals => { :issue => @issue } %>

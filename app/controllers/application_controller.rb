@@ -9,14 +9,18 @@ class ApplicationController < ActionController::Base
   end
 
   def octokit_client
-    @octokit_client ||= OctokitWrapper.new(current_user.token)
+    if current_user && current_user.token
+      @octokit_client ||= OctokitWrapper.new(current_user.token)
+    else
+      @octokit_client ||= OctokitWrapper.new #uses our client id and secret
+    end
   end
 
 
   # def login_require
   #   unless current_user
   #     redirect_to login_path, :notice => "please login"
-  # end
+
 
   # def current_user
   #   @current_user ||= User.find_by_id{session[:user_id])

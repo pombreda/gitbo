@@ -1,11 +1,16 @@
-// find the table row that was clicked on
-// in that row, select the vote column
-// replace it's value with the value of @issue.net_votes
-// if (window.location.pathname == "/issues"){
-// if ($("tr#issue_<%= @issue.id %> td.votes").length > 0){
-  $("tr#issue_<%= @issue.id %> td.votes").html("<%= @issue.net_votes %>");  
-// } else {
-  $(".discussion-stats span.net_votes").html("<strong><%= @issue.net_votes %></strong> Scores");   
-    //change the color of buttons upon click 
-    // $("#upvote_issue").removeClass().addClass('btn btn-warning');
-// })
+
+
+$("tr#issue_<%= @issue.id %> td.votes").html("<%= @issue.net_votes %>");  
+
+$(".discussion-stats span.net_votes").html("<strong><%= @issue.vote_count %></strong> Score");   
+
+$upvoteIcon = $("tr#issue_<%= @issue.id %> i#upvote-icon-<%= @issue.id %>");
+$downvoteIcon = $("tr#issue_<%= @issue.id %> i#down-vote-icon-<%= @issue.id %>");
+
+<% if params[:direction] == "upvote" %>
+  $downvoteIcon.addClass('icon-arrow-down').removeClass('icon-circle-arrow-down');
+  $upvoteIcon.removeClass('icon-arrow-up').addClass('icon-circle-arrow-up');
+<% elsif params[:direction] == "downvote" %>
+  $downvoteIcon.removeClass('icon-arrow-down').addClass('icon-circle-arrow-down');
+  $upvoteIcon.addClass('icon-arrow-up').removeClass('icon-circle-arrow-up');
+<% end %> 

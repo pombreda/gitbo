@@ -19,33 +19,36 @@ class ReposController < ApplicationController
   # GET /repos/1.json
   def show
     @repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
+    if @repo.nil?
+      flash[:error] = "#{params[:owner]}'s repo \"#{params[:repo]}\" doesn't exist on Gitbo, consider uploading it below."
+      redirect_to :action => "index"
+    else
 
-    @issues = @repo.issues
+      @issues = @repo.issues
 
-    #check to see if there are any updates to the repo
-    #if there are updates, make a call to update the repo, its issues, and any
-    #comments associated.
-    
-    if current_user
-      RefreshReposWorker.perform_async(@repo.id, current_user.token)
-    end
-
+      #check to see if there are any updates to the repo
+      #if there are updates, make a call to update the repo, its issues, and any
+      #comments associated.
       
-      #maybe autorefresh non missing issues?
-
-      #missing numbers should be imported || refreshed
-
-        # updated_issues.each do |issue|
-        #     issue.refresh || issue.create_from_github(@repo.owner_name, @repo.name, issue.git_number)
-        # end 
+      if current_user
+        RefreshReposWorker.perform_async(@repo.id, current_user.token)
+      end
     
-    # we will want to refresh the page soon as this code executes
-    #because new issues have been updated/added to the page.
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @repo }
-    end
+        #maybe autorefresh non missing issues?
 
+        #missing numbers should be imported || refreshed
+
+          # updated_issues.each do |issue|
+          #     issue.refresh || issue.create_from_github(@repo.owner_name, @repo.name, issue.git_number)
+          # end 
+      
+      # we will want to refresh the page soon as this code executes
+      #because new issues have been updated/added to the page.
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @repo }
+      end
+    end
   end
 
   # GET /repos/new

@@ -1,7 +1,9 @@
 class Issue < ActiveRecord::Base
   attr_accessible :body, :git_number, :title, :repo, :comment_count,
  
-  :git_updated_at, :state, :owner_name, :owner_image, :owner_endorsement, :bounties, :difficulty
+  :git_updated_at, :state, :owner_name, :owner_image, :owner_endorsement, :bounties, :difficulty,
+
+  :avg_difficulty, :vote_count
 
 
   belongs_to :repo
@@ -12,16 +14,16 @@ class Issue < ActiveRecord::Base
   validates :git_number, :uniqueness => { :scope => :repo_id } 
 
   has_many :user_votes
-  
+
   validates :git_number, :uniqueness => { :scope => :repo_id } 
 
 
   def bounty_total
-    self.bounties.inject(0) {|total = 0, bounty| total += bounty.price } 
+    self.bounties.inject(0) {|total = 0, bounty| total += bounty.price if bounty.price} 
   end
 
   def net_votes
-    UserVote.where('issue_id = ?', self.id).sum('vote').to_i
+    @net_votes ||= Issue.find(self.id).vote_count
   end
 
   def popularity
@@ -45,6 +47,10 @@ class Issue < ActiveRecord::Base
   #   self.user_votes.create(:user => user, direction => 1)
   # end
 
+  def vote_tally
+    UserVote.where('issue_id = ?', self.id).sum('vote').to_i
+  end
+
   def add_vote_by(user, vote)
     uv = UserVote.find_or_create_by_issue_id_and_user_id(self.id, user.id)
     case vote
@@ -54,19 +60,21 @@ class Issue < ActiveRecord::Base
         uv.vote = -1
     end
     uv.save
+    self.vote_count = self.vote_tally
   end
 
   def add_difficulty_by(user, rank)
     uv = UserVote.find_or_create_by_issue_id_and_user_id(self.id, user.id)
     uv.update_attribute(:difficulty_rating, rank)
+    self.avg_difficulty = UserVote.user_average_difficulty(self.id)
   end
 
   def retrieve_difficulty(user)
     UserVote.find_or_create_by_issue_id_and_user_id(self.id, user.id).difficulty_rating
   end
 
-  def refresh(github_connection)
-    self.update_issue_attributes(github_connection) if self.updated?(github_connection)
+  def refresh(octokie_issue)
+    self.update_issue_attributes(octokie_issue) if self.updated?(octokie_issue)
   end
 
   #check if updated_at time on issue in database is same as issue on github
@@ -75,10 +83,13 @@ class Issue < ActiveRecord::Base
   end
 
   def self.all_open_issues
-    Issue.all.select do |issue|
-      issue.open?
-    end
+    Issue.open
   end
+
+  def self.open
+    where(:state => 'open')
+  end
+
 
   def open?
     self.state == 'open'
@@ -102,6 +113,22 @@ class Issue < ActiveRecord::Base
 
   def disapproval
     self.owner_endorsement = -1
+  end
+
+  def bounty_claim?
+
+  end
+
+  def how_user_voted(user)
+    uv = UserVote.find_or_create_by_issue_id_and_user_id(self.id, user.id)
+    case uv.vote
+    when 1
+      :upvote
+    when -1
+      :downvote
+    when 0
+      :no_vote
+    end
   end
 
 

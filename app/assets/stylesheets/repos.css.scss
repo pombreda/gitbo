@@ -23,3 +23,21 @@
     color: #026F06;
   }
 }
+
+div.row {
+  margin-top: 40px;
+}
+
+
+form#new_repo.new_repo {
+  width: 260px;
+  padding-left: 40px;
+}
+
+form#new_repo.new_repo p {
+  line-height: 13px;
+}
+
+label {
+  font-size: 16px;
+}
