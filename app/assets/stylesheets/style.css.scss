@@ -1,17 +1,3 @@
-li.user-nickname a {
-  margin-top: 10px;
-  margin-bottom: -10px;
-}
-
-ul.nav li {
-  margin-top: 10px;
-  margin-bottom: -10px;
-}
-
-ul.nav li.user-avatar a {
-  margin-top: 0px;
-}
-
 .container-narrow {
   margin: 0 auto;
   margin-top: 30px;
@@ -39,6 +25,13 @@ ul.nav li.user-avatar a {
   word-spacing: 2px;
 }
 
+.navbar .nav {
+  padding: 10px;
+}
+
+.navbar .nav > li > a {
+  padding: 5px 20px 5px;
+}
 
 .input-medium search-query {
   padding: 10 px;

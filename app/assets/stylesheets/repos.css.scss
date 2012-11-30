@@ -29,12 +29,12 @@ div.row {
 }
 
 
-form#new_repo.new_repo {
-  width: 260px;
+div.row form#new_repo.new_repo {
+  
   padding-left: 40px;
 }
 
-form#new_repo.new_repo p {
+div.row form#new_repo.new_repo p {
   line-height: 13px;
 }
 
