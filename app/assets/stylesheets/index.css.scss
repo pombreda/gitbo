@@ -1,4 +1,4 @@
-.hero-unit {
+div.hero-unit {
   padding-top: 30px;
   padding-bottom: 30px;
   padding-left-right: 0px;
@@ -14,20 +14,19 @@
   border-radius: 6px;
 }
 
-.hero-unit h1 {
+div.hero-unit h1 {
   text-align: center;
 }
-.hero-unit h3 {
+div.hero-unit h3 {
   text-align: center;
   padding-bottom: 25px;
 }
 
-.span3 {
+div.hero-unit div.row div.span3 {
   padding: 25px;
- 
 }
 
-.hero-unit .row {
+div.hero-unit .row {
   margin: 0 auto;
   padding-left: 10px;
   padding-right: 10px;
