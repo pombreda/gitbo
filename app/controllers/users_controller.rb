@@ -9,10 +9,15 @@ class UsersController < ApplicationController
     # repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
     issue = Issue.find_by_id(params[:id])
     repo = Repo.find_by_name(issue.repo.name)
-    repo = "#{repo.name}/#{repo.owner_name}"
+    repo = "#{repo.owner_name}/#{repo.name}"
 
     user = current_user
-    user.check_bounty_winner(repo, issue.git_number, user.token)
+    if user.check_bounty_winner(repo, issue.git_number, user.token)
+      flash[:notice] = 'Congratulations! We will reach you shortly with instructions to claim your bounty'
+    else
+      flash[:error] = 'Our records indicate you did not commit this merge. If you feel this is incorrect, please contact us'
+    end
+    redirect_to :back
   end
 
   def index
