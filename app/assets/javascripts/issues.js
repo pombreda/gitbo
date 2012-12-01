@@ -59,4 +59,6 @@ $('#downvote_issue').click(function(){
   }));
 }
 
-
+$('#nevermind').click(function(){
+  location.reload();
+});
