@@ -31,9 +31,11 @@
       </div>
     </div>
   </div> <!-- end pagehead -->
+  
   <div class="table-body">
     <%= render 'repos-table' %>
   </div> <!-- end table-body -->
+
 </div> <!-- end page-body -->
 
   <%= render :partial => 'modals/repo_uploader', :locals => { :repo => @repo_new } %>
