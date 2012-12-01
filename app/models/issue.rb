@@ -24,8 +24,10 @@ class Issue < ActiveRecord::Base
   end
 
   def add_bounty(user, price)
-    self.bounties.create(:user => user, :price => price)
+    bounty = self.bounties.create(:user_id => user.id, :price => price, :issue_id => self.id)
     self.bounty_total += price.to_i
+    self.save
+    bounty
   end
 
   def write_other_attr

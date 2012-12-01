@@ -48,15 +48,11 @@ class BountiesController < ApplicationController
     issue = Issue.find_by_git_number_and_repo_id(git_number, repo.id)
     price = params[:price]
 
-    issue.add_bounty(current_user, price)
-    @bounty = Bounty.new(
-          :user_id => current_user.id,
-          :issue_id => issue.id,
-          :price => price)
+    @bounty = issue.add_bounty(current_user, price)
 
     respond_to do |format|
-      if @bounty.save
-        format.html { redirect_to owner_repo_gitnumber_path(@bounty.issue.repo.owner_name, @bounty.issue.repo.name, @bounty.issue.git_number), notice: 'Bounty was successfully created.' }
+      if @bounty
+        format.html { redirect_to owner_repo_gitnumber_path(@bounty.issue.repo_owner, @bounty.issue.repo_name, @bounty.issue.git_number), notice: 'Bounty was successfully created.' }
         format.json { render json: @bounty, status: :created, location: @bounty }
         format.js
       else
