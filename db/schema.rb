@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(:version => 20121130192453) do
   create_table "issues", :force => true do |t|
     t.string   "title"
     t.integer  "git_number"
-    t.text     "body"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.text     "body",              :limit => 255
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
     t.integer  "repo_id"
     t.integer  "comment_count"
     t.integer  "upvote"
@@ -58,11 +58,11 @@ ActiveRecord::Schema.define(:version => 20121130192453) do
   create_table "repos", :force => true do |t|
     t.string   "name"
     t.string   "owner_name"
-    t.text     "description"
+    t.text     "description",    :limit => 255
     t.integer  "watchers"
     t.integer  "open_issues"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "slug"
     t.datetime "git_updated_at"
   end
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20121130192453) do
   create_table "user_votes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "issue_id"
-    t.integer  "vote",              :default => 0
+    t.integer  "vote"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
     t.integer  "difficulty_rating", :default => 0

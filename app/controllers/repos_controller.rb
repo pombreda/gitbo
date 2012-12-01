@@ -1,13 +1,13 @@
 class ReposController < ApplicationController
   # GET /repos
   # GET /repos.json
-
+  
   def index
     @repos = Repo.all
     @repo_new = Repo.new
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @repos }
+      format.json { render json: ReposDatatable.new(view_context) }
     end
   end
 

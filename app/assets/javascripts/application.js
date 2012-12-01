@@ -13,7 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap
 //= require twitter/bootstrap
 //= require bootstrap-modalmanager
 //= require bootstrap-modal
 //= require_tree .
+
+
