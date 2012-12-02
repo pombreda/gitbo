@@ -16,7 +16,7 @@
     <div class="span7">
       <h4>This issue belongs to your repo. Please, consider endorsing it!</h4>
     </div>
-    <div class="span5" id="endorse" style="display:none">
+    <div class="span5" id="endorse" >
       <div class="pull-right">
         <div>
           <button class="btn btn-success btn-small"><%= link_to 'Endorse this issue', owner_endorsement_path(@issue, :endorsement), :method => :put %></button>
@@ -34,7 +34,7 @@
   </div>
 <div class="row">
   <div class ='span8'>
-    <h3><%= link_to @issue.repo.owner_name, owner_repos_path(@issue.repo.owner_name) %> / <%= link_to @issue.repo.name, owner_repo_path(@issue.repo.owner_name, @issue.repo.name) %></h3>
+    <h3><%= link_to @issue.repo_owner, owner_repos_path(@issue.repo_owner) %> / <%= link_to @issue.repo_name, owner_repo_path(@issue.repo_owner, @issue.repo_name) %></h3>
     <h4>Issue # <%= @issue.git_number %></h4>
   </div>
   <div class="span4">
@@ -46,7 +46,7 @@
       <button id="bounty-unauth" class="btn btn-success btn-small" href="#login-prompt" data-toggle="modal" type="button">Issue Bounty</button>
       <button id="claim-unauth" class="btn btn-warning btn-small" href="#login-prompt" data-toggle="modal" type="button">I Solved This</button>
     <% end %>
-      <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo.owner_name %>/<%= @issue.repo.name %>/issues/<%= @issue.git_number %>" target="blank">
+      <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo_owner %>/<%= @issue.repo_name %>/issues/<%= @issue.git_number %>" target="blank">
           View on <i class='icon-github'></i>
       </a>
     </div>
@@ -62,7 +62,7 @@
 <div id="bounty_div">
 <% if @issue.bounties.count == 0 %>
     <div class='span12' id="no_bounty">
-    <p>There are currently no bounties for this issue. <%= link_to "Be the first to issue a bounty", new_issue_bounty_path(@issue.repo.owner_name, @issue.repo.name, @issue.git_number)%></p>
+    <p>There are currently no bounties for this issue. <%= link_to "Be the first to issue a bounty", new_issue_bounty_path(@issue.repo_owner, @issue.repo_name, @issue.git_number)%></p>
   </div>
   <% else %>
     <%= render 'bounties/bounties_table', :issue => @issue, remote: true %>
@@ -86,12 +86,12 @@
   <div class="discussion-sidebar" class="span2">
     <div class="discussion-stats">
       <span class="endorsement">
-        <% if @issue.owner_endorsement == 1%>
-          <span class="badge badge-success">Endorsed</span>
-        <% elsif %>
-          <span class="badge">Not Yet</span>
+        <% if @issue.owner_endorsement == 1 %>
+          <span id="endorsement" class="badge badge-success">Endorsed</span>
+        <% elsif @issue.owner_endorsement == -1 %>
+          <span id="endorsement" class="badge badge-important">Not Endorsed</span>          
         <% else %>
-          <span class="badge badge-important">Not Endorsed</span>
+          <span id="endorsement" class="badge">Not Yet</span>
         <% end %>
       </span>
         
@@ -187,7 +187,7 @@
 //   var oldTime = new Date('<%= @issue.updated_at %>');
 
 //   setInterval(function() {
-//     var url = '<%= "/#{@issue.repo.owner_name}/#{@issue.repo.name}/issues/#{@issue.git_number}.json" %>'
+//     var url = '<%= "/#{@issue.repo_owner}/#{@issue.repo_name}/issues/#{@issue.git_number}.json" %>'
 //     $.getJSON(url, {}, function(json){
 //       var newTime = new Date(Date.parse(json.updated_at));
 //       console.log(newTime)
