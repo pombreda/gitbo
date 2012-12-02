@@ -41,10 +41,14 @@
     <div class="pull-right">
     <% if current_user %> 
       <%= link_to_new_bounty_for @issue %>
-      <button id="bounty-claim" class="btn btn-warning btn-small" href="#claim-bounty-confirmation" data-toggle="modal" type="button">I Solved This</button>
+      <% if @issue.state == 'closed' %>
+        <button id="bounty-claim" class="btn btn-warning btn-small" href="#claim-bounty-confirmation" data-toggle="modal" type="button">I Solved This</button>
+      <% end %>
     <% else %>
       <button id="bounty-unauth" class="btn btn-success btn-small" href="#login-prompt" data-toggle="modal" type="button">Issue Bounty</button>
-      <button id="claim-unauth" class="btn btn-warning btn-small" href="#login-prompt" data-toggle="modal" type="button">I Solved This</button>
+      <% if @issue.state == 'closed' %>
+        <button id="claim-unauth" class="btn btn-warning btn-small" href="#login-prompt" data-toggle="modal" type="button">I Solved This</button>
+      <% end %>
     <% end %>
       <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo_owner %>/<%= @issue.repo_name %>/issues/<%= @issue.git_number %>" target="blank">
           View on <i class='icon-github'></i>
