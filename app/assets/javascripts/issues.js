@@ -67,7 +67,11 @@ $('#nevermind').click(function(){
   var url_string = window.location.href.split('?');
   console.log(url_string); 
   if (url_string[1] == "bounty=true") {
-    
+    $('#new_link').trigger('click').ajaxComplete(function(){
+      setTimeout(function(){
+        $('#bounty_price_page').focus()
+      }, 100);
+    });
   }
 
 
