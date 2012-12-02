@@ -59,6 +59,19 @@ $('#downvote_issue').click(function(){
   }));
 }
 
+function focusBountyForm()
+{
+  if ($('#bounty_price_page').length == 0){
+
+    $('#new_link').trigger('click').ajaxComplete(function(){
+        setTimeout(function(){
+          $('#bounty_price_page').focus()
+        }, 100);
+      });
+  }
+}
+
+
 $('#nevermind').click(function(){
   location.reload();
 });
@@ -68,14 +81,8 @@ $('#nevermind').click(function(){
   url.splice(0,1)
   var query_string_params = url[0].split("&");
   if (($.inArray("bounty=true", query_string_params)) != -1) {
-    $('#new_link').trigger('click').ajaxComplete(function(){
-      setTimeout(function(){
-        $('#bounty_price_page').focus();
-      }, 100);
-    });
-  }
-
-
+    focusBountyForm();
+    }
 
 
 
