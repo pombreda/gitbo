@@ -7,11 +7,11 @@
     <%= form_for @repo do |f| %>
     <p>
       <%= f.label :owner_name %> <br />
-      <%= f.text_field :owner_name, :value => current_user.nickname %>
+      <%= f.text_field :owner_name, :value => current_user.nickname, :readonly => true %>
     </p>
     <p>
-      <%= f.label :name %><br />
-      <%= f.text_field :name, :value => "#{repo_name if repo_name}" %>
+      <%= f.label :repo_name %><br />
+      <%= f.text_field :name, :value => "#{repo_name if repo_name}", :readonly => true %>
     </p>
   </div>
   <div class="modal-footer">

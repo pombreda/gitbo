@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     user.save
     user.load_cache_info
 
-    redirect_to :back
+    redirect_to :root
 
   end
 

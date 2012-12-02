@@ -69,7 +69,7 @@ class BountiesController < ApplicationController
 
     respond_to do |format|
       if @bounty.update_attributes(params[:bounty])
-        format.html { redirect_to "/#{@bounty.issue.repo.owner_name}/#{@bounty.issue.repo.name}/issues/#{@bounty.issue.git_number}", notice: 'Bounty was successfully updated.' }
+        format.html { redirect_to "/#{@bounty.issue.repo_owner}/#{@bounty.issue.repo_name}/issues/#{@bounty.issue.git_number}", notice: 'Bounty was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

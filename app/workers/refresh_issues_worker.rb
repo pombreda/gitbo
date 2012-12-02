@@ -11,7 +11,7 @@ class RefreshIssuesWorker
 
     octokit_wrapper = OctokitWrapper.new(token)
     octokit_client = octokit_wrapper.client
-    octokit_issue = octokit_client.issue("#{issue.repo.owner_name}/#{issue.repo.name}", issue.git_number)
+    octokit_issue = octokit_client.issue("#{issue.repo_owner}/#{issue.repo_name}", issue.git_number)
 
     if issue.updated?(octokit_issue)
 
