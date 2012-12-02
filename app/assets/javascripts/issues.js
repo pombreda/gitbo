@@ -62,3 +62,18 @@ $('#downvote_issue').click(function(){
 $('#nevermind').click(function(){
   location.reload();
 });
+
+
+  var url_string = window.location.href.split('?');
+  console.log(url_string); 
+  if (url_string[1] == "bounty=true") {
+    
+  }
+
+
+
+
+
+
+
+
