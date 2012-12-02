@@ -15,7 +15,7 @@ class UserVote < ActiveRecord::Base
   end
 
   def self.repo_owner_id(issue)
-    owner = User.find_by_nickname(issue.repo.owner_name)
+    owner = User.find_by_nickname(issue.repo_owner)
     owner.id if owner
   end
 

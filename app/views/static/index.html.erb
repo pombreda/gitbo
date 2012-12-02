@@ -88,7 +88,7 @@
             <tr>
               <td><%= issue.net_votes %></td>
               <td><%= link_to issue.title, owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number) %></td>
-              <td><%= link_to issue.repo.name, owner_repo_path(issue.repo_owner, issue.repo_name) %></td>
+              <td><%= link_to issue.repo_name, owner_repo_path(issue.repo_owner, issue.repo_name) %></td>
               <td><%= issue.popularity %>
             </tr>
             <% end %>
