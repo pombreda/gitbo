@@ -87,11 +87,11 @@
     <div class="discussion-stats">
       <span class="endorsement">
         <% if @issue.owner_endorsement == 1 %>
-          <span class="badge badge-success">Endorsed</span>
+          <span id="endorsement" class="badge badge-success">Endorsed</span>
         <% elsif @issue.owner_endorsement == -1 %>
-          <span class="badge badge-important">Not Endorsed</span>          
+          <span id="endorsement" class="badge badge-important">Not Endorsed</span>          
         <% else %>
-          <span class="badge">Not Yet</span>
+          <span id="endorsement" class="badge">Not Yet</span>
         <% end %>
       </span>
         
