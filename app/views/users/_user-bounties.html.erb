@@ -12,23 +12,32 @@
     <table class="table table-hover" id="bounties_table">
       <thead>
         <tr>
+          <th></th>
           <th>Repo</th>
           <th>Issue number</th>
           <th>Bounty Price</th>
           <th>Bounty Issued</th>
-          <th></th>
+          
         </tr>
       </thead>
       <tbody>
         <% @user.bounties.sort_by(&:price).reverse.each do |bounty| %>
           <tr>
-            <td><%= link_to bounty.issue.repo.owner_name, owner_repos_path(bounty.issue.repo.owner_name) %>/<%= link_to bounty.issue.repo.name, owner_repo_path(bounty.issue.repo.owner_name, bounty.issue.repo.name) %></td>
-            <td><%= link_to bounty.issue.git_number, owner_repo_gitnumber_path(bounty.issue.repo.owner_name, bounty.issue.repo.name, bounty.issue.git_number) %></td>
+              <% if bounty.collected_by_user_id != 0 %>
+              <td><script src="https://button.stripe.com/v1/button.js" class="stripe-button"
+                data-key="pk_NjMf2QUPtR28Wg0xmyWtepIzUziVr"></script></td>
+              <% else %>
+              <td><button class='btn'>Waiting to be solved</button></td>
+              <!-- <td><button id="bounty-payment-prompt" class="btn btn-success btn-small" href="#bounty-payment" data-toggle="modal">Pay</button></td> -->
+              <% end %>
+            <td><%= link_to bounty.issue.repo_owner, owner_repos_path(bounty.issue.repo_owner) %>/<%= link_to bounty.issue.repo_name, owner_repo_path(bounty.issue.repo_owner, bounty.issue.repo_name) %></td>
+            <td><%= link_to bounty.issue.git_number, owner_repo_gitnumber_path(bounty.issue.repo_owner, bounty.issue.repo_name, bounty.issue.git_number) %></td>
             <td><%= number_to_currency(bounty.price, :precision => 0) %></td>
             <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
-            <td><a class="btn btn-info btn-small" href="http://www.github.com/<%= bounty.issue.repo.owner_name %>/<%= bounty.issue.repo.name %>/issues/<%= bounty.issue.git_number %>" target="blank"> View issue on <i class='icon-github'></i>
+            <td><a class="btn btn-info btn-small" href="http://www.github.com/<%= bounty.issue.repo_owner %>/<%= bounty.issue.repo_name %>/issues/<%= bounty.issue.git_number %>" target="blank"> View issue on <i class='icon-github'></i>
             </a></td>
-            <!-- <td><%#= link_to "Edit", edit_issue_bounty_path( bounty.issue.repo.owner_name, bounty.issue.repo.name, bounty.issue.git_number, bounty.id ) %></td> -->
+            
+            <!-- <td><%#= link_to "Edit", edit_issue_bounty_path( bounty.issue.repo_owner, bounty.issue.repo_name, bounty.issue.git_number, bounty.id ) %></td> -->
           </tr>
         <% end %>
       </tbody>

@@ -2,6 +2,10 @@ require 'sidekiq/web'
 
 Gitbo::Application.routes.draw do
 
+    #stripe charges
+  resources :charges
+
+
   ### sidekiq monitoring
   mount Sidekiq::Web, at: "/sidekiq"
   

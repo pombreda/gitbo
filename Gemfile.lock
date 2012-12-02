@@ -16,6 +16,14 @@ GIT
     jquery-datatables-rails (1.11.1)
       jquery-rails
 
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: cf3c4a11b63abf958adc7549d5af8a91c9c30bb4
+  specs:
+    stripe (1.7.8)
+      multi_json (>= 1.0.4, < 2)
+      rest-client (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -196,6 +204,8 @@ GEM
     redis (3.0.2)
     redis-namespace (1.2.1)
       redis (~> 3.0.0)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.12.0)
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
@@ -306,6 +316,7 @@ DEPENDENCIES
   sinatra
   slim
   sqlite3
+  stripe!
   therubyracer
   thin
   twitter-bootstrap-rails
