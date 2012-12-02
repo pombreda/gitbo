@@ -15,7 +15,8 @@ jQuery ->
     ]
     "iDisplayLength": 10,
     "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+  $("#repos").show()
+  
   $.extend( $.fn.dataTableExt.oStdClasses, {
     "sWrapper": "dataTables_wrapper form-inline"
   });
-  $("#repos").show()
