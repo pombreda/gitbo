@@ -29,8 +29,7 @@ Open source software drives the ecosystem for many programming languages. As rub
 
 *Inspirational statement - As developers we are always looking to contribute to open source and the community.
 
-<<<<<<< Updated upstream
-=======
+
 Github makes collaboration super easy but doesn't help with knowing what to contribute to. Thats what Gitbo does.
 
 App aggregates all issues from Github into a place where users can find issues to contribute to.
@@ -43,6 +42,7 @@ Need to explain what a bounty is. When looking for an issue to work on, you can 
 
 
 Good afternoon, we are Gitbo
+
 
 My name is Kevin and I'm gonna tell you a little bit about how Gitbo came to form
 
