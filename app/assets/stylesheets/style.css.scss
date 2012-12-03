@@ -116,5 +116,70 @@ div.vote a {
   height: 20px;
 }
 
+td p.issue-comment-count {
+  margin-top: -5px;
+  font-weight: bold;
+  color: #888;
+  font-size: 12px;
+}
+
+.table td {
+  line-height: 15px;
+}
+
+tr td.issue-index-repo {
+  padding-top: 10px;
+}
+
+td#vote-prompt {
+  padding-left: 10px;
+}
+
+td a span.label {
+  padding: 9px 4px;
+  text-align: center;
+}
+
+td a span {
+  text-align: center;
+}
+
+td#vote-prompt hr {
+  margin: 6px 0;
+  width: 75%;
+  text-align: center;
+}
+
+td#vote-prompt {
+  text-align: center;
+}
+
+td.parent_class hr {
+  margin: 6px 0;
+  width: 75%;
+  text-align: center;
+}
+
+td.parent_class {
+  text-align: center;
+}
+
+#issue-endorcement span.label {
+    border-radius: 50%;
+    width: 36px; height: 36px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+
+
+
+
+
+
 
 
