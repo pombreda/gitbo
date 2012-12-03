@@ -8,10 +8,11 @@ div.hero-unit {
   font-weight: 200;
   line-height: 15px;
   color: inherit;
-  background-color: #EEE;
+  background-color: transparent;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
+  color: white;
 }
 
 div.hero-unit h1 {
