@@ -11,14 +11,15 @@ class Comment < ActiveRecord::Base
     "#{repo_owner_name}/#{repo_name}"
   end
 
+
   private
 
   def repo_owner_name
-    self.issue.repo.owner_name
+    self.issue.repo_owner
   end
 
   def repo_name
-    self.issue.repo.name
+    self.issue.repo_name
   end
 
 end

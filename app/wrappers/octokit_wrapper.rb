@@ -55,6 +55,10 @@ class OctokitWrapper
     issue
   end
 
+  def post_comment(comment)
+    client.add_comment(comment.repo, comment.issue.git_number, comment.body)
+  end
+
   def update_issue_attributes(issue)
     issue.update_attributes( :body => issue.body,
                             :title => issue.title,

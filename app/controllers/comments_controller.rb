@@ -42,7 +42,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
 
-    GithubComments.post_comment(session[:token], @comment)
+    octokit_client.post_comment(@comment)
 
 
     respond_to do |format|
