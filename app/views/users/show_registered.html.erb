@@ -44,13 +44,14 @@
     </ul> <!-- end stats--> 
   </div>
   
-  <div class="span9">
+  <div class="span9 user_table">
     <ul id="myTab" class="nav nav-tabs">
-      <li><a href="#user-repos" data-toggle="tab">Repos</a>
+      <li class="active"><a href="#user-bounties" class="user_tab" data-toggle="tab">Bounties Offered</a></li>
+      <li><a href="#user-repos" class="user_tab" data-toggle="tab">Gitbo repos</a>
       </li>
-      <li class="active"><a href="#user-bounties" data-toggle="tab">Bounties</a></li>
-      <li><a href="#following" data-toggle="tab">Following</a></li>
-      <li><a href="#starred" data-toggle="tab">Starred</a></li>
+      <li><a href="#following" class="user_tab" data-toggle="tab">Github</a></li>
+      <li><a href="#starred" class="user_tab" data-toggle="tab">Starred</a></li>
+      <a class="btn btn-info btn-small" style="float:right;" href="http://www.github.com/<%= @user.nickname %>" target="blank">View owner on <i class='icon-github'></i></a>
     </ul>
 
     <div class="tab-content">
