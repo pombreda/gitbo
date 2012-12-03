@@ -1,7 +1,7 @@
 
 $("tr#issue_<%= @issue.id %> td.votes").html("<%= @issue.net_votes %>");  
 
-$(".discussion-stats span.net_votes").html("<strong><%= @issue.vote_count %></strong> Score");   
+$(".discussion-stats span.net_votes").html("<strong><%= pluralize @issue.vote_count, "vote" %> </strong>");   
 
 $upvoteIcon = $("tr#issue_<%= @issue.id %> i#upvote-icon-<%= @issue.id %>");
 $downvoteIcon = $("tr#issue_<%= @issue.id %> i#down-vote-icon-<%= @issue.id %>");

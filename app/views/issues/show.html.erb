@@ -95,12 +95,12 @@
         <% elsif @issue.owner_endorsement == -1 %>
           <span id="endorsement" class="badge badge-important">Not Endorsed</span>          
         <% else %>
-          <span id="endorsement" class="badge">Not Yet</span>
+          <span id="endorsement" class="badge">Not Yet Endorsed</span>
         <% end %>
       </span>
         
-      <span><strong><%= @issue.comment_count %></strong> Comments<span><br />
-      <span class="net_votes"><strong><%= @issue.vote_count %></strong> Score </span>
+      <span><strong><%= pluralize @issue.comment_count, "comment" %></strong><span><br />
+      <span class="net_votes"><strong><%= pluralize @issue.vote_count, "vote" %></strong></span>
     </div>
       <hr>
       
