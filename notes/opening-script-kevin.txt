@@ -1,0 +1,32 @@
+
+-adds incentivisation options with bounties
+
+-Gamifying open-source contributions
+
+-Bounties portion is just a piece of the overall concept..... you are voting with your dollars.
+
+-Owner endorsement, user upvoting, bounties - these are
+
+-Community has a voice as to which issues are the most pressing..... thousands of upvotes may mean a more pressing than an issue with one bounty.
+
+
+The concept of Gitbo comes from our collective ambition to contribute to the open source community. The open source community is awesome and there are thousands upon thousands of projects to contribute to as a developer. As new developers, we are constantly searching for ways to improve our craft. It is sometimes difficult to find the projects that are the best fit for us. Gitbo is essentially facilitating the open source community to help each other.
+
+Gitbo creates a centralized location for developers to work towards committing on issues that really matter. We utilize incentivizaton options with monetary bounties as well as gamification to create this community of contributors.  Gitbo aggregates some of the most pressing issues from Github as well as allowing its community of users to upload the repositories and issues that are most important to them. 
+
+At the highest level, there are 2 users on Gitbo. Someone looking to contribute to open source issues and someone who needs an issue resolved.
+
+(need issues resolved)
+The latter can be a repo owner who has wanted an issue resolved one of her repositories or a developer/technical lead/founder who uses a piece of open source software and either discovers an issue they need fixed or would love to see a new feature which will improve their experience with the software. This user can upload an issue or attach a bounty to an exisisting issue, incentivising the community to resolve this issue.
+
+(looking to resolve issues)
+As a developer, I can browse through the issues and repositories on Gitbo to find a project. I can browse for issues with a bounty attached or simply look into issues with the highest popularity index and upvotes. By fixing an issue I improve my skills, contribute to the open source community, help resolve an issue that is important to someone else, and make a little bit of cash too! As Jenya will show you in a few moments, there are several ways a user can find an issue to patch.
+
+
+*Intoduce team members
+
+Open source software drives the ecosystem for many programming languages. As ruby developers we know just how vital the entire community of open source developers is to our daily lives.
+
+*Inspirational statement - As developers we are always looking to contribute to open source and the community.
+
+
