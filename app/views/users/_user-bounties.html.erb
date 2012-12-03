@@ -24,8 +24,8 @@
         <% @user.bounties.sort_by(&:price).reverse.each do |bounty| %>
           <tr>
               <% if bounty.collected_by_user_id != 0 %>
-              <td><script src="https://button.stripe.com/v1/button.js" class="stripe-button"
-                data-key="pk_NjMf2QUPtR28Wg0xmyWtepIzUziVr"></script></td>
+              <td id="stripe-button"><script src="https://button.stripe.com/v1/button.js" class="stripe-button"
+                data-key="pk_NjMf2QUPtR28Wg0xmyWtepIzUziVr" data-label="Pay"></script></td>
               <% else %>
               <td><span class="label">Waiting to be solved</span></td>
               <!-- <td><button id="bounty-payment-prompt" class="btn btn-success btn-small" href="#bounty-payment" data-toggle="modal">Pay</button></td> -->

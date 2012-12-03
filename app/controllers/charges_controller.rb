@@ -18,4 +18,8 @@ rescue Stripe::CardError => e
   redirect_to :back
 end
 
+bounty = User.locate_bounty(current_user, issue)
+
+bounty.paid = true
+
 end

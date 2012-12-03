@@ -3,7 +3,10 @@ require 'sidekiq/web'
 Gitbo::Application.routes.draw do
 
     #stripe charges
-  resources :charges
+  resources :charges, :except => :create
+  post '/:charges/:bounty_id/' => "charges#create", :as => :create_charge
+
+
 
 
   ### sidekiq monitoring

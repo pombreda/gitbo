@@ -72,6 +72,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def locate_bounty(user, issue)
+    Bounty.find_by_user_id_and_issue_id(user.id, issue.id)
+  end
+
   def bounty_total
     @bounty ||= self.bounties.inject(0) {|total = 0, bounty| total += bounty.price } 
   end

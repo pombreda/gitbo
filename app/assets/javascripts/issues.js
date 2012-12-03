@@ -60,6 +60,11 @@ $('#downvote_issue').click(function(){
       event.preventDefault();
       $('span#error').replaceWith('<span class="label label-important">That is a lot of Moola! Please enter something more realistic.</span>');
     }
+
+    if(parseInt(modal) <= 0){
+      event.preventDefault();
+      $('span#error').replaceWith('<span class="label label-important">Woah. That is a little too cheap. Please enter something more realistic.</span>');
+    }
     
   }));
 }
