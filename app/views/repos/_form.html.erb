@@ -14,13 +14,13 @@
     </div>
   <% end %>
 
-    <p>
-      <%= f.label :owner_name %> <br />
-      <%= f.text_field :owner_name %>
-    </p>
-    <p>
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
+  <p>
+    <%= f.label :owner_name %> <br />
+    <%= f.text_field :owner_name %>
   </p>
-    <%= f.submit 'Create Repo', :class => 'btn btn-success' %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <%= f.submit 'Create Repo', :class => 'btn btn-success' %>
 <% end %>

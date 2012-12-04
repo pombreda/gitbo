@@ -1,5 +1,5 @@
 <% if @issue %>
-  <%  submit_path = "/#{@issue.repo.owner_name}/#{@issue.repo_name}/issues/#{@issue.git_number}/bounty" %>
+  <% submit_path = "/#{@issue.repo.owner_name}/#{@issue.repo_name}/issues/#{@issue.git_number}/bounty" %>
 <% end %>
 
 <%= form_tag(submit_path, :method => "post", remote: true, :id => "new_bounty_form" ) do %>
@@ -7,8 +7,7 @@
 <!-- <h3>For issue #<%#= @issue.git_number %> in <%#= "#{@issue.repo_owner}/#{@issue.repo_name}" %></h3> -->
 
 <div class="field">
-  <label for="bounty_price_page">Enter your bounty</label>
-  <input id="bounty_price_page" name="price" type="number" />
+  <input id="bounty_price_page" name="price" type="number" placeholder="Enter your bounty" />
 </div>
 <div class="actions" id="pledge">
   <!-- <input name="commit" type="submit" value="Create Bounty" method="post" /> -->

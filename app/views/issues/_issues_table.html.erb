@@ -6,9 +6,8 @@
         <th>Issue Name</th>
         <th>Repo Name</th>
         <th>Repo Owner</th>
-        <!-- <th>Popularity</th> -->
         <th>Bounty</th>
-        <!-- <th>Support</th> -->
+        <th>Difficulty</th>
       </tr>
     </thead>
     
@@ -46,6 +45,8 @@
                 <td href="#login-prompt" data-toggle="modal"><span id="bounty-prompt" class="label label-warning"><%= number_to_currency(issue.bounty_total, :raise => true, :precision => 0)%></span></td>
             <% end %>
           <% end %>
+          
+          <td class="issue_avg_difficulty"><%= issue.avg_difficulty %></td>
           <!-- <td id="issue-endorcement">
             <%# if issue.owner_endorsement == 1 %>
                 <span class="label label-success">YES!</span>
