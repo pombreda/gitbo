@@ -30,12 +30,12 @@
               <td><span class="label">Waiting to be solved</span></td>
               <!-- <td><button id="bounty-payment-prompt" class="btn btn-success btn-small" href="#bounty-payment" data-toggle="modal">Pay</button></td> -->
               <% end %>
-            <td><%= link_to bounty.issue.repo_owner, owner_repos_path(bounty.issue.repo_owner) %>/<%= link_to bounty.issue.repo_name, owner_repo_path(bounty.issue.repo_owner, bounty.issue.repo_name) %></td>
-            <td><%= link_to bounty.issue.git_number, owner_repo_gitnumber_path(bounty.issue.repo_owner, bounty.issue.repo_name, bounty.issue.git_number) %></td>
-            <td><%= number_to_currency(bounty.price, :precision => 0) %></td>
-            <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
-            <td><a class="btn btn-info btn-small" href="http://www.github.com/<%= bounty.issue.repo_owner %>/<%= bounty.issue.repo_name %>/issues/<%= bounty.issue.git_number %>" target="blank"> View issue on <i class='icon-github'></i>
-            </a></td>
+              <td><%= link_to bounty.issue.repo_owner, owner_repos_path(bounty.issue.repo_owner) %>/<%= link_to bounty.issue.repo_name, owner_repo_path(bounty.issue.repo_owner, bounty.issue.repo_name) %></td>
+              <td><%= link_to bounty.issue.git_number, owner_repo_gitnumber_path(bounty.issue.repo_owner, bounty.issue.repo_name, bounty.issue.git_number) %></td>
+              <td><%= number_to_currency(bounty.price, :precision => 0) %></td>
+              <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
+              <td><a class="btn btn-info btn-small" href="http://www.github.com/<%= bounty.issue.repo_owner %>/<%= bounty.issue.repo_name %>/issues/<%= bounty.issue.git_number %>" target="blank"> View issue on <i class='icon-github'></i>
+              </a></td>
             
             <!-- <td><%#= link_to "Edit", edit_issue_bounty_path( bounty.issue.repo_owner, bounty.issue.repo_name, bounty.issue.git_number, bounty.id ) %></td> -->
           </tr>
