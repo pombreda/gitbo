@@ -35,7 +35,11 @@
                   <%= link_to 'View Profile', owner_repos_path(current_user.nickname) %>
                   <%= link_to current_user.nickname, owner_repos_path(current_user.nickname) %>
                   </li>
-                <li><%= link_to "Sign Out", signout_path, :class => 'btn btn-mini' %></li>
+                <li class="github-signout">
+                  <%= link_to signout_path do %>
+                    <i class='icon-signout' style="font-size: 20px;"></i>
+                  <% end %>
+                </li>
               <% else %>
                 <li class="github-signin">
                   <%= link_to "/auth/github", :class => 'btn' do %>
