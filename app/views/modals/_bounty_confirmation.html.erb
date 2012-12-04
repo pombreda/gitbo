@@ -1,14 +1,11 @@
 <div id="bounty-confirmation" class="modal hide fade" tabindex="-1">
+  <% if @issue %>
+    <%  submit_path = "/#{@issue.repo_owner}/#{@issue.repo_name}/issues/#{@issue.git_number}/bounty" %>
+  <% end %>
 
-<% if @issue %>
-  <%  submit_path = "/#{@issue.repo_owner}/#{@issue.repo_name}/issues/#{@issue.git_number}/bounty" %>
-<% end %>
-
-<%= form_tag(submit_path, :method => "post", remote: true, :id => "modal_bounty_form" ) do %>
-<div class="modal-body">
-  <div class="field">
-    <label for="bounty_price">Please re-enter the amount you wish to pledge...</label>
-    <input id="bounty_price" name="price" type="number" />
+  <%= form_tag(submit_path, :method => "post", remote: true, :id => "modal_bounty_form" ) do %>
+  <div class="modal-body">
+    <input id="bounty_price" name="price" type="number" placeholder="Confirm your bounty" />
   </div>
   <div class="modal-footer">
     <span id="error"></span>
