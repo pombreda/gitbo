@@ -55,6 +55,21 @@
     left:2px;
 }​
 
+.endorsement {
+  display: inline;
+  margin-left: 20px;
+}
+
+#endorse {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.divider {
+  padding-top: 10px;
+  border-top: 1px solid black;
+}
+
 /*.rating {
   unicode-bidi: bidi-override;
   direction: rtl;
@@ -151,3 +166,7 @@ div#seal.seal:after{
   -moz-transform: rotate(-44deg);
 }​
 */
+
+/*#bounty_div {
+  text-align: right;
+}*/

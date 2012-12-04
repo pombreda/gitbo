@@ -13,71 +13,58 @@
 <% if current_user %>
   <% if repo_owner %>
   <div class="row">
+    <% unless @issue.owner_endorsement != 0 %>
     <div class="span7">
       <h4>This issue belongs to your repo. Please, consider endorsing it!</h4>
     </div>
-    <div class="span5" id="endorse" >
-      <div class="pull-right">
-        <div>
-          <button class="btn btn-success btn-small"><%= link_to 'Endorse this issue', owner_endorsement_path(@issue, :endorsement), :method => :put %></button>
-          <button class="btn btn-danger btn-small"><%= link_to 'Over my dead body', owner_endorsement_path(@issue, :disapproval), :method => :put %></button>
-        </a></div>
-      </div>
+    <% end %>
+    <div class="span5 pull-right" id="endorse" >
+      <button class="btn btn-success btn-small"><%= link_to 'Endorse this issue', owner_endorsement_path(@issue, :endorsement), :method => :put %></button>
+      <button class="btn btn-danger btn-small"><%= link_to 'Over my dead body', owner_endorsement_path(@issue, :disapproval), :method => :put %></button>
     </div>
   </div>
   <% end %>
 <% end %>
   <!-- End repo-owner endorsement -->
   <!-- Refresh -->
-  <div id="refresh-wrapper" style="display:none">
-    <div id="refresh" class='btn btn-info'>Refresh</div>​
-  </div>
-<div class="row">
-  <div class ='span8'>
-    <h3><%= link_to @issue.repo_owner, owner_repos_path(@issue.repo_owner) %> / <%= link_to @issue.repo_name, owner_repo_path(@issue.repo_owner, @issue.repo_name) %></h3>
-    <h4>Issue # <%= @issue.git_number %></h4>
-  </div>
-  <div class="span4">
-    <div class="pull-right">
-    <% if current_user %> 
-      <%= link_to_new_bounty_for @issue %>
-      <% if @issue.state == 'closed' %>
-        <button id="bounty-claim" class="btn btn-warning btn-small" href="#claim-bounty-confirmation" data-toggle="modal" type="button">I Solved This</button>
+  <div class="row">
+    <div class ='span8'>
+      <div class='pull-left'>
+      <h3><%= link_to @issue.repo_owner, owner_repos_path(@issue.repo_owner) %> / <%= link_to @issue.repo_name, owner_repo_path(@issue.repo_owner, @issue.repo_name) %></h3>
+      <div class="discu ssion-stats issue-comment-count">
+        <span class='issue-comment-count'><%= pluralize @issue.comment_count, "comment" %> | <%= pluralize @issue.vote_count, "vote" %></span>
+      </div>
+    </div>
+      <div class="endorsement">
+        <% if @issue.owner_endorsement == 1 %>
+          <span id="endorsement" class="badge badge-success">Endorsed</span>
+        <% elsif @issue.owner_endorsement == -1 %>
+          <span id="endorsement" class="badge badge-important">Not Endorsed</span>
+        <% end %>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="pull-right">
+      <% if current_user %> 
+        <%= link_to_new_bounty_for @issue %>
+        <% if @issue.state == 'closed' %>
+          <button id="bounty-claim" class="btn btn-warning btn-small" href="#claim-bounty-confirmation" data-toggle="modal" type="button">I Solved This</button>
+        <% end %>
+      <% else %>
+        <button id="bounty-unauth" class="btn btn-success btn-small" href="#login-prompt" data-toggle="modal" type="button">Issue Bounty</button>
+        <% if @issue.state == 'closed' %>
+          <button id="claim-unauth" class="btn btn-warning btn-small" href="#login-prompt" data-toggle="modal" type="button">I Solved This</button>
+        <% end %>
       <% end %>
-    <% else %>
-      <button id="bounty-unauth" class="btn btn-success btn-small" href="#login-prompt" data-toggle="modal" type="button">Issue Bounty</button>
-      <% if @issue.state == 'closed' %>
-        <button id="claim-unauth" class="btn btn-warning btn-small" href="#login-prompt" data-toggle="modal" type="button">I Solved This</button>
-      <% end %>
-    <% end %>
-      <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo_owner %>/<%= @issue.repo_name %>/issues/<%= @issue.git_number %>" target="blank">
-          View on <i class='icon-github'></i>
-      </a>
+        <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo_owner %>/<%= @issue.repo_name %>/issues/<%= @issue.git_number %>" target="blank">
+            View on <i class='icon-github'></i>
+        </a>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="span12">
-    <h3>Current Bounties</h3>
-  </div>
-</div>
-
-<div id="bounty_div">
-<% if @issue.bounties.count == 0 %>
-    <div class='span12' id="no_bounty">
-    <p>There are currently no bounties for this issue. <%= link_to "Be the first to issue a bounty", 'javascript:focusBountyForm();' %></p>
-  </div>
-  <% else %>
-    <%= render 'bounties/bounties_table', :issue => @issue, remote: true %>
-<% end %>
-</div>
-
-  
-<div class='clearfix'></div>
-
-<div id="show_issue">
-  <div class="issue-head clearfix">
+<!-- <div id="show_issue"> -->
+  <div class="row issue-head">
     <span class="back">
       <span class="icon-arrow-left"></span>
       <%= link_to 'View All Issues', owner_repo_path %>
@@ -86,39 +73,9 @@
   </div>
 
 <!-- sidebar with badge and stats-->
-
-  <div class="discussion-sidebar" class="span2">
-    <div class="discussion-stats">
-      <span class="endorsement">
-        <% if @issue.owner_endorsement == 1 %>
-          <span id="endorsement" class="badge badge-success">Endorsed</span>
-        <% elsif @issue.owner_endorsement == -1 %>
-          <span id="endorsement" class="badge badge-important">Not Endorsed</span>          
-        <% else %>
-          <span id="endorsement" class="badge">Not Yet Endorsed</span>
-        <% end %>
-      </span>
-        
-      <span><strong><%= pluralize @issue.comment_count, "comment" %></strong><span><br />
-      <span class="net_votes"><strong><%= pluralize @issue.vote_count, "vote" %></strong></span>
-    </div>
-      <hr>
-      
-
-      <div class="vote">
-        <%= render :partial => 'vote_button_logic', :locals => { :issue => @issue } %>
-      </div>
-
-
-     <hr>
-    <% if @difficulty %>
-      <%= render :partial => 'issues/difficulty_message', :locals => { :issue => @issue } %>
-    <% end %>
-  </div>
-
-  
   <!-- main block with description and comments -->
-    <div class='span10'>
+  <div class= 'row'>
+    <div class='span8'>
       <div class='row'>
         <div class="issue-bubble">
           <img src="<%= @issue.owner_image %>" class='comment-avatar'>
@@ -183,8 +140,26 @@
         </div>
       </div>
     </div>
-  </div>    
-</div>
+    <div class="span4">
+      <h5>Current Bounties</h5>
+     <% if @issue.bounties.count == 0 %>
+      <div id="no_bounty">
+        <p>There are currently no bounties for this issue</br>
+        <%= link_to "Issue a Bounty", 'javascript:focusBountyForm();' %></p>
+      </div>
+      <% else %>
+        <%= render 'bounties/bounties_table', :issue => @issue, remote: true %>
+      <% end %>
+      <div class='row '>
+        <div class="vote span2">
+          <%= render :partial => 'vote_button_logic', :locals => { :issue => @issue } %>
+        </div>
+        <div class='span2'>
+          <%= render :partial => 'issues/difficulty_message', :locals => { :issue => @issue } %>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <script type="text/javascript">
 

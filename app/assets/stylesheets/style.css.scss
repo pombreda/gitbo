@@ -73,19 +73,19 @@ body {
 }
 
 #endorsement {
-    border-radius: 50%;
-    width: 100px; height: 100px;
+    border-radius: 10%;
+    // width: 100px; height: 100px;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     text-align: center;
-    line-height: 86px;
+    // line-height: 6px;
+    padding: 10px;
     margin-top: 20px;
-    margin-bottom: 20px;
   }
 
 .discussion-sidebar {
   float: right;
-  width: 100px;
+  // width: 100px;
 }
 
 .issue-head {
@@ -123,11 +123,11 @@ div.vote a {
   height: 20px;
 }
 
-td p.issue-comment-count {
-  margin-top: -5px;
+.issue-comment-count {
+   margin-top: -5px;
   font-weight: bold;
   color: #888;
-  font-size: 12px;
+  font-size: 12px; 
 }
 
 .table td {
