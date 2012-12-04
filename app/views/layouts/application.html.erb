@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -16,7 +15,6 @@
     <%= stylesheet_link_tag "application", :media => "all" %>
   </head>
   <body>
-
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -54,27 +52,26 @@
 
 
          <%= yield %>
-    <!-- <div class="span3">
-      <div class="well sidebar-nav">
-        <h3>Sidebar</h3>
-        <ul class="nav nav-list">
-          <li class="nav-header">Sidebar</li>
-          <li><%#= link_to "Link1", "/path1"  %></li>
-          <li><%#= link_to "Link2", "/path2"  %></li>
-          <li><%#= link_to "Link3", "/path3"  %></li>
-        </ul>
-      </div>
-    </div> -->
+        <!-- <div class="span3">
+          <div class="well sidebar-nav">
+            <h3>Sidebar</h3>
+            <ul class="nav nav-list">
+              <li class="nav-header">Sidebar</li>
+              <li><%#= link_to "Link1", "/path1"  %></li>
+              <li><%#= link_to "Link2", "/path2"  %></li>
+              <li><%#= link_to "Link3", "/path3"  %></li>
+            </ul>
+          </div>
+        </div> -->
 
       </div><!--/row-->
     </div> <!-- /container -->
-
  <!-- Footer
     ================================================== -->
-    <footer class="container content-wrap">
+    <footer class="footer" style="background-color:#c2c2c2">
       <div class="bottom-bar">
         <div class="bottombar-inner">
-          <div class="container">
+          <div class="container navfooterline">
             <ul class="nav">
               <li><a class="footer_link" href="#">About</a></li>
               <li><a class="footer_link" href="#">Contact</a></li>
@@ -85,6 +82,7 @@
         </div>
       </div>
     </footer>
+  
 
     <!-- Javascripts
     ================================================== -->
@@ -92,19 +90,19 @@
     <%= javascript_include_tag "application" %>
 
 
-    <script type="text/javascript">
+  <script type="text/javascript">
 
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-33578770-2']);
-      _gaq.push(['_trackPageview']);
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33578770-2']);
+    _gaq.push(['_trackPageview']);
 
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
 
-    </script>
+  </script>
 
   </body>
 </html>
