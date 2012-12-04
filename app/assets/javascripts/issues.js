@@ -83,11 +83,15 @@ $('#nevermind').click(function(){
 
 
   var url = window.location.href.split('?');
-  url.splice(0,1)
-  var query_string_params = url[0].split("&");
-  if (($.inArray("bounty=true", query_string_params)) != -1) {
+  url.splice(0,1);
+  if (url[0] != undefined){
+    var query_string_params = url[0].split("&");
+    if (($.inArray("bounty=true", query_string_params)) != -1) {
     focusBountyForm();
     }
+  }
+
+  
 
 
 
