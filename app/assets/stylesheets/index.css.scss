@@ -8,11 +8,10 @@ div.hero-unit {
   font-weight: 200;
   line-height: 15px;
   color: inherit;
-  background-color: transparent;
+  background-color: #EEE;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
-  color: white;
 }
 
 div.hero-unit h1 {
@@ -35,4 +34,8 @@ div.hero-unit .row {
 
 .step_writeup {
   text-align: center;
+}
+
+.help a img {
+  margin-left: 30px;
 }

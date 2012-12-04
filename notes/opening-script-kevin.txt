@@ -60,7 +60,34 @@ Github is an amazing site for developers (open source or otherwise) to collabora
 
 Enter Gitbo. Gitbo aggregates all open source issues from Github and ranks them based on a popularity algorithm so a developer can easily find a project to make real world contribution. By providing a platform for developers to easily find and work on important issues, Gitbo helps grow the open source community as well as the skills and notoriety of the individual developer.
 
-As if we need any more incentive, Gitbo further encourages contribution by gamifying open source contribution and rewards developers with credibility and even monetization through Bounties placed on issues by repo owners or others who want to see an issue patched. I'll let Jenya take over and walk you through a use case where a developer can earn some cash and coder cred while improving her coding chops and contributing to this all too important ecosystem.
+=======
+
+My name is Kevin and I'm gonna tell you a little bit about Gitbounty.
+
+This is Jenya and she will walk you through a short use case demonstration of our application
+
+Next, Adam will explain some of the technical aspects behind Gitbo 
+
+and finally, Josh will talk a bit about what is next in store for Gitbo.
+
+As ruby developers, we all know how important open source software is to our everday lives. Open source software allows us to utilize tools which are not otherwise readily available.
+
+The community behind open source developement is amazing. 
+
+----------------------------------------------
+  ADAM THINKS I NEED TO CHEESE THIS DOWN A BIT AND MAKE MORE OF A STORY
+
+    It is this community that keeps us going from day to day. 
+
+    Within this awesome community stands one undisputed location which hosts nearly all open source code today.... I'm obviously talking about Github.
+
+    Github is an amazing site for developers (open source or otherwise) to collaborate on software projects. One area where we have seen Github fall short is in providing an easy way for developers, especially new developers like us, to find open source projects to contribute.
+
+----------------------------------------------
+
+Enter Gitbo. Gitbo aggregates all open source issues from Github and ranks them based on a popularity algorithm so a developer can easily find a project to make real world contribution. By providing a platform for developers to easily find and work on important issues, Gitbo helps grow the open source community as well as the skills and notoriety of the individual developer.
+
+As if we need any more incentive, Gitbo further encourages contribution by gamifying open source contribution and rewards developers with credibility and even monetization ..... through Bounties placed on issues by repo owners or others who want to see an issue patched. I'll let Jenya take over and walk you through a use case where a developer can earn some cash and coder cred while improving her coding chops and contributing to this all too important ecosystem.
 
 
 
