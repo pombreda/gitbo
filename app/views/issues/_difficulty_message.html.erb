@@ -1,3 +1,4 @@
+<%= render :partial => 'issues/difficulty_stars', :locals => { :issue => @issue } %>
 <% case %>
   <% when both_owner_and_user_rated(@issue) %>
     The owner says this is a <strong><%= UserVote.owner_rating(@issue) %></strong>
@@ -10,8 +11,7 @@
   <% when owner_rated_but_no_users(@issue) %>
    The owner says this is a <strong><%= UserVote.owner_rating(@issue) %><strong>
 
-  <%# when neither(@issue) %>
+  <% when neither(@issue) %>
    <!-- Be the first to vote on the difficulty of this issue. -->
-  <% end %>
+<% end %>
 
-<%= render :partial => 'issues/difficulty_stars', :locals => { :issue => @issue } %>
