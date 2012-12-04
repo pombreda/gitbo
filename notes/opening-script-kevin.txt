@@ -22,12 +22,38 @@ The latter can be a repo owner who has wanted an issue resolved one of her repos
 (looking to resolve issues)
 As a developer, I can browse through the issues and repositories on Gitbo to find a project. I can browse for issues with a bounty attached or simply look into issues with the highest popularity index and upvotes. By fixing an issue I improve my skills, contribute to the open source community, help resolve an issue that is important to someone else, and make a little bit of cash too! As Jenya will show you in a few moments, there are several ways a user can find an issue to patch.
 
+----------------------------------------
 
 *Intoduce team members
+
+Community Center, Community Center, Community Center, Community Center, Community Center, Community Center, 
+Community Center, Community Center, Community Center, Community Center, Community Center, Community Center, 
+
+Community, Community, Community.
+
+Extend the collaboration efforts of the ruby community to other languages and communities.
 
 Open source software drives the ecosystem for many programming languages. As ruby developers we know just how vital the entire community of open source developers is to our daily lives.
 
 *Inspirational statement - As developers we are always looking to contribute to open source and the community.
+
+Github makes collaboration super easy but doesn't help with knowing what to contribute to. Thats what Gitbo does.
+
+App aggregates all issues from Github into a place where users can find issues to contribute to.
+
+Like Kickstarter & Hackernews for open source.
+
+Need to explain what a bounty is. When looking for an issue to work on, you can look for important issues by the upvotes as well as bounties.
+
+--------------------------------------------
+
+
+Need to articulate what Gitbo does as soon as possible.
+
+Issues are indipendently ranked and not by difficulty or necessary popluarity.
+
+
+
 
 
 Github makes collaboration super easy but doesn't help with knowing what to contribute to. Thats what Gitbo does.

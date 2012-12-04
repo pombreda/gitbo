@@ -5,11 +5,10 @@
         
         <th></th>
         <th>Issue Name</th>
-        <th>Repo Name/ #Issue</th>
-        <th>Comment Count</th>
-        <th>Popularity</th>        
+        <th>Repo Name</th> <!-- #Issue -->
+        <!-- <th>Popularity</th>         -->
         <th>Bounty</th>
-        <th></th>
+        <th>Support</th>
       </tr>
     </thead>
     <tbody>
@@ -21,11 +20,13 @@
 
         <%= render 'issue_vote', :issue => issue %>
 
-        <td><%= link_to(truncate(issue.title, length:60), owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number)) %></td>
-        <td><%= link_to issue.repo_name, owner_repo_path(issue.repo_owner, issue.repo_name) %> / <%= issue.git_number %></td>
-        <td><%= issue.comment_count %></td>
+        <td>
+          <p><%= link_to(truncate(issue.title, length:100), owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number)) %></p>
+          <p class="issue-comment-count"><%= pluralize issue.popularity, "point" %> | <%= pluralize issue.comment_count, "comment" %></p>
+        </td>
+        <td class="issue-index-repo"><%= link_to issue.repo_name, owner_repo_path(issue.repo_owner, issue.repo_name) %></td> <!-- / <%#= issue.git_number %> -->
         <!-- <td><%#= issue.popularity %></td> -->
-        <td class="votes"><%= issue.vote_count %></td>
+        <!-- <td class="votes"><%#= issue.vote_count %></td> -->
         <!-- <td><%#= issue.downvote %></td> -->
      
         <% if current_user %>
@@ -43,15 +44,17 @@
              <td href="#login-prompt" data-toggle="modal"><span id="bounty-prompt" class="label label-success">Post a bounty</span></td>
           <% else %>
               <td href="#login-prompt" data-toggle="modal"><span id="bounty-prompt" class="label label-warning"><%= number_to_currency(issue.bounty_total, :raise => true, :precision => 0)%></span></td>
+          <% end %>
         <% end %>
-      <% end %>
-        <% if issue.owner_endorsement == 1 %>
-            <td><i class="icon-thumbs-up" ></i></td>
-        <% elsif issue.owner_endorsement == -1 %>
-            <td><i class="icon-thumbs-down" ></i></td>
-        <% else %>
-            <td></td>
-        <% end %>
+        <td id="issue-endorcement">
+          <% if issue.owner_endorsement == 1 %>
+              <span class="label label-success">YES!</span>
+          <% elsif issue.owner_endorsement == -1 %>
+              <span class="label label-important">No</span>
+          <% else %>
+              <span class="label"> ? </span>
+          <% end %>
+        </td>
       </tr>
     <% end %>
     </tbody>
