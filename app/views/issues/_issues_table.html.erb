@@ -1,64 +1,62 @@
 <div class="table_div">
   <table id="issues_table" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered">
     <thead>
-      <tr>
-        
+      <tr>      
         <th></th>
         <th>Issue Name</th>
         <th>Repo Name</th>
         <th>Repo Owner</th>
-        <!-- <th>Popularity</th>         -->
+        <!-- <th>Popularity</th> -->
         <th>Bounty</th>
         <!-- <th>Support</th> -->
       </tr>
     </thead>
+    
     <tbody>
+      <% @issues.sort_by(&:popularity).reverse.each do |issue| %>
+        <tr id="issue_<%= issue.id %>">
 
+          <%= render 'issue_vote', :issue => issue %>
 
-    <% @issues.sort_by(&:popularity).reverse.each do |issue| %>
-      <tr id="issue_<%= issue.id %>">
-
-        <%= render 'issue_vote', :issue => issue %>
-
-        <td>
-          <p><%= link_to(truncate(issue.title, length:100), owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number)) %></p>
-          <p class="issue-comment-count"><span class="popularity_net"><%= pluralize issue.popularity, "point" %></span> | <%= pluralize issue.comment_count, "comment" %></p>
-        </td>
-        <td><%= link_to issue.repo_name, owner_repo_path(issue.repo_owner, issue.repo_name) %></td> 
-        <td class="issue-index-repo"><%= link_to issue.repo_owner, owner_repos_path(issue.repo_owner) %></td>
-        <!-- / <%#= issue.git_number %> -->
-        <!-- <td><%#= issue.popularity %></td> -->
-        <!-- <td class="votes"><%#= issue.vote_count %></td> -->
-        <!-- <td><%#= issue.downvote %></td> -->
-     
-        <% if current_user %>
-          <% if issue.bounty_total == 0 %>
-           <td><%= link_to owner_repo_gitnumber_path(issue.repo_owner, issue.repo, issue.git_number, :bounty => true) do %>
-            <span class="label label-success">Post a bounty</span>
-             <% end %></td>
+          <td>
+            <p><%= link_to(truncate(issue.title, length:100), owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number)) %></p>
+            <p class="issue-comment-count"><span class="popularity_net"><%= pluralize issue.popularity, "point" %></span> | <%= pluralize issue.comment_count, "comment" %></p>
+          </td>
+          <td><%= link_to issue.repo_name, owner_repo_path(issue.repo_owner, issue.repo_name) %></td> 
+          <td class="issue-index-repo"><%= link_to issue.repo_owner, owner_repos_path(issue.repo_owner) %></td>
+          <!-- / <%#= issue.git_number %> -->
+          <!-- <td><%#= issue.popularity %></td> -->
+          <!-- <td class="votes"><%#= issue.vote_count %></td> -->
+          <!-- <td><%#= issue.downvote %></td> -->
+       
+          <% if current_user %>
+            <% if issue.bounty_total == 0 %>
+             <td><%= link_to owner_repo_gitnumber_path(issue.repo_owner, issue.repo, issue.git_number, :bounty => true) do %>
+              <span class="label label-success">Post a bounty</span>
+               <% end %></td>
+            <% else %>
+                <td><%= link_to owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number) do %>
+                    <span class="label label-warning"><%= number_to_currency(issue.bounty_total, :raise => true, :precision => 0)%></span>
+                <% end %></td>
+            <% end %>
           <% else %>
-              <td><%= link_to owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number) do %>
-                  <span class="label label-warning"><%= number_to_currency(issue.bounty_total, :raise => true, :precision => 0)%></span>
-              <% end %></td>
+            <% if issue.bounty_total ==  0 %>
+               <td href="#login-prompt" data-toggle="modal"><span id="bounty-prompt" class="label label-success">Post a bounty</span></td>
+            <% else %>
+                <td href="#login-prompt" data-toggle="modal"><span id="bounty-prompt" class="label label-warning"><%= number_to_currency(issue.bounty_total, :raise => true, :precision => 0)%></span></td>
+            <% end %>
           <% end %>
-        <% else %>
-          <% if issue.bounty_total ==  0 %>
-             <td href="#login-prompt" data-toggle="modal"><span id="bounty-prompt" class="label label-success">Post a bounty</span></td>
-          <% else %>
-              <td href="#login-prompt" data-toggle="modal"><span id="bounty-prompt" class="label label-warning"><%= number_to_currency(issue.bounty_total, :raise => true, :precision => 0)%></span></td>
-          <% end %>
-        <% end %>
-        <!-- <td id="issue-endorcement">
-          <%# if issue.owner_endorsement == 1 %>
-              <span class="label label-success">YES!</span>
-          <%# elsif issue.owner_endorsement == -1 %>
-              <span class="label label-important">No</span>
-          <%# else %>
-              <span class="label"> ? </span>
-          <%# end %>
-        </td> -->
-      </tr>
-    <% end %>
+          <!-- <td id="issue-endorcement">
+            <%# if issue.owner_endorsement == 1 %>
+                <span class="label label-success">YES!</span>
+            <%# elsif issue.owner_endorsement == -1 %>
+                <span class="label label-important">No</span>
+            <%# else %>
+                <span class="label"> ? </span>
+            <%# end %>
+          </td> -->
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
