@@ -70,6 +70,7 @@
   border-top: 1px solid black;
 }
 
+
 .issue_bg {
   background-color: #ffe084;
   border-radius: 10px;
@@ -80,6 +81,10 @@
 
 #grey_color {
   color: #999;
+}
+
+#bounty_price_page {
+  margin-bottom: 10px;
 }
 
 /*.rating {
