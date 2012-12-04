@@ -30,9 +30,9 @@
   <div class="row">
     <div class ='span8'>
       <div class='pull-left'>
-      <h3><%= link_to @issue.repo_owner, owner_repos_path(@issue.repo_owner) %> / <%= link_to @issue.repo_name, owner_repo_path(@issue.repo_owner, @issue.repo_name) %></h3>
-      <div class="discu ssion-stats issue-comment-count">
-        <span class='issue-comment-count'><%= pluralize @issue.comment_count, "comment" %> | <%= pluralize @issue.vote_count, "vote" %></span>
+      <h3 id='grey_color'>issue #<%= @issue.git_number %> of <%= link_to @issue.repo_name, owner_repo_path(@issue.repo_owner, @issue.repo_name) %> <small> by <%= link_to @issue.repo_owner, owner_repos_path(@issue.repo_owner) %></small></h3>
+      <div class="discussion-stats issue-comment-count">
+        <span class='issue-comment-count'><%= pluralize @issue.comment_count, "comment" %> | <%= @issue.popularity %>  popularity</span>
       </div>
     </div>
       <div class="endorsement">
@@ -56,9 +56,7 @@
           <button id="claim-unauth" class="btn btn-warning btn-small" href="#login-prompt" data-toggle="modal" type="button">I Solved This</button>
         <% end %>
       <% end %>
-        <a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo_owner %>/<%= @issue.repo_name %>/issues/<%= @issue.git_number %>" target="blank">
-            View on <i class='icon-github'></i>
-        </a>
+        
       </div>
     </div>
   </div>
@@ -69,16 +67,21 @@
       <span class="icon-arrow-left"></span>
       <%= link_to 'View All Issues', owner_repo_path %>
     </span>
-    <span class="number pull-right">Issue # <strong><%= @issue.git_number %></strong></span>
+    <span class="number pull-right"><a class="btn btn-info btn-small" href="http://www.github.com/<%= @issue.repo_owner %>/<%= @issue.repo_name %>/issues/<%= @issue.git_number %>" target="blank">
+            View on <i class='icon-github'></i>
+        </a></span>
   </div>
 
 <!-- sidebar with badge and stats-->
   <!-- main block with description and comments -->
   <div class= 'row'>
     <div class='span8'>
-      <div class='row'>
+      <div class='row issue_bg'>
         <div class="issue-bubble">
-          <img src="<%= @issue.owner_image %>" class='comment-avatar'>
+            <img src="<%= @issue.owner_image %>" class='comment-avatar '>
+            <!-- <div class='pull-left'>
+              <%#= render 'issues/issue_vote', :issue => @issue%>
+            </div> -->
           <div class='issue-content bubble'>
             <div class='issue-inner'>
               <div class='issue-header'>

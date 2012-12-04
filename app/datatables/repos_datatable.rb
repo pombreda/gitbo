@@ -25,6 +25,7 @@ class ReposDatatable
       h(repo.open_issues)
       h(repo.watchers)
       h(repo.issues_comment_count)
+      h(repo.issues.bounty_total)
     end
   end
 

@@ -70,6 +70,18 @@
   border-top: 1px solid black;
 }
 
+.issue_bg {
+  background-color: #ffe084;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: -40px;
+  padding: 15px;
+}
+
+#grey_color {
+  color: #999;
+}
+
 /*.rating {
   unicode-bidi: bidi-override;
   direction: rtl;

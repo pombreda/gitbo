@@ -22,7 +22,7 @@ class Repo < ActiveRecord::Base
   end
 
   def bounty_total
-    self.issues.inject(0) { |total, issue| total += issue.bounty_total }
+    total = self.issues.inject(0) { |total, issue| total += issue.bounty_total }
   end
 
   def updated?(octokit_repo)
