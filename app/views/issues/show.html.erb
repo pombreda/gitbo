@@ -13,16 +13,14 @@
 <% if current_user %>
   <% if repo_owner %>
   <div class="row">
+    <% unless @issue.owner_endorsement != 0 %>
     <div class="span7">
       <h4>This issue belongs to your repo. Please, consider endorsing it!</h4>
     </div>
-    <div class="span5" id="endorse" >
-      <div class="pull-right">
-        <div>
-          <button class="btn btn-success btn-small"><%= link_to 'Endorse this issue', owner_endorsement_path(@issue, :endorsement), :method => :put %></button>
-          <button class="btn btn-danger btn-small"><%= link_to 'Over my dead body', owner_endorsement_path(@issue, :disapproval), :method => :put %></button>
-        </div>
-      </div>
+    <% end %>
+    <div class="span5 pull-right" id="endorse" >
+      <button class="btn btn-success btn-small"><%= link_to 'Endorse this issue', owner_endorsement_path(@issue, :endorsement), :method => :put %></button>
+      <button class="btn btn-danger btn-small"><%= link_to 'Over my dead body', owner_endorsement_path(@issue, :disapproval), :method => :put %></button>
     </div>
   </div>
   <% end %>
@@ -33,7 +31,7 @@
     <div class ='span8'>
       <div class='pull-left'>
       <h3><%= link_to @issue.repo_owner, owner_repos_path(@issue.repo_owner) %> / <%= link_to @issue.repo_name, owner_repo_path(@issue.repo_owner, @issue.repo_name) %></h3>
-      <div class="discussion-stats issue-comment-count">
+      <div class="discu ssion-stats issue-comment-count">
         <span class='issue-comment-count'><%= pluralize @issue.comment_count, "comment" %> | <%= pluralize @issue.vote_count, "vote" %></span>
       </div>
     </div>
@@ -66,7 +64,7 @@
   </div>
 
 <!-- <div id="show_issue"> -->
-  <div class="issue-head">
+  <div class="row issue-head">
     <span class="back">
       <span class="icon-arrow-left"></span>
       <%= link_to 'View All Issues', owner_repo_path %>
@@ -76,98 +74,92 @@
 
 <!-- sidebar with badge and stats-->
   <!-- main block with description and comments -->
-      <div class='span9'>
-        <div class='row'>
-          <div class="issue-bubble">
-            <img src="<%= @issue.owner_image %>" class='comment-avatar'>
-            <div class='issue-content bubble'>
-              <div class='issue-inner'>
-                <div class='issue-header'>
-                  <span class='issue-author'>
-                    <p><%= @issue.owner_name %> opened this pull request</p>
-                  </span>
-                  <h4><%= @issue.title %></h4>
-                </div>
-                <div class='issue-description-content'>
-                  <div class='description-body'>
-                    <p><%= markdown @issue.body %></p>
-                  </div>
+  <div class= 'row'>
+    <div class='span8'>
+      <div class='row'>
+        <div class="issue-bubble">
+          <img src="<%= @issue.owner_image %>" class='comment-avatar'>
+          <div class='issue-content bubble'>
+            <div class='issue-inner'>
+              <div class='issue-header'>
+                <span class='issue-author'>
+                  <p><%= @issue.owner_name %> opened this pull request</p>
+                </span>
+                <h4><%= @issue.title %></h4>
+              </div>
+              <div class='issue-description-content'>
+                <div class='description-body'>
+                  <p><%= markdown @issue.body %></p>
                 </div>
               </div>
-            </div>  
-          </div>
+            </div>
+          </div>  
         </div>
+      </div>
 
-      <% @issue.comments.each do |comment| %>
-        <div class='row'>
-          <div class='comment-container'>
-            <img src="<%= comment.owner_image %>" class='comment-avatar'>
-            <div class='comment-content bubble'>
-              <div class='content-container-inner'>
-                <div class='comment-header'>
-                  <div class='comment-author'>
-                    <p><%= comment.owner_name %></p>
-                  </div>
-                  <div class='pull-right header-date'>
-                    <% if comment.git_update_at %>
-                    <time><%= time_ago_in_words(comment.git_update_at) %> ago</time>
-                    <% end %>
-                  </div>
+    <% @issue.comments.each do |comment| %>
+      <div class='row'>
+        <div class='comment-container'>
+          <img src="<%= comment.owner_image %>" class='comment-avatar'>
+          <div class='comment-content bubble'>
+            <div class='content-container-inner'>
+              <div class='comment-header'>
+                <div class='comment-author'>
+                  <p><%= comment.owner_name %></p>
                 </div>
-                <div class='comment-content'>
-                  <% if comment.body %>
-                  <p><%= markdown comment.body %></p>
+                <div class='pull-right header-date'>
+                  <% if comment.git_update_at %>
+                  <time><%= time_ago_in_words(comment.git_update_at) %> ago</time>
                   <% end %>
                 </div>
               </div>
+              <div class='comment-content'>
+                <% if comment.body %>
+                <p><%= markdown comment.body %></p>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
-        <% end %>
-        <div class='row'>
-          <div class='comment-container'>
-            <% if current_user %>
-              <img src="<%= current_user.image %>" class='new-comment-avatar'>
-              <div class='comment-content bubble'>
-                <div class='comment-content'>
-                  <div class='comment form'>
-                    <div class='new-comment-bucket'>
-                       <%= render 'comment_form' %>
-                    </div>
+      </div>
+      <% end %>
+      <div class='row'>
+        <div class='comment-container'>
+          <% if current_user %>
+            <img src="<%= current_user.image %>" class='new-comment-avatar'>
+            <div class='comment-content bubble'>
+              <div class='comment-content'>
+                <div class='comment form'>
+                  <div class='new-comment-bucket'>
+                     <%= render 'comment_form' %>
                   </div>
                 </div>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
           </div>
         </div>
-      </div>
-      <div class="span3">
-        <div id="bounty_div" class='row pull-right'>
-          <h3>Current Bounties</h3>
-           <% if @issue.bounties.count == 0 %>
-            <div id="no_bounty">
-              <p>There are currently no bounties for this issue. <%= link_to "Be the first to issue a bounty", 'javascript:focusBountyForm();' %></p>
-            </div>
-          <% else %>
-            <%= render 'bounties/bounties_table', :issue => @issue, remote: true %>
-        <% end %>
-        </div>
-          <hr>
-          
-
-          <div class="vote">
-            <%= render :partial => 'vote_button_logic', :locals => { :issue => @issue } %>
-          </div>
-
-
-         <hr>
-        <% if @difficulty %>
-          <%= render :partial => 'issues/difficulty_message', :locals => { :issue => @issue } %>
-        <% end %>
       </div>
     </div>
-  </div>    
-</div>
+    <div class="span4">
+      <h5>Current Bounties</h5>
+     <% if @issue.bounties.count == 0 %>
+      <div id="no_bounty">
+        <p>There are currently no bounties for this issue</br>
+        <%= link_to "Issue a Bounty", 'javascript:focusBountyForm();' %></p>
+      </div>
+      <% else %>
+        <%= render 'bounties/bounties_table', :issue => @issue, remote: true %>
+      <% end %>
+      <div class='row '>
+        <div class="vote span2">
+          <%= render :partial => 'vote_button_logic', :locals => { :issue => @issue } %>
+        </div>
+        <div class='span2'>
+          <%= render :partial => 'issues/difficulty_message', :locals => { :issue => @issue } %>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <script type="text/javascript">
 
