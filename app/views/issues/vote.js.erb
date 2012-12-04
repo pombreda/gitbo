@@ -1,6 +1,8 @@
-
-$("tr#issue_<%= @issue.id %> td.votes").html("<%= @issue.net_votes %>");  
-
+// issue index page
+$("tr#issue_<%= @issue.id %> td p span.popularity_net").html("<%= pluralize @issue.popularity, "point" %>");  
+// issue on static index page
+$("tr#issue_<%= @issue.id %> td p.issue-comment-count span.index-issue-popularity").html("<%= pluralize @issue.popularity, "point" %>"); 
+// issue show page
 $(".discussion-stats span.net_votes").html("<strong><%= pluralize @issue.vote_count, "vote" %> </strong>");   
 
 $upvoteIcon = $("tr#issue_<%= @issue.id %> i#upvote-icon-<%= @issue.id %>");

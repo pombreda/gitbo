@@ -77,23 +77,26 @@
     <table class="table table-hover">
         <thead>
           <tr>
-            <th>Votes</th>
+            <th></th>
             <th>Issue</th>
             <th>Repo</th>
-            <th>Popularity</th>
+            <!-- <th>Popularity</th> -->
           </tr>
         </thead>
 
             <% @issues.sort_by(&:popularity).reverse[0..5].each do |issue| %>
-            <tr>
-              <td><%= issue.net_votes %></td>
-              <td><%= link_to issue.title, owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number) %></td>
-              <td><%= link_to issue.repo_name, owner_repo_path(issue.repo_owner, issue.repo_name) %></td>
-              <td><%= issue.popularity %>
-            </tr>
+              <tr id="issue_<%= issue.id %>">
+                <%= render 'issues/issue_vote', :issue => issue %>
+                <td><p><%= link_to issue.title, owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number) %></p>
+                  <p class="issue-comment-count"><span class="index-issue-popularity"><%= pluralize issue.popularity, "point" %></span> | <%= pluralize issue.comment_count, "comment" %></p>
+                </td>
+                <td><%= link_to issue.repo_name, owner_repo_path(issue.repo_owner, issue.repo_name) %></td>
+              </tr>
             <% end %>
     </table>
     <br />
   </div>
 </div>
+
+<%= render :partial => 'modals/login' %>
 
