@@ -52,27 +52,6 @@
 
 <div class='row'>
   <div class='span6'>
-    <h3>Trending repos</h3>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Popularity</th>
-          <th>Open Issues</th>
-          <th></th>
-        </tr>
-        </thead>     
-      <% @repos.sort_by(&:popularity).reverse[0..5].each do |repo| %>
-        <tr>
-          <td><%= link_to repo.owner_name, owner_repos_path(repo.owner_name) %> / <%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %></td>
-          <td><%= repo.popularity %></td>
-          <td><%= repo.open_issues %></td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
-
-  <div class='span6'>
     <h3>Trending issues</h3>
     <table class="table table-hover">
         <thead>
@@ -93,6 +72,27 @@
                 <td><%= link_to issue.repo_name, owner_repo_path(issue.repo_owner, issue.repo_name) %></td>
               </tr>
             <% end %>
+    </table>
+  </div>
+
+  <div class='span6'>
+    <h3>Trending repos</h3>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Popularity</th>
+          <th>Open Issues</th>
+          <th></th>
+        </tr>
+        </thead>     
+      <% @repos.sort_by(&:popularity).reverse[0..5].each do |repo| %>
+        <tr>
+          <td><%= link_to repo.owner_name, owner_repos_path(repo.owner_name) %> / <%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %></td>
+          <td><%= repo.popularity %></td>
+          <td><%= repo.open_issues %></td>
+        </tr>
+      <% end %>
     </table>
     <br />
   </div>
