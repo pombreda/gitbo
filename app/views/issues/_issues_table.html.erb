@@ -19,7 +19,8 @@
 
           <td>
             <p><%= link_to(truncate(issue.title, length:100), owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number)) %></p>
-            <p class="issue-comment-count"><span class="popularity_net"><%= pluralize issue.popularity, "point" %></span> | <%= pluralize issue.comment_count, "comment" %></p>
+            
+            <p class="issue-comment-count"><a id="link" rel="tooltip" data-placement="top" data-original-title="Points are a combination of the popularity on Github measured by the number of watchers, stars, and the number of comments on an issue blended with Gitbo metrics such as upvotes and owner endorsements"><span class="popularity_net"><%= pluralize issue.popularity, "point" %></span></a> | <%= pluralize issue.comment_count, "comment" %></p>
           </td>
           <td><%= link_to issue.repo_name, owner_repo_path(issue.repo_owner, issue.repo_name) %></td> 
           <td class="issue-index-repo"><%= link_to issue.repo_owner, owner_repos_path(issue.repo_owner) %></td>
