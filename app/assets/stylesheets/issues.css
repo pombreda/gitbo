@@ -87,6 +87,26 @@
   margin-bottom: 10px;
 }
 
+.right-sidebar{
+  padding: 20px;
+  background-color: #EEE;
+  border-radius: 15px;
+  margin-top: 10px;
+  }
+
+.right-sidebar .span2 {
+  width: 130px;
+}
+
+.right-sidebar .vote {
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-top: 24px;
+}
+.right-sidebar .vote a {
+  width: 83px
+}
+
 /*.rating {
   unicode-bidi: bidi-override;
   direction: rtl;

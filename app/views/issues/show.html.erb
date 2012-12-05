@@ -32,7 +32,7 @@
       <div class='pull-left'>
       <h3 id='grey_color'>issue #<%= @issue.git_number %> of <%= link_to @issue.repo_name, owner_repo_path(@issue.repo_owner, @issue.repo_name) %> <small> by <%= link_to @issue.repo_owner, owner_repos_path(@issue.repo_owner) %></small></h3>
       <div class="discussion-stats issue-comment-count">
-        <span class='issue-comment-count'><%= pluralize @issue.comment_count, "comment" %> | <%= @issue.popularity %>  popularity</span>
+        <span class='issue-comment-count'><%= pluralize @issue.comment_count, "comment" %> | <%= @issue.popularity %>  points</span>
       </div>
     </div>
       <div class="endorsement">
@@ -138,27 +138,29 @@
                   </div>
                 </div>
               </div>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
     <div class="span4">
-      <h5>Current Bounties</h5>
-     <% if @issue.bounties.count == 0 %>
-      <div id="no_bounty">
-        <p>There are currently no bounties for this issue</br>
-        <%= link_to "Issue a Bounty", 'javascript:focusBountyForm();' %></p>
-      </div>
-      <% else %>
-        <%= render 'bounties/bounties_table', :issue => @issue, remote: true %>
-      <% end %>
-      <div class='row '>
-        <div class="vote span2">
-          <%= render :partial => 'vote_button_logic', :locals => { :issue => @issue } %>
+      <div class='right-sidebar'>
+        <h5>Current Bounties</h5>
+       <% if @issue.bounties.count == 0 %>
+        <div id="no_bounty">
+          <p>There are currently no bounties for this issue</br>
+          <%= link_to "Issue a Bounty", 'javascript:focusBountyForm();' %></p>
         </div>
-        <div class='span2'>
-          <%= render :partial => 'issues/difficulty_message', :locals => { :issue => @issue } %>
+        <% else %>
+          <%= render 'bounties/bounties_table', :issue => @issue, remote: true %>
+        <% end %>
+        <div class='row '>
+          <div class="vote span2 pull-left">
+            <%= render :partial => 'vote_button_logic', :locals => { :issue => @issue } %>
+          </div>
+          <div class='span2 difficulty_block'>
+            <%= render :partial => 'issues/difficulty_message', :locals => { :issue => @issue } %>
+          </div>
         </div>
       </div>
     </div>

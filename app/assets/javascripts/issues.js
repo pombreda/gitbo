@@ -23,14 +23,14 @@
 //    }
 
 $('#upvote_issue').click(function(){
-  $('#upvote_issue').removeClass().addClass('btn btn-warning');
-  $('#downvote_issue').removeClass().addClass('btn');
+  $('#upvote_issue').removeClass().addClass('btn btn-mini btn-warning');
+  $('#downvote_issue').removeClass().addClass('btn btn-mini btn-info');
 
 });
      
 $('#downvote_issue').click(function(){
-  $('#downvote_issue').removeClass().addClass('btn btn-warning');
-  $('#upvote_issue').removeClass().addClass('btn');
+  $('#downvote_issue').removeClass().addClass('btn btn-mini btn-warning');
+  $('#upvote_issue').removeClass().addClass('btn btn-mini btn-info');
 });
 
 //grab the numeric values of two fields
