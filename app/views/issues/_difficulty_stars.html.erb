@@ -1,3 +1,4 @@
+<% if current_user %>
 <div class="difficulty">
   <h4>Difficulty Level</h4>  
   <%= form_tag(difficulty_rating_path(@issue.id), :method => "put", :remote => true ) do %>   
@@ -10,3 +11,9 @@
   <% end %>
 </div>
 
+
+
+<% end %>
+
+
+<%= render :partial => 'modals/login' %>
