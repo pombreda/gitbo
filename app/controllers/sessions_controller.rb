@@ -13,8 +13,7 @@ class SessionsController < ApplicationController
     user.save
     user.load_cache_info
 
-    redirect_to :root
-
+    redirect_to request.env['omniauth.origin'] || root_path
   end
 
   def destroy
