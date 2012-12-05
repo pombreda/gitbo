@@ -1,8 +1,7 @@
 <%= render :partial => 'issues/difficulty_stars', :locals => { :issue => @issue } %></br>
 <% case %>
   <% when both_owner_and_user_rated(@issue) %>
-    The owner says this is a <strong><%= UserVote.owner_rating(@issue) %></strong>
-    <hr>
+    <small>The owner says this is a </small><strong><%= UserVote.owner_rating(@issue) %></strong></br>
    <small> Users rate this issue difficulty as a </small><strong><%= @issue.avg_difficulty %></strong>
 
   <% when users_rated_but_no_owner(@issue) %>

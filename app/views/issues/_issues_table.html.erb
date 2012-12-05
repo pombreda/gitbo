@@ -18,7 +18,7 @@
           <%= render 'issue_vote', :issue => issue %>
 
           <td>
-            <p><%= link_to(truncate(issue.title, length:100), owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number)) %></p>
+            <p><%= link_to(truncate("#{issue.title}: ##{issue.git_number}", length:100), owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number)) %></p>
             <p class="issue-comment-count"><span class="popularity_net"><%= pluralize issue.popularity, "point" %></span> | <%= pluralize issue.comment_count, "comment" %></p>
           </td>
           <td><%= link_to issue.repo_name, owner_repo_path(issue.repo_owner, issue.repo_name) %></td> 
