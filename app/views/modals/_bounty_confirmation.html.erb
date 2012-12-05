@@ -5,7 +5,8 @@
 
   <%= form_tag(submit_path, :method => "post", remote: true, :id => "modal_bounty_form" ) do %>
   <div class="modal-body">
-    <input id="bounty_price" name="price" placeholder="Confirm your bounty" />
+    <h4>You are about to place a bounty on Issue #<%= @issue.git_number %> of <%= @issue.repo_name.humanize %>.</h4>
+    <input id="bounty_price" name="price" placeholder="Please confirm your pledge..." />
   </div>
   <div class="modal-footer">
     <span id="error"></span>
