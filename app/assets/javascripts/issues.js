@@ -22,6 +22,8 @@
 //    $('div#endorse').removeAttr('style');
 //    }
 
+// $('#popularity_net').tooltip('show');
+
 $('#upvote_issue').click(function(){
   $('#upvote_issue').removeClass().addClass('btn btn-mini btn-warning');
   $('#downvote_issue').removeClass().addClass('btn btn-mini btn-info');

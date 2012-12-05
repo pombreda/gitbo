@@ -124,9 +124,8 @@ div.vote a {
   height: 20px;
 }
 
-
-.issue-comment-count {
-   margin-top: -5px;
+.issue-comment-count, .issue-comment-count #link {
+  margin-top: -5px;
   font-weight: bold;
   color: #888;
   font-size: 12px; 
@@ -187,7 +186,6 @@ td.parent_class {
 td.issue_avg_difficulty {
   text-align: center;
 }
-
 
 
 
