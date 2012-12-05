@@ -15,72 +15,71 @@
     <%= stylesheet_link_tag "application", :media => "all" %>
   </head>
   <body>
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <div class="container nav-collapse">
-            <ul class="nav left-nav">
-              <li><%= link_to "Gitbo", root_path, :class => "brand" %></li>
-              <li><%= link_to "Issues", issues_path  %></li>
-              <li><%= link_to "Repos", repos_path  %></li>
-            </ul>
-            <ul class ="nav pull-right">
-              <% if current_user %>
-                <li class='user-avatar'> 
-                  <%= link_to image_tag(current_user.image), owner_repos_path(current_user.nickname) %>
-                </li>
-                <li class='user-nickname'>
-                  <%= link_to 'View Profile', owner_repos_path(current_user.nickname) %>
-                  <%= link_to current_user.nickname, owner_repos_path(current_user.nickname) %>
+     <div id="wrap"> 
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <div class="container nav-collapse">
+              <ul class="nav left-nav">
+                <li><%= link_to "Gitbo", root_path, :class => "brand" %></li>
+                <li><%= link_to "Issues", issues_path  %></li>
+                <li><%= link_to "Repos", repos_path  %></li>
+              </ul>
+              <ul class ="nav pull-right">
+                <% if current_user %>
+                  <li class='user-avatar'> 
+                    <%= link_to image_tag(current_user.image), owner_repos_path(current_user.nickname) %>
                   </li>
-                <li class="github-signout">
-                  <%= link_to signout_path do %>
-                    <i class='icon-signout' style="font-size: 20px;"></i>
-                  <% end %>
-                </li>
-              <% else %>
-                <li class="github-signin">
-                  <%= link_to "/auth/github", :class => 'btn' do %>
-                  Sign in with <i class='icon-github' style="font-size: 20px;"></i>
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        </div> <!-- end container nav-collapse -->
-      </div> <!-- end navbar-inner -->
-    </div> <!-- end navbar navbar fixed top -->
+                  <li class='user-nickname'>
+                    <%= link_to 'View Profile', owner_repos_path(current_user.nickname) %>
+                    <%= link_to current_user.nickname, owner_repos_path(current_user.nickname) %>
+                    </li>
+                  <li class="github-signout">
+                    <%= link_to signout_path do %>
+                      <i class='icon-signout' style="font-size: 20px;"></i>
+                    <% end %>
+                  </li>
+                <% else %>
+                  <li class="github-signin">
+                    <%= link_to "/auth/github", :class => 'btn' do %>
+                    Sign in with <i class='icon-github' style="font-size: 20px;"></i>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div> <!-- end container nav-collapse -->
+        </div> <!-- end navbar-inner -->
+      </div> <!-- end navbar navbar fixed top -->
 
-    <div class=" container container-narrow">
-      <div class="application_page_head row">
+      <div class=" container container-narrow">
+        <div class="application_page_head row">
 
 
-         <%= yield %>
-        <!-- <div class="span3">
-          <div class="well sidebar-nav">
-            <h3>Sidebar</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%#= link_to "Link1", "/path1"  %></li>
-              <li><%#= link_to "Link2", "/path2"  %></li>
-              <li><%#= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div>
-        </div> -->
+           <%= yield %>
+          <!-- <div class="span3">
+            <div class="well sidebar-nav">
+              <h3>Sidebar</h3>
+              <ul class="nav nav-list">
+                <li class="nav-header">Sidebar</li>
+                <li><%#= link_to "Link1", "/path1"  %></li>
+                <li><%#= link_to "Link2", "/path2"  %></li>
+                <li><%#= link_to "Link3", "/path3"  %></li>
+              </ul>
+            </div>
+          </div> -->
+          <div id="push"></div>
 
-      </div><!--/row-->
-    </div> <!-- /container -->
+        </div><!--/row-->
+      </div> <!-- /container -->
+    </div> <!-- /wrap -->
  <!-- Footer
     ================================================== -->
-    <footer class="footer" style="background-color:#c2c2c2">
+    <footer class="footer">
       <div class="bottom-bar">
         <div class="bottombar-inner">
           <div class="container navfooterline">
-            <ul class="nav">
-              <li><a class="footer_link" href="http://students.flatironschool.com/" target="_blank">About</a></li>
-              <li><a class="footer_link" href="mailto:gitbounty@gmail.com">Contact</a></li>
-              <!-- <li><a class="footer_link" href="#">All</a></li> -->
-              <li>&copy; 2012 Gitbo</li>
+            <p class="muted credit"><a class="footer_link" href="http://students.flatironschool.com/" target="_blank">About</a><a class="footer_link" href="mailto:gitbounty@gmail.com">Contact</a>&copy; 2012 Gitbo</p>
             </ul>
           </div>
         </div>
