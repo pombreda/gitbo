@@ -23,7 +23,7 @@ class IssuesController < ApplicationController
 
     respond_to do |f|
       f.html {redirect_to :back}
-      f.js {}
+      f.js { head :created }
     end
   end
 
