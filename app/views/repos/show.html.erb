@@ -2,7 +2,7 @@
 
 <div class="row repo-head">
     <div class ='span4'>
-      <h3><%= link_to @repo.owner_name, owner_repos_path %> / <%= @repo.name %></h3>
+      <h3><strong><%= @repo.name %></strong> <small>by <%= link_to @repo.owner_name, owner_repos_path %></small></h3>
     </div>
     <div class ='span4'>
       <h5>Bounty Total for this Repo: <span class='money'><%= number_to_currency( @repo.bounty_total, :precision => 0 ) %></span></h5>
@@ -15,6 +15,7 @@
 <div class="row">
   <div class='span2'>
     <h5><i class='icon-eye-open'></i> Watchers: <%= @repo.watchers %></h5>
+    <h5><i class='icon-trophy'></i> Popularity: <%= @repo.popularity %></h5>
     
     <% if @repo.description %>
       <h5>Description:</h5> <%= @repo.description %>
@@ -27,14 +28,33 @@
           <th>Issue Number</th>
           <th>Comments</th>
           <th>View on Github</th>
+          <th>Bounties</th>
         </tr>
         <% @repo.issues.each do |issue| %>
           <% if issue.open? %>
             <tr>
-              <td><%= link_to issue.title, owner_repo_gitnumber_path(@repo.owner_name, @repo.name, issue.git_number) %></td>
-              <td><%= issue.git_number %></td>
-              <td><%= issue.comment_count %></td>
-              <td><a href='http://www.github.com/<%= @repo.owner_name %>/<%= @repo.name %>/issues/<%= issue.git_number %>' target='_blank'><i class='icon-github'></a></td>
+              <td><%= link_to issue.title, owner_repo_gitnumber_path(@repo.owner_name, @repo.name, issue.git_number) %></center></td>
+              <td><center><%= issue.git_number %></center></td>
+              <td><center><%= issue.comment_count %></center></td>
+              <td><center><a href='http://www.github.com/<%= @repo.owner_name %>/<%= @repo.name %>/issues/<%= issue.git_number %>' target='_blank'><i class='icon-github'></a></center></td>
+               <% if current_user %>
+                <% if issue.bounty_total > 0 %>
+                <td><%= link_to owner_repo_gitnumber_path(@repo.owner_name, @repo.name, issue.git_number) do %>
+                    <span class="label label-warning"><%= number_to_currency(issue.bounty_total, :raise => true, :precision => 0)%></span>
+              <% end %></td>
+               <% else %>
+               <td><%= link_to owner_repo_gitnumber_path(@repo.owner_name, @repo.name, issue.git_number, :bounty => true) do %>
+                <span class="label label-success">Post a bounty</span>
+                 <% end %></td>
+                  
+            <% end %>
+          <% else %>
+            <% if issue.bounty_total ==  0 %>
+               <td href="#login-prompt" data-toggle="modal"><span id="bounty-prompt" class="label label-success">Post a bounty</span></td>
+            <% else %>
+                <td href="#login-prompt" data-toggle="modal"><span id="bounty-prompt" class="label label-warning"><%= number_to_currency(issue.bounty_total, :raise => true, :precision => 0)%></span></td>
+            <% end %>
+          <% end %>
             </tr>
           <% end %>
         <% end %>

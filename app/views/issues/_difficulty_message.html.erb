@@ -3,13 +3,13 @@
   <% when both_owner_and_user_rated(@issue) %>
     The owner says this is a <strong><%= UserVote.owner_rating(@issue) %></strong>
     <hr>
-    Users rate this issue difficulty as a <strong><%= @issue.avg_difficulty %></strong>
+   <small> Users rate this issue difficulty as a </small><strong><%= @issue.avg_difficulty %></strong>
 
   <% when users_rated_but_no_owner(@issue) %>
-   Users rate this issue difficulty as a <strong><%= @issue.avg_difficulty %></strong>
+   <small>Users rate this issue difficulty as a </small><strong><%= @issue.avg_difficulty %></strong>
   
   <% when owner_rated_but_no_users(@issue) %>
-   Users rate this issue difficulty as a <strong><%= UserVote.owner_rating(@issue) %><strong>
+   <small>Users rate this issue difficulty as a </small><strong><%= UserVote.owner_rating(@issue) %><strong>
 
   <% when neither(@issue) %>
    <!-- Be the first to vote on the difficulty of this issue. -->
