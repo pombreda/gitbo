@@ -42,7 +42,7 @@ class Issue < ActiveRecord::Base
   end
 
   def popularity
-    (self.popularity_github * self.popularity_gitbo * 10).to_i
+    (self.popularity_github.abs + self.net_votes).to_i # was: (self.popularity_github * self.popularity_gitbo * 10).to_i
   end
 
   def popularity_github
