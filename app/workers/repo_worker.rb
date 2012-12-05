@@ -3,7 +3,7 @@ class RepoWorker
 
   sidekiq_options retry: false
 
-  def perform(repo_id, token)  
+  def perform(repo_id, token = nil)  
     octokit_client = OctokitWrapper.new(token)
     repo = Repo.find_by_id(repo_id)
     repo = octokit_client.fetch_repo(repo)
