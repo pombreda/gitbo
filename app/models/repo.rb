@@ -132,6 +132,10 @@ class Repo < ActiveRecord::Base
       return true
   end
 
+  def build_bounty_gif
+    MagickTitle.say("#{self.name}'s bounty total is #{self.bounty_total} dollars")
+  end
+
 private
 
   def open_issues_updated?(octokit_repo)

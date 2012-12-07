@@ -63,6 +63,9 @@ gem 'whenever', :require => false
 #stripe
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
+#GIF generator
+gem 'magick_title', '>= 0.2.0' 
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
