@@ -1,10 +1,9 @@
+#!/bin/bash
 set -e
 
 echo "Setting up your environment..."
 
-#
-# Check for Redis
-#
+
 if test ! $(which redis-server)
 then
   echo "  x You need to install Redis. If you use Homebrew, you can run:"
@@ -12,9 +11,7 @@ then
   exit
 fi
 
-#
-# Check for Memcached
-#
+
 if test ! $(which memcached)
 then
   echo " x You need to install Memcached:"
@@ -22,9 +19,7 @@ then
   exit
 fi
 
-#
-# Check for Bundler
-#
+
 if test ! $(which bundle)
 then
   echo "  x You need to install Bundler:"
@@ -32,16 +27,18 @@ then
   exit
 fi
 
-#
-# Install gems
-#
 
 bundle install
+
+echo "renaming the example files config files..."
+mv ./config/application.example.yml ./config/application.yml
+mv ./config/database.example.yml ./config/database.yml
 
 bundle exec rake db:create
 bundle exec rake db:migrate
 bundle exec rake db:seed
 
+echo "starting redis, sidekiq, and memcached servers..."
 foreman start
 
 echo "Done!"
