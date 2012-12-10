@@ -31,8 +31,8 @@ fi
 bundle install
 
 echo "renaming the example files config files..."
-mv application.example.yml application.yml
-mv database.example.yml database.yml
+mv ../config/application.example.yml ../config/application.yml
+mv ../config/database.example.yml ../config/database.yml
 
 bundle exec rake db:create
 bundle exec rake db:migrate
