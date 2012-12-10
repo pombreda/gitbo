@@ -1,0 +1,14 @@
+development:
+  github_client_id: "YOUR APP CLIENT ID"
+  github_client_secret: "YOUR APP CLIENT SECRET"
+  secret_token: "YOUR SECRET TOKEN"
+
+test:
+  github_client_id: "YOUR APP CLIENT ID"
+  github_client_secret: "YOUR APP CLIENT SECRET"
+  secret_token: "YOUR SECRET TOKEN"
+
+production:
+  github_client_id: "YOUR APP CLIENT ID"
+  github_client_secret: "YOUR APP CLIENT SECRET"
+  secret_token: "YOUR SECRET TOKEN"
