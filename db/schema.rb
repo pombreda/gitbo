@@ -41,13 +41,11 @@ ActiveRecord::Schema.define(:version => 20121130192453) do
     t.datetime "updated_at",                                        :null => false
     t.integer  "repo_id"
     t.integer  "comment_count"
-    t.integer  "upvote"
-    t.integer  "downvote"
     t.datetime "git_updated_at"
     t.string   "state"
+    t.integer  "owner_endorsement",                :default => 0
     t.string   "owner_name"
     t.string   "owner_image"
-    t.integer  "owner_endorsement",                :default => 0
     t.integer  "vote_count",                       :default => 0
     t.float    "avg_difficulty",                   :default => 0.0
     t.string   "repo_name"
