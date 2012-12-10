@@ -1,10 +1,9 @@
+#!/bin/bash
 set -e
 
 echo "Setting up your environment..."
 
-#
-# Check for Redis
-#
+
 if test ! $(which redis-server)
 then
   echo "  x You need to install Redis. If you use Homebrew, you can run:"
@@ -12,9 +11,7 @@ then
   exit
 fi
 
-#
-# Check for Memcached
-#
+
 if test ! $(which memcached)
 then
   echo " x You need to install Memcached:"
@@ -22,9 +19,7 @@ then
   exit
 fi
 
-#
-# Check for Bundler
-#
+
 if test ! $(which bundle)
 then
   echo "  x You need to install Bundler:"
@@ -32,9 +27,6 @@ then
   exit
 fi
 
-#
-# Install gems
-#
 
 bundle install
 
