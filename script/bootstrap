@@ -1,0 +1,47 @@
+set -e
+
+echo "Setting up your environment..."
+
+#
+# Check for Redis
+#
+if test ! $(which redis-server)
+then
+  echo "  x You need to install Redis. If you use Homebrew, you can run:"
+  echo "    brew install redis"
+  exit
+fi
+
+#
+# Check for Memcached
+#
+if test ! $(which memcached)
+then
+  echo " x You need to install Memcached:"
+  echo "   brew install memcached"
+  exit
+fi
+
+#
+# Check for Bundler
+#
+if test ! $(which bundle)
+then
+  echo "  x You need to install Bundler:"
+  echo "    gem install bundler"
+  exit
+fi
+
+#
+# Install gems
+#
+
+bundle install --binstubs --local --path vendor/gems --without production --quiet
+
+rake db:create
+rake db:migrate
+rake db:seed
+
+foreman start
+
+echo "Done!"

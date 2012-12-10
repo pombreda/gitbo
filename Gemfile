@@ -38,6 +38,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'thin'
   gem 'letter_opener'
+  gem 'foreman'
 end
 
 gem 'sidekiq'
