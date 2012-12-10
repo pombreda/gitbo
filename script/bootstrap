@@ -36,7 +36,7 @@ fi
 # Install gems
 #
 
-bundle install --binstubs --local --path vendor/gems --without production --quiet
+bundle install
 
 rake db:create
 rake db:migrate
