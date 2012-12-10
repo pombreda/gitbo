@@ -30,10 +30,15 @@ fi
 
 bundle install
 
+echo "renaming the example files config files..."
+mv application.example.yml application.yml
+mv database.example.yml database.yml
+
 bundle exec rake db:create
 bundle exec rake db:migrate
 bundle exec rake db:seed
 
+echo "starting redis, sidekiq, and memcached servers..."
 foreman start
 
 echo "Done!"
