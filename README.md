@@ -4,7 +4,7 @@
 
 Gitbo aggregates public issues from Github and ranks them based on a popularity algorithm so developers can easily find projects to make significant contributions.
 
-Play with the app at <http://openissu.es>
+You can play with the app at <http://openissu.es>
 
 ##Contributing
 We would love any contributions!
@@ -33,7 +33,7 @@ Go to <https://github.com/settings/applications> and register your application t
 
 We have created our application so that you can set up different application credentials for each environment in the `application.yml` file. When creating a new application on Github for your production environment replace the URL and callback settings on Github to your specific production URLs. For example,
 
-- URL : `http://openissu.es/
+- URL : `http://openissu.es/`
 - Callback: `http://openissu.es/auth/github/callback`
 
 
