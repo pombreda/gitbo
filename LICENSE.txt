@@ -1,8 +1,8 @@
-RubyGems is copyrighted free software by Adam Jonas, Kevin McNamee, Josh Rowley, Jenya Zueva, and the Flatiron School.
+RubyGems is copyrighted free software by Adam Jonas, Kevin McNamee, Josh
+Rowley, Jenya Zueva, and the Flatiron School.
 
-You can redistribute it and/or modify it under
-either the terms of the MIT license (see the file MIT.txt), or the
-conditions below:
+You can redistribute it and/or modify it under either the terms of the MIT
+license (see the file MIT.txt), or the conditions below:
 
 1. You may make and give away verbatim copies of the source form of the
    software without restriction, provided that you duplicate all of the
