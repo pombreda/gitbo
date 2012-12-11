@@ -39,7 +39,9 @@ group :development, :test do
   gem 'thin'
   gem 'letter_opener'
   gem 'foreman'
+  gem "factory_girl_rails", "~> 4.0"
 end
+
 
 gem 'sidekiq'
 gem 'sinatra', require: false

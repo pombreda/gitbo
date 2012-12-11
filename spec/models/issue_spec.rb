@@ -18,12 +18,23 @@ describe Issue do
     context '.add_bounty' do
 
       it 'should add a bounty for that issue' do
-        issue = Issue.first
-        issue.add_bounty(User.first, 40)
+        issue = FactoryGirl.create(:issue)
+        user = FactoryGirl.create(:user)
+        issue.add_bounty(user, 40)
 
         issue.should be_true
       end
     end
+
+    context '.issue_open' do
+      it 'should return false is the issue is closed' do
+      issue = FactoryGirl.create(:issue)
+      issue.state = 'closed'
+
+      issue.open?.should be_false
+      end
+    end
+
 
   #   end
   # end
