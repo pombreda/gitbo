@@ -41,7 +41,7 @@ echo "migrating the database..."
 bundle exec rake db:migrate
 
 echo "seeding the database..."
-bundle exec rake db:seed
+bundle exec rake db:seed_demo_repos
 
 echo "starting redis, sidekiq, and memcached servers..."
 foreman start
