@@ -46,7 +46,8 @@ class Issue < ActiveRecord::Base
   end
 
   def popularity_github
-    (self.comment_count*self.repo.popularity)/10
+    1#(self.comment_count*self.repo.popularity)/10
+    #THIS NEEDS TO BE FIXED
   end
 
   def popularity_gitbo
