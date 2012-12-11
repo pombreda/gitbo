@@ -4,7 +4,7 @@
 
 Gitbo aggregates public issues from Github and ranks them based on a popularity algorithm so developers can easily find projects to make significant contributions.
 
-You can play with the app at <http://openissu.es>
+You can play with the application at <http://openissu.es>
 
 ##Contributing
 We would love any contributions!
@@ -38,4 +38,4 @@ We have created our application so that you can set up different application cre
 
 
 ##Copyright
-Copyright (c) 2012 [Flatiron School](http://flatironschool.com/), [Adam Jonas](https://github.com/ajonas04), [Kevin McNamee](https://github.com/kevinmcnamee), [Josh Rowley](https://github.com/joshrowley), [Jenya Zueva](https://github.com/innatewonderer). See the [MIT License](http://www.opensource.org/licenses/MIT]) for more details.
+Created by [Flatiron School](http://flatironschool.com/), [Adam Jonas](https://github.com/ajonas04), [Kevin McNamee](https://github.com/kevinmcnamee), [Josh Rowley](https://github.com/joshrowley), [Jenya Zueva](https://github.com/innatewonderer). See our license (LICENSE.txt) for more details.
