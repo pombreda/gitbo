@@ -17,7 +17,9 @@ We would love any contributions!
 - Submit pull request
 
 ##Setting Up Gitbo
-We have included a bootstrap script that sets-up the application, which requires [Memcached](http://memcached.org/) and [Redis](http://redis.io/) to be installed on the system. The script may prompt you to install these programs if you don't already have them installed. 
+We have included a bootstrap script that sets-up the application, which requires [Memcached](http://memcached.org/) and [Redis](http://redis.io/) to be installed on the system. The script may prompt you to install these programs if you don't already have them installed.
+
+For the bootstrap script to work below we are assuming that you have SQLite installed. If you do not, then you likely want to customize your `database.yml` file before you run the script.
 
 ###Easy Set-Up
 1. Clone the repo

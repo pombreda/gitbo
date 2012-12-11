@@ -30,12 +30,17 @@ fi
 
 bundle install
 
-echo "renaming the example files config files..."
+echo "copying the example files config files..."
 cp ./config/application.example.yml ./config/application.yml
 cp ./config/database.example.yml ./config/database.yml
 
+echo "creating the database..."
 bundle exec rake db:create
+
+echo "migrating the database..."
 bundle exec rake db:migrate
+
+echo "seeding the database..."
 bundle exec rake db:seed
 
 echo "starting redis, sidekiq, and memcached servers..."
