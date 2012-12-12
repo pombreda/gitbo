@@ -18,8 +18,8 @@ describe Issue do
     context '.add_bounty' do
 
       it 'should add a bounty for that issue' do
-        issue = FactoryGirl.create(:issue)
-        user = FactoryGirl.create(:user)
+        issue = create(:issue)
+        user = create(:user)
         issue.add_bounty(user, 40)
 
         issue.should be_true
@@ -28,13 +28,37 @@ describe Issue do
 
     context '.issue_open' do
       it 'should return false is the issue is closed' do
-      issue = FactoryGirl.create(:issue)
+      issue = create(:issue)
       issue.state = 'closed'
 
       issue.open?.should be_false
       end
     end
 
+    context '.popularity' do
+      it 'popularity should return a positive number' do
+        issue = create(:issue)
+        issue.popularity.should be >= 0
+      end
+    end
+
+
+    context '.popularity_github' do
+      it 'should return a positive number' do
+        issue = create(:issue)
+        issue.popularity_github.should be >= 0
+      end
+    end
+
+
+    context '.add_vote_by' do
+      it 'should add one to the issues vote score' do
+        issue = create(:issue)
+        user = create(:user)
+        expect {
+        issue.add_vote_by(user, "downvote") }.to change(issue, :vote_count).by(-1)
+      end
+    end
 
   #   end
   # end

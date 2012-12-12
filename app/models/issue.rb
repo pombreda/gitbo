@@ -42,16 +42,15 @@ class Issue < ActiveRecord::Base
   end
 
   def popularity
-    (self.popularity_github.abs + self.net_votes).to_i # was: (self.popularity_github * self.popularity_gitbo * 10).to_i
+    @popualrity ||= (self.popularity_github.to_i + self.net_votes.to_i) # was: (self.popularity_github * self.popularity_gitbo * 10).to_i
   end
 
   def popularity_github
-    1#(self.comment_count*self.repo.popularity)/10
-    #THIS NEEDS TO BE FIXED
+    @popularity_github ||= (self.comment_count.to_i * self.repo.popularity.to_i)/10  
   end
 
   def popularity_gitbo
-    (self.net_votes+1.0)/(self.time_since_submission + 2)**1.5
+    @popularity_gitbo ||= (self.net_votes.to_i + 1.0)/(self.time_since_submission.to_i + 2)**1.5
   end
 
   def time_since_submission
