@@ -52,5 +52,32 @@ describe User do
 
   end
 
+  context "Rails cache should contain non-essential user information" do
+
+    describe "#cache" do
+
+      it "should load from the cache if the user is a key in the cache" do
+        Rails.cache.write(:foobar, "dummy")
+        user = User.new(:nickname => "foobar")
+        user.cache.should == "dummy"
+      end
+
+      it "should call #load_cache_info when the user is not in the cache" do
+        Rails.cache.write(:foobar, nil)
+        user = User.new(:nickname => "foobar")
+        user.should_receive(:load_cache_info) 
+        user.cache
+      end
+
+    end
+
+    describe "#load_cache_info" do
+
+    end
+
+
+
+  end
+
 
 end
