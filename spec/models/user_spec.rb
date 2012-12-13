@@ -38,5 +38,19 @@ describe User do
 
   end
 
+  describe ".is_the_owner_registered?" do
+
+    it "should return true if github username matches a user in the db" do
+      User.create(:nickname => "foobar")
+      User.is_the_owner_registered?("foobar").should be_true
+    end
+
+    it "should return false if github username does not match a user in the db" do
+      User.new(:nickname => "foobar")
+      User.is_the_owner_registered?("foobar").should be_false
+    end
+
+  end
+
 
 end
