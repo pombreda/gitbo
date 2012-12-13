@@ -2,14 +2,13 @@ require 'spec_helper'
 
 describe Issue do
 
-   let(:issue) { create(:issue) }
-   let(:user) { create(:user) }
+  let(:issue) { create(:issue) }
+  let(:user) { create(:user) }
 
     describe '.add_bounty' do
-
       it 'should add a bounty for that issue' do
-        issue.add_bounty(user, 40)
-        issue.should be_true
+        issue.bounty_total = 20
+        expect { issue.add_bounty(user, 40) }.to change{issue.bounty_total}.by(40)
       end
     end
 
