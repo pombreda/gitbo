@@ -10,7 +10,7 @@ FactoryGirl.define do
   end
 
   factory :repo do
-    name "spree"
+    sequence(:name) { |n| "spree#{n}"}
     owner_name "spree"
     watchers 3432
     open_issues 49

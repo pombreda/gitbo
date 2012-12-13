@@ -42,7 +42,7 @@ class Issue < ActiveRecord::Base
   end
 
   def popularity
-    @popualrity ||= (self.popularity_github.to_i + self.net_votes.to_i) # was: (self.popularity_github * self.popularity_gitbo * 10).to_i
+    @popualrity ||= (self.popularity_github.to_i.abs + self.net_votes.to_i) # was: (self.popularity_github * self.popularity_gitbo * 10).to_i
   end
 
   def popularity_github
@@ -100,7 +100,6 @@ class Issue < ActiveRecord::Base
     where(:state => 'open')
   end
 
-
   def open?
     self.state == 'open'
   end
@@ -126,7 +125,6 @@ class Issue < ActiveRecord::Base
   end
 
   def bounty_claim?
-
   end
 
   def how_user_voted(user)
