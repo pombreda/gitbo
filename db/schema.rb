@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121130192453) do
+ActiveRecord::Schema.define(:version => 20121213214956) do
 
   create_table "bounties", :force => true do |t|
     t.integer  "user_id"
@@ -59,10 +59,11 @@ ActiveRecord::Schema.define(:version => 20121130192453) do
     t.text     "description",    :limit => 255
     t.integer  "watchers"
     t.integer  "open_issues"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.string   "slug"
     t.datetime "git_updated_at"
+    t.integer  "bounty_total",                  :default => 0
   end
 
   add_index "repos", ["slug"], :name => "index_repos_on_slug"

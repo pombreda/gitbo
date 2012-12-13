@@ -17,12 +17,11 @@ class Repo < ActiveRecord::Base
   
   def issues_comment_count
     self.issues.inject(0){|sum, issue| 
-      sum + issue.comment_count
-    }
+      sum + issue.comment_count}
   end
 
-  def bounty_total
-    total = self.issues.inject(0) { |total, issue| total += issue.bounty_total }
+  def calc_bounty_total
+    self.bounty_total = self.issues.inject(0) { |total, issue| total += issue.bounty_total }
   end
 
   def updated?(octokit_repo)
