@@ -3,7 +3,7 @@ class Repo < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => :slugged
   attr_accessible :description, :name, :open_issues, :owner_name, 
-                  :watchers, :issues, :git_updated_at
+                  :watchers, :issues, :git_updated_at, :bounty_total
  
   has_many :issues, :dependent => :destroy
 
@@ -21,7 +21,8 @@ class Repo < ActiveRecord::Base
   end
 
   def calc_bounty_total
-    self.bounty_total = self.issues.inject(0) { |total, issue| total += issue.bounty_total }
+    self.issues.inject(0) { |total, issue| total += issue.bounty_total }
+    # self.bounty_total = 
   end
 
   def updated?(octokit_repo)
