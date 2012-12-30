@@ -85,27 +85,15 @@ class User < ActiveRecord::Base
   end
 
   def check_bounty_winner(repo, issue, token)
-
     client = OctokitWrapper.new(token).client
-
-    events = []
     octokit_events = client.issue_events(repo, issue)
-    octokit_events.each do |e|
-      if e.event == "closed"
-        events << e
-      end
+    event = octokit_events.find { |e| e.event == "closed"}
+    if event.commit_id
+      commit_id = event.commit_id
+      commit = client.commit(repo, commit_id)
+      bounty_winner = commit.author.login
     end
-    if events.count == 1
-      event = events.last
-    end
-    if event
-      if event.commit_id
-        commit_id = event.commit_id
-        commit = client.commit(repo, commit_id)
-        bounty_winner = commit.author.login
-      end
-    end
-    true if 'self.nickname' == bounty_winner
+    true if self.nickname == bounty_winner
   end
   
 
