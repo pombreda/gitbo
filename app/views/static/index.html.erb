@@ -59,16 +59,13 @@
     <table class="table table-hover">
         <thead>
           <tr>
-            <th></th>
             <th>Issue</th>
             <th>Repo</th>
-            <!-- <th>Popularity</th> -->
           </tr>
         </thead>
 
             <% @issues.sort_by(&:popularity).reverse[0..5].each do |issue| %>
-              <tr id="issue_<%= issue.id %>">
-                <%= render 'issues/issue_vote', :issue => issue %>
+              <tr id="issue_<%= issue.id %>">        
                 <td><p><%= link_to issue.title, owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number) %></p>
                   <p class="issue-comment-count"><a id="link" rel="tooltip" data-placement="top" data-original-title="Points are a combination of the popularity on Github measured by the number of watchers, stars, and the number of comments on an issue blended with Gitbo metrics such as upvotes and owner endorsements"><span class="index-issue-popularity"><%= pluralize issue.popularity, "point" %></span></a> | <%= pluralize issue.comment_count, "comment" %></p>
                 </td>

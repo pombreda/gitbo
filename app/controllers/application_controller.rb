@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   # helper_method :current_user
   #   #copies them to Hellpercontroller for user with views
 
-  # def logged_in?
-  #   true if current_user
-  # end
+  def logged_in?
+    true if current_user
+  end
 end
