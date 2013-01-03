@@ -115,6 +115,29 @@
   width: 83px
 }
 
+
+/* Issues List */
+
+ul.issues_list {
+  padding: 15px;
+  list-style: none;
+}
+
+ul.issues_list li:nth-child(even) {
+  background: #CCC;
+}
+ul.issues_list li:nth-child(odd) {
+  background: #eee;
+}
+ul.unstyled li {
+  background: none;
+}
+
+
+
+
+/* end issues list */
+
 /*.rating {
   unicode-bidi: bidi-override;
   direction: rtl;

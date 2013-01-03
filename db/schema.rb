@@ -41,8 +41,6 @@ ActiveRecord::Schema.define(:version => 20121213214956) do
     t.datetime "updated_at",                         :null => false
     t.integer  "repo_id"
     t.integer  "comment_count"
-    t.integer  "upvote"
-    t.integer  "downvote"
     t.datetime "git_updated_at"
     t.string   "state"
     t.integer  "owner_endorsement", :default => 0
@@ -61,11 +59,11 @@ ActiveRecord::Schema.define(:version => 20121213214956) do
     t.text     "description"
     t.integer  "watchers"
     t.integer  "open_issues"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "slug"
     t.datetime "git_updated_at"
-    t.integer  "bounty_total",                  :default => 0
+    t.integer  "bounty_total",   :default => 0
   end
 
   add_index "repos", ["slug"], :name => "index_repos_on_slug"
