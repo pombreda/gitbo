@@ -4,7 +4,7 @@
 
 Gitbo aggregates public issues from Github and ranks them based on a popularity algorithm so developers can easily find projects to make significant contributions.
 
-You can play with the application at <http://openissu.es>
+You can play with the application at <http://git.bo>
 
 ##Contributing
 Please see the [Contribution Guidelines](https://github.com/flatiron-school/gitbo/blob/master/CONTRIBUTING.md)
