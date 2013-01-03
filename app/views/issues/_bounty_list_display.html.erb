@@ -1,0 +1,45 @@
+<% if current_user %>
+  <% if issue.bounty_total == 0 %>
+   <div class='row'>
+      <div class='span4'>
+        <%= link_to owner_repo_gitnumber_path(issue.repo_owner, issue.repo, issue.git_number, :bounty => true) do %>
+          <span class="text-success">Post a bounty</span>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+     <div class='row'>
+      <div class='span4'>
+        <%= link_to owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number) do %>
+            <span class="label label-warning"><%= number_to_currency(issue.bounty_total, :raise => true, :precision => 0)%></span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <% if issue.bounty_total ==  0 %>
+    <div class='row'>
+      <div class='span4'>
+       <div href="#login-prompt" data-toggle="modal"><span id="bounty-prompt" class="text-success">Post a bounty</span></div>
+      </div>
+    </div>
+  <% else %>
+  <div class='row'>
+      <div class='span4'>
+        <div href="#login-prompt" data-toggle="modal"><span id="bounty-prompt" class="label label-warning"><%= number_to_currency(issue.bounty_total, :raise => true, :precision => 0)%></span></div>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+
+<%= render :partial => 'avg_difficulty_index', :locals => { :issue => issue } %>
+
+  <!-- <td id="issue-endorcement">
+    <%# if issue.owner_endorsement == 1 %>
+        <span class="label label-success">YES!</span>
+    <%# elsif issue.owner_endorsement == -1 %>
+        <span class="label label-important">No</span>
+    <%# else %>
+        <span class="label"> ? </span>
+    <%# end %>
+  </td> -->

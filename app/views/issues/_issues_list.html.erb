@@ -1,0 +1,25 @@
+<% @issues.sort_by(&:popularity).reverse.each do |issue| %>
+
+<div id='issues-index' class='row'>
+
+  <div class='row'>
+    <div class='span1'>
+      <%= render 'issue_vote', :issue => issue %>
+    </div>
+    <div class='span3' id='title'>
+      <%= link_to(truncate(issue.title, length:100), owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number)) %>
+    </div>
+    <div class='span3 offset1' id='repo-owner-and-name'>
+      <%= link_to issue.repo_name, owner_repo_path(issue.repo_owner, issue.repo_name) %> / <%= link_to issue.repo_owner, owner_repos_path(issue.repo_owner) %>
+    </div>
+    <div class='span3 offset1' id='bounty-display'>
+      <%= render :partial => 'bounty_list_display', :locals => { :issue => issue } %>
+    </div>
+  </div>
+  <div class='row span6 offset1'>
+    <p class="issue-comment-count"><a id="link" rel="tooltip" data-placement="top" data-original-title="Points are a combination of the popularity on Github measured by the number of watchers, stars, and the number of comments on an issue blended with Gitbo metrics such as upvotes and owner endorsements"><span class="popularity_net"><%= pluralize issue.popularity, "point" %></span></a> | <%= pluralize issue.comment_count, "comment" %></p>
+  </div>
+
+</div>
+
+<% end %>
