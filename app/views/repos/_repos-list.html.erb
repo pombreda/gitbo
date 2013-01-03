@@ -1,0 +1,16 @@
+<% @repos.sort_by(&:popularity).reverse.each do |repo| %>
+  <div class='row'>
+    <div class='span4 offset1' id='repo-title'>
+      <strong><%= link_to repo.name, owner_repo_path(repo.owner_name, repo.name) %></strong>
+        <small>by <%= link_to repo.owner_name, owner_repos_path(repo.owner_name) %></small>
+    </div>
+    <div class='span2'><%= repo.open_issues %>
+     <small>open Issues</small>
+    </div>
+    <div class='span2'><%= number_with_delimiter(repo.watchers, :delimiter => ',') %>
+     <small>watchers</small>
+    </div>
+    <div class='span3'><%= number_to_currency(repo.calc_bounty_total, :precision => 0) %>
+    </div>
+  </div>
+<% end %>
