@@ -7,14 +7,7 @@ Gitbo aggregates public issues from Github and ranks them based on a popularity 
 You can play with the application at <http://openissu.es>
 
 ##Contributing
-We would love any contributions!
-
-###How to contribute:
-- Fork the repo
-- Git checkout a new branch named based on the work you plan to add
-- Make your addition or bug fix and test it to make sure nothing breaks
-- Commit
-- Submit pull request
+Please see the [Contribution Guidelines](https://github.com/flatiron-school/gitbo/blob/master/CONTRIBUTING.md)
 
 ##Setting Up Gitbo
 We have included a bootstrap script that sets-up the application, which requires [Memcached](http://memcached.org/) and [Redis](http://redis.io/) to be installed on the system. The script may prompt you to install these programs if you don't already have them installed.
