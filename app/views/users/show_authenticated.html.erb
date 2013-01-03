@@ -1,4 +1,14 @@
-  
+<% if flash[:notice] %> 
+  <div class='alert alert-success'>
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= flash[:notice] %>
+  </div>
+<% elsif flash[:error] %>
+  <div class='alert alert-error'>
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= flash[:error] %>
+  </div>
+<% end %>
 
 <div class="row">
 
@@ -8,8 +18,11 @@
         <img src="<%= @user.image %>" class='comment-avatar'>
         <h1>
           <span><%= @user.name %></span>
-          <em><%= @user.nickname %></em>
+          <em><%= @user.nickname %></em>  
         </h1>
+        <% if @current_user %>
+          <button id="bounty-claim" class="btn btn-warning btn-large" href="#claim-a-bounty" data-toggle="modal" type="button">Claim a Bounty</button>
+        <% end %>
       </div> <!-- end avatared-->
       <div class="details">
         <dl>
@@ -63,5 +76,5 @@
   </div>
 </div>
 <%# end %>
-
+<%= render :partial => 'modals/claim_a_bounty', :locals => { :issue => @issue } %> 
 

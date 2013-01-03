@@ -140,5 +140,21 @@ class Issue < ActiveRecord::Base
     end
   end
 
+  def closed?
+    #we eventally want to check with Github
+    self.state == 'closed'
+  end
+
+  def bounty_verification
+    true unless self.bounty_total == 0
+  end
+
+  def credit_bounties_to(user_id)
+    Bounty.find_all_by_issue(self).each do |bounty|
+      bounty.collected_by_user_id = user_id
+      bounty.save
+    end
+  end
 
 end
+

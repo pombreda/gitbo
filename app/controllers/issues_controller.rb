@@ -3,7 +3,6 @@ class IssuesController < ApplicationController
   # GET /issues.json
 
   helper_method :repo_owner
- 
 
   def vote
     @issue = Issue.find(params[:id])
