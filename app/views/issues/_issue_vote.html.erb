@@ -4,19 +4,21 @@
       <%= link_to vote_issue_path(issue.id, :upvote), :method => :put, :class => "upvote", remote: true do %>
         <ul class="unstyled">
           <% if current_user.voted_on?(issue) == :upvote %> 
-              <li><i id="upvote-icon-<%= issue.id %>" class="icon-circle-arrow-up"></i></li>
+              <li><i id="upvote-icon-<%= issue.id %>" class="icon-circle-arrow-up icon-large"></i></li>
           <% else %>
-              <li><i id="upvote-icon-<%= issue.id %>" class="icon-arrow-up"></i></li>
+              <li><i id="upvote-icon-<%= issue.id %>" class="icon-arrow-up icon-large"></i></li>
           <% end %>
-      <% end %>
-          <%= link_to vote_issue_path(issue.id, :downvote), :method => :put, :class => "downvote", remote: true do %>
-            <% if current_user.voted_on?(issue) == :downvote %>
-              <li><i id="down-vote-icon-<%= issue.id %>" class="icon-circle-arrow-down"></i></li>
-            <% else %>
-              <li><i id="down-vote-icon-<%= issue.id %>" class="icon-arrow-down"></i></li>
-            <% end %>
         <% end %>
-      </ul>
+        <li><p class="issue-comment-count"><a id="link" rel="tooltip" data-placement="top" data-original-title="Points are a combination of the popularity on Github measured by the number of watchers, stars, and the number of comments on an issue blended with Gitbo metrics such as upvotes and owner endorsements"><span class="popularity_net"><%= pluralize issue.popularity, "point" %></span></a> 
+        </li>
+        <%= link_to vote_issue_path(issue.id, :downvote), :method => :put, :class => "downvote", remote: true do %>
+          <% if current_user.voted_on?(issue) == :downvote %>
+            <li><i id="down-vote-icon-<%= issue.id %>" class="icon-circle-arrow-down icon-large"></i></li>
+          <% else %>
+            <li><i id="down-vote-icon-<%= issue.id %>" class="icon-arrow-down icon-large"></i></li>
+          <% end %>
+        <% end %>
+        </ul>
     </div>
   <% else %>
     <div id="vote-prompt" href="#login-prompt" data-toggle="modal">

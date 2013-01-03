@@ -119,21 +119,45 @@
 /* Issues List */
 
 ul.issues_list {
-  padding: 15px;
   list-style: none;
-}
-
-ul.issues_list li:nth-child(even) {
-  background: #CCC;
-}
-ul.issues_list li:nth-child(odd) {
   background: #eee;
 }
-ul.unstyled li {
+
+ul.issues_list .issue_line_item {
+  padding: 10px 0;
+}
+.issue_line_item #title {
+  font-size: 125%;
+  line-height: 125%;
+  margin-bottom: 5px;
+}
+ul.issues_list li.issue_line_item:nth-child(even) {
+  background: #CCC;
+}
+ul.issues_list li.issue_line_item:nth-child(odd) {
+  background: #eee;
+}
+ul.unstyled {
   background: none;
 }
 
+.issue-comment-count, .issue-comment-count #link {
+  font-weight: bold;
+  color: #888;
+  font-size: 12px; 
+}
 
+.bounty-label {
+  padding: 6px;
+  font-size: 38px;
+  line-height: 42px;}
+
+.bounty-text {
+  text-align: center;
+}
+.issue_line_item #bounty-display {
+  margin-top: 5px;
+}
 
 
 /* end issues list */
