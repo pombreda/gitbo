@@ -150,7 +150,7 @@ class Issue < ActiveRecord::Base
   end
 
   def credit_bounties_to(user_id)
-    Bounty.find_all_by_issue(self).each do |bounty|
+    Bounty.find_all_by_issue_id(self.id).each do |bounty|
       bounty.collected_by_user_id = user_id
       bounty.save
     end

@@ -3,7 +3,7 @@ class BountiesController < ApplicationController
   # GET /bounties.json
   def claim
     issue = Issue.find_by_repo_name_and_git_number(params[:repo_name], params[:git_number])
-    repo_url = "#{params[:repo_name]}/#{params[:owner_name]}"
+    repo_url = "#{params[:owner_name]}/#{params[:repo_name]}"
     issue.bounty_verification
     if true
       if issue.closed?
