@@ -1,0 +1,29 @@
+.repos-list {
+  list-style: none;
+  background: #eee;
+}
+
+ul.repos-list .repo-line-item {
+  padding: 10px 0;
+}
+
+.repo-line-item #repo-title {
+  font-size: 125%;
+  line-height: 125%;
+  margin-bottom: 5px;
+}
+
+.repo-line-item:nth-child(even) {
+  background: #CCC;
+}
+.repo-line-item:nth-child(odd) {
+  background: #eee;
+}
+
+#repo-bounty-total {
+  
+  font-size: 120%;
+  line-height: 120%;
+  
+  margin-top: 5px;
+}
