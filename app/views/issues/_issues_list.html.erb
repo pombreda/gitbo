@@ -1,3 +1,22 @@
+<div class="row" id='filter-bar'>
+  <div class="span4">
+    <div class="btn-group" data-toggle="buttons-radio">
+      <button class="btn active">All</button>
+      <button class="btn">Has a Bounty</button>
+      <button class="btn">Super Difficult</button>
+      <button class="btn">Easy Only</button>
+    </div>
+  </div>
+  <div class="span4">
+  <form class="form-search">
+    <div class="input-append">
+      <input type="text" class="span2">
+      <button type="submit" class="btn">Search</button>
+    </div>
+  </form>
+  </div>
+</div>
+
 <% @issues.sort_by(&:popularity).reverse.each do |issue| %>
 
   <li class='row issue_line_item'>

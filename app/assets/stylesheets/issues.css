@@ -107,8 +107,11 @@
   width: 83px
 }
 
-
 /* Issues List */
+
+#filter-bar {
+  background: #fff;
+}
 
 ul.issues_list {
   list-style: none;
