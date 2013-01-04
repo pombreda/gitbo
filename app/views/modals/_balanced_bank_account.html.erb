@@ -1,0 +1,47 @@
+<script type="text/javascript" src="https://js.balancedpayments.com/v1/balanced.js"></script>
+
+<div id="balanced-bank-account" class="modal hide fade" tabindex="-1" data-keyboard="false">
+    <form action="#" method="POST" id="bank-account-form">
+      <fieldset>
+        <div class="modal-body">
+          <legend>Bank Account Information</legend>
+            <label>Account Holder's Name
+                <input type="text"
+                       autocomplete="off"
+                       placeholder="Bank Account Holder's name"
+                       class="ba-name">
+            </label>
+            <label>Routing Number
+                <input type="text"
+                       autocomplete="off"
+                       placeholder="Routing Number"
+                       class="ba-rn">
+            </label>
+            <label>Account Number
+                <input type="text"
+                       autocomplete="off"
+                       placeholder="Account Number"
+                       class="ba-an">
+            </label>
+            <label>Account Type
+                <select>
+                    <option value='' disabled selected style='display:none;'>
+                        Select Account Type
+                    </option>
+                    <option value="checking">CHECKING</option>
+                    <option value="savings">SAVINGS</option>
+                </select>
+            </label>
+        </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">
+              Tokenize
+            </button>
+            <button type="button" data-dismiss="modal" class="btn btn-danger">
+              Cancel
+            </button>
+          </div>
+        </fieldset>
+    </form>
+</div>

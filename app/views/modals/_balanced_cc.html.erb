@@ -1,0 +1,43 @@
+<script type="text/javascript" src="https://js.balancedpayments.com/v1/balanced.js"></script>
+
+<div id="balanced-cc" class="modal hide fade" tabindex="-1" data-keyboard="false">
+    <form action="#" method="POST" id="credit-card-form">
+      <fieldset>
+      <div class="modal-body">
+            <legend>Credit Card Details</legend>
+            <label>Card Number
+                <input type="text"
+                       autocomplete="off"
+                       placeholder="Card Number"
+                       class="cc-number">
+            </label>
+            <label>Expiration
+                <input type="text"
+                       autocomplete="off"
+                       placeholder="Expiration Month"
+                       class="cc-em">
+                <span>/</span>
+                <input type="text"
+                       autocomplete="off"
+                       placeholder="Expiration Year"
+                       class="cc-ey">
+            </label>
+            <label>Security Code (CSC)
+                <input type="text"
+                       autocomplete="off"
+                       placeholder="CSC"
+                       class="cc-csc">
+            </label>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">
+              Tokenize
+            </button>
+            <button type="button" data-dismiss="modal" class="btn btn-danger">
+              Cancel
+            </button>
+          </div>
+        </fieldset>
+    </form>
+</div>

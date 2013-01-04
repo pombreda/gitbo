@@ -63,8 +63,8 @@ gem 'dalli'
 #chron jobs
 gem 'whenever', :require => false
 
-#stripe
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+#balanced
+gem 'balanced'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
