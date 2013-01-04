@@ -4,26 +4,25 @@ class UsersController < ApplicationController
 
   helper_method :repo_owner
 
-  def claim
+  # def claim
 
-    # repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
-    issue = Issue.find_by_id(params[:id])
-    repo = Repo.find_by_name(issue.repo.name)
-    bounties = Bounty.find_all_by_issue_id(issue.id)
-    repo = "#{repo.owner_name}/#{repo.name}"
+  #   # repo = Repo.find_by_owner_name_and_name(params[:owner], params[:repo])
+  #   issue = Issue.find_by_id(params[:id])
+  #   repo = Repo.find_by_name(issue.repo.name)
+  #   bounties = Bounty.find_all_by_issue_id(issue.id)
+  #   repo = "#{repo.owner_name}/#{repo.name}"
 
-    user = current_user
-    if user.check_bounty_winner(repo, issue.git_number, user.token)
-      bounties.each do |bounty|
-        bounty.collected_by_user_id = user.id
-        bounty.save
-      end
-      flash[:notice] = 'Congratulations! We will reach you shortly with instructions to claim your bounty'
-    else
-      flash[:error] = 'Our records indicate you did not commit this merge. If you feel this is incorrect, please contact us'
-    end
-    redirect_to :back
-  end
+  #   user = current_user
+  #   if user.check_bounty_winner(repo, issue, user.token)
+  #     flash[:notice] = 'Congratulations! We will reach you shortly with instructions to claim your bounty'
+
+  #     ####send an email to gitbounty@gmail.com notifying of a successful claim
+      
+  #   else
+  #     flash[:error] = 'Our records indicate you did not commit this merge. If you feel this is incorrect, please contact us'
+  #   end
+  #   redirect_to :back
+  # end
 
   def index
     @users = User.all

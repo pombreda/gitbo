@@ -40,7 +40,7 @@ Gitbo::Application.routes.draw do
   end
 
   #bounty claming
-  post '/users/:id/claim' => 'users#claim', :as => :user_winner
+  post '/bounties/claim' => 'bounties#claim', :as => :bounty_claim
 
   #issues
   get "/issues" => "issues#index"

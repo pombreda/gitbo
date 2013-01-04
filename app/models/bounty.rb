@@ -4,5 +4,5 @@ class Bounty < ActiveRecord::Base
   belongs_to :user
 
   validates :price, :presence => true, :numericality => { :less_than => 5000 }
-  
+
 end
