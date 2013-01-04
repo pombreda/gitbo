@@ -88,13 +88,12 @@ class User < ActiveRecord::Base
     client = OctokitWrapper.new(token).client
     octokit_events = client.issue_events(repo_url, issue.git_number)
     event = octokit_events.find { |e| e.event == "closed"}
-    debugger
     if event.commit_id
       commit = client.commit(repo_url, event.commit_id)
       bounty_winner = commit.author.login
     end
+    debugger
     true if self.nickname == bounty_winner
-    issue.credit_bounties_to(self.id)
   end
   
 end

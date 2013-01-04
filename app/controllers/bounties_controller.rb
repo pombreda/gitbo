@@ -8,10 +8,11 @@ class BountiesController < ApplicationController
     if true
       if issue.closed?
         if current_user.check_bounty_winner(repo_url, issue, current_user.token)
+          issue.credit_bounties_to(self.id)
           flash[:notice] = 'Congratulations! We will reach you shortly with instructions to claim your bounty'
           ####send an email to gitbounty@gmail.com notifying of a successful claim
         else
-          flash[:notice] = 'our records show you did not close this issue'
+          flash[:error] = 'our records show you did not close this issue'
         end
       else
         flash[:error] = 'This does not match our records'
