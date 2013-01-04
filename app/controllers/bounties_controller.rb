@@ -6,8 +6,8 @@ class BountiesController < ApplicationController
     repo_url = "#{params[:owner_name]}/#{params[:repo_name]}"
 
     if issue.bounty_verification #&& issue.closed?
-      if current_user.check_bounty_winner(repo_url, issue, current_user.token)
-        issue.credit_bounties_to(self.id)
+      if current_user.check_bounty_winner(repo_url, issue)
+        issue.credit_bounties_to(current_user.id)
         flash[:notice] = 'Congratulations! We will reach you shortly with instructions to claim your bounty'
         ####send an email to gitbounty@gmail.com notifying of a successful claim
       else

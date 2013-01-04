@@ -84,16 +84,17 @@ class User < ActiveRecord::Base
     @bounties ||= Bounty.where('collected_by_user_id = ?', self.id).sum('price').to_i
   end
 
-  def check_bounty_winner(repo_url, issue, token)
-    client = OctokitWrapper.new(token).client
+  def check_bounty_winner(repo_url, issue)
+    client = OctokitWrapper.new(self.token).client
     octokit_events = client.issue_events(repo_url, issue.git_number)
     event = octokit_events.find { |e| e.event == "closed"}
-    return false unless event
-      if event.commit_id
-        commit = client.commit(repo_url, event.commit_id)
-        bounty_winner = commit.author.login
-      end
+    event ? get_commit_author(repo_url, event, client) : false
+  end
+
+  private
+  def get_commit_author(repo_url, event, client)
+    commit = client.commit(repo_url, event.commit_id)
+    bounty_winner = commit.author.login
     true if self.nickname == bounty_winner
   end
-  
 end
