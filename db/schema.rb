@@ -41,8 +41,6 @@ ActiveRecord::Schema.define(:version => 20121213214956) do
     t.datetime "updated_at",                         :null => false
     t.integer  "repo_id"
     t.integer  "comment_count"
-    t.integer  "upvote"
-    t.integer  "downvote"
     t.datetime "git_updated_at"
     t.string   "state"
     t.integer  "owner_endorsement", :default => 0
