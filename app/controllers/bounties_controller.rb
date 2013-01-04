@@ -4,18 +4,14 @@ class BountiesController < ApplicationController
   def claim
     issue = Issue.find_by_repo_name_and_git_number(params[:repo_name], params[:git_number])
     repo_url = "#{params[:owner_name]}/#{params[:repo_name]}"
-    issue.bounty_verification
-    if true
-      if issue.closed?
-        if current_user.check_bounty_winner(repo_url, issue, current_user.token)
-          issue.credit_bounties_to(self.id)
-          flash[:notice] = 'Congratulations! We will reach you shortly with instructions to claim your bounty'
-          ####send an email to gitbounty@gmail.com notifying of a successful claim
-        else
-          flash[:error] = 'our records show you did not close this issue'
-        end
+
+    if issue.bounty_verification #&& issue.closed?
+      if current_user.check_bounty_winner(repo_url, issue, current_user.token)
+        issue.credit_bounties_to(self.id)
+        flash[:notice] = 'Congratulations! We will reach you shortly with instructions to claim your bounty'
+        ####send an email to gitbounty@gmail.com notifying of a successful claim
       else
-        flash[:error] = 'This does not match our records'
+        flash[:error] = 'our records show you did not close this issue'
       end
     else
       flash[:error] = 'This does not match our records'
