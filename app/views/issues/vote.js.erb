@@ -1,12 +1,12 @@
 // issue index page
-$("tr#issue_<%= @issue.id %> td p span.popularity_net").html("<%= pluralize @issue.popularity, "point" %>");  
+$("span#<%= @issue.id %>_popularity_net").html("<%= pluralize @issue.popularity, "point" %>");  
 // issue on static index page
 $("tr#issue_<%= @issue.id %> td p.issue-comment-count span.index-issue-popularity").html("<%= pluralize @issue.popularity, "point" %>"); 
 // issue show page
 $(".discussion-stats span.net_votes").html("<strong><%= pluralize @issue.vote_count, "vote" %> </strong>");   
 
-$upvoteIcon = $("tr#issue_<%= @issue.id %> i#upvote-icon-<%= @issue.id %>");
-$downvoteIcon = $("tr#issue_<%= @issue.id %> i#down-vote-icon-<%= @issue.id %>");
+$upvoteIcon = $("i#upvote-icon-<%= @issue.id %>");
+$downvoteIcon = $("i#down-vote-icon-<%= @issue.id %>");
 
 <% if params[:direction] == "upvote" %>
   $downvoteIcon.addClass('icon-arrow-down').removeClass('icon-circle-arrow-down');
