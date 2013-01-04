@@ -1,9 +1,11 @@
 // issue index page
-$("span#<%= @issue.id %>_popularity_net").html("<%= pluralize @issue.popularity, "point" %>");  
+$("span.<%= @issue.id %>_popularity_net").html("<%= pluralize @issue.popularity, "point" %>");  
+
 // issue on static index page
-$("tr#issue_<%= @issue.id %> td p.issue-comment-count span.index-issue-popularity").html("<%= pluralize @issue.popularity, "point" %>"); 
+// $("tr#issue_<%= @issue.id %> td p.issue-comment-count span.index-issue-popularity").html("<%= pluralize @issue.popularity, "point" %>"); 
+
 // issue show page
-$(".discussion-stats span.net_votes").html("<strong><%= pluralize @issue.vote_count, "vote" %> </strong>");   
+// $(".discussion-stats span.net_votes").html("<strong><%= pluralize @issue.vote_count, "vote" %> </strong>");   
 
 $upvoteIcon = $("i#upvote-icon-<%= @issue.id %>");
 $downvoteIcon = $("i#down-vote-icon-<%= @issue.id %>");
