@@ -9,7 +9,7 @@
               <li><i id="upvote-icon-<%= issue.id %>" class="icon-arrow-up icon-large"></i></li>
           <% end %>
         <% end %>
-        <li><p class="issue-comment-count"><a id="link" rel="tooltip" data-placement="top" data-original-title="Points are a combination of the popularity on Github measured by the number of watchers, stars, and the number of comments on an issue blended with Gitbo metrics such as upvotes and owner endorsements"><span class="popularity_net"><%= pluralize issue.popularity, "point" %></span></a> 
+        <li><p class="issue-comment-count"><a id="link" rel="tooltip" data-placement="top" data-original-title="Points are a combination of the popularity on Github measured by the number of watchers, stars, and the number of comments on an issue blended with Gitbo metrics such as upvotes and owner endorsements"><span class="popularity_net"><%= issue.popularity %></span></a> 
         </li>
         <%= link_to vote_issue_path(issue.id, :downvote), :method => :put, :class => "downvote", remote: true do %>
           <% if current_user.voted_on?(issue) == :downvote %>

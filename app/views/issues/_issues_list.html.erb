@@ -1,7 +1,7 @@
   <% @issues.sort_by(&:popularity).reverse.each do |issue| %>
 
   <li class='row issue_line_item'>
-    <div class='span2'>
+    <div class='span1'>
       <%= render 'issue_vote', :issue => issue %>
     </div>
     <div class='span6'>
@@ -9,11 +9,9 @@
         <%= link_to(truncate(issue.title, length:100), owner_repo_gitnumber_path(issue.repo_owner, issue.repo_name, issue.git_number)) %>
       </div>
       <div class='row'>
-        <div class='span2'>
-          <p class="issue-comment-count"><%= pluralize issue.comment_count, "comment" %></p>
-        </div>
-        <div class='span2' id='repo-owner-and-name'>
-          <%= link_to issue.repo_name, owner_repo_path(issue.repo_owner, issue.repo_name) %> / <%= link_to issue.repo_owner, owner_repos_path(issue.repo_owner) %>
+        <p class="issue-comment-count"><%= pluralize issue.comment_count, "comment" %></p>
+        <div id='repo-owner-and-name'>
+          <%= link_to issue.repo_name, owner_repo_path(issue.repo_owner, issue.repo_name) %> by <%= link_to issue.repo_owner, owner_repos_path(issue.repo_owner) %>
         </div>
       </div>
     </div>

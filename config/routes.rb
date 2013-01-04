@@ -39,7 +39,7 @@ Gitbo::Application.routes.draw do
     resources :issues, :only => [:index, :delete] # will eventually remove delete
   end
 
-  #bounty claming
+  #bounty claiming
   post '/bounties/claim' => 'bounties#claim', :as => :bounty_claim
 
   #issues

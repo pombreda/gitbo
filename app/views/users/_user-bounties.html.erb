@@ -1,8 +1,6 @@
 
 <h3><%= @user.nickname %>'s Bounties</h3>
 
-<p id="notice"><%= notice %></p>
-
 <% if @user.bounties.count == 0 %>
   <div class='span12'>
     <p><%= @user.nickname %> has no bounties.</p>
