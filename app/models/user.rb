@@ -92,7 +92,6 @@ class User < ActiveRecord::Base
       commit = client.commit(repo_url, event.commit_id)
       bounty_winner = commit.author.login
     end
-    debugger
     true if self.nickname == bounty_winner
   end
   
