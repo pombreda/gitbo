@@ -24,3 +24,5 @@ omniauth.rb
 
 *.DS_Store
 config/application.yml
+public/assets/
+dump.rdb
