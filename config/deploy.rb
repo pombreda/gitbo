@@ -3,7 +3,7 @@ require 'sidekiq/capistrano'
 require 'capistrano/ext/multistage'
 
 set :stages, %w(staging production)
-set :default_stage, "production"
+set :default_stage, "staging"
 
 set :application, "gitbo"
 set :repository,  "git@github.com:flatiron-school/gitbo.git"
