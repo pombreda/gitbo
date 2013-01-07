@@ -43,22 +43,6 @@
         <% end %>
       </div>
     </div>
-    <div class="span4">
-      <div class="pull-right">
-      <% if current_user %> 
-        <%= link_to_new_bounty_for @issue %>
-        <% if @issue.state == 'closed' %>
-          <button id="bounty-claim" class="btn btn-warning btn-small" href="#claim-bounty-confirmation" data-toggle="modal" type="button">I Solved This</button>
-        <% end %>
-      <% else %>
-        <button id="bounty-unauth" class="btn btn-success btn-small" href="#login-prompt" data-toggle="modal" type="button">Issue Bounty</button>
-        <% if @issue.state == 'closed' %>
-          <button id="claim-unauth" class="btn btn-warning btn-small" href="#login-prompt" data-toggle="modal" type="button">I Solved This</button>
-        <% end %>
-      <% end %>
-        
-      </div>
-    </div>
   </div>
 
 <!-- <div id="show_issue"> -->
@@ -190,4 +174,3 @@
 
 <%= render :partial => 'modals/login' %>
 <%= render :partial => 'modals/bounty_confirmation', :locals => { :issue => @issue } %>
-<%= render :partial => 'modals/claim_bounty_confirmation', :locals => { :issue => @issue } %>
