@@ -21,6 +21,7 @@ Gitbo::Application.routes.draw do
   
   #authentication through github
   match '/auth/:provider/callback' => 'sessions#create'
+  match '/auth/failure' => 'sessions#failure'
   
   get '/signout' => "sessions#destroy", :as => :signout
 

@@ -22,4 +22,9 @@ class SessionsController < ApplicationController
     redirect_to :root
   end
 
+  def failure
+    flash[:error] = "There was a problem authenticating with Github. Github says: #{ params[:message] }"
+    redirect_to :root
+  end
+
 end
