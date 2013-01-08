@@ -19,6 +19,34 @@ class Issue < ActiveRecord::Base
 
   before_save :write_other_attr
 
+  def self.search_and_filter_open_issues(params)
+    includes(:repo, :bounties, :user_votes).
+      all_open_issues.
+      search(params[:query]).
+      filter_by(params[:filters])
+  end
+  
+  def self.filter_by(filter)
+    case filter if params[:filter].present?
+      when "hard"
+        where("issues.avg_difficulty > 3.9") 
+      when "easy"
+        where("issues.avg_difficulty <= 3.9" && "issues.avg_difficulty > 0") 
+      when "bounty"
+        where("issues.bounty_total > 0") 
+    end
+    # filters.each do |filter|
+    # end
+  end
+
+  def self.search(query)
+    if params[:query].present? 
+      where("issues.title LIKE ?", "#{query}%") #sphinx?
+    else
+      scoped
+    end
+  end
+
   def recalculate_bounty_total
     @recalculate_bounty_total ||= self.bounties.inject(0) {|total = 0, bounty| total += bounty.price if bounty.price} 
   end
