@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -42,7 +42,7 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4.0"
 end
 
-group :development, :staging do
+group :development do
   gem 'pry'
   gem "binding_of_caller"
   gem 'better_errors'

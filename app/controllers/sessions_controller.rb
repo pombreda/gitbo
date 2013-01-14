@@ -23,7 +23,6 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    raise "test"
     flash[:error] = "There was a problem authenticating with Github. Github says: #{ params[:message] }.\n #{ request.env["omniauth.auth" ]}"
     redirect_to :root
   end
