@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    raise "Test"
     auth = request.env["omniauth.auth"]
     user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
     session[:user_id] = user.id
@@ -24,6 +23,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
+    raise "test"
     flash[:error] = "There was a problem authenticating with Github. Github says: #{ params[:message] }.\n #{ request.env["omniauth.auth" ]}"
     redirect_to :root
   end

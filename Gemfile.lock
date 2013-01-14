@@ -60,6 +60,7 @@ GEM
     better_errors (0.3.2)
       coderay (>= 1.0.0)
       erubis (>= 2.7.0)
+    binding_of_caller (0.6.8)
     builder (3.0.4)
     capistrano (2.13.5)
       highline
@@ -319,6 +320,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   better_errors
+  binding_of_caller
   capistrano
   capistrano-ext
   coffee-rails (~> 3.2.1)
