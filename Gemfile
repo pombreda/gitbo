@@ -42,6 +42,10 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4.0"
 end
 
+group :development, :staging do
+  gem 'pry'
+  gem 'better_errors'
+end
 
 gem 'sidekiq'
 gem 'sinatra', require: false
