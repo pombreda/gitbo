@@ -48,7 +48,7 @@ class IssuesController < ApplicationController
   end
 
   def index
-    @issues = Issue.search_and_filter_open_issues(params)
+    @issues = Issue.search(params[:search])#search_and_filter_open_issues(params)
     @repo = Repo.new
     1.times { @repo.issues.build}
 

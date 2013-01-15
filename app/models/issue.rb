@@ -27,7 +27,7 @@ class Issue < ActiveRecord::Base
   end
   
   def self.filter_by(filter)
-    case filter if params[:filter].present?
+    case filter #if params[:filter].present?
       when "hard"
         where("issues.avg_difficulty > 3.9") 
       when "easy"
@@ -39,11 +39,19 @@ class Issue < ActiveRecord::Base
     # end
   end
 
-  def self.search(query)
-    if params[:query].present? 
-      where("issues.title LIKE ?", "#{query}%") #sphinx?
+  # def self.search(query)
+  #   #if params[:query].present? 
+  #     where("issues.title LIKE ?", "#{query}%") #sphinx?
+  #   #else
+  #    # scoped
+  #   #end
+  # end
+
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['repo_name LIKE ?', "%#{search}%"])
     else
-      scoped
+      find(:all)
     end
   end
 
