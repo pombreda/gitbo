@@ -27,7 +27,6 @@
 $('#upvote_issue').click(function(){
   $('#upvote_issue').removeClass().addClass('btn btn-mini btn-warning');
   $('#downvote_issue').removeClass().addClass('btn btn-mini btn-info');
-
 });
      
 $('#downvote_issue').click(function(){

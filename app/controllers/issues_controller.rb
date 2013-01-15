@@ -48,15 +48,9 @@ class IssuesController < ApplicationController
   end
 
   def index
-    @issues = Issue.all_open_issues.includes(:repo, :bounties, :user_votes)
+    @issues = Issue.search(params[:search])#search_and_filter_open_issues(params)
     @repo = Repo.new
     1.times { @repo.issues.build}
-    # @user = current_user
-
-
-      # Get all issues
-      # sorts all issues by issue.popularity
-     # Issue.all
 
     respond_to do |format|
       format.html # index.html.erb
