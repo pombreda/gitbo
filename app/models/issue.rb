@@ -27,11 +27,5 @@ class Issue < ActiveRecord::Base
     issue
   end
 
-  
-
-
-<<<<<<< HEAD
 end
-=======
-end
->>>>>>> 587edb7e96008ca47452c1a3b91dd55c748443bb
+

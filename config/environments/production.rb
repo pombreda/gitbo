@@ -64,4 +64,13 @@ Gitbo::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  config.middleware.use ExceptionNotifier,
+    sender_address: 'services@flatironschool.com',
+    exception_recipients: %w{joshua.f.rowley@gmail.com avi.flombaum@gmail.com adamcjonas@gmail.com jzueva@gmail.com mcnameekm@gmail.com}
+
+  config.action_mailer.delivery_method   = :postmark
+  config.action_mailer.postmark_settings = { :api_key => "1902efc3-66dc-4333-826a-4b9eba6caadb" }
+  GITHUB_CLIENT_ID = "95b17e5f61a6620abfbd"
+  GITHUB_CLIENT_SECRET = "cd4c081272df9d8ee73de48b094e51148d151203"
 end

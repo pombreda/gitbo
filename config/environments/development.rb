@@ -11,7 +11,8 @@ Gitbo::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  config.action_controller.perform_caching = true
+  config.cache_store = :dalli_store
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
@@ -34,4 +35,7 @@ Gitbo::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  GITHUB_CLIENT_ID = "6d51403ac6d796c9b2c3"
+  GITHUB_CLIENT_SECRET = "f5ed8a390f33a28b01bc925334a3caa205e212d0"
 end
