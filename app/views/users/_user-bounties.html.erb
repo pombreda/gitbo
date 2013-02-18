@@ -16,16 +16,22 @@
           <th>Repo</th>
           <th>Issue number</th>
           <th>Bounty Price</th>
-          <th>Bounty Issued</th>
-          
+          <th>Bounty Issued</th> 
         </tr>
       </thead>
+
       <tbody>
         <% @user.bounties.sort_by(&:price).reverse.each do |bounty| %>
           <tr>
               <% if bounty.collected_by_user_id != 0 %>
-              <td><script src="https://button.stripe.com/v1/button.js" class="stripe-button"
-                data-key="pk_NjMf2QUPtR28Wg0xmyWtepIzUziVr"></script></td>
+              <td><form name="_xclick" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+              <input type="hidden" name="cmd" value="_xclick">
+              <input type="hidden" name="business" value="<%= User.find(collected_by_user_id).email %>">
+              <input type="hidden" name="currency_code" value="USD">
+              <input type="hidden" name="item_name" value="<%= bounty.issue.title %>">
+              <input type="hidden" name="amount" value="<%= bounty.price %>">
+              <input type="image" src="http://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+              </form></td>
               <% else %>
               <td><span class="label">Waiting to be solved</span></td>
               <!-- <td><button id="bounty-payment-prompt" class="btn btn-success btn-small" href="#bounty-payment" data-toggle="modal">Pay</button></td> -->
