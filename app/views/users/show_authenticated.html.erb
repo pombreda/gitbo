@@ -14,16 +14,18 @@
 
   <div class="span3" class="columns profilecols js-username">
     <div class="vcard">
+      
       <div class="avatared">
         <img src="<%= @user.image %>" class='comment-avatar'>
+        <% if @current_user %>
+          <button id="bounty-claim" class="btn btn-warning btn-large" href="#claim-a-bounty" data-toggle="modal" type="button">Claim a Bounty</button>
+        <% end %>
         <h1>
           <span><%= @user.name %></span>
           <em><%= @user.nickname %></em>  
         </h1>
-        <% if @current_user %>
-          <button id="bounty-claim" class="btn btn-warning btn-large" href="#claim-a-bounty" data-toggle="modal" type="button">Claim a Bounty</button>
-        <% end %>
       </div> <!-- end avatared-->
+
       <div class="details">
         <dl>
           <dt><span class="icon-envelope"></span></dt>
