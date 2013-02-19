@@ -84,5 +84,5 @@ gem 'capistrano-ext'
 # To use debugger
 # gem 'debugger'
 
-gem 'octokit', :github => 'ajonas04/octokit'
+gem 'octokit', :github => 'adamjonas/octokit'
 gem 'will_paginate'
