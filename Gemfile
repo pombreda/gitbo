@@ -32,7 +32,7 @@ gem 'friendly_id'
  gem 'omniauth-openid'
 
 group :development, :test do
-  gem 'debugger'
+  # gem 'debugger'
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'sqlite3'
@@ -44,7 +44,7 @@ end
 
 group :development do
   gem 'pry'
-  gem "binding_of_caller"
+  gem "binding_of_caller", "~> 0.7.1"
   gem 'better_errors'
 end
 
