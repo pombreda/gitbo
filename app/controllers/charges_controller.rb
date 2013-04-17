@@ -3,19 +3,12 @@ class ChargesController < ApplicationController
   end
 
   def create
-    # Amount in cents
-    @amount = 500
-
-    Stripe::Charge.create(
-      :amount      => @amount,
-      :card        => params[:stripeToken],
-      :description => 'Rails Stripe customer',
-      :currency    => 'usd'
-    )
-
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to :back
+    #capture tokenized info regarding transaction and the URL (universal resource locator)
+    #update the bounty to paid
+    #update the time paid
+    #update the DOM to reflect payment
+  
+    #rescue errors
   end
 
 end

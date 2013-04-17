@@ -6,8 +6,8 @@ Gitbo::Application.routes.draw do
 
 
     #stripe charges
-  resources :charges
-
+  # resources :charges
+  match "/balanced" => "charges#create"
 
   ### sidekiq monitoring
   mount Sidekiq::Web, at: "/sidekiq"
