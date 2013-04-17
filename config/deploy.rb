@@ -17,8 +17,8 @@ set :scm, :git # You can set :scm explicitly or Capistrano will make an intellig
 
 default_run_options[:pty] = true
 
-role :web, "96.8.123.68"                          # Your HTTP server, Apache/etc
-role :app, "96.8.123.68"                          # This may be the same as your `Web` server
+role :web, "198.199.65.182"                          # Your HTTP server, Apache/etc
+role :app, "198.199.65.182"                          # This may be the same as your `Web` server
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
