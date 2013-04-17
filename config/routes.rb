@@ -2,6 +2,9 @@ require 'sidekiq/web'
 
 Gitbo::Application.routes.draw do
 
+  resources :payment_notifications
+
+
     #stripe charges
   resources :charges
 

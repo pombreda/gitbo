@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121213214956) do
+ActiveRecord::Schema.define(:version => 20130417162603) do
 
   create_table "bounties", :force => true do |t|
     t.integer  "user_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20121213214956) do
     t.datetime "updated_at",                          :null => false
     t.integer  "collected_by_user_id", :default => 0
     t.integer  "price",                :default => 0
+    t.string   "paid_at"
   end
 
   create_table "comments", :force => true do |t|
@@ -36,34 +37,43 @@ ActiveRecord::Schema.define(:version => 20121213214956) do
   create_table "issues", :force => true do |t|
     t.string   "title"
     t.integer  "git_number"
-    t.text     "body"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.text     "body",              :limit => 255
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
     t.integer  "repo_id"
     t.integer  "comment_count"
     t.datetime "git_updated_at"
     t.string   "state"
-    t.integer  "owner_endorsement", :default => 0
+    t.integer  "owner_endorsement",                :default => 0
     t.string   "owner_name"
     t.string   "owner_image"
-    t.integer  "vote_count",        :default => 0
-    t.float    "avg_difficulty",    :default => 0.0
+    t.integer  "vote_count",                       :default => 0
+    t.float    "avg_difficulty",                   :default => 0.0
     t.string   "repo_name"
     t.string   "repo_owner"
-    t.integer  "bounty_total",      :default => 0
+    t.integer  "bounty_total",                     :default => 0
+  end
+
+  create_table "payment_notifications", :force => true do |t|
+    t.text     "params"
+    t.boolean  "status"
+    t.string   "transaction_id"
+    t.string   "bounty_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "repos", :force => true do |t|
     t.string   "name"
     t.string   "owner_name"
-    t.text     "description"
+    t.text     "description",    :limit => 255
     t.integer  "watchers"
     t.integer  "open_issues"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.string   "slug"
     t.datetime "git_updated_at"
-    t.integer  "bounty_total",   :default => 0
+    t.integer  "bounty_total",                  :default => 0
   end
 
   add_index "repos", ["slug"], :name => "index_repos_on_slug"
