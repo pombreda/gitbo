@@ -17,6 +17,7 @@
 //= require twitter/bootstrap
 //= require bootstrap-modalmanager
 //= require bootstrap-modal
+//= require filter
 //= require_tree .
 
 

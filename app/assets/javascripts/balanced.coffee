@@ -9,7 +9,6 @@ jQuery ->
     routing_number: $form.find(".ba-rn").val()
     type: $form.find("select").val()
 
-
   responseCallbackHandler = (response) ->
     switch response.status
       when 400

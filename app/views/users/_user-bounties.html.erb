@@ -43,7 +43,7 @@
               <td><%= number_to_currency(bounty.price, :precision => 0) %></td>
               <td><%= time_ago_in_words( bounty.created_at ) %> ago</td>
               <td><a class="btn btn-info btn-small" href="http://www.github.com/<%= bounty.issue.repo_owner %>/<%= bounty.issue.repo_name %>/issues/<%= bounty.issue.git_number %>" target="blank"> View issue on <i class='icon-github'></i>
-              </a></td>
+              </a></td>              
             
             <!-- <td><%#= link_to "Edit", edit_issue_bounty_path( bounty.issue.repo_owner, bounty.issue.repo_name, bounty.issue.git_number, bounty.id ) %></td> -->
           </tr>

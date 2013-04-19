@@ -26,13 +26,16 @@
         </h1>
       </div> <!-- end avatared-->
 
-      <div class="details">
-        <dl>
-          <dt><span class="icon-envelope"></span></dt>
-          <dd><a> <%= mail_to @user.email %> </a></dd>
-          <!-- Please add any additional UserProfile details here as available -->
-        </dl>
-      </div> <!-- end details-->
+      <% if @user.email %>
+        <div class="details">
+          <dl>
+            <dt><span class="icon-envelope"></span></dt>
+            <dd><a> <%= mail_to @user.email %> </a></dd>
+            <!-- Please add any additional UserProfile details here as available -->
+          </dl>
+        </div> <!-- end details-->
+      <% end %>
+      
     </div> <!-- end vcard-->
     <ul class="stats">
       <li>
