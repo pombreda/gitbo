@@ -1,6 +1,4 @@
 class IssuesController < ApplicationController
-  # GET /issues
-  # GET /issues.json
 
   helper_method :repo_owner
 

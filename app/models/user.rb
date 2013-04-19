@@ -91,6 +91,10 @@ class User < ActiveRecord::Base
     event ? get_commit_author(repo_url, event, client) : false
   end
 
+  def client
+    Octokit::Client.new(:login => "me", :oauth_token => self.token)
+  end
+
   private
   def get_commit_author(repo_url, event, client)
     commit = client.commit(repo_url, event.commit_id)

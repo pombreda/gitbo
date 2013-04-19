@@ -39,14 +39,6 @@ class Issue < ActiveRecord::Base
     # end
   end
 
-  # def self.search(query)
-  #   #if params[:query].present? 
-  #     where("issues.title LIKE ?", "#{query}%") #sphinx?
-  #   #else
-  #    # scoped
-  #   #end
-  # end
-
   def self.search(search)
     if search
       find(:all, :conditions => ['repo_name LIKE ?', "%#{search}%"])
